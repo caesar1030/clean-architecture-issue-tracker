@@ -9,6 +9,7 @@ function MilestoneFilterMenu() {
   const { milestones } = useMilestones();
   const {
     toggleMilestoneSearchParam,
+    toggleNotWithMilestone,
     getMilestoneSearchParam,
     isNotWithMilestone,
   } = useSearchParamsHandlers();
@@ -27,7 +28,7 @@ function MilestoneFilterMenu() {
           <Table.Header>마일스톤 필터</Table.Header>
 
           <Table.Row>
-            <Menus.Button onClick={() => toggleMilestoneSearchParam('none')}>
+            <Menus.Button onClick={() => toggleNotWithMilestone()}>
               <div className="flex gap-2 items-center">
                 <span className="grow">마일스톤이 없는 이슈</span>
                 <RadioButton checked={isNotWithMilestone} />

@@ -23,6 +23,10 @@ export interface IssueFilterOptions {
   labelTitle?: string;
   milestoneTitle?: string;
   likes?: string[];
+  no?: {
+    label?: 'unlabeled';
+    milestone?: 'notWithMilestone';
+  };
 }
 
 export interface IssueCreationData {

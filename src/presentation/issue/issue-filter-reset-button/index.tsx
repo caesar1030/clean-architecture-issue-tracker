@@ -7,6 +7,7 @@ function IssueFilterResetButton() {
     hasLabelSearchParam,
     hasMilestoneSearchParam,
     hasLikeSearchParam,
+    hasNoSearchParam,
     initSearchParams,
   } = useSearchParamsHandlers();
 
@@ -14,7 +15,8 @@ function IssueFilterResetButton() {
     isOpenStatus &&
     !hasLabelSearchParam &&
     !hasMilestoneSearchParam &&
-    !hasLikeSearchParam;
+    !hasLikeSearchParam &&
+    !hasNoSearchParam;
 
   function handleClick() {
     initSearchParams();

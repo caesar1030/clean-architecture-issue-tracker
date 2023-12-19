@@ -7,8 +7,12 @@ export const OPEN_STATUS_KEY = 'isOpen';
 export const LABEL_KEY = 'label';
 export const MILESTONE_KEY = 'milestone';
 export const LIKE_KEY = 'like';
+export const NO_KEY = 'no';
+
 export const OPEN = 'open';
 export const CLOSE = 'close';
+export const UNLABELD = 'label';
+export const NOT_WITH_MILESTONE = 'milestone';
 
 export default function useSearchParamsHandlers() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,6 +21,7 @@ export default function useSearchParamsHandlers() {
   const getLabelSearchParam = () => searchParams.get(LABEL_KEY);
   const getMilestoneSearchParam = () => searchParams.get(MILESTONE_KEY);
   const getLikeSearchParams = () => searchParams.getAll(LIKE_KEY);
+  const getNoSearchParams = () => searchParams.getAll(NO_KEY);
 
   const setOpenStatusSearchParam = (isOpen: boolean | null) => {
     if (isOpen === null) {
@@ -28,6 +33,14 @@ export default function useSearchParamsHandlers() {
   };
 
   const toggleLabelSearchParam = (value: Label['title']) => {
+    const noSearchParams = searchParams.getAll(NO_KEY);
+    if (noSearchParams.includes(UNLABELD)) {
+      searchParams.delete(NO_KEY);
+      noSearchParams
+        .filter((noSearchParam) => noSearchParam !== UNLABELD)
+        .forEach((noSearchParam) => searchParams.append(NO_KEY, noSearchParam));
+    }
+
     if (searchParams.get(LABEL_KEY) === value) {
       searchParams.delete(LABEL_KEY);
     } else {
@@ -37,6 +50,14 @@ export default function useSearchParamsHandlers() {
   };
 
   const toggleMilestoneSearchParam = (value: Milestone['title']) => {
+    const noSearchParams = searchParams.getAll(NO_KEY);
+    if (noSearchParams.includes(NOT_WITH_MILESTONE)) {
+      searchParams.delete(NO_KEY);
+      noSearchParams
+        .filter((noSearchParam) => noSearchParam !== NOT_WITH_MILESTONE)
+        .forEach((noSearchParam) => searchParams.append(NO_KEY, noSearchParam));
+    }
+
     if (searchParams.get(MILESTONE_KEY) === value) {
       searchParams.delete(MILESTONE_KEY);
     } else {
@@ -51,11 +72,46 @@ export default function useSearchParamsHandlers() {
     setSearchParams(searchParams);
   };
 
+  const toggleUnlabeled = () => {
+    searchParams.delete(LABEL_KEY);
+
+    const noSearchParams = searchParams.getAll(NO_KEY);
+
+    if (noSearchParams.includes(UNLABELD)) {
+      searchParams.delete(NO_KEY);
+      noSearchParams
+        .filter((noSearchParam) => noSearchParam !== UNLABELD)
+        .forEach((noSearchParam) => searchParams.append(NO_KEY, noSearchParam));
+    } else {
+      searchParams.append(NO_KEY, UNLABELD);
+    }
+
+    setSearchParams(searchParams);
+  };
+
+  const toggleNotWithMilestone = () => {
+    searchParams.delete(MILESTONE_KEY);
+
+    const noSearchParams = searchParams.getAll(NO_KEY);
+
+    if (noSearchParams.includes(NOT_WITH_MILESTONE)) {
+      searchParams.delete(NO_KEY);
+      noSearchParams
+        .filter((noSearchParam) => noSearchParam !== NOT_WITH_MILESTONE)
+        .forEach((noSearchParam) => searchParams.append(NO_KEY, noSearchParam));
+    } else {
+      searchParams.append(NO_KEY, NOT_WITH_MILESTONE);
+    }
+
+    setSearchParams(searchParams);
+  };
+
   const initSearchParams = () => {
     searchParams.delete(OPEN_STATUS_KEY);
     searchParams.delete(LIKE_KEY);
     searchParams.delete(LABEL_KEY);
     searchParams.delete(MILESTONE_KEY);
+    searchParams.delete(NO_KEY);
 
     searchParams.set(OPEN_STATUS_KEY, OPEN);
     setSearchParams(searchParams);
@@ -66,6 +122,7 @@ export default function useSearchParamsHandlers() {
 
     const initialFilter: IssueFilterOptions = {
       likes: [],
+      no: {},
     };
 
     const addTermToFilter = (filter: IssueFilterOptions, term: string) => {
@@ -76,18 +133,22 @@ export default function useSearchParamsHandlers() {
           break;
 
         case OPEN_STATUS_KEY:
-          if (value === OPEN)
-            filter.isOpen = true as IssueFilterOptions['isOpen'];
-          if (value === CLOSE)
-            filter.isOpen = false as IssueFilterOptions['isOpen'];
+          if (value === OPEN) filter.isOpen = true;
+          if (value === CLOSE) filter.isOpen = false;
           break;
 
         case LABEL_KEY:
-          filter.labelTitle = value as IssueFilterOptions['labelTitle'];
+          filter.labelTitle = value;
           break;
 
         case MILESTONE_KEY:
-          filter.milestoneTitle = value as IssueFilterOptions['milestoneTitle'];
+          filter.milestoneTitle = value;
+          break;
+
+        case NO_KEY:
+          if (value === UNLABELD) filter.no!.label = 'unlabeled';
+          if (value === NOT_WITH_MILESTONE)
+            filter.no!.milestone = 'notWithMilestone';
           break;
 
         default:
@@ -101,24 +162,56 @@ export default function useSearchParamsHandlers() {
     return terms.reduce<IssueFilterOptions>(addTermToFilter, initialFilter);
   };
 
-  const applySearchQuery = (searchQuery: string) => {
-    const { isOpen, labelTitle, likes, milestoneTitle } =
+  const convertQueryToParams = (searchQuery: string) => {
+    const { isOpen, labelTitle, likes, milestoneTitle, no } =
       parseSearchQuery(searchQuery);
     searchParams.delete(OPEN_STATUS_KEY);
     searchParams.delete(LIKE_KEY);
     searchParams.delete(LABEL_KEY);
     searchParams.delete(MILESTONE_KEY);
+    searchParams.delete(NO_KEY);
 
     if (isOpen !== undefined)
       searchParams.set(OPEN_STATUS_KEY, isOpen ? OPEN : CLOSE);
     if (labelTitle) searchParams.set(LABEL_KEY, labelTitle);
     if (milestoneTitle) searchParams.set(MILESTONE_KEY, milestoneTitle);
-    if (likes?.length) {
-      searchParams.delete(LIKE_KEY);
+    if (likes?.length)
       likes.forEach((value) => searchParams.append(LIKE_KEY, value));
+
+    if (no && 'label' in no) {
+      searchParams.delete(LABEL_KEY);
+      searchParams.append(NO_KEY, UNLABELD);
+    }
+    if (no && 'milestone' in no) {
+      searchParams.delete(MILESTONE_KEY);
+      searchParams.append(NO_KEY, NOT_WITH_MILESTONE);
     }
 
     setSearchParams(searchParams);
+  };
+
+  const convertParamsToQuery = () => {
+    let query = '';
+    if (isCloseStatus) query += `${OPEN_STATUS_KEY}:${CLOSE} `;
+    if (isOpenStatus) query += `${OPEN_STATUS_KEY}:${OPEN} `;
+
+    let labelSearchParam = getLabelSearchParam();
+    if (labelSearchParam) query += `${LABEL_KEY}:${labelSearchParam} `;
+
+    let milestoneSearchParam = getMilestoneSearchParam();
+    if (milestoneSearchParam)
+      query += `${MILESTONE_KEY}:${milestoneSearchParam} `;
+
+    const likeSearchParmas = getLikeSearchParams();
+    if (likeSearchParmas) query += likeSearchParmas.join(' ');
+
+    const noSearchParams = getNoSearchParams();
+    if (noSearchParams)
+      query += noSearchParams
+        .map((noSearchParam) => `no:${noSearchParam}`)
+        .join(' ');
+
+    return query;
   };
 
   const getFilterOptions = () => {
@@ -135,46 +228,45 @@ export default function useSearchParamsHandlers() {
       filterOptions.milestoneTitle = milestoneSearchParam;
 
     const likeSearchParmas = searchParams.getAll(LIKE_KEY);
-    if (likeSearchParmas) filterOptions.likes = likeSearchParmas;
+    if (likeSearchParmas.length) filterOptions.likes = likeSearchParmas;
+
+    const noSearchParams = searchParams.getAll(NO_KEY);
+    if (noSearchParams.length) {
+      filterOptions.no = {};
+      noSearchParams.forEach((noSearchParam) => {
+        if (noSearchParam === UNLABELD) filterOptions.no!.label = 'unlabeled';
+        if (noSearchParam === NOT_WITH_MILESTONE)
+          filterOptions.no!.milestone = 'notWithMilestone';
+      });
+    }
 
     return filterOptions;
-  };
-  const convertParamsToQuery = () => {
-    let query = '';
-    if (isCloseStatus) query += `${OPEN_STATUS_KEY}:${CLOSE} `;
-    if (isOpenStatus) query += `${OPEN_STATUS_KEY}:${OPEN} `;
-
-    let labelSearchParam = getLabelSearchParam();
-    if (labelSearchParam) query += `${LABEL_KEY}:${labelSearchParam} `;
-
-    let milestoneSearchParam = getMilestoneSearchParam();
-    if (milestoneSearchParam)
-      query += `${MILESTONE_KEY}:${milestoneSearchParam} `;
-
-    const likeSearchParmas = getLikeSearchParams();
-    if (likeSearchParmas) query += likeSearchParmas.join(' ');
-
-    return query;
   };
 
   const isOpenStatus = searchParams.get(OPEN_STATUS_KEY) === OPEN;
   const isCloseStatus = searchParams.get(OPEN_STATUS_KEY) === CLOSE;
-  const isUnLabeld = searchParams.get(LABEL_KEY) === 'none';
-  const isNotWithMilestone = searchParams.get(MILESTONE_KEY) === 'none';
+  const isUnLabeld = searchParams.getAll(NO_KEY)?.includes(UNLABELD);
+  const isNotWithMilestone = searchParams
+    .getAll(NO_KEY)
+    ?.includes(NOT_WITH_MILESTONE);
 
   const hasLabelSearchParam = searchParams.has(LABEL_KEY);
   const hasMilestoneSearchParam = searchParams.has(MILESTONE_KEY);
   const hasLikeSearchParam = searchParams.has(LIKE_KEY);
+  const hasNoSearchParam = searchParams.has(NO_KEY);
 
   return {
     getOpenStatusSearchParam,
     getLabelSearchParam,
     getMilestoneSearchParam,
     getLikeSearchParams,
+    getNoSearchParams,
 
     setOpenStatusSearchParam,
     toggleLabelSearchParam,
+    toggleUnlabeled,
     toggleMilestoneSearchParam,
+    toggleNotWithMilestone,
     setLikeSearchParams,
     initSearchParams,
 
@@ -185,9 +277,10 @@ export default function useSearchParamsHandlers() {
     hasLabelSearchParam,
     hasMilestoneSearchParam,
     hasLikeSearchParam,
+    hasNoSearchParam,
 
-    applySearchQuery,
-    getFilterOptions,
+    convertQueryToParams,
     convertParamsToQuery,
+    getFilterOptions,
   };
 }

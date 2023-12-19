@@ -10,7 +10,7 @@ import useSearchParamsHandlers from '../use-search-params-handlers';
 function IssueFilterBar() {
   const {
     setOpenStatusSearchParam,
-    applySearchQuery,
+    convertQueryToParams,
     isOpenStatus,
     isCloseStatus,
   } = useSearchParamsHandlers();
@@ -20,7 +20,7 @@ function IssueFilterBar() {
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key !== 'Enter') return;
 
-    applySearchQuery((e.target as HTMLInputElement).value);
+    convertQueryToParams((e.target as HTMLInputElement).value);
     inputRef.current?.blur();
   }
 

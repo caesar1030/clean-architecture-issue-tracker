@@ -179,18 +179,13 @@ export default class IssueDataSourceImpl implements IssueDataSource {
   }
 
   private applyFilterOptions(query: any, filterOptions: IssueFilterOptions) {
-    const { labelTitle, milestoneTitle, likes } = filterOptions;
+    const { labelTitle, milestoneTitle, likes, no } = filterOptions;
 
-    if (labelTitle) {
-      if (labelTitle !== 'none') query = query.eq('labels.title', labelTitle);
-      else query = query.is(`labels`, null);
-    }
+    if (labelTitle) query = query.eq('labels.title', labelTitle);
+    if (no?.label) query = query.is('labels', null);
 
-    if (milestoneTitle) {
-      if (milestoneTitle !== 'none')
-        query = query.eq(`milestones.title`, milestoneTitle);
-      else query = query.is('milestones', null);
-    }
+    if (milestoneTitle) query = query.eq('milestones.title', milestoneTitle);
+    if (no?.milestone) query = query.is('milestones', null);
 
     if (likes?.length) {
       const likesFilterColumns = ['contents', 'title'];
