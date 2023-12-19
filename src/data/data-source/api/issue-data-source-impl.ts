@@ -128,6 +128,8 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     if (isOpen === true) query = query.eq('is_open', true);
     if (isOpen === false) query = query.eq('is_open', false);
 
+    query.order('created_at', { ascending: false });
+
     return query;
   }
 
