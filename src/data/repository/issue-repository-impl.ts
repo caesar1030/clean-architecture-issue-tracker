@@ -54,7 +54,7 @@ export class IssueRepositoryImpl implements IssueRepository {
         id,
         contents,
         title,
-        createdAt: created_at,
+        createdAt: new Date(created_at),
         isOpen: is_open,
         label: labels,
         milestone: milestones,
