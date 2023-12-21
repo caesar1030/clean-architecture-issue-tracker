@@ -16,7 +16,7 @@ import useCreateIssue from '../use-create-issue';
 
 interface FormType {
   title: string;
-  description: string;
+  contents: string;
   milestone: Milestone | null;
   label: LabelModel | null;
 }
@@ -27,7 +27,7 @@ function CreateIssueForm() {
   const { control, handleSubmit, setValue, watch } = useForm<FormType>({
     defaultValues: {
       title: '',
-      description: '',
+      contents: '',
       milestone: null,
       label: null,
     },
@@ -57,13 +57,13 @@ function CreateIssueForm() {
 
   const onSubmit: SubmitHandler<FormType> = ({
     title,
-    description,
+    contents,
     label,
     milestone,
   }) => {
     createIssue({
       title,
-      description,
+      contents,
       labelId: label?.id,
       milestoneId: milestone?.id,
     });
@@ -97,13 +97,13 @@ function CreateIssueForm() {
             />
 
             <Controller
-              name="description"
+              name="contents"
               control={control}
               rules={{ required: true }}
               render={({ field }) => {
                 return (
                   <TextArea
-                    id="issueDescription"
+                    id="issueContents"
                     label="코멘트를 입력하세요"
                     className="h-[436px]"
                     {...field}
