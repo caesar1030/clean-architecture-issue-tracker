@@ -36,11 +36,13 @@ import {
   CreateIssue,
   CreateIssueUseCase,
 } from '../domain/use-case/issues/create-issue';
+import { GetIssue, GetIssueUseCase } from '../domain/use-case/issues/get-issue';
 
 const container = new Container();
 
 container.bind<IssueDataSource>(TYPES.IssueDataSource).to(IssueDataSourceImpl);
 container.bind<IssueRepository>(TYPES.IssueRepository).to(IssueRepositoryImpl);
+container.bind<GetIssueUseCase>(TYPES.GetIssueUseCase).to(GetIssue);
 container.bind<GetIssuesUseCase>(TYPES.GetIssuesUseCase).to(GetIssues);
 container.bind<CloseIssuesUseCase>(TYPES.CloseIssuesUseCase).to(CloseIssues);
 container.bind<OpenIssuesUseCase>(TYPES.OpenIssuesUseCase).to(OpenIssues);

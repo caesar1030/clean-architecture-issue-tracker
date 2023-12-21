@@ -1,6 +1,7 @@
 export const TYPES = {
   IssueDataSource: Symbol.for('IssueDataSource'),
   IssueRepository: Symbol.for('IssueRepository'),
+  GetIssueUseCase: Symbol.for('GetIssueUseCase'),
   GetIssuesUseCase: Symbol.for('GetIssuesUseCase'),
   OpenIssuesUseCase: Symbol.for('OpenIssuesUseCase'),
   CloseIssuesUseCase: Symbol.for('CloseIssuesUseCase'),
