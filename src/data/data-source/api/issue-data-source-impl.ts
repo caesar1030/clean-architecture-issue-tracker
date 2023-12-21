@@ -107,8 +107,10 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     const query = supabase
       .from('issues')
       .select(
-        'id, title, is_open, created_at, labels(id,title, text_color, background_color), milestone(id,title)'
-      );
+        'id, title, is_open, created_at, labels(id,title, text_color, background_color), milestones(id,title)'
+      )
+      .eq('id', id)
+      .single();
 
     return query;
   }
