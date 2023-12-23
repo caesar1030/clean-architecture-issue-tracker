@@ -56,6 +56,16 @@ function IssueDetail() {
           <Table.Row>{issue?.contents || '없음'}</Table.Row>
         </Table>
 
+        {issue?.comments &&
+          issue?.comments.map((comment) => {
+            return (
+              <Table columns="1fr" size="L">
+                <Table.Header>ㅇㅇ</Table.Header>
+                <Table.Row>{comment.contents}</Table.Row>
+              </Table>
+            );
+          })}
+
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
           <Controller
             name="comment"

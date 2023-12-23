@@ -1,3 +1,4 @@
+import { Comment } from '../model/comment';
 import { Issue } from '../model/issue';
 import { Label } from '../model/label';
 import { Milestone } from '../model/milestone';
@@ -15,6 +16,7 @@ export interface IssueDetail {
   data: Pick<Issue, 'id' | 'contents' | 'createdAt' | 'isOpen' | 'title'> & {
     label: Pick<Label, 'id' | 'title' | 'textColor' | 'backgroundColor'> | null;
     milestone: Pick<Milestone, 'id' | 'title'> | null;
+    comments: Pick<Comment, 'id' | 'createdAt' | 'contents'>[] | null;
   };
 }
 

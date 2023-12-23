@@ -46,7 +46,16 @@ export class IssueRepositoryImpl implements IssueRepository {
 
   private mapIssueDetail(entity: IssueDetailEntity): IssueDetail {
     const {
-      data: { id, contents, title, created_at, is_open, labels, milestones },
+      data: {
+        id,
+        contents,
+        title,
+        created_at,
+        is_open,
+        labels,
+        milestones,
+        comments,
+      },
     } = entity;
 
     return {
@@ -58,6 +67,7 @@ export class IssueRepositoryImpl implements IssueRepository {
         isOpen: is_open,
         label: labels,
         milestone: milestones,
+        comments,
       },
     } as IssueDetail;
   }

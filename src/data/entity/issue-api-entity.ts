@@ -36,5 +36,12 @@ export interface IssueDetailEntity {
       id: number;
       title: string;
     } | null;
+    comments:
+      | {
+          id: number;
+          contents: string;
+          created_at: Date;
+        }[]
+      | null;
   };
 }
