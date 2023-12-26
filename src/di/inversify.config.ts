@@ -44,7 +44,7 @@ import { CommentRepositoryImpl } from '../data/repository/comment-repository-imp
 import {
   CreateComment,
   CreateCommentUseCase,
-} from '../domain/use-case/comments/create-issue';
+} from '../domain/use-case/comments/create-comment';
 import {
   EditTitle,
   EditTitleUseCase,

@@ -38,10 +38,15 @@ export interface IssueCreationData {
   milestoneId?: Milestone['id'];
 }
 
+export interface EditTitleData {
+  id: Issue['id'];
+  title: string;
+}
 export interface IssueRepository {
   getIssue(id: Issue['id']): Promise<IssueDetail>;
   getIssues(filterOptions: IssueFilterOptions): Promise<IssuesSummary>;
   openIssues(ids: Issue['id'][]): Promise<void>;
   closeIssues(ids: Issue['id'][]): Promise<void>;
   createIssue(newIssue: IssueCreationData): Promise<void>;
+  editTitle(editTitleData: EditTitleData): Promise<void>;
 }

@@ -1,5 +1,5 @@
-import Heading from '../../../../common-ui/heading';
-import { IssueDetail } from '../../../../domain/repository/issue-repository';
+import Heading from '../../../../../common-ui/heading';
+import { IssueDetail } from '../../../../../domain/repository/issue-repository';
 
 interface IssueTitleProps {
   issue: IssueDetail['data'] | undefined;

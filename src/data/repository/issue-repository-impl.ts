@@ -1,6 +1,7 @@
 import { inject, injectable } from 'inversify';
 import { Issue } from '../../domain/model/issue';
 import {
+  EditTitleData,
   IssueCreationData,
   IssueDetail,
   IssueFilterOptions,
@@ -40,8 +41,13 @@ export class IssueRepositoryImpl implements IssueRepository {
   async closeIssues(ids: Issue['id'][]): Promise<void> {
     return this._datasource.closeIssues(ids);
   }
+
   async createIssue(newIssue: IssueCreationData): Promise<void> {
     return this._datasource.createIssue(newIssue);
+  }
+
+  async editTitle(editTitleData: EditTitleData): Promise<void> {
+    return this._datasource.editTitle(editTitleData);
   }
 
   private mapIssueDetail(entity: IssueDetailEntity): IssueDetail {

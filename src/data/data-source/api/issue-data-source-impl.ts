@@ -1,5 +1,6 @@
 import { Issue } from '../../../domain/model/issue';
 import {
+  EditTitleData,
   IssueCreationData,
   IssueFilterOptions,
 } from '../../../domain/repository/issue-repository';
@@ -99,6 +100,19 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     });
 
     if (error) throw new Error('이슈를 생성하지 못했습니다.');
+
+    return;
+  }
+
+  async editTitle(editTitleData: EditTitleData): Promise<void> {
+    const { id, title } = editTitleData;
+
+    const { error } = await supabase
+      .from('issues')
+      .update({ title })
+      .eq('id', id);
+
+    if (error) throw new Error('제목을 수정하지 못했습니다.');
 
     return;
   }
