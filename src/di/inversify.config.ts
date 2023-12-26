@@ -37,6 +37,18 @@ import {
   CreateIssueUseCase,
 } from '../domain/use-case/issues/create-issue';
 import { GetIssue, GetIssueUseCase } from '../domain/use-case/issues/get-issue';
+import CommentDataSource from '../data/data-source/comment-data-source';
+import CommentDataSourceImple from '../data/data-source/api/comment-data-source-impl';
+import { CommentRepository } from '../domain/repository/comment-repository';
+import { CommentRepositoryImpl } from '../data/repository/comment-repository-impl';
+import {
+  CreateComment,
+  CreateCommentUseCase,
+} from '../domain/use-case/comments/create-issue';
+import {
+  EditTitle,
+  EditTitleUseCase,
+} from '../domain/use-case/issues/edit-title';
 
 const container = new Container();
 
@@ -47,6 +59,17 @@ container.bind<GetIssuesUseCase>(TYPES.GetIssuesUseCase).to(GetIssues);
 container.bind<CloseIssuesUseCase>(TYPES.CloseIssuesUseCase).to(CloseIssues);
 container.bind<OpenIssuesUseCase>(TYPES.OpenIssuesUseCase).to(OpenIssues);
 container.bind<CreateIssueUseCase>(TYPES.CreateIssueUseCase).to(CreateIssue);
+container.bind<EditTitleUseCase>(TYPES.EditTitleUseCase).to(EditTitle);
+
+container
+  .bind<CommentDataSource>(TYPES.CommentDataSource)
+  .to(CommentDataSourceImple);
+container
+  .bind<CommentRepository>(TYPES.CommentRepository)
+  .to(CommentRepositoryImpl);
+container
+  .bind<CreateCommentUseCase>(TYPES.CreateCommentUseCase)
+  .to(CreateComment);
 
 container.bind<LabelDataSource>(TYPES.LabelDataSource).to(LabelDataSourceImpl);
 container.bind<LabelRepository>(TYPES.LabelRepository).to(LabelRepositoryImpl);

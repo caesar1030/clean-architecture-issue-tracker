@@ -6,6 +6,11 @@ export const TYPES = {
   OpenIssuesUseCase: Symbol.for('OpenIssuesUseCase'),
   CloseIssuesUseCase: Symbol.for('CloseIssuesUseCase'),
   CreateIssueUseCase: Symbol.for('CreateIssueUseCase'),
+  EditTitleUseCase: Symbol.for('EditTitleUseCase'),
+
+  CommentDataSource: Symbol.for('CommentDataSource'),
+  CommentRepository: Symbol.for('CommentRepository'),
+  CreateCommentUseCase: Symbol.for('CreateCommentUseCase'),
 
   LabelDataSource: Symbol.for('LabelDataSource'),
   LabelRepository: Symbol.for('LabelRepository'),
