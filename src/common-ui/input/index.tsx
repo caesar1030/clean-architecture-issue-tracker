@@ -39,20 +39,22 @@ const Input = forwardRef(
     return (
       <div
         className={
-          'flex items-center px-6 rounded-medium h-14' +
+          ' flex items-center px-6 rounded-medium h-14' +
           ` ${labelPosition === 'top' ? 'flex-col' : ''}` +
-          ` ${labelPosition === 'left' ? '' : ''}` +
+          ` ${labelPosition === 'left' ? 'gap-2' : ''}` +
           `${
             isFouced
               ? ' bg-neutral-background-strong border border-neutral-border-active'
               : ' bg-neutral-background-bold border border-neutral-background-bold'
-          }`
+          }` +
+          ` ${rest.className}`
         }
       >
         <label
           htmlFor={id}
           className={
-            'flex items-center  cursor-text text-neutral-text focus:text-neutral-text-weak' +
+            'flex items-center cursor-text text-neutral-text focus:text-neutral-text-weak' +
+            ` ${isLabelAtLeft ? 'w-[72px]' : ''}` +
             ` ${isLabelAtTop ? 'w-full' : ''}` +
             ` ${isLabelAtTop && !rest.value && !isFouced ? 'grow' : ''}` +
             ` ${isLabelAtTop && (isInputValue || isFouced) ? 'h-5 text-S' : ''}`
