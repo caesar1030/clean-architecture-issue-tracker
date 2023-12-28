@@ -1,9 +1,12 @@
+import { Link } from 'react-router-dom';
 import Logo from '../logo';
 
 function Header() {
   return (
     <header className="justify-between py-7">
-      <Logo />
+      <Link to={'/issues'}>
+        <Logo />
+      </Link>
     </header>
   );
 }

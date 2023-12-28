@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Checkbox from '../../../../common-ui/checkbox';
 import Label from '../../../../common-ui/label';
 import Table from '../../../../common-ui/table';
@@ -23,7 +24,9 @@ function IssueRow({ issue }: IssueRowProps) {
       <div className="flex flex-col gap-2">
         <div className="flex gap-1">
           <img src="/public/issue.svg" alt="이슈" />
-          <span className="text-neutral-text-strong font-bold">{title}</span>
+          <Link to={`/issues/${id}`}>
+            <span className="text-neutral-text-strong font-bold">{title}</span>
+          </Link>
 
           {label && (
             <Label
