@@ -196,7 +196,7 @@ function CreateIssueForm() {
         <Divder />
 
         <div className="flex justify-end items-center gap-8">
-          <Button size="M" variant="ghosts" flexible>
+          <Button size="M" variant="ghosts" flexible type="button">
             <img src="/public/close-icon.svg" alt="작성 취소" />
             <span>작성 취소</span>
           </Button>
