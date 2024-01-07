@@ -4,26 +4,33 @@ import AppLayout from './common-ui/app-layout';
 import Issues from './pages/Issues';
 import NewIssue from './pages/new-issues';
 import Issue from './pages/issue';
+import Login from './pages/login';
+import ProtectedRoute from './common-ui/protected-route';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 0,
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route element={<AppLayout />}>
-            <Route index element={<Navigate replace to="issues" />} />
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route
+              index
+              element={<Navigate replace to="/issues?isOpen=open" />}
+            />
             <Route path="/issues" element={<Issues />} />
             <Route path="/issues/:id" element={<Issue />} />
-            <Route path="new-issue" element={<NewIssue />} />
+            <Route path="/new-issue" element={<NewIssue />} />
           </Route>
+
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
