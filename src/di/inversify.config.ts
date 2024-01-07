@@ -49,6 +49,12 @@ import {
   EditTitle,
   EditTitleUseCase,
 } from '../domain/use-case/issues/edit-title';
+import AuthDataSource from '../data/data-source/auth-data-source';
+import AuthDataSourceImpl from '../data/data-source/api/auth-data-source';
+import { AuthRepository } from '../domain/repository/auth-repository';
+import { AuthRepositoryImpl } from '../data/repository/auth-repository';
+import { Login, LoginUseCase } from '../domain/use-case/auth/login';
+import { GetUser, GetUserUseCase } from '../domain/use-case/auth/get-user';
 
 const container = new Container();
 
@@ -84,5 +90,10 @@ container
 container
   .bind<GetMilestonesUseCase>(TYPES.GetMilestonesUseCase)
   .to(GetMilestones);
+
+container.bind<AuthDataSource>(TYPES.AuthDataSource).to(AuthDataSourceImpl);
+container.bind<AuthRepository>(TYPES.AuthRepository).to(AuthRepositoryImpl);
+container.bind<LoginUseCase>(TYPES.LoginUseCase).to(Login);
+container.bind<GetUserUseCase>(TYPES.GetUserUseCase).to(GetUser);
 
 export { container };
