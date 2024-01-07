@@ -1,0 +1,22 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { container } from '../../di/inversify.config';
+import { TYPES } from '../../di/types';
+import { LoginUseCase } from '../../domain/use-case/auth/login';
+import { LoginData } from '../../domain/repository/auth-repository';
+import { useNavigate } from 'react-router-dom';
+
+export default function useLogin() {
+  const loginUseCase = container.get<LoginUseCase>(TYPES.LoginUseCase);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const { mutate: login, isPending: isCreating } = useMutation({
+    mutationFn: (loginData: LoginData) => loginUseCase.invoke(loginData),
+    onSuccess: (data) => {
+      queryClient.setQueryData(['user'], data);
+      navigate('/issues');
+    },
+  });
+
+  return { login, isCreating };
+}
