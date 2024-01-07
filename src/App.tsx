@@ -6,6 +6,7 @@ import NewIssue from './pages/new-issues';
 import Issue from './pages/issue';
 import Login from './pages/login';
 import ProtectedRoute from './common-ui/protected-route';
+import Signup from './pages/signup';
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ function App() {
           </Route>
 
           <Route path="/login" element={<Login />} />
+          <Route path="/new-user" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

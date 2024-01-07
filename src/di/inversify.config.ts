@@ -56,6 +56,7 @@ import { AuthRepositoryImpl } from '../data/repository/auth-repository';
 import { Login, LoginUseCase } from '../domain/use-case/auth/login';
 import { GetUser, GetUserUseCase } from '../domain/use-case/auth/get-user';
 import { Logout, LogoutUseCase } from '../domain/use-case/auth/logout';
+import { Signup, SignupUseCase } from '../domain/use-case/auth/signup';
 
 const container = new Container();
 
@@ -94,8 +95,9 @@ container
 
 container.bind<AuthDataSource>(TYPES.AuthDataSource).to(AuthDataSourceImpl);
 container.bind<AuthRepository>(TYPES.AuthRepository).to(AuthRepositoryImpl);
+container.bind<SignupUseCase>(TYPES.SignupUseCase).to(Signup);
 container.bind<LoginUseCase>(TYPES.LoginUseCase).to(Login);
-container.bind<LogoutUseCase>(TYPES.LogOutUseCase).to(Logout)
+container.bind<LogoutUseCase>(TYPES.LogOutUseCase).to(Logout);
 container.bind<GetUserUseCase>(TYPES.GetUserUseCase).to(GetUser);
 
 export { container };

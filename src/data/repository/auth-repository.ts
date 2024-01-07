@@ -2,6 +2,7 @@ import { inject, injectable } from 'inversify';
 import {
   AuthRepository,
   LoginData,
+  SignupData,
 } from '../../domain/repository/auth-repository';
 import { TYPES } from '../../di/types';
 import type AuthDataSource from '../data-source/auth-data-source';
@@ -14,6 +15,11 @@ export class AuthRepositoryImpl implements AuthRepository {
 
   constructor(@inject(TYPES.AuthDataSource) dataSource: AuthDataSource) {
     this._datasource = dataSource;
+  }
+
+  async signup(signupData: SignupData): Promise<User> {
+    const data = await this._datasource.signup(signupData);
+    return this.mapUser(data);
   }
 
   async login(loginData: LoginData) {

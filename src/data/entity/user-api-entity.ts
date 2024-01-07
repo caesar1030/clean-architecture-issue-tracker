@@ -1,7 +1,7 @@
 export interface UserEntity {
   data: {
     user: {
-      id: string;
+      id: string | null;
       role: string | undefined;
     } | null;
   };

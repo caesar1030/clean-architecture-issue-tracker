@@ -22,6 +22,7 @@ export const TYPES = {
 
   AuthDataSource: Symbol.for('AuthDataSource'),
   AuthRepository: Symbol.for('AuthRepository'),
+  SignupUseCase: Symbol.for('SignupUseCase'),
   LoginUseCase: Symbol.for('LoginUseCase'),
   LogOutUseCase: Symbol.for('LogoutUseCase'),
   GetUserUseCase: Symbol.for('GetUserUseCase'),
