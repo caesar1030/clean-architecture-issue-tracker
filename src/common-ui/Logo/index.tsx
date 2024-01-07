@@ -3,14 +3,16 @@ interface LogoProps {
 }
 
 const sizes = {
-  medium: '/public/logo-medium.svg',
-  large: '/public/logo-large.svg',
+  medium: {
+    src: '/public/logo-medium.svg',
+  },
+  large: { src: '/public/logo-large.svg' },
 };
 
 function Logo({ size }: LogoProps) {
   return (
     <div className="text-center">
-      <img className="w-[200px] h-10" src={sizes[size]} alt="Logo" />
+      <img src={sizes[size].src} alt="Logo" />
     </div>
   );
 }
