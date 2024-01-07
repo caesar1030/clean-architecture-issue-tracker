@@ -21,6 +21,10 @@ export class AuthRepositoryImpl implements AuthRepository {
     return this.mapUser(data);
   }
 
+  async logout() {
+    return this._datasource.logout();
+  }
+
   async getUser(): Promise<User> {
     const data = await this._datasource.getUser();
     return this.mapUser(data);

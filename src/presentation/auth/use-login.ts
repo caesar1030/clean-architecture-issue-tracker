@@ -14,7 +14,7 @@ export default function useLogin() {
     mutationFn: (loginData: LoginData) => loginUseCase.invoke(loginData),
     onSuccess: (data) => {
       queryClient.setQueryData(['user'], data);
-      navigate('/issues?isOpen=open');
+      navigate('/issues?isOpen=open', { replace: true });
     },
   });
 

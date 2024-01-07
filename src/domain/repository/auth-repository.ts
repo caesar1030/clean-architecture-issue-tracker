@@ -7,5 +7,6 @@ export interface LoginData {
 
 export interface AuthRepository {
   login(loginData: LoginData): Promise<User>;
+  logout(): Promise<void>;
   getUser(): Promise<User>;
 }

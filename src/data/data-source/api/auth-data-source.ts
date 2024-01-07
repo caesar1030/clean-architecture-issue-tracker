@@ -24,6 +24,12 @@ export default class AuthDataSourceImpl implements AuthDataSource {
     };
   }
 
+  async logout() {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) throw new Error(error.message);
+  }
+
   async getUser() {
     const { data: session } = await supabase.auth.getSession();
     if (!session.session)
