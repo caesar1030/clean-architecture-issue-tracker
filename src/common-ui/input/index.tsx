@@ -9,6 +9,8 @@ import {
 interface InputProps extends ComponentProps<'input'> {
   label: string;
   labelPosition: keyof typeof labelPositions;
+  value: any;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const labelPositions = {
@@ -18,13 +20,13 @@ const labelPositions = {
 
 const Input = forwardRef(
   (
-    { label, labelPosition, id, ...rest }: InputProps,
+    { label, labelPosition, id, value, onChange, ...rest }: InputProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const [isFouced, setIsFocused] = useState(false);
     const isLabelAtTop = labelPosition === 'top';
     const isLabelAtLeft = labelPosition === 'left';
-    const isInputValue = rest.value;
+    const isInputValue = value;
 
     function handleFocus(e: FocusEvent<HTMLInputElement>) {
       rest.onFocus?.(e);
@@ -56,7 +58,7 @@ const Input = forwardRef(
             'flex items-center cursor-text text-neutral-text focus:text-neutral-text-weak' +
             ` ${isLabelAtLeft ? 'w-[72px]' : ''}` +
             ` ${isLabelAtTop ? 'w-full' : ''}` +
-            ` ${isLabelAtTop && !rest.value && !isFouced ? 'grow' : ''}` +
+            ` ${isLabelAtTop && !value && !isFouced ? 'grow' : ''}` +
             ` ${isLabelAtTop && (isInputValue || isFouced) ? 'h-5 text-S' : ''}`
           }
         >
@@ -70,6 +72,8 @@ const Input = forwardRef(
           ref={ref}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          value={value}
+          onChange={onChange}
           className={
             'w-full bg-inherit focus:outline-none text-neutral-text-strong text-M' +
             ` ${isLabelAtLeft ? 'grow' : ''}` +

@@ -5,7 +5,7 @@ function Header() {
   return (
     <header className="justify-between py-7">
       <Link to="/issues?isOpen=open">
-        <Logo />
+        <Logo size="medium" />
       </Link>
     </header>
   );
