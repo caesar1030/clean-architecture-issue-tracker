@@ -4,7 +4,7 @@ import Logo from '../logo';
 function Header() {
   return (
     <header className="justify-between py-7">
-      <Link to={'/issues'}>
+      <Link to="/issues?isOpen=open">
         <Logo />
       </Link>
     </header>
