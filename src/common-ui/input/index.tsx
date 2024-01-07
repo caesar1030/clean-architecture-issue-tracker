@@ -9,8 +9,6 @@ import {
 interface InputProps extends ComponentProps<'input'> {
   label: string;
   labelPosition: keyof typeof labelPositions;
-  value: any;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const labelPositions = {
@@ -20,9 +18,10 @@ const labelPositions = {
 
 const Input = forwardRef(
   (
-    { label, labelPosition, id, value, onChange, ...rest }: InputProps,
+    { label, labelPosition, id, ...rest }: InputProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
+    const { value, onChange } = rest;
     const [isFouced, setIsFocused] = useState(false);
     const isLabelAtTop = labelPosition === 'top';
     const isLabelAtLeft = labelPosition === 'left';
@@ -68,7 +67,6 @@ const Input = forwardRef(
         <input
           {...rest}
           id={id}
-          type="text"
           ref={ref}
           onFocus={handleFocus}
           onBlur={handleBlur}
