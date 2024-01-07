@@ -7,6 +7,7 @@ import {
 } from 'react';
 
 interface InputProps extends ComponentProps<'input'> {
+  id: string;
   label: string;
   labelPosition: keyof typeof labelPositions;
 }
