@@ -2,6 +2,7 @@ import useLogin from '../use-login';
 import Button from '../../../common-ui/button';
 import Input from '../../../common-ui/input';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 type FormType = {
   email: string;
@@ -22,12 +23,21 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-4 items-center"
+    >
       <Controller
         name="email"
         control={control}
         render={({ field }) => (
-          <Input label="이메일" labelPosition="top" {...field} />
+          <Input
+            id="email"
+            label="이메일"
+            labelPosition="top"
+            {...field}
+            className="w-80"
+          />
         )}
       />
       <Controller
@@ -35,9 +45,11 @@ function LoginForm() {
         control={control}
         render={({ field }) => (
           <Input
+            id="password"
             label="비밀번호"
             labelPosition="top"
             type="password"
+            className="w-80"
             {...field}
           />
         )}
@@ -46,6 +58,13 @@ function LoginForm() {
       <Button type="submit" size="L" variant="contained" className="w-80">
         로그인
       </Button>
+
+      <Link to={'/new-user'}>
+        <Button type="button" size="S" variant="ghosts">
+          <img src="/public/plus.svg" alt="회원가입" />
+          <span>회원가입</span>
+        </Button>
+      </Link>
     </form>
   );
 }
