@@ -1,4 +1,9 @@
-import { ReactNode, createContext, useContext } from 'react';
+import {
+  ComponentPropsWithoutRef,
+  ReactNode,
+  createContext,
+  useContext,
+} from 'react';
 
 interface TableContextType {
   columns: string;
@@ -20,7 +25,7 @@ interface BodyProps<T> {
   render: (item: T) => ReactNode;
 }
 
-interface RowProps {
+interface RowProps extends ComponentPropsWithoutRef<'div'> {
   children: ReactNode;
 }
 
@@ -61,13 +66,13 @@ function Body<T>({ data, render }: BodyProps<T>) {
   return <div className="bg-neutral-background-strong">{data.map(render)}</div>;
 }
 
-function Row({ children }: RowProps) {
+function Row({ children, ...rest }: RowProps) {
   const { columns, size } = useContext(TableContext);
 
   return (
     <div
       style={{ gridTemplateColumns: columns }}
-      className={`grid ${sizes[size]} border-b last:border-b-0 border-solid border-neutral-border bg-neutral-background-strong`}
+      className={`grid ${sizes[size]} border-b last:border-b-0 border-solid border-neutral-border bg-neutral-background-strong ${rest.className}`}
     >
       {children}
     </div>
