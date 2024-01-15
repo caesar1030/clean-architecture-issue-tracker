@@ -13,6 +13,7 @@ import Label from '../../../common-ui/label';
 import TextArea from '../../../common-ui/text-area';
 import Divder from '../../../common-ui/divider';
 import useCreateIssue from '../use-create-issue';
+import useUser from '../../auth/use-user';
 
 interface FormType {
   title: string;
@@ -33,6 +34,7 @@ function CreateIssueForm() {
     },
   });
   const { createIssue } = useCreateIssue();
+  const { user } = useUser();
 
   const selectedLabel = watch('label');
   const selectedMilestone = watch('milestone');
@@ -66,6 +68,7 @@ function CreateIssueForm() {
       contents,
       labelId: label?.id,
       milestoneId: milestone?.id,
+      authorId: user!.id,
     });
   };
 

@@ -9,21 +9,32 @@ import { UserEntity } from '../../entity/user-api-entity';
 
 @injectable()
 export default class AuthDataSourceImpl implements AuthDataSource {
-  async signup({ email, password }: SignupData) {
-    const { data, error } = await supabase.auth.signUp({ email, password });
+  async signup({ email, password, nickname }: SignupData): Promise<UserEntity> {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { nickname },
+      },
+    });
 
     if (error) throw new Error(error.message);
+    if (!data.user) throw new Error('?');
 
     return {
       data: {
         user: {
-          id: data.user?.id || null,
-          role: data.user?.role,
+          id: data.user.id,
+          role: data.user.role,
+          user_metadata: {
+            avatar: data.user.user_metadata.avatar,
+            nickname: data.user.user_metadata.nickname,
+          },
         },
       },
     };
   }
-  async login({ email, password }: LoginData) {
+  async login({ email, password }: LoginData): Promise<UserEntity> {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -36,6 +47,10 @@ export default class AuthDataSourceImpl implements AuthDataSource {
         user: {
           id: data.user.id,
           role: data.user.role,
+          user_metadata: {
+            avatar: data.user.user_metadata.avatar,
+            nickname: data.user.user_metadata.nickname,
+          },
         },
       },
     };
@@ -49,20 +64,26 @@ export default class AuthDataSourceImpl implements AuthDataSource {
 
   async getUser() {
     const { data: session } = await supabase.auth.getSession();
-    if (!session.session)
-      return {
-        data: {
-          user: null,
-        },
-      };
+    if (!session.session) throw new Error('로그인 필요');
 
-    const { data: user, error } = await supabase.auth.getUser();
-    if (!user.user?.id || error) throw new Error('로그인에 실패했습니다');
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
+
+    if (!user || error) throw new Error('로그인 필요');
 
     return {
       data: {
-        user: { id: user.user.id, role: user.user.role },
+        user: {
+          id: user.id,
+          role: user.role,
+          user_metadata: {
+            avatar: user.user_metadata.avatar,
+            nickname: user.user_metadata.nickname,
+          },
+        },
       },
-    } as UserEntity;
+    };
   }
 }

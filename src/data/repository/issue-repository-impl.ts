@@ -14,6 +14,10 @@ import {
 } from '../entity/issue-api-entity';
 import type IssueDataSource from '../data-source/issue-data-source';
 import { TYPES } from '../../di/types';
+import { Label } from '../../domain/model/label';
+import { Milestone } from '../../domain/model/milestone';
+import { User } from '../../domain/model/user';
+import { Comment } from '../../domain/model/comment';
 
 @injectable()
 export class IssueRepositoryImpl implements IssueRepository {
@@ -61,21 +65,53 @@ export class IssueRepositoryImpl implements IssueRepository {
         labels,
         milestones,
         comments,
+        users,
       },
     } = entity;
 
     return {
       data: {
-        id,
-        contents,
-        title,
-        createdAt: new Date(created_at),
-        isOpen: is_open,
-        label: labels,
-        milestone: milestones,
-        comments,
+        id: id as Issue['id'],
+        contents: contents as Issue['contents'],
+        title: title as Issue['title'],
+        createdAt: new Date(created_at) as Issue['createdAt'],
+        isOpen: is_open as Issue['isOpen'],
+        author: {
+          id: users.id as User['id'],
+          avatar: users.raw_user_meta_data.avatar as User['avatar'],
+          nickname: users.raw_user_meta_data.nickname as User['nickname'],
+        },
+        label: labels
+          ? {
+              id: labels.id as Label['id'],
+              title: labels.title as Label['title'],
+              textColor: labels.text_color as Label['textColor'],
+              backgroundColor:
+                labels.background_color as Label['backgroundColor'],
+            }
+          : null,
+        milestone: milestones
+          ? {
+              id: milestones.id as Milestone['id'],
+              title: milestones.title as Milestone['title'],
+            }
+          : null,
+        comments: comments
+          ? comments.map((comment) => ({
+              id: comment.id as Comment['id'],
+              contents: comment.contents as Comment['contents'],
+              createdAt: new Date(comment.created_at) as Comment['createdAt'],
+              author: {
+                id: comment.users.id as User['id'],
+                avatar: comment.users.raw_user_meta_data
+                  .avatar as User['avatar'],
+                nickname: comment.users.raw_user_meta_data
+                  .nickname as User['nickname'],
+              },
+            }))
+          : null,
       },
-    } as IssueDetail;
+    };
   }
 
   private mapIssueSummary(entity: IssueSummaryEntity): IssuesSummary {
@@ -83,28 +119,37 @@ export class IssueRepositoryImpl implements IssueRepository {
 
     return {
       data: data.map(
-        ({ id, title, created_at, is_open, labels, milestones }) => {
+        ({ id, title, created_at, is_open, labels, milestones, users }) => {
           return {
-            id,
-            title,
-            isOpen: is_open,
-            createdAt: new Date(created_at),
+            id: id as Issue['id'],
+            title: title as Issue['title'],
+            isOpen: is_open as Issue['isOpen'],
+            createdAt: new Date(created_at) as Issue['createdAt'],
             label: labels
               ? {
-                  id: labels.id,
-                  title: labels.title,
-                  textColor: labels.text_color,
-                  backgroundColor: labels.background_color,
+                  id: labels.id as Label['id'],
+                  title: labels.title as Label['title'],
+                  textColor: labels.text_color as Label['textColor'],
+                  backgroundColor:
+                    labels.background_color as Label['backgroundColor'],
                 }
               : null,
             milestone: milestones
-              ? { id: milestones.id, title: milestones.title }
+              ? {
+                  id: milestones.id as Milestone['id'],
+                  title: milestones.title as Milestone['title'],
+                }
               : null,
+            author: {
+              id: users.id as User['id'],
+              avatar: users.raw_user_meta_data.avatar as User['avatar'],
+              nickname: users.raw_user_meta_data.nickname as User['nickname'],
+            },
           };
         }
       ),
       openIssueCount,
       closeIssueCount,
-    } as IssuesSummary;
+    };
   }
 }

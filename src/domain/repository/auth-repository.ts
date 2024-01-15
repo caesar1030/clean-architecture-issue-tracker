@@ -8,6 +8,7 @@ export interface LoginData {
 export interface SignupData {
   email: string;
   password: string;
+  nickname: string;
 }
 
 export interface AuthRepository {

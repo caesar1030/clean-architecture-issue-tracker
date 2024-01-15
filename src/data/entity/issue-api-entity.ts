@@ -14,6 +14,13 @@ export interface IssueSummaryEntity {
       id: number;
       title: string;
     } | null;
+    users: {
+      id: string;
+      raw_user_meta_data: {
+        nickname: string;
+        avatar: string;
+      };
+    };
   }[];
   openIssueCount: number;
   closeIssueCount: number;
@@ -26,6 +33,13 @@ export interface IssueDetailEntity {
     contents: string;
     is_open: boolean;
     created_at: Date;
+    users: {
+      id: string;
+      raw_user_meta_data: {
+        nickname: string;
+        avatar: string;
+      };
+    };
     labels: {
       id: number;
       title: string;
@@ -41,6 +55,13 @@ export interface IssueDetailEntity {
           id: number;
           contents: string;
           created_at: Date;
+          users: {
+            id: string;
+            raw_user_meta_data: {
+              nickname: string;
+              avatar: string;
+            };
+          };
         }[]
       | null;
   };

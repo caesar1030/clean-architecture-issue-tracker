@@ -5,10 +5,11 @@ import supabase from './supabase-db/supabase';
 
 @injectable()
 export default class CommentDataSourceImple implements CommentDataSource {
-  async createComment({ issueId, contents }: CommentCreationData) {
+  async createComment({ issueId, contents, authorId }: CommentCreationData) {
     const { error } = await supabase.from('comments').insert({
       issue_id: issueId,
       contents,
+      user_id: authorId,
     });
 
     if (error) throw new Error('코멘트를 생성하지 못했습니다.');

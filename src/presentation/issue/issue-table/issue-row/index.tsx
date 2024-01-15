@@ -5,17 +5,18 @@ import Table from '../../../../common-ui/table';
 import { IssuesSummary } from '../../../../domain/repository/issue-repository';
 import { timeDiffFromNow } from '../../../../utils/helpers';
 import { useSelectedIssues } from '../selected-issues-context';
+import Avatar from '../../../../common-ui/avatar';
 
 interface IssueRowProps {
   issue: IssuesSummary['data'][number];
 }
 
 function IssueRow({ issue }: IssueRowProps) {
-  const { id, title, createdAt, label, milestone } = issue;
+  const { id, title, createdAt, label, milestone, author } = issue;
   const { selectedIssueIds, toggleIssueSelection } = useSelectedIssues();
 
   return (
-    <Table.Row>
+    <Table.Row className="flex items-center">
       <Checkbox
         checked={selectedIssueIds.includes(id)}
         onChange={() => toggleIssueSelection(id)}
@@ -49,6 +50,10 @@ function IssueRow({ issue }: IssueRowProps) {
             </div>
           )}
         </div>
+      </div>
+
+      <div>
+        <Avatar src={author.avatar} />
       </div>
     </Table.Row>
   );

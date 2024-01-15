@@ -6,6 +6,7 @@ import CreateCommentForm from './create-comment-form';
 import InformationTag from '../../../common-ui/information-tag';
 import { timeDiffFromNow } from '../../../utils/helpers';
 import IssueDetailHeader from './issue-detail-header';
+import Avatar from '../../../common-ui/avatar';
 
 function IssueDetail() {
   const { id } = useParams();
@@ -31,7 +32,23 @@ function IssueDetail() {
 
       <div className="flex flex-col gap-6">
         <Table columns="1fr" size="L">
-          <Table.Header>dd</Table.Header>
+          <Table.Header>
+            <div className="flex justify-between">
+              <div className="flex gap-2 items-center">
+                <Avatar src={issue?.author.avatar} />
+                <span className="text-M text-neutral-text-strong">
+                  {issue?.author.nickname}
+                </span>
+                <span className="text-M text-neutral-text-weak">
+                  {issue && timeDiffFromNow(issue.createdAt)} 전
+                </span>
+              </div>
+
+              <div>
+                <InformationTag variant="writer">작성자</InformationTag>
+              </div>
+            </div>
+          </Table.Header>
           <Table.Row>{issue?.contents || '없음'}</Table.Row>
         </Table>
 
@@ -39,7 +56,25 @@ function IssueDetail() {
           issue?.comments.map((comment) => {
             return (
               <Table columns="1fr" size="L" key={comment.id}>
-                <Table.Header>ㅇㅇ</Table.Header>
+                <Table.Header>
+                  <div className="flex justify-between">
+                    <div className="flex gap-2 items-center">
+                      <Avatar src={comment.author.avatar} />
+                      <span className="text-M text-neutral-text-strong">
+                        {comment.author.nickname}
+                      </span>
+                      <span className="text-M text-neutral-text-weak">
+                        {timeDiffFromNow(comment.createdAt)} 전
+                      </span>
+                    </div>
+
+                    <div>
+                      {comment.author.id === issue.author.id && (
+                        <InformationTag variant="writer">작성자</InformationTag>
+                      )}
+                    </div>
+                  </div>
+                </Table.Header>
                 <Table.Row>{comment.contents}</Table.Row>
               </Table>
             );

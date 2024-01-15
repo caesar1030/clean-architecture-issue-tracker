@@ -1,8 +1,12 @@
 export interface UserEntity {
   data: {
     user: {
-      id: string | null;
+      id: string;
       role: string | undefined;
-    } | null;
+      user_metadata: {
+        nickname: string;
+        avatar: string;
+      };
+    };
   };
 }

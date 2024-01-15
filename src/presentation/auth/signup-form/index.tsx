@@ -5,22 +5,21 @@ import useSignup from '../use-signup';
 
 type FormType = {
   email: string;
+  nickname: string;
   password: string;
   passwordCheck: string;
 };
 
 function SignupForm() {
-  const { handleSubmit, control } = useForm<FormType>({
-    defaultValues: {
-      email: '',
-      password: '',
-      passwordCheck: '',
-    },
-  });
+  const { handleSubmit, control } = useForm<FormType>();
   const { signup } = useSignup();
 
-  const onSubmit: SubmitHandler<FormType> = ({ email, password }) => {
-    signup({ email, password });
+  const onSubmit: SubmitHandler<FormType> = ({ email, password, nickname }) => {
+    signup({
+      email,
+      password,
+      nickname,
+    });
   };
 
   return (
@@ -33,6 +32,19 @@ function SignupForm() {
             id="email"
             type="email"
             label="이메일"
+            labelPosition="top"
+            {...field}
+          />
+        )}
+      />
+      <Controller
+        name="nickname"
+        control={control}
+        render={({ field }) => (
+          <Input
+            id="nickname"
+            type="text"
+            label="닉네임"
             labelPosition="top"
             {...field}
           />

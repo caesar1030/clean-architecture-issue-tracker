@@ -41,15 +41,11 @@ export class AuthRepositoryImpl implements AuthRepository {
       data: { user },
     } = userEntity;
 
-    if (!user)
-      return {
-        id: null,
-        role: null,
-      };
-
     return {
       id: user.id as User['id'],
       role: user.role as User['role'],
+      avatar: user.user_metadata.avatar as User['avatar'],
+      nickname: user.user_metadata.nickname as User['nickname'],
     };
   }
 }

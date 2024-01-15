@@ -90,13 +90,14 @@ export default class IssueDataSourceImpl implements IssueDataSource {
   }
 
   async createIssue(newIssue: IssueCreationData): Promise<void> {
-    const { title, contents, labelId, milestoneId } = newIssue;
+    const { title, contents, labelId, milestoneId, authorId } = newIssue;
 
     const { error } = await supabase.from('issues').insert({
       title,
       contents,
       label_id: labelId,
       milestone_id: milestoneId,
+      author_id: authorId,
     });
 
     if (error) throw new Error('이슈를 생성하지 못했습니다.');
@@ -121,7 +122,7 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     const query = supabase
       .from('issues')
       .select(
-        'id, title, is_open, created_at, comments(id,contents,created_at), labels(id,title, text_color, background_color), milestones(id,title)'
+        'id, title, is_open, created_at, comments(id,contents,created_at, users(*)), labels(id,title, text_color, background_color), milestones(id,title), users(*))'
       )
       .eq('id', id)
       .single();
@@ -136,7 +137,7 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     let query = supabase
       .from('issues')
       .select(
-        `id, title, is_open, created_at, labels${labelInner}(id, title, text_color, background_color), milestones${milestoneInner}(id, title)`
+        `id, title, is_open, created_at, labels${labelInner}(id, title, text_color, background_color), milestones${milestoneInner}(id, title), users(*)`
       );
 
     query = this.applyFilterOptions(query, filterOptions);
