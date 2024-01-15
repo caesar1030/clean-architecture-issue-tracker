@@ -10,7 +10,7 @@ export default function useCreateComment() {
   );
   const queryClient = useQueryClient();
 
-  const { mutate: createIssue, isPending: isCreating } = useMutation({
+  const { mutate: createComment, isPending: isCreating } = useMutation({
     mutationFn: (newComment: CommentCreationData) =>
       createCommentUseCase.invoke(newComment),
     onSuccess: (_, variables) => {
@@ -20,5 +20,5 @@ export default function useCreateComment() {
     },
   });
 
-  return { createIssue, isCreating };
+  return { createComment, isCreating };
 }
