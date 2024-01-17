@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Issue } from '../../domain/model/issue';
 import { container } from '../../di/inversify.config';
 import { CloseIssuesUseCase } from '../../domain/use-case/issues/close-issues';
 import { TYPES } from '../../di/types';
+import { CloseIssuesPayload } from '../../domain/model/issue/payload';
 
 export default function useCloseIssues() {
   const closeIssuesUseCase = container.get<CloseIssuesUseCase>(
@@ -12,7 +12,8 @@ export default function useCloseIssues() {
   const queryClient = useQueryClient();
 
   const { mutate: closeIssues, isPending: isClosing } = useMutation({
-    mutationFn: (ids: Issue['id'][]) => closeIssuesUseCase.invoke(ids),
+    mutationFn: (closeIssuesPayload: CloseIssuesPayload) =>
+      closeIssuesUseCase.invoke(closeIssuesPayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['issues'] });
     },

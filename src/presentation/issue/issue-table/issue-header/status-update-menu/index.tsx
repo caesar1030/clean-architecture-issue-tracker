@@ -10,15 +10,15 @@ function StatusUpdateMenu() {
   const { closeIssues } = useCloseIssues();
   const { selectedIssueIds, deselectAllIssues } = useSelectedIssues();
 
-  function handleOpenIssues() {
-    openIssues(selectedIssueIds);
+  const handleOpenIssues = () => {
+    openIssues({ issueIds: selectedIssueIds });
     deselectAllIssues();
-  }
+  };
 
-  function handleCloseIssues() {
-    closeIssues(selectedIssueIds);
+  const handleCloseIssues = () => {
+    closeIssues({ issueIds: selectedIssueIds });
     deselectAllIssues();
-  }
+  };
 
   return (
     <>

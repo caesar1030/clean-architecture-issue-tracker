@@ -1,14 +1,15 @@
-import Button from '../../../../common-ui/button';
 import Checkbox from '../../../../common-ui/checkbox';
-import { IssuesSummary } from '../../../../domain/repository/issue-repository';
+import { IssuesResponse } from '../../../../domain/model/issue/response';
 import { useSelectedIssues } from '../selected-issues-context';
+import AssigneeFilterMenu from './assignee-filter-menu';
+import AuthorFilterMenu from './author-filter-menu';
 import LabelFilterMenu from './label-filter-menu';
 import MilestoneFilterMenu from './milestone-filter-menu';
 import StatusFilterButtons from './status-filter-buttons';
 import StatusUpdateMenu from './status-update-menu';
 
 interface IssueHeaderProps {
-  issues: IssuesSummary['data'] | undefined;
+  issues: IssuesResponse['data'] | undefined;
   openIssueCount: number | undefined;
   closeIssueCount: number | undefined;
 }
@@ -50,19 +51,13 @@ function IssueHeader({
       />
 
       <div className="flex gap-8 ">
-        <Button variant="ghosts" size="M" flexible>
-          <span>담당자</span>
-          <img src="/public/chevron-down.svg" alt="이슈" />
-        </Button>
+        <AssigneeFilterMenu />
 
         <LabelFilterMenu />
 
         <MilestoneFilterMenu />
 
-        <Button variant="ghosts" size="M" flexible>
-          <span>작성자</span>
-          <img src="/public/chevron-down.svg" alt="이슈" />
-        </Button>
+        <AuthorFilterMenu />
       </div>
     </>
   );

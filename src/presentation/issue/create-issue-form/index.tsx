@@ -3,71 +3,89 @@ import Input from '../../../common-ui/input';
 import Menus from '../../../common-ui/menus';
 import Button from '../../../common-ui/button';
 import SideBar from '../../../common-ui/side-bar';
-import { Milestone } from '../../../domain/model/milestone';
+import { Milestone } from '../../../domain/model/milestone/milestone';
 import useMilestones from '../../milestone/use-milestones';
 import Table from '../../../common-ui/table';
 import RadioButton from '../../../common-ui/radio-button';
 import useLabels from '../../label/use-labels';
-import { Label as LabelModel } from '../../../domain/model/label';
+import { Label as LabelModel } from '../../../domain/model/label/label';
 import Label from '../../../common-ui/label';
 import TextArea from '../../../common-ui/text-area';
 import Divder from '../../../common-ui/divider';
 import useCreateIssue from '../use-create-issue';
 import useUser from '../../auth/use-user';
+import useUsers from '../../auth/use-users';
+import { User } from '../../../domain/model/user/user';
+import Avatar from '../../../common-ui/avatar';
+import { Link } from 'react-router-dom';
 
 interface FormType {
   title: string;
   contents: string;
   milestone: Milestone | null;
   label: LabelModel | null;
+  assignee: User | null;
 }
 
 function CreateIssueForm() {
   const { milestones } = useMilestones();
   const { labels } = useLabels();
+  const { users } = useUsers();
   const { control, handleSubmit, setValue, watch } = useForm<FormType>({
     defaultValues: {
       title: '',
       contents: '',
       milestone: null,
       label: null,
+      assignee: null,
     },
   });
   const { createIssue } = useCreateIssue();
   const { user } = useUser();
-
   const selectedLabel = watch('label');
   const selectedMilestone = watch('milestone');
+  const selectedAssignee = watch('assignee');
 
-  function addLabel(label: LabelModel) {
+  const addLabel = (label: LabelModel) => {
     if (label.id === selectedLabel?.id) {
       setValue('label', null);
       return;
     }
 
     setValue('label', label);
-  }
+  };
 
-  function addMilestone(milestone: Milestone) {
+  const addMilestone = (milestone: Milestone) => {
     if (milestone.id === selectedMilestone?.id) {
       setValue('milestone', null);
       return;
     }
 
     setValue('milestone', milestone);
-  }
+  };
+
+  const addAssignee = (assignee: User) => {
+    if (assignee.id === selectedAssignee?.id) {
+      setValue('assignee', null);
+      return;
+    }
+
+    setValue('assignee', assignee);
+  };
 
   const onSubmit: SubmitHandler<FormType> = ({
     title,
     contents,
     label,
     milestone,
+    assignee,
   }) => {
     createIssue({
       title,
       contents,
       labelId: label?.id,
       milestoneId: milestone?.id,
+      assigneeId: assignee?.id,
       authorId: user!.id,
     });
   };
@@ -119,6 +137,28 @@ function CreateIssueForm() {
           <Menus>
             <SideBar>
               <>
+                <Menus.OpenButton id="addAssignee" windowPosition="center">
+                  <Button
+                    variant="ghosts"
+                    size="M"
+                    flexible
+                    className="w-full"
+                    type="button"
+                  >
+                    <span className="grow text-left">담당자</span>
+                    <img src="/public/chevron-down.svg" alt="라벨추가" />
+                  </Button>
+                </Menus.OpenButton>
+                {selectedAssignee && (
+                  <div className="flex gap-2 items-center">
+                    <Avatar src={selectedAssignee.avatar} />
+                    <span className="text-S text-neutral-text-strong">
+                      {selectedAssignee.nickname}
+                    </span>
+                  </div>
+                )}
+              </>
+              <>
                 <Menus.OpenButton id="addLabel" windowPosition="center">
                   <Button
                     variant="ghosts"
@@ -135,6 +175,7 @@ function CreateIssueForm() {
                   <Label
                     backgroundColor={selectedLabel.backgroundColor!}
                     textColor={selectedLabel.textColor!}
+                    className="h-6"
                   >
                     {selectedLabel.title}
                   </Label>
@@ -161,6 +202,24 @@ function CreateIssueForm() {
                 )}
               </>
             </SideBar>
+
+            <Menus.Window id="addAssignee">
+              <Table columns="1fr" size="S">
+                {users?.data?.map((user) => (
+                  <Table.Row key={user.id}>
+                    <Menus.Button onClick={() => addAssignee(user)}>
+                      <div className="flex gap-2 items-center">
+                        <Avatar src={user.avatar} />
+                        <span className="grow">{user.nickname}</span>
+                        <RadioButton
+                          checked={user.id === selectedAssignee?.id}
+                        />
+                      </div>
+                    </Menus.Button>
+                  </Table.Row>
+                ))}
+              </Table>
+            </Menus.Window>
 
             <Menus.Window id="addLabel">
               <Table columns="1fr" size="S">
@@ -199,12 +258,14 @@ function CreateIssueForm() {
         <Divder />
 
         <div className="flex justify-end items-center gap-8">
-          <Button size="M" variant="ghosts" flexible type="button">
-            <img src="/public/close-icon.svg" alt="작성 취소" />
-            <span>작성 취소</span>
-          </Button>
+          <Link to={'/issues?isOpen=open'}>
+            <Button size="M" variant="ghosts" flexible type="button">
+              <img src="/public/close-icon.svg" alt="작성 취소" />
+              <span>작성 취소</span>
+            </Button>
+          </Link>
 
-          <Button size="L" variant="contained">
+          <Button size="L" variant="contained" type="submit">
             완료
           </Button>
         </div>

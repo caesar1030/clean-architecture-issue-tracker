@@ -1,10 +1,10 @@
 import { inject, injectable } from 'inversify';
-import { Issue } from '../../model/issue';
 import type { IssueRepository } from '../../repository/issue-repository';
 import { TYPES } from '../../../di/types';
+import { CloseIssuesPayload } from '../../model/issue/payload';
 
 export interface CloseIssuesUseCase {
-  invoke: (ids: Issue['id'][]) => Promise<void>;
+  invoke: (closeIssuesPayload: CloseIssuesPayload) => Promise<void>;
 }
 
 @injectable()
@@ -15,7 +15,7 @@ export class CloseIssues implements CloseIssuesUseCase {
     this._issueRepo = issueRepo;
   }
 
-  async invoke(ids: Issue['id'][]) {
-    return this._issueRepo.closeIssues(ids);
+  async invoke(closeIssuesPayload: CloseIssuesPayload) {
+    return this._issueRepo.closeIssues(closeIssuesPayload);
   }
 }

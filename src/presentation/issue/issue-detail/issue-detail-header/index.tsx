@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { IssueDetail } from '../../../../domain/repository/issue-repository';
 import IssueTitle from './issue-title';
 import Button from '../../../../common-ui/button';
 import EditIssueTitleForm from './edit-issue-title-form';
+import { IssueResponse } from '../../../../domain/model/issue/response';
 
 interface IssueDetailHeaderProps {
-  issue: IssueDetail['data'] | undefined;
+  issue: IssueResponse['data'] | undefined;
 }
 
 function IssueDetailHeader({ issue }: IssueDetailHeaderProps) {

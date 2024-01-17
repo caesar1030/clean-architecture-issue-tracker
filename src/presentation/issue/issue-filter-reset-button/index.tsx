@@ -6,15 +6,20 @@ function IssueFilterResetButton() {
     isOpenStatus,
     hasLabelSearchParam,
     hasMilestoneSearchParam,
+    hasAuthorSearchParam,
+    hasAssigneeSearchParam,
     hasLikeSearchParam,
     hasNoSearchParam,
     initSearchParams,
   } = useSearchParamsHandlers();
 
+  // TODO: 로직 제거
   const initialCondition =
     isOpenStatus &&
     !hasLabelSearchParam &&
     !hasMilestoneSearchParam &&
+    !hasAuthorSearchParam &&
+    !hasAssigneeSearchParam &&
     !hasLikeSearchParam &&
     !hasNoSearchParam;
 

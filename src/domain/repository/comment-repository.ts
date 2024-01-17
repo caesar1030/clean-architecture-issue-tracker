@@ -1,5 +1,5 @@
-import { Issue } from '../model/issue';
-import { User } from '../model/user';
+import { Issue } from '../model/issue/issue';
+import { User } from '../model/user/user';
 
 export interface CommentCreationData {
   issueId: Issue['id'];

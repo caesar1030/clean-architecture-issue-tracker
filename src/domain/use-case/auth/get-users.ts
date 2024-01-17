@@ -1,14 +1,14 @@
 import { inject, injectable } from 'inversify';
 import { TYPES } from '../../../di/types';
 import type { AuthRepository } from '../../repository/auth-repository';
-import { UserResponse } from '../../model/user/response';
+import { UsersResponse } from '../../model/user/response';
 
-export interface GetUserUseCase {
-  invoke: () => Promise<UserResponse>;
+export interface GetUsersUseCase {
+  invoke: () => Promise<UsersResponse>;
 }
 
 @injectable()
-export class GetUser implements GetUserUseCase {
+export class GetUsers implements GetUsersUseCase {
   private _authRepo: AuthRepository;
 
   constructor(@inject(TYPES.AuthRepository) authRepo: AuthRepository) {
@@ -16,6 +16,6 @@ export class GetUser implements GetUserUseCase {
   }
 
   async invoke() {
-    return this._authRepo.getUser();
+    return this._authRepo.getUsers();
   }
 }

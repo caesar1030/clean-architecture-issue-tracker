@@ -1,4 +1,4 @@
-import { Milestone } from '../model/milestone';
+import { Milestone } from '../model/milestone/milestone';
 
 export interface Milestones {
   data: Milestone[];

@@ -1,19 +1,10 @@
-import { User } from '../model/user';
-
-export interface LoginData {
-  email: string;
-  password: string;
-}
-
-export interface SignupData {
-  email: string;
-  password: string;
-  nickname: string;
-}
+import { LoginPayload, SignupPayload } from '../model/user/payload';
+import { UserResponse, UsersResponse } from '../model/user/response';
 
 export interface AuthRepository {
-  signup(signupData: SignupData): Promise<User>;
-  login(loginData: LoginData): Promise<User>;
+  signup(signupPayload: SignupPayload): Promise<UserResponse>;
+  login(loginPayload: LoginPayload): Promise<UserResponse>;
   logout(): Promise<void>;
-  getUser(): Promise<User>;
+  getUser(): Promise<UserResponse>;
+  getUsers(): Promise<UsersResponse>;
 }

@@ -1,23 +1,25 @@
 import { inject, injectable } from 'inversify';
-import { Issue } from '../../domain/model/issue';
-import {
-  EditTitleData,
-  IssueCreationData,
-  IssueDetail,
-  IssueFilterOptions,
-  IssueRepository,
-  IssuesSummary,
-} from '../../domain/repository/issue-repository';
-import {
-  IssueDetailEntity,
-  IssueSummaryEntity,
-} from '../entity/issue-api-entity';
+import { Issue } from '../../domain/model/issue/issue';
+import { IssueRepository } from '../../domain/repository/issue-repository';
+import { IssueEntity, IssuesEntity } from '../entity/issue-api-entity';
 import type IssueDataSource from '../data-source/issue-data-source';
 import { TYPES } from '../../di/types';
-import { Label } from '../../domain/model/label';
-import { Milestone } from '../../domain/model/milestone';
-import { User } from '../../domain/model/user';
-import { Comment } from '../../domain/model/comment';
+import { Label } from '../../domain/model/label/label';
+import { Milestone } from '../../domain/model/milestone/milestone';
+import { User } from '../../domain/model/user/user';
+import { Comment } from '../../domain/model/comment/comment';
+import {
+  CloseIssuesPayload,
+  CreateIssuePayload,
+  EditIssueTitlePayload,
+  GetIssuePayload,
+  IssuesFilterPayload,
+  OpenIssuesPayload,
+} from '../../domain/model/issue/payload';
+import {
+  IssueResponse,
+  IssuesResponse,
+} from '../../domain/model/issue/response';
 
 @injectable()
 export class IssueRepositoryImpl implements IssueRepository {
@@ -26,35 +28,37 @@ export class IssueRepositoryImpl implements IssueRepository {
   constructor(@inject(TYPES.IssueDataSource) dataSource: IssueDataSource) {
     this._datasource = dataSource;
   }
-  async getIssue(id: Issue['id']): Promise<IssueDetail> {
-    const entity = await this._datasource.getIssue(id);
+  async getIssue(getIssuePayload: GetIssuePayload): Promise<IssueResponse> {
+    const entity = await this._datasource.getIssue(getIssuePayload);
 
-    return this.mapIssueDetail(entity);
+    return this.mapIssue(entity);
   }
 
-  async getIssues(filterOptions: IssueFilterOptions): Promise<IssuesSummary> {
-    const entity = await this._datasource.getIssues(filterOptions);
+  async getIssues(
+    issuesFilterPayload: IssuesFilterPayload
+  ): Promise<IssuesResponse> {
+    const entity = await this._datasource.getIssues(issuesFilterPayload);
 
-    return this.mapIssueSummary(entity);
+    return this.mapIssues(entity);
   }
 
-  async openIssues(ids: Issue['id'][]): Promise<void> {
-    return this._datasource.openIssues(ids);
+  async openIssues(openIssuesPayload: OpenIssuesPayload): Promise<void> {
+    return this._datasource.openIssues(openIssuesPayload);
   }
 
-  async closeIssues(ids: Issue['id'][]): Promise<void> {
-    return this._datasource.closeIssues(ids);
+  async closeIssues(closeIssuesPayload: CloseIssuesPayload): Promise<void> {
+    return this._datasource.closeIssues(closeIssuesPayload);
   }
 
-  async createIssue(newIssue: IssueCreationData): Promise<void> {
-    return this._datasource.createIssue(newIssue);
+  async createIssue(createIssuePayload: CreateIssuePayload): Promise<void> {
+    return this._datasource.createIssue(createIssuePayload);
   }
 
-  async editTitle(editTitleData: EditTitleData): Promise<void> {
-    return this._datasource.editTitle(editTitleData);
+  async editTitle(editIssueTitlePayload: EditIssueTitlePayload): Promise<void> {
+    return this._datasource.editTitle(editIssueTitlePayload);
   }
 
-  private mapIssueDetail(entity: IssueDetailEntity): IssueDetail {
+  private mapIssue(entity: IssueEntity): IssueResponse {
     const {
       data: {
         id,
@@ -65,7 +69,8 @@ export class IssueRepositoryImpl implements IssueRepository {
         labels,
         milestones,
         comments,
-        users,
+        assignee,
+        author,
       },
     } = entity;
 
@@ -77,9 +82,14 @@ export class IssueRepositoryImpl implements IssueRepository {
         createdAt: new Date(created_at) as Issue['createdAt'],
         isOpen: is_open as Issue['isOpen'],
         author: {
-          id: users.id as User['id'],
-          avatar: users.raw_user_meta_data.avatar as User['avatar'],
-          nickname: users.raw_user_meta_data.nickname as User['nickname'],
+          id: author.id as User['id'],
+          avatar: author.raw_user_meta_data.avatar as User['avatar'],
+          nickname: author.raw_user_meta_data.nickname as User['nickname'],
+        },
+        assignee: {
+          id: assignee?.id as User['id'],
+          avatar: assignee?.raw_user_meta_data.avatar as User['avatar'],
+          nickname: assignee?.raw_user_meta_data.nickname as User['nickname'],
         },
         label: labels
           ? {
@@ -102,10 +112,10 @@ export class IssueRepositoryImpl implements IssueRepository {
               contents: comment.contents as Comment['contents'],
               createdAt: new Date(comment.created_at) as Comment['createdAt'],
               author: {
-                id: comment.users.id as User['id'],
-                avatar: comment.users.raw_user_meta_data
+                id: comment.author.id as User['id'],
+                avatar: comment.author.raw_user_meta_data
                   .avatar as User['avatar'],
-                nickname: comment.users.raw_user_meta_data
+                nickname: comment.author.raw_user_meta_data
                   .nickname as User['nickname'],
               },
             }))
@@ -114,12 +124,21 @@ export class IssueRepositoryImpl implements IssueRepository {
     };
   }
 
-  private mapIssueSummary(entity: IssueSummaryEntity): IssuesSummary {
+  private mapIssues(entity: IssuesEntity): IssuesResponse {
     const { data, openIssueCount, closeIssueCount } = entity;
 
     return {
       data: data.map(
-        ({ id, title, created_at, is_open, labels, milestones, users }) => {
+        ({
+          id,
+          title,
+          created_at,
+          is_open,
+          labels,
+          milestones,
+          assignee,
+          author,
+        }) => {
           return {
             id: id as Issue['id'],
             title: title as Issue['title'],
@@ -141,9 +160,14 @@ export class IssueRepositoryImpl implements IssueRepository {
                 }
               : null,
             author: {
-              id: users.id as User['id'],
-              avatar: users.raw_user_meta_data.avatar as User['avatar'],
-              nickname: users.raw_user_meta_data.nickname as User['nickname'],
+              id: author.id as User['id'],
+              avatar: author.raw_user_meta_data.avatar as User['avatar'],
+              nickname: author.raw_user_meta_data.nickname as User['nickname'],
+            },
+            assignee: {
+              id: assignee?.id as User['id'],
+              avatar: assignee?.raw_user_meta_data.avatar as User['avatar'],
+              nickname: author.raw_user_meta_data.nickname as User['nickname'],
             },
           };
         }

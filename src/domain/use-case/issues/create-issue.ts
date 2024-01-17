@@ -1,13 +1,11 @@
 import { inject, injectable } from 'inversify';
 
-import type {
-  IssueCreationData,
-  IssueRepository,
-} from '../../repository/issue-repository';
+import type { IssueRepository } from '../../repository/issue-repository';
 import { TYPES } from '../../../di/types';
+import { CreateIssuePayload } from '../../model/issue/payload';
 
 export interface CreateIssueUseCase {
-  invoke: (newIssue: IssueCreationData) => Promise<void>;
+  invoke: (createIssuePayload: CreateIssuePayload) => Promise<void>;
 }
 
 @injectable()
@@ -18,7 +16,7 @@ export class CreateIssue implements CreateIssueUseCase {
     this._issueRepo = issueRepo;
   }
 
-  async invoke(newIssue: IssueCreationData) {
-    return this._issueRepo.createIssue(newIssue);
+  async invoke(createIssuePayload: CreateIssuePayload) {
+    return this._issueRepo.createIssue(createIssuePayload);
   }
 }

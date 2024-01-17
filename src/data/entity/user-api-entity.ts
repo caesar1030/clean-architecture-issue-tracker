@@ -1,12 +1,17 @@
 export interface UserEntity {
   data: {
-    user: {
-      id: string;
-      role: string | undefined;
-      user_metadata: {
-        nickname: string;
-        avatar: string;
-      };
-    };
+    id: string;
+    role?: string;
+    user_metadata: any;
   };
+}
+
+export interface UsersEntity {
+  data: {
+    id: string;
+    raw_user_meta_data: {
+      avatar?: string;
+      nickname: string;
+    };
+  }[];
 }

@@ -5,7 +5,7 @@ type UserAvatar = Brand<string, 'UserAvatar'>;
 
 export interface User {
   id: UserId;
-  role: UserRole;
+  role?: UserRole;
   nickname: UserNickname;
   avatar: UserAvatar;
 }

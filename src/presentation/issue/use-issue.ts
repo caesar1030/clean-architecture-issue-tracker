@@ -2,9 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { container } from '../../di/inversify.config';
 import { TYPES } from '../../di/types';
 import { GetIssueUseCase } from '../../domain/use-case/issues/get-issue';
-import { Issue } from '../../domain/model/issue';
+import { GetIssuePayload } from '../../domain/model/issue/payload';
 
-export default function useIssue(id: Issue['id']) {
+export default function useIssue(getIssuePayload: GetIssuePayload) {
   const getIssueUseCase = container.get<GetIssueUseCase>(TYPES.GetIssueUseCase);
 
   const {
@@ -12,8 +12,8 @@ export default function useIssue(id: Issue['id']) {
     data: { data: issue } = {},
     error,
   } = useQuery({
-    queryKey: ['issues', id],
-    queryFn: () => getIssueUseCase.invoke(id),
+    queryKey: ['issues', getIssuePayload.issueId],
+    queryFn: () => getIssueUseCase.invoke(getIssuePayload),
   });
 
   return {

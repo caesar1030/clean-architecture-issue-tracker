@@ -26,4 +26,5 @@ export const TYPES = {
   LoginUseCase: Symbol.for('LoginUseCase'),
   LogOutUseCase: Symbol.for('LogoutUseCase'),
   GetUserUseCase: Symbol.for('GetUserUseCase'),
+  GetUsersUseCase: Symbol.for('GetUsersUseCase'),
 };

@@ -1,13 +1,10 @@
 import { inject, injectable } from 'inversify';
-
-import type {
-  EditTitleData,
-  IssueRepository,
-} from '../../repository/issue-repository';
+import type { IssueRepository } from '../../repository/issue-repository';
 import { TYPES } from '../../../di/types';
+import { EditIssueTitlePayload } from '../../model/issue/payload';
 
 export interface EditTitleUseCase {
-  invoke: (editTitleData: EditTitleData) => Promise<void>;
+  invoke: (editIssueTitlePayload: EditIssueTitlePayload) => Promise<void>;
 }
 
 @injectable()
@@ -18,7 +15,7 @@ export class EditTitle implements EditTitleUseCase {
     this._issueRepo = issueRepo;
   }
 
-  async invoke(editTitleData: EditTitleData) {
-    return this._issueRepo.editTitle(editTitleData);
+  async invoke(editIssueTitlePayload: EditIssueTitlePayload) {
+    return this._issueRepo.editTitle(editIssueTitlePayload);
   }
 }

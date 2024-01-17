@@ -8,7 +8,7 @@ export default function useUser() {
 
   const {
     isLoading,
-    data: user,
+    data: { data: user } = {},
     error,
   } = useQuery({
     queryKey: ['user'],

@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import Checkbox from '../../../../common-ui/checkbox';
 import Label from '../../../../common-ui/label';
 import Table from '../../../../common-ui/table';
-import { IssuesSummary } from '../../../../domain/repository/issue-repository';
 import { timeDiffFromNow } from '../../../../utils/helpers';
 import { useSelectedIssues } from '../selected-issues-context';
 import Avatar from '../../../../common-ui/avatar';
+import { IssuesResponse } from '../../../../domain/model/issue/response';
 
 interface IssueRowProps {
-  issue: IssuesSummary['data'][number];
+  issue: IssuesResponse['data'][number];
 }
 
 function IssueRow({ issue }: IssueRowProps) {

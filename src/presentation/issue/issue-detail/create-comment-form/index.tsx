@@ -1,6 +1,6 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import useCreateComment from '../../../comment/use-create-comment';
-import { Issue } from '../../../../domain/model/issue';
+import { Issue } from '../../../../domain/model/issue/issue';
 import TextArea from '../../../../common-ui/text-area';
 import Button from '../../../../common-ui/button';
 import useUser from '../../../auth/use-user';

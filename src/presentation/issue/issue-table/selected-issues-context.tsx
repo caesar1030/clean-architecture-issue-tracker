@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
-import { Issue } from '../../../domain/model/issue';
+import { Issue } from '../../../domain/model/issue/issue';
 
 interface SelectedIssuesContextType {
   selectedIssueIds: Issue['id'][];

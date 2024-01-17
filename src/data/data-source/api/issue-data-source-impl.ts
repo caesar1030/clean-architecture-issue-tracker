@@ -1,38 +1,38 @@
-import { Issue } from '../../../domain/model/issue';
-import {
-  EditTitleData,
-  IssueCreationData,
-  IssueFilterOptions,
-} from '../../../domain/repository/issue-repository';
+import { Issue } from '../../../domain/model/issue/issue';
 import IssueDataSource from '../issue-data-source';
-import {
-  IssueDetailEntity,
-  IssueSummaryEntity,
-} from '../../entity/issue-api-entity';
 import supabase from './supabase-db/supabase';
 import { injectable } from 'inversify';
+import {
+  CloseIssuesPayload,
+  CreateIssuePayload,
+  EditIssueTitlePayload,
+  GetIssuePayload,
+  IssuesFilterPayload,
+  OpenIssuesPayload,
+} from '../../../domain/model/issue/payload';
+import { IssueEntity, IssuesEntity } from '../../entity/issue-api-entity';
 
-// TODO: 타입 오류 해결
 @injectable()
 export default class IssueDataSourceImpl implements IssueDataSource {
-  async getIssue(id: Issue['id']) {
-    const dataQuery = this.buildGetIssueQuery(id);
+  async getIssue(getIssuePayload: GetIssuePayload): Promise<IssueEntity> {
+    const { issueId } = getIssuePayload;
+    const dataQuery = this.buildGetIssueQuery(issueId);
     const { data, error } = await dataQuery;
 
     if (error) throw new Error('이슈를 불러오지 못했습니다.');
 
+    // TODO: 타입 오류 해결
     return {
       data,
-    } as unknown as IssueDetailEntity;
+    } as unknown as IssueEntity;
   }
 
-  async getIssues(filterOptions: IssueFilterOptions) {
-    const dataQuery = this.buildGetIssuesQuery(filterOptions);
-
+  async getIssues(issuesFilterPayload: IssuesFilterPayload) {
+    const dataQuery = this.buildGetIssuesQuery(issuesFilterPayload);
     const openIssueCountQuery =
-      this.buildGetOpenIssuesCountQuery(filterOptions);
+      this.buildGetOpenIssuesCountQuery(issuesFilterPayload);
     const closeIssueCountQuery =
-      this.buildGetCloseIssuesCountQuery(filterOptions);
+      this.buildGetCloseIssuesCountQuery(issuesFilterPayload);
 
     const [
       { data, error },
@@ -52,11 +52,12 @@ export default class IssueDataSourceImpl implements IssueDataSource {
       data,
       openIssueCount,
       closeIssueCount,
-    } as unknown as IssueSummaryEntity;
+    } as unknown as IssuesEntity;
   }
 
-  async openIssues(ids: Issue['id'][]): Promise<void> {
-    const toUpsert = ids.map((id) => {
+  async openIssues(openIssuesPayload: OpenIssuesPayload): Promise<void> {
+    const { issueIds } = openIssuesPayload;
+    const toUpsert = issueIds.map((id) => {
       return {
         id,
         is_open: true,
@@ -72,8 +73,9 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     return;
   }
 
-  async closeIssues(ids: Issue['id'][]): Promise<void> {
-    const toUpsert = ids.map((id) => {
+  async closeIssues(closeIssuesPayload: CloseIssuesPayload): Promise<void> {
+    const { issueIds } = closeIssuesPayload;
+    const toUpsert = issueIds.map((id) => {
       return {
         id,
         is_open: false,
@@ -89,14 +91,16 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     return;
   }
 
-  async createIssue(newIssue: IssueCreationData): Promise<void> {
-    const { title, contents, labelId, milestoneId, authorId } = newIssue;
+  async createIssue(createIssuePayload: CreateIssuePayload): Promise<void> {
+    const { title, contents, labelId, milestoneId, authorId, assigneeId } =
+      createIssuePayload;
 
     const { error } = await supabase.from('issues').insert({
       title,
       contents,
       label_id: labelId,
       milestone_id: milestoneId,
+      assignee_id: assigneeId,
       author_id: authorId,
     });
 
@@ -105,8 +109,8 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     return;
   }
 
-  async editTitle(editTitleData: EditTitleData): Promise<void> {
-    const { id, title } = editTitleData;
+  async editTitle(editIssueTitlePayload: EditIssueTitlePayload): Promise<void> {
+    const { issueId: id, title } = editIssueTitlePayload;
 
     const { error } = await supabase
       .from('issues')
@@ -122,7 +126,7 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     const query = supabase
       .from('issues')
       .select(
-        'id, title, is_open, created_at, comments(id,contents,created_at, users(*)), labels(id,title, text_color, background_color), milestones(id,title), users(*))'
+        'id, title, is_open, created_at, comments(id,contents,created_at, author:author_id(*)), labels(id,title, text_color, background_color), milestones(id,title), author:author_id(*), assignee:assignee_id(*)'
       )
       .eq('id', id)
       .single();
@@ -130,17 +134,18 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     return query;
   }
 
-  private buildGetIssuesQuery(filterOptions: IssueFilterOptions) {
-    const { isOpen } = filterOptions;
-    const { labelInner, milestoneInner } = this.determineInner(filterOptions);
+  private buildGetIssuesQuery(issuesFilterPayload: IssuesFilterPayload) {
+    const { isOpen } = issuesFilterPayload;
+    const { labelInner, milestoneInner, assigneeInner, authorInner } =
+      this.determineInner(issuesFilterPayload);
 
     let query = supabase
       .from('issues')
       .select(
-        `id, title, is_open, created_at, labels${labelInner}(id, title, text_color, background_color), milestones${milestoneInner}(id, title), users(*)`
+        `id, title, is_open, created_at, labels${labelInner}(id, title, text_color, background_color), milestones${milestoneInner}(id, title), author:author_id${authorInner}(*), assignee:assignee_id${assigneeInner}(*)`
       );
 
-    query = this.applyFilterOptions(query, filterOptions);
+    query = this.applyFilterOptions(query, issuesFilterPayload);
 
     if (isOpen === true) query = query.eq('is_open', true);
     if (isOpen === false) query = query.eq('is_open', false);
@@ -150,61 +155,91 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     return query;
   }
 
-  private buildGetOpenIssuesCountQuery(filterOptions: IssueFilterOptions) {
-    const { labelInner, milestoneInner } = this.determineInner(filterOptions);
+  private buildGetOpenIssuesCountQuery(
+    issuesFilterPayload: IssuesFilterPayload
+  ) {
+    const { labelInner, milestoneInner, assigneeInner, authorInner } =
+      this.determineInner(issuesFilterPayload);
 
     let query = supabase
       .from('issues')
       .select(
-        `labels${labelInner}(id, title, text_color, background_color), milestones${milestoneInner}(id, title)`,
+        `labels${labelInner}(id, title, text_color, background_color), milestones${milestoneInner}(id, title), author:author_id${authorInner}(*), assignee:assignee_id${assigneeInner}(*)`,
         { count: 'exact' }
       );
 
-    query = this.applyFilterOptions(query, filterOptions);
+    query = this.applyFilterOptions(query, issuesFilterPayload);
 
     query.eq('is_open', true);
 
     return query;
   }
 
-  private buildGetCloseIssuesCountQuery(filterOptions: IssueFilterOptions) {
-    const { labelInner, milestoneInner } = this.determineInner(filterOptions);
+  private buildGetCloseIssuesCountQuery(
+    issuesFilterPayload: IssuesFilterPayload
+  ) {
+    const { labelInner, milestoneInner, assigneeInner, authorInner } =
+      this.determineInner(issuesFilterPayload);
 
     let query = supabase
       .from('issues')
       .select(
-        `labels${labelInner}(id, title, text_color, background_color), milestones${milestoneInner}(id, title)`,
+        `labels${labelInner}(id, title, text_color, background_color), milestones${milestoneInner}(id, title), author:author_id${authorInner}(*), assignee:assignee_id${assigneeInner}(*)`,
         { count: 'exact' }
       );
 
-    query = this.applyFilterOptions(query, filterOptions);
+    query = this.applyFilterOptions(query, issuesFilterPayload);
 
     query.eq('is_open', false);
 
     return query;
   }
 
-  private determineInner(filterOptions: IssueFilterOptions) {
-    const { labelTitle, milestoneTitle } = filterOptions;
+  private determineInner(issuesFilterPayload: IssuesFilterPayload) {
+    const { labelTitle, milestoneTitle, assigneeNickname, authorNickname } =
+      issuesFilterPayload;
 
-    const labelInner = labelTitle && labelTitle !== 'none' ? '!inner' : '';
-    const milestoneInner =
-      milestoneTitle && milestoneTitle !== 'none' ? '!inner' : '';
+    const labelInner = labelTitle ? '!inner' : '';
+    const milestoneInner = milestoneTitle ? '!inner' : '';
+    const assigneeInner = assigneeNickname ? '!inner' : '';
+    const authorInner = authorNickname ? '!inner' : '';
 
     return {
       labelInner,
       milestoneInner,
+      assigneeInner,
+      authorInner,
     };
   }
 
-  private applyFilterOptions(query: any, filterOptions: IssueFilterOptions) {
-    const { labelTitle, milestoneTitle, likes, no } = filterOptions;
+  private applyFilterOptions(
+    query: any,
+    issuesFilterPayload: IssuesFilterPayload
+  ) {
+    const {
+      labelTitle,
+      milestoneTitle,
+      assigneeNickname,
+      authorNickname,
+      likes,
+      no,
+    } = issuesFilterPayload;
 
     if (labelTitle) query = query.eq('labels.title', labelTitle);
     if (no?.label) query = query.is('labels', null);
 
     if (milestoneTitle) query = query.eq('milestones.title', milestoneTitle);
     if (no?.milestone) query = query.is('milestones', null);
+
+    if (assigneeNickname)
+      query = query.eq(
+        'assignee.raw_user_meta_data->>nickname',
+        assigneeNickname
+      );
+    if (no?.assignee) query = query.is('assignee', null);
+
+    if (authorNickname)
+      query = query.eq('author.raw_user_meta_data->>nickname', authorNickname);
 
     if (likes?.length) {
       const likesFilterColumns = ['contents', 'title'];

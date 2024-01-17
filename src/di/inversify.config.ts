@@ -57,6 +57,7 @@ import { Login, LoginUseCase } from '../domain/use-case/auth/login';
 import { GetUser, GetUserUseCase } from '../domain/use-case/auth/get-user';
 import { Logout, LogoutUseCase } from '../domain/use-case/auth/logout';
 import { Signup, SignupUseCase } from '../domain/use-case/auth/signup';
+import { GetUsers, GetUsersUseCase } from '../domain/use-case/auth/get-users';
 
 const container = new Container();
 
@@ -99,5 +100,6 @@ container.bind<SignupUseCase>(TYPES.SignupUseCase).to(Signup);
 container.bind<LoginUseCase>(TYPES.LoginUseCase).to(Login);
 container.bind<LogoutUseCase>(TYPES.LogOutUseCase).to(Logout);
 container.bind<GetUserUseCase>(TYPES.GetUserUseCase).to(GetUser);
+container.bind<GetUsersUseCase>(TYPES.GetUsersUseCase).to(GetUsers);
 
 export { container };

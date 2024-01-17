@@ -1,13 +1,11 @@
 import { inject, injectable } from 'inversify';
-import { Issue } from '../../model/issue';
-import type {
-  IssueDetail,
-  IssueRepository,
-} from '../../repository/issue-repository';
+import type { IssueRepository } from '../../repository/issue-repository';
 import { TYPES } from '../../../di/types';
+import { IssueResponse } from '../../model/issue/response';
+import { GetIssuePayload } from '../../model/issue/payload';
 
 export interface GetIssueUseCase {
-  invoke: (id: Issue['id']) => Promise<IssueDetail>;
+  invoke: (getIssuePayload: GetIssuePayload) => Promise<IssueResponse>;
 }
 
 @injectable()
@@ -18,7 +16,7 @@ export class GetIssue implements GetIssueUseCase {
     this._issueRepo = issueRepo;
   }
 
-  async invoke(id: Issue['id']) {
-    return this._issueRepo.getIssue(id);
+  async invoke(getIssuePayload: GetIssuePayload) {
+    return this._issueRepo.getIssue(getIssuePayload);
   }
 }

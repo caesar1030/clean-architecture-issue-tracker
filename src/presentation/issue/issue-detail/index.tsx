@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import useIssue from '../use-issue';
-import { Issue } from '../../../domain/model/issue';
+import { Issue } from '../../../domain/model/issue/issue';
 import Table from '../../../common-ui/table';
 import CreateCommentForm from './create-comment-form';
 import InformationTag from '../../../common-ui/information-tag';
@@ -11,7 +11,7 @@ import Avatar from '../../../common-ui/avatar';
 function IssueDetail() {
   const { id } = useParams();
   const issueId = Number(id) as Issue['id'];
-  const { issue } = useIssue(issueId);
+  const { issue } = useIssue({ issueId });
 
   return (
     <>
@@ -24,9 +24,9 @@ function IssueDetail() {
           <InformationTag variant="closed">닫힌 이슈</InformationTag>
         )}
         {issue?.createdAt && (
-          <span>{`이 이슈가 ${timeDiffFromNow(issue?.createdAt)}전에 ${
-            issue.isOpen ? '열렸습니다' : '닫혔습니다'
-          }`}</span>
+          <span>{`이 이슈가 ${timeDiffFromNow(
+            issue?.createdAt
+          )}전에 작성되었습니다`}</span>
         )}
       </div>
 

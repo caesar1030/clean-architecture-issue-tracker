@@ -1,4 +1,6 @@
-interface LabelProps {
+import { ComponentPropsWithoutRef } from 'react';
+
+interface LabelProps extends ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
   textColor: string;
   backgroundColor: string;

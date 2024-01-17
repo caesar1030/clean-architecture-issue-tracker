@@ -1,13 +1,11 @@
 import { inject, injectable } from 'inversify';
-import type {
-  AuthRepository,
-  SignupData,
-} from '../../repository/auth-repository';
+import type { AuthRepository } from '../../repository/auth-repository';
 import { TYPES } from '../../../di/types';
-import { User } from '../../model/user';
+import { UserResponse } from '../../model/user/response';
+import { SignupPayload } from '../../model/user/payload';
 
 export interface SignupUseCase {
-  invoke: (signupData: SignupData) => Promise<User>;
+  invoke: (signupPayload: SignupPayload) => Promise<UserResponse>;
 }
 
 @injectable()
@@ -18,7 +16,7 @@ export class Signup implements SignupUseCase {
     this._authRepo = authRepo;
   }
 
-  async invoke(signupData: SignupData) {
-    return this._authRepo.signup(signupData);
+  async invoke(signupPayload: SignupPayload) {
+    return this._authRepo.signup(signupPayload);
   }
 }

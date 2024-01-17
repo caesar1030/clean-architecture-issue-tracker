@@ -3,7 +3,7 @@ import { container } from '../../di/inversify.config';
 import { TYPES } from '../../di/types';
 import { CreateIssueUseCase } from '../../domain/use-case/issues/create-issue';
 import { useNavigate } from 'react-router-dom';
-import { IssueCreationData } from '../../domain/repository/issue-repository';
+import { CreateIssuePayload } from '../../domain/model/issue/payload';
 
 export default function useCreateIssue() {
   const createIssueUseCase = container.get<CreateIssueUseCase>(
@@ -13,8 +13,8 @@ export default function useCreateIssue() {
   const navigate = useNavigate();
 
   const { mutate: createIssue, isPending: isCreating } = useMutation({
-    mutationFn: (newIssue: IssueCreationData) =>
-      createIssueUseCase.invoke(newIssue),
+    mutationFn: (createIssuePayload: CreateIssuePayload) =>
+      createIssueUseCase.invoke(createIssuePayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['issues'] });
       navigate('/issues');

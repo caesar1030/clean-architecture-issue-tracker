@@ -1,19 +1,18 @@
-import { Issue } from '../../domain/model/issue';
 import {
-  EditTitleData,
-  IssueCreationData,
-  IssueFilterOptions,
-} from '../../domain/repository/issue-repository';
-import {
-  IssueDetailEntity,
-  IssueSummaryEntity,
-} from '../entity/issue-api-entity';
+  CloseIssuesPayload,
+  CreateIssuePayload,
+  EditIssueTitlePayload,
+  GetIssuePayload,
+  IssuesFilterPayload,
+  OpenIssuesPayload,
+} from '../../domain/model/issue/payload';
+import { IssueEntity, IssuesEntity } from '../entity/issue-api-entity';
 
 export default interface IssueDataSource {
-  getIssue(id: Issue['id']): Promise<IssueDetailEntity>;
-  getIssues(filterOptions: IssueFilterOptions): Promise<IssueSummaryEntity>;
-  openIssues(ids: Issue['id'][]): Promise<void>;
-  closeIssues(ids: Issue['id'][]): Promise<void>;
-  createIssue(newIssue: IssueCreationData): Promise<void>;
-  editTitle(editTitleData: EditTitleData): Promise<void>;
+  getIssue(getIssuePayload: GetIssuePayload): Promise<IssueEntity>;
+  getIssues(issuesFilterPayload: IssuesFilterPayload): Promise<IssuesEntity>;
+  openIssues(openIssuesPayload: OpenIssuesPayload): Promise<void>;
+  closeIssues(closeIssuesPayload: CloseIssuesPayload): Promise<void>;
+  createIssue(createIssuePayload: CreateIssuePayload): Promise<void>;
+  editTitle(editIssueTitlePayload: EditIssueTitlePayload): Promise<void>;
 }

@@ -1,15 +1,15 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import Input from '../../../../../common-ui/input';
 import Button from '../../../../../common-ui/button';
-import { IssueDetail } from '../../../../../domain/repository/issue-repository';
 import useEditTItle from '../../../use-edit-title';
+import { IssueResponse } from '../../../../../domain/model/issue/response';
 
 interface FormType {
   title: string;
 }
 
 interface EditIssueTitleFormProps {
-  issue: IssueDetail['data'] | undefined;
+  issue: IssueResponse['data'] | undefined;
   toggleIsEditingTitle: () => void;
 }
 
@@ -26,7 +26,7 @@ function EditIssueTitleForm({
 
   // TODO: 타입 assertion 제거
   const onSubmit: SubmitHandler<FormType> = ({ title }) => {
-    editTitle({ id: issue!.id, title });
+    editTitle({ issueId: issue!.id, title });
     toggleIsEditingTitle();
   };
 
@@ -38,6 +38,7 @@ function EditIssueTitleForm({
         render={({ field }) => {
           return (
             <Input
+              id="title"
               label="제목"
               labelPosition="left"
               className="grow h-10"

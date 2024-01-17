@@ -1,4 +1,4 @@
-import { Label } from '../model/label';
+import { Label } from '../model/label/label';
 
 export interface Labels {
   data: Label[];
