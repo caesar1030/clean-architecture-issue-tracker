@@ -11,7 +11,7 @@ import useLabels from '../../label/use-labels';
 import { Label as LabelModel } from '../../../domain/model/label/label';
 import Label from '../../../common-ui/label';
 import TextArea from '../../../common-ui/text-area';
-import Divder from '../../../common-ui/divider';
+import Divider from '../../../common-ui/divider';
 import useCreateIssue from '../use-create-issue';
 import useUser from '../../auth/use-user';
 import useUsers from '../../auth/use-users';
@@ -255,7 +255,7 @@ function CreateIssueForm() {
           </Menus>
         </div>
 
-        <Divder />
+        <Divider />
 
         <div className="flex justify-end items-center gap-8">
           <Link to={'/issues?isOpen=open'}>
