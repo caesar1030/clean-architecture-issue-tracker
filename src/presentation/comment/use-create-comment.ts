@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { container } from '../../di/inversify.config';
 import { TYPES } from '../../di/types';
-import { CommentCreationData } from '../../domain/repository/comment-repository';
 import { CreateCommentUseCase } from '../../domain/use-case/comments/create-comment';
+import { CreateCommentPayload } from '../../domain/model/comment/payload';
 
 export default function useCreateComment() {
   const createCommentUseCase = container.get<CreateCommentUseCase>(
@@ -11,8 +11,8 @@ export default function useCreateComment() {
   const queryClient = useQueryClient();
 
   const { mutate: createComment, isPending: isCreating } = useMutation({
-    mutationFn: (newComment: CommentCreationData) =>
-      createCommentUseCase.invoke(newComment),
+    mutationFn: (createCommentPayload: CreateCommentPayload) =>
+      createCommentUseCase.invoke(createCommentPayload),
     onSuccess: (_, variables) => {
       const { issueId } = variables;
 

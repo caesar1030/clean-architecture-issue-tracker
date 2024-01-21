@@ -1,5 +1,5 @@
-import { CommentCreationData } from '../../domain/repository/comment-repository';
+import { CreateCommentPayload } from '../../domain/model/comment/payload';
 
 export default interface CommentDataSource {
-  createComment(newComment: CommentCreationData): Promise<void>;
+  createComment(createCommentPayload: CreateCommentPayload): Promise<void>;
 }
