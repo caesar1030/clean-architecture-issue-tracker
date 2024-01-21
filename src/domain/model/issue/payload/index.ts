@@ -38,7 +38,11 @@ export interface CreateIssuePayload {
   authorId: User['id'];
 }
 
-export interface EditIssueTitlePayload {
-  issueId: Issue['id'];
-  title: string;
+export interface EditIssuePayload {
+  id: Issue['id'];
+  title?: string;
+  contents?: string;
+  labelId?: Label['id'] | null;
+  milestoneId?: Milestone['id'] | null;
+  assigneeId?: User['id'] | null;
 }

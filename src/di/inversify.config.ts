@@ -45,10 +45,6 @@ import {
   CreateComment,
   CreateCommentUseCase,
 } from '../domain/use-case/comments/create-comment';
-import {
-  EditTitle,
-  EditTitleUseCase,
-} from '../domain/use-case/issues/edit-title';
 import AuthDataSource from '../data/data-source/auth-data-source';
 import AuthDataSourceImpl from '../data/data-source/api/auth-data-source';
 import { AuthRepository } from '../domain/repository/auth-repository';
@@ -58,6 +54,10 @@ import { GetUser, GetUserUseCase } from '../domain/use-case/auth/get-user';
 import { Logout, LogoutUseCase } from '../domain/use-case/auth/logout';
 import { Signup, SignupUseCase } from '../domain/use-case/auth/signup';
 import { GetUsers, GetUsersUseCase } from '../domain/use-case/auth/get-users';
+import {
+  EditIssue,
+  EditIssueUseCase,
+} from '../domain/use-case/issues/edit-issue';
 
 const container = new Container();
 
@@ -68,7 +68,7 @@ container.bind<GetIssuesUseCase>(TYPES.GetIssuesUseCase).to(GetIssues);
 container.bind<CloseIssuesUseCase>(TYPES.CloseIssuesUseCase).to(CloseIssues);
 container.bind<OpenIssuesUseCase>(TYPES.OpenIssuesUseCase).to(OpenIssues);
 container.bind<CreateIssueUseCase>(TYPES.CreateIssueUseCase).to(CreateIssue);
-container.bind<EditTitleUseCase>(TYPES.EditTitleUseCase).to(EditTitle);
+container.bind<EditIssueUseCase>(TYPES.EditIssueUseCase).to(EditIssue);
 
 container
   .bind<CommentDataSource>(TYPES.CommentDataSource)

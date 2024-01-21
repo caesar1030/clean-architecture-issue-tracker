@@ -1,8 +1,8 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import Input from '../../../../../common-ui/input';
 import Button from '../../../../../common-ui/button';
-import useEditTItle from '../../../use-edit-title';
 import { IssueResponse } from '../../../../../domain/model/issue/response';
+import useEditIssue from '../../../use-edit-issue';
 
 interface FormType {
   title: string;
@@ -22,11 +22,11 @@ function EditIssueTitleForm({
       title: issue?.title,
     },
   });
-  const { editTitle } = useEditTItle();
+  const { editIssue } = useEditIssue();
 
   // TODO: 타입 assertion 제거
   const onSubmit: SubmitHandler<FormType> = ({ title }) => {
-    editTitle({ issueId: issue!.id, title });
+    editIssue({ id: issue!.id, title });
     toggleIsEditingTitle();
   };
 

@@ -5,12 +5,15 @@ import { injectable } from 'inversify';
 import {
   CloseIssuesPayload,
   CreateIssuePayload,
-  EditIssueTitlePayload,
+  EditIssuePayload,
   GetIssuePayload,
   IssuesFilterPayload,
   OpenIssuesPayload,
 } from '../../../domain/model/issue/payload';
 import { IssueEntity, IssuesEntity } from '../../entity/issue-api-entity';
+import { Milestone } from '../../../domain/model/milestone/milestone';
+import { User } from '../../../domain/model/user/user';
+import { Label } from '../../../domain/model/label/label';
 
 @injectable()
 export default class IssueDataSourceImpl implements IssueDataSource {
@@ -109,15 +112,29 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     return;
   }
 
-  async editTitle(editIssueTitlePayload: EditIssueTitlePayload): Promise<void> {
-    const { issueId: id, title } = editIssueTitlePayload;
+  async editIssue(editIssuePayload: EditIssuePayload): Promise<void> {
+    const { id, title, milestoneId, assigneeId, contents, labelId } =
+      editIssuePayload;
+
+    const toUpdate: {
+      title?: string;
+      contents?: string;
+      milestone_id?: Milestone['id'] | null;
+      assignee_id?: User['id'] | null;
+      label_id?: Label['id'] | null;
+    } = {};
+    if (title) toUpdate.title = title;
+    if (contents) toUpdate.contents = contents;
+    if (milestoneId !== undefined) toUpdate.milestone_id = milestoneId;
+    if (assigneeId !== undefined) toUpdate.assignee_id = assigneeId;
+    if (labelId !== undefined) toUpdate.label_id = labelId;
 
     const { error } = await supabase
       .from('issues')
-      .update({ title })
+      .update(toUpdate)
       .eq('id', id);
 
-    if (error) throw new Error('제목을 수정하지 못했습니다.');
+    if (error) throw new Error(error.message);
 
     return;
   }

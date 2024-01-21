@@ -1,7 +1,7 @@
 import {
   CloseIssuesPayload,
   CreateIssuePayload,
-  EditIssueTitlePayload,
+  EditIssuePayload,
   GetIssuePayload,
   IssuesFilterPayload,
   OpenIssuesPayload,
@@ -14,5 +14,5 @@ export interface IssueRepository {
   openIssues(openIssuesPayload: OpenIssuesPayload): Promise<void>;
   closeIssues(closeIssuesPayload: CloseIssuesPayload): Promise<void>;
   createIssue(createIssuePayload: CreateIssuePayload): Promise<void>;
-  editTitle(editIssueTitlePayload: EditIssueTitlePayload): Promise<void>;
+  editIssue(editIssuePayload: EditIssuePayload): Promise<void>;
 }
