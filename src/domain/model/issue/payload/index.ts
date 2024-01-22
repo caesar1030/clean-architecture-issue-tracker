@@ -38,6 +38,10 @@ export interface CreateIssuePayload {
   authorId: User['id'];
 }
 
+export interface DeleteIssuePayload {
+  id: Issue['id'];
+}
+
 export interface EditIssuePayload {
   id: Issue['id'];
   title?: string;

@@ -58,6 +58,10 @@ import {
   EditIssue,
   EditIssueUseCase,
 } from '../domain/use-case/issues/edit-issue';
+import {
+  DeleteIssue,
+  DeleteIssueUseCase,
+} from '../domain/use-case/issues/delete-issue';
 
 const container = new Container();
 
@@ -68,6 +72,7 @@ container.bind<GetIssuesUseCase>(TYPES.GetIssuesUseCase).to(GetIssues);
 container.bind<CloseIssuesUseCase>(TYPES.CloseIssuesUseCase).to(CloseIssues);
 container.bind<OpenIssuesUseCase>(TYPES.OpenIssuesUseCase).to(OpenIssues);
 container.bind<CreateIssueUseCase>(TYPES.CreateIssueUseCase).to(CreateIssue);
+container.bind<DeleteIssueUseCase>(TYPES.DeleteIssueUseCase).to(DeleteIssue);
 container.bind<EditIssueUseCase>(TYPES.EditIssueUseCase).to(EditIssue);
 
 container

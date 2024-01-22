@@ -5,6 +5,7 @@ import { injectable } from 'inversify';
 import {
   CloseIssuesPayload,
   CreateIssuePayload,
+  DeleteIssuePayload,
   EditIssuePayload,
   GetIssuePayload,
   IssuesFilterPayload,
@@ -112,6 +113,15 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     return;
   }
 
+  async deleteIssue(deleteIssuePayload: DeleteIssuePayload): Promise<void> {
+    const { id } = deleteIssuePayload;
+    const { error } = await supabase.from('issues').delete().eq('id', id);
+
+    if (error) throw new Error('이슈를 삭제하지 못했습니다.');
+
+    return;
+  }
+
   async editIssue(editIssuePayload: EditIssuePayload): Promise<void> {
     const { id, title, milestoneId, assigneeId, contents, labelId } =
       editIssuePayload;
@@ -146,7 +156,7 @@ export default class IssueDataSourceImpl implements IssueDataSource {
         'id, title, is_open, created_at, comments(id,contents,created_at, author:author_id(*)), labels(id,title, text_color, background_color), milestones(id,title), author:author_id(*), assignee:assignee_id(*)'
       )
       .eq('id', id)
-      .single();
+      .maybeSingle();
 
     return query;
   }

@@ -1,6 +1,7 @@
 import {
   CloseIssuesPayload,
   CreateIssuePayload,
+  DeleteIssuePayload,
   EditIssuePayload,
   GetIssuePayload,
   IssuesFilterPayload,
@@ -14,5 +15,6 @@ export default interface IssueDataSource {
   openIssues(openIssuesPayload: OpenIssuesPayload): Promise<void>;
   closeIssues(closeIssuesPayload: CloseIssuesPayload): Promise<void>;
   createIssue(createIssuePayload: CreateIssuePayload): Promise<void>;
+  deleteIssue(deleteIssuePayload: DeleteIssuePayload): Promise<void>;
   editIssue(editIssuePayload: EditIssuePayload): Promise<void>;
 }

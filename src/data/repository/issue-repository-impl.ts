@@ -11,6 +11,7 @@ import { Comment } from '../../domain/model/comment/comment';
 import {
   CloseIssuesPayload,
   CreateIssuePayload,
+  DeleteIssuePayload,
   EditIssuePayload,
   GetIssuePayload,
   IssuesFilterPayload,
@@ -52,6 +53,9 @@ export class IssueRepositoryImpl implements IssueRepository {
 
   async createIssue(createIssuePayload: CreateIssuePayload): Promise<void> {
     return this._datasource.createIssue(createIssuePayload);
+  }
+  async deleteIssue(deleteIssuePayload: DeleteIssuePayload): Promise<void> {
+    return this._datasource.deleteIssue(deleteIssuePayload);
   }
 
   async editIssue(editIssuePayload: EditIssuePayload): Promise<void> {
