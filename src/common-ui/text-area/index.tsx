@@ -63,7 +63,7 @@ const TextArea = forwardRef(
 
         <div className="flex gap-2 absolute bottom-4 right-4">
           <span className="text-neutral-text-weak text-S">{`띄어쓰기 포함 ${
-            (rest.value as string).length
+            (rest.value as string)?.length
           }자`}</span>
 
           <img src="/public/grip.svg" alt="그립" className="w-5 h-5" />

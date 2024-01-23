@@ -153,7 +153,7 @@ export default class IssueDataSourceImpl implements IssueDataSource {
     const query = supabase
       .from('issues')
       .select(
-        'id, title, is_open, created_at, comments(id,contents,created_at, author:author_id(*)), labels(id,title, text_color, background_color), milestones(id,title), author:author_id(*), assignee:assignee_id(*)'
+        'id, title, contents, is_open, created_at, comments(id,contents,created_at, author:author_id(*)), labels(id,title, text_color, background_color), milestones(id,title), author:author_id(*), assignee:assignee_id(*)'
       )
       .eq('id', id)
       .maybeSingle();

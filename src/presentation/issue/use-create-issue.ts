@@ -17,7 +17,7 @@ export default function useCreateIssue() {
       createIssueUseCase.invoke(createIssuePayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['issues'] });
-      navigate('/issues');
+      navigate('/issues?isOpen=open');
     },
   });
 

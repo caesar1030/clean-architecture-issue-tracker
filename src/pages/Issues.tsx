@@ -8,6 +8,7 @@ import useLabels from '../presentation/label/use-labels';
 import useMilestones from '../presentation/milestone/use-milestones';
 
 function Issues() {
+  // TODO: 훅 제거
   const { labels } = useLabels();
   const { milestones } = useMilestones();
   return (
