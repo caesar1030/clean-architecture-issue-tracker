@@ -1,12 +1,10 @@
 import { inject, injectable } from 'inversify';
 import { TYPES } from '../../../di/types';
-import type {
-  CommentCreationData,
-  CommentRepository,
-} from '../../repository/comment-repository';
+import type { CommentRepository } from '../../repository/comment-repository';
+import { CreateCommentPayload } from '../../model/comment/payload';
 
 export interface CreateCommentUseCase {
-  invoke: (newComment: CommentCreationData) => Promise<void>;
+  invoke: (createCommentPayload: CreateCommentPayload) => Promise<void>;
 }
 
 @injectable()
@@ -17,7 +15,7 @@ export class CreateComment implements CreateCommentUseCase {
     this._commentRepo = commentRepo;
   }
 
-  async invoke(newComment: CommentCreationData) {
-    return this._commentRepo.createComment(newComment);
+  async invoke(createCommentPayload: CreateCommentPayload) {
+    return this._commentRepo.createComment(createCommentPayload);
   }
 }

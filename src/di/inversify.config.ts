@@ -62,6 +62,10 @@ import {
   DeleteIssue,
   DeleteIssueUseCase,
 } from '../domain/use-case/issues/delete-issue';
+import {
+  EditComment,
+  EditCommentUseCase,
+} from '../domain/use-case/comments/edit-comment';
 
 const container = new Container();
 
@@ -84,6 +88,7 @@ container
 container
   .bind<CreateCommentUseCase>(TYPES.CreateCommentUseCase)
   .to(CreateComment);
+container.bind<EditCommentUseCase>(TYPES.EditCommentUseCase).to(EditComment);
 
 container.bind<LabelDataSource>(TYPES.LabelDataSource).to(LabelDataSourceImpl);
 container.bind<LabelRepository>(TYPES.LabelRepository).to(LabelRepositoryImpl);

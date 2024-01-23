@@ -12,6 +12,7 @@ export const TYPES = {
   CommentDataSource: Symbol.for('CommentDataSource'),
   CommentRepository: Symbol.for('CommentRepository'),
   CreateCommentUseCase: Symbol.for('CreateCommentUseCase'),
+  EditCommentUseCase: Symbol.for('EditCommentUseCase'),
 
   LabelDataSource: Symbol.for('LabelDataSource'),
   LabelRepository: Symbol.for('LabelRepository'),

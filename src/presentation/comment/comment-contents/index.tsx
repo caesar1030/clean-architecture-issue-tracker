@@ -1,35 +1,34 @@
 import { useState } from 'react';
-import Avatar from '../../../../common-ui/avatar';
-import InformationTag from '../../../../common-ui/information-tag';
-import Table from '../../../../common-ui/table';
-import { IssueResponse } from '../../../../domain/model/issue/response';
-import { timeDiffFromNow } from '../../../../utils/helpers';
-import Button from '../../../../common-ui/button';
-import EditIssueContentsForm from './edit-issue-contents-form';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import useEditIssue from '../../use-edit-issue';
-import useUser from '../../../auth/use-user';
+import useUser from '../../auth/use-user';
+import Button from '../../../common-ui/button';
+import Table from '../../../common-ui/table';
+import Avatar from '../../../common-ui/avatar';
+import { IssueResponse } from '../../../domain/model/issue/response';
+import { timeDiffFromNow } from '../../../utils/helpers';
+import InformationTag from '../../../common-ui/information-tag';
+import EditCommentContentsForm from './edit-comment-contents-form';
+import useEditComment from '../use-edit-comment';
 
-interface IssueContentsProps {
-  issue: IssueResponse['data'] | undefined;
+interface CommentContentsProps {
+  comment: NonNullable<IssueResponse['data']['comments']>[number];
+  issueAuthor: IssueResponse['data']['author'];
 }
 
-interface FormType {
-  contents: string;
-}
-
-function IssueContents({ issue }: IssueContentsProps) {
+function CommentContents({ issueAuthor, comment }: CommentContentsProps) {
   const [isEditing, setIsEditing] = useState(false);
   const { control, handleSubmit, reset } = useForm<FormType>();
-  const { editIssue } = useEditIssue();
+  const { editComment } = useEditComment();
   const { user } = useUser();
 
+  interface FormType {
+    contents: string;
+  }
+
   const onSubmit: SubmitHandler<FormType> = ({ contents }) => {
-    editIssue(
-      { id: issue!.id, contents },
-      {
-        onSettled: () => setIsEditing(false),
-      }
+    editComment(
+      { authorId: user!.id, commentId: comment.id, contents },
+      { onSuccess: () => setIsEditing(false) }
     );
   };
 
@@ -40,9 +39,13 @@ function IssueContents({ issue }: IssueContentsProps) {
           <Controller
             name="contents"
             control={control}
-            defaultValue={issue?.contents || ''}
+            defaultValue={comment.contents || ''}
             render={({ field }) => (
-              <EditIssueContentsForm issue={issue} {...field} />
+              <EditCommentContentsForm
+                issueAuthor={issueAuthor}
+                comment={comment}
+                {...field}
+              />
             )}
           />
 
@@ -72,18 +75,20 @@ function IssueContents({ issue }: IssueContentsProps) {
         <Table.Header>
           <div className="flex justify-between">
             <div className="flex gap-2 items-center">
-              <Avatar src={issue?.author.avatar} />
+              <Avatar src={comment.author.avatar} />
               <span className="text-M text-neutral-text-strong">
-                {issue?.author.nickname}
+                {comment.author.nickname}
               </span>
               <span className="text-M text-neutral-text-weak">
-                {issue && timeDiffFromNow(issue.createdAt)} 전
+                {timeDiffFromNow(comment.createdAt)} 전
               </span>
             </div>
 
             <div className="flex gap-4 items-center">
-              <InformationTag variant="writer">작성자</InformationTag>
-              {user?.id === issue?.author.id && (
+              {comment.author.id === issueAuthor.id && (
+                <InformationTag variant="writer">작성자</InformationTag>
+              )}
+              {user?.id === comment.author.id && (
                 <Button
                   size="S"
                   variant="ghosts"
@@ -96,9 +101,9 @@ function IssueContents({ issue }: IssueContentsProps) {
             </div>
           </div>
         </Table.Header>
-        <Table.Row>{issue?.contents || '없음'}</Table.Row>
+        <Table.Row>{comment.contents}</Table.Row>
       </Table>
     </>
   );
 }
-export default IssueContents;
+export default CommentContents;

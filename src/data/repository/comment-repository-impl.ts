@@ -2,7 +2,10 @@ import { inject, injectable } from 'inversify';
 import { CommentRepository } from '../../domain/repository/comment-repository';
 import type CommentDataSource from '../data-source/comment-data-source';
 import { TYPES } from '../../di/types';
-import { CreateCommentPayload } from '../../domain/model/comment/payload';
+import {
+  CreateCommentPayload,
+  EditCommentPayload,
+} from '../../domain/model/comment/payload';
 
 @injectable()
 export class CommentRepositoryImpl implements CommentRepository {
@@ -16,5 +19,9 @@ export class CommentRepositoryImpl implements CommentRepository {
     createCommentPayload: CreateCommentPayload
   ): Promise<void> {
     return this._datasource.createComment(createCommentPayload);
+  }
+
+  async editComment(editCommentPayload: EditCommentPayload): Promise<void> {
+    return this._datasource.editComment(editCommentPayload);
   }
 }
