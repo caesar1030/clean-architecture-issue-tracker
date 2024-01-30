@@ -10,7 +10,7 @@ export default function useLabels() {
 
   const {
     isLoading,
-    data: labels,
+    data: { data: labels } = { data: [] },
     error,
   } = useQuery({
     queryKey: ['labels'],

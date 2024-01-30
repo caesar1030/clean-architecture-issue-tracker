@@ -1,8 +1,5 @@
-import { Label } from '../model/label/label';
+import { LabelsResponse } from '../model/label/response';
 
-export interface Labels {
-  data: Label[];
-}
 export interface LabelRepository {
-  getLabels(): Promise<Labels>;
+  getLabels(): Promise<LabelsResponse>;
 }

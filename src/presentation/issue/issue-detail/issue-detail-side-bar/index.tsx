@@ -8,7 +8,7 @@ import { IssueResponse } from '../../../../domain/model/issue/response';
 import Table from '../../../../common-ui/table';
 import Avatar from '../../../../common-ui/avatar';
 import RadioButton from '../../../../common-ui/radio-button';
-import Label from '../../../../common-ui/label';
+import LabelTag from '../../../../common-ui/label-tag';
 import useEditIssue from '../../use-edit-issue';
 
 interface IssueDetailSideBarProps {
@@ -62,13 +62,13 @@ function IssueDetailSideBar({ issue }: IssueDetailSideBarProps) {
               </Button>
             </Menus.OpenButton>
             {issue?.label && (
-              <Label
+              <LabelTag
                 backgroundColor={issue.label.backgroundColor!}
                 textColor={issue.label.textColor!}
                 className="h-6"
               >
                 {issue.label.title}
-              </Label>
+              </LabelTag>
             )}
           </>
 

@@ -1,11 +1,10 @@
 import { inject, injectable } from 'inversify';
-import {
-  LabelRepository,
-  Labels,
-} from '../../domain/repository/label-repository';
+import { LabelRepository } from '../../domain/repository/label-repository';
 import { LabelAPIEntity } from '../entity/label-api-entity';
 import type LabelDataSource from '../data-source/label-data-source';
 import { TYPES } from '../../di/types';
+import { LabelsResponse } from '../../domain/model/label/response';
+import { Label } from '../../domain/model/label/label';
 
 @injectable()
 export class LabelRepositoryImpl implements LabelRepository {
@@ -15,13 +14,15 @@ export class LabelRepositoryImpl implements LabelRepository {
     this._datasource = dataSource;
   }
 
-  async getLabels(): Promise<Labels> {
+  async getLabels(): Promise<LabelsResponse> {
     const data = await this._datasource.getLabels();
 
     return this.mapEntityToModel(data);
   }
 
-  private mapEntityToModel(data: LabelAPIEntity[]): Labels {
+  private mapEntityToModel(entity: LabelAPIEntity): LabelsResponse {
+    const { data } = entity;
+
     return {
       data: data.map(
         ({
@@ -33,15 +34,15 @@ export class LabelRepositoryImpl implements LabelRepository {
           created_at,
         }) => {
           return {
-            id,
-            title,
-            description,
-            textColor: text_color,
-            backgroundColor: background_color,
-            createdAt: created_at,
+            id: id as Label['id'],
+            title: title as Label['title'],
+            description: description as Label['description'],
+            textColor: text_color as Label['textColor'],
+            backgroundColor: background_color as Label['backgroundColor'],
+            createdAt: created_at as Label['createdAt'],
           };
         }
       ),
-    } as Labels;
+    };
   }
 }

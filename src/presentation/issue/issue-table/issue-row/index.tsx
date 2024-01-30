@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Checkbox from '../../../../common-ui/checkbox';
-import Label from '../../../../common-ui/label';
+import LabelTag from '../../../../common-ui/label-tag';
 import Table from '../../../../common-ui/table';
 import { timeDiffFromNow } from '../../../../utils/helpers';
 import { useSelectedIssues } from '../selected-issues-context';
@@ -30,13 +30,13 @@ function IssueRow({ issue }: IssueRowProps) {
           </Link>
 
           {label && (
-            <Label
+            <LabelTag
               textColor={label.textColor}
               backgroundColor={label.backgroundColor}
               key={id}
             >
               {label.title}
-            </Label>
+            </LabelTag>
           )}
         </div>
 

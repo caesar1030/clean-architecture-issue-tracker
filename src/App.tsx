@@ -7,6 +7,7 @@ import Issue from './pages/issue';
 import Login from './pages/login';
 import ProtectedRoute from './common-ui/protected-route';
 import Signup from './pages/signup';
+import Labels from './pages/labels';
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ function App() {
             <Route path="/issues" element={<Issues />} />
             <Route path="/issues/:id" element={<Issue />} />
             <Route path="/new-issue" element={<NewIssue />} />
+            <Route path="/labels" element={<Labels />} />
           </Route>
 
           <Route path="/login" element={<Login />} />

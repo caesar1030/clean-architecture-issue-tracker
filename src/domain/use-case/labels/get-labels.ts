@@ -1,20 +1,18 @@
 import { inject, injectable } from 'inversify';
-import type {
-  LabelRepository,
-  Labels,
-} from '../../repository/label-repository';
+import type { LabelRepository } from '../../repository/label-repository';
 import { TYPES } from '../../../di/types';
+import { LabelsResponse } from '../../model/label/response';
 
 export interface GetLabelsUseCase {
-  invoke: () => Promise<Labels>;
+  invoke: () => Promise<LabelsResponse>;
 }
 
 @injectable()
 export class GetLabels implements GetLabelsUseCase {
   private _labelRepo: LabelRepository;
 
-  constructor(@inject(TYPES.LabelRepository) issueRepo: LabelRepository) {
-    this._labelRepo = issueRepo;
+  constructor(@inject(TYPES.LabelRepository) labelRepo: LabelRepository) {
+    this._labelRepo = labelRepo;
   }
 
   async invoke() {

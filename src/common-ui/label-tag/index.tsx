@@ -1,12 +1,13 @@
 import { ComponentPropsWithoutRef } from 'react';
+import { Label } from '../../domain/model/label/label';
 
 interface LabelProps extends ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
   textColor: string;
-  backgroundColor: string;
+  backgroundColor: Label['backgroundColor'];
 }
 
-function Label({ children, textColor, backgroundColor }: LabelProps) {
+function LabelTag({ children, textColor, backgroundColor }: LabelProps) {
   return (
     <div
       style={{
@@ -19,4 +20,4 @@ function Label({ children, textColor, backgroundColor }: LabelProps) {
     </div>
   );
 }
-export default Label;
+export default LabelTag;

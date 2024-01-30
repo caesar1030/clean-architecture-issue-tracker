@@ -19,7 +19,7 @@ function Issues() {
           <TabButton>
             <Button size="M" variant="ghosts">
               <img src="/public/label-bold.svg" alt="라벨" />
-              <span>라벨 ({labels?.data.length})</span>
+              <span>라벨 ({labels.length})</span>
             </Button>
             <Button size="M" variant="ghosts">
               <img src="/public/milestone-bold.svg" alt="마일스톤" />

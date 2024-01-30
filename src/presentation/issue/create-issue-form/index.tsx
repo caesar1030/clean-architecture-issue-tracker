@@ -9,7 +9,7 @@ import Table from '../../../common-ui/table';
 import RadioButton from '../../../common-ui/radio-button';
 import useLabels from '../../label/use-labels';
 import { Label as LabelModel } from '../../../domain/model/label/label';
-import Label from '../../../common-ui/label';
+import LabelTag from '../../../common-ui/label-tag';
 import TextArea from '../../../common-ui/text-area';
 import Divider from '../../../common-ui/divider';
 import useCreateIssue from '../use-create-issue';
@@ -172,13 +172,13 @@ function CreateIssueForm() {
                   </Button>
                 </Menus.OpenButton>
                 {selectedLabel && (
-                  <Label
+                  <LabelTag
                     backgroundColor={selectedLabel.backgroundColor!}
                     textColor={selectedLabel.textColor!}
                     className="h-6"
                   >
                     {selectedLabel.title}
-                  </Label>
+                  </LabelTag>
                 )}
               </>
 
