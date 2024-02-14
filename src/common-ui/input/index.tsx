@@ -55,7 +55,7 @@ const Input = forwardRef(
         <label
           htmlFor={id}
           className={
-            'flex items-center cursor-text text-neutral-text focus:text-neutral-text-weak' +
+            'flex items-center cursor-text text-neutral-text focus:text-neutral-text-weak whitespace-nowrap min-w-[72px]' +
             ` ${isLabelAtLeft ? 'w-[72px]' : ''}` +
             ` ${isLabelAtTop ? 'w-full' : ''}` +
             ` ${isLabelAtTop && !value && !isFouced ? 'grow' : ''}` +
