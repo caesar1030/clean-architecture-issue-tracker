@@ -4,6 +4,7 @@ import IssueRow from './issue-row';
 import IssueHeader from './issue-header';
 import Menus from '../../../common-ui/menus';
 import { SelectedIssuesProvider } from './selected-issues-context';
+import { IssuesResponse } from '../../../domain/model/issue/response';
 
 function IssueTable() {
   const { issues, openIssueCount, closeIssueCount } = useIssues();
@@ -19,7 +20,7 @@ function IssueTable() {
               closeIssueCount={closeIssueCount}
             />
           </Table.Header>
-          <Table.Body
+          <Table.Body<IssuesResponse['data'][number]>
             data={issues}
             render={(issue) => <IssueRow key={issue.id} issue={issue} />}
           />
