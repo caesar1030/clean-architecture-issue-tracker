@@ -3,6 +3,8 @@ import Input from '../../../../../common-ui/input';
 import LabelTag from '../../../../../common-ui/label-tag';
 import Table from '../../../../../common-ui/table';
 import { LabelsResponse } from '../../../../../domain/model/label/response';
+import Button from '../../../../../common-ui/button';
+import { Label } from '../../../../../domain/model/label/label';
 
 export interface EditLabelFormProps {
   label: LabelsResponse['data'][number];
@@ -16,7 +18,7 @@ interface FormType {
 }
 
 const EditLabelForm = ({ label }: EditLabelFormProps) => {
-  const { control, handleSubmit } = useForm<FormType>({
+  const { control, handleSubmit, setValue, watch } = useForm<FormType>({
     defaultValues: {
       title: label.title,
       description: label.description,
@@ -45,10 +47,12 @@ const EditLabelForm = ({ label }: EditLabelFormProps) => {
         <div className="flex gap-6">
           <div className="flex-grow-[9] flex justify-center items-center rounded-regular border border-neutral-border">
             <LabelTag
-              backgroundColor={label.backgroundColor}
-              textColor={label.textColor}
+              backgroundColor={
+                watch().backgroundColor as Label['backgroundColor']
+              }
+              textColor={watch().textColor as Label['textColor']}
             >
-              {label.title}
+              {watch().title}
             </LabelTag>
           </div>
 
@@ -83,7 +87,7 @@ const EditLabelForm = ({ label }: EditLabelFormProps) => {
               )}
             />
 
-            <div>
+            <div className="flex items-center gap-2">
               <Controller
                 name="backgroundColor"
                 control={control}
@@ -94,12 +98,30 @@ const EditLabelForm = ({ label }: EditLabelFormProps) => {
                     labelPosition="left"
                     className="h-10 w-60"
                     {...field}
+                    onChange={(e) => {
+                      if (!e.target.value.startsWith('#'))
+                        setValue('backgroundColor', '#' + e.target.value);
+                      else setValue('backgroundColor', e.target.value);
+                    }}
                   />
                 )}
               />
-            </div>
+              <Button
+                size="S"
+                variant="ghosts"
+                flexible
+                onClick={() => {
+                  const color = `#${Array.from(
+                    { length: 6 },
+                    () => '0123456789ABCDEF'[Math.floor(Math.random() * 16)]
+                  ).join('')}`;
 
-            <Input id="" label="" labelPosition="left" />
+                  setValue('backgroundColor', color);
+                }}
+              >
+                <img src="/public/refresh.svg" alt="refresh" />
+              </Button>
+            </div>
           </div>
         </div>
       </form>
