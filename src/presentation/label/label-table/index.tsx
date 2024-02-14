@@ -16,7 +16,7 @@ const LabelTable = () => {
 
       <Table.Body<LabelsResponse['data'][number]>
         data={labels}
-        render={(label) => <LabelRow label={label} />}
+        render={(label) => <LabelRow key={label.id} label={label} />}
       />
     </Table>
   );
