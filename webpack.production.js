@@ -16,10 +16,6 @@ module.exports = {
   devServer: {
     port: 3000,
     historyApiFallback: true,
-    hot: true,
-    devMiddleware: {
-      writeToDisk: true,
-    },
   },
   module: {
     rules: [
@@ -88,10 +84,5 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-  },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
   },
 };

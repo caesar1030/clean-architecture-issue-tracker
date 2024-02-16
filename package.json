@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/index.tsx",
   "scripts": {
-    "build": "webpack build --config webpack.config.js",
-    "dev": "webpack serve --config webpack.config.js --hot"
+    "build": "webpack build --config webpack.production.js",
+    "dev": "webpack serve --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
