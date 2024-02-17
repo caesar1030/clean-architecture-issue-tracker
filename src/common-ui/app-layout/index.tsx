@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../header';
+import { Suspense } from 'react';
 
 function AppLayout() {
   return (
@@ -7,7 +8,9 @@ function AppLayout() {
       <Header />
 
       <main className="flex flex-col gap-6 py-8">
-        <Outlet />
+        <Suspense fallback={<span>loading..</span>}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   );

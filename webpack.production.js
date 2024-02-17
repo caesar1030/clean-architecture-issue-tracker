@@ -2,20 +2,16 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: path.resolve(__dirname, 'src/index.tsx'),
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     clean: true,
-  },
-  devServer: {
-    port: 3000,
-    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -49,7 +45,6 @@ module.exports = {
                 '@babel/preset-typescript',
               ],
               plugins: [
-                'react-refresh/babel',
                 'babel-plugin-transform-typescript-metadata',
                 ['@babel/plugin-proposal-decorators', { legacy: true }],
               ],
@@ -80,9 +75,14 @@ module.exports = {
       path: path.resolve(__dirname, '.env'),
       prefix: 'import.meta.env.',
     }),
-    new ReactRefreshWebpackPlugin(),
+    new BundleAnalyzerPlugin(),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
 };

@@ -1,13 +1,28 @@
+import { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import AppLayout from './common-ui/app-layout';
-import Issues from './pages/Issues';
-import NewIssue from './pages/new-issues';
-import Issue from './pages/issue';
-import Login from './pages/login';
 import ProtectedRoute from './common-ui/protected-route';
-import Signup from './pages/signup';
-import Labels from './pages/labels';
+
+const Issues = lazy(
+  () => import(/* webpackChunkName: "issues" */ './pages/Issues')
+);
+const NewIssue = lazy(
+  () => import(/* webpackChunkName: "new-issue" */ './pages/new-issues')
+);
+const Issue = lazy(
+  () => import(/* webpackChunkName: "issue" */ './pages/issue')
+);
+const Login = lazy(
+  () => import(/* webpackChunkName: "login" */ './pages/login')
+);
+const Signup = lazy(
+  () => import(/* webpackChunkName: "signup" */ './pages/signup')
+);
+const Labels = lazy(
+  () => import(/* webpackChunkName: "labels" */ './pages/labels')
+);
 
 const queryClient = new QueryClient();
 
