@@ -7,6 +7,7 @@ import {
   ChangeEvent,
   forwardRef,
 } from 'react';
+import searchIcon from '../../assets/search.svg';
 
 interface FilterContextType {
   isFocused: boolean;
@@ -92,7 +93,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           : 'bg-neutral-background-bold'
       }`}
     >
-      <img src="/public/search.svg" alt="검색" className="w-4 h-4" />
+      <img src={searchIcon} alt="검색" className="w-4 h-4" />
       <input
         type="text"
         onFocus={handleFocus}

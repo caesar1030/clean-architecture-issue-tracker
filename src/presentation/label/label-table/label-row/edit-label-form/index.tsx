@@ -5,6 +5,7 @@ import Table from '../../../../../common-ui/table';
 import { LabelsResponse } from '../../../../../domain/model/label/response';
 import Button from '../../../../../common-ui/button';
 import { Label } from '../../../../../domain/model/label/label';
+import refreshIcon from '../../../../../assets/refresh.svg';
 
 export interface EditLabelFormProps {
   label: LabelsResponse['data'][number];
@@ -119,7 +120,7 @@ const EditLabelForm = ({ label }: EditLabelFormProps) => {
                   setValue('backgroundColor', color);
                 }}
               >
-                <img src="/public/refresh.svg" alt="refresh" />
+                <img src={refreshIcon} alt="refresh" />
               </Button>
             </div>
           </div>

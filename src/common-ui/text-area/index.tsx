@@ -5,6 +5,7 @@ import {
   forwardRef,
   useState,
 } from 'react';
+import gripIcon from '../../assets/grip.svg';
 
 interface InputProps extends ComponentProps<'textarea'> {
   label: string;
@@ -66,7 +67,7 @@ const TextArea = forwardRef(
             (rest.value as string)?.length
           }자`}</span>
 
-          <img src="/public/grip.svg" alt="그립" className="w-5 h-5" />
+          <img src={gripIcon} alt="그립" className="w-5 h-5" />
         </div>
       </div>
     );

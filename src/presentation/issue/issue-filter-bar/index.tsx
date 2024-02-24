@@ -6,6 +6,7 @@ import Table from '../../../common-ui/table';
 import usePlaceholder from './use-placeholder';
 import RadioButton from '../../../common-ui/radio-button';
 import useSearchParamsHandlers from '../use-search-params-handlers';
+import chevronDownIcon from '../../../assets/chevron-down.svg';
 
 function IssueFilterBar() {
   const {
@@ -36,7 +37,7 @@ function IssueFilterBar() {
               className="px-6 text-neutral-text-weak"
             >
               <span>필터</span>
-              <img src="/public/chevron-down.svg" alt="마일스톤필터" />
+              <img src={chevronDownIcon} alt="마일스톤필터" />
             </Button>
           </Menus.OpenButton>
 

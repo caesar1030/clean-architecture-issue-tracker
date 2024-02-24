@@ -4,6 +4,7 @@ import Table from '../../../../../common-ui/table';
 import { useSelectedIssues } from '../../selected-issues-context';
 import useCloseIssues from '../../../use-close-issues';
 import useOpenIssues from '../../../use-open-issues';
+import chevronDown from '../../../../../assets/chevron-down.svg';
 
 function StatusUpdateMenu() {
   const { openIssues } = useOpenIssues();
@@ -25,7 +26,7 @@ function StatusUpdateMenu() {
       <Menus.OpenButton id="상태수정" windowPosition="right">
         <Button variant="ghosts" size="M" flexible>
           <span>상태 수정</span>
-          <img src="/public/chevron-down.svg" alt="상태 수정" />
+          <img src={chevronDown} alt="상태 수정" />
         </Button>
       </Menus.OpenButton>
 

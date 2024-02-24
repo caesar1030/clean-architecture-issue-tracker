@@ -6,6 +6,8 @@ import IssueTable from '../presentation/issue/issue-table';
 import TabButton from '../common-ui/tab-button';
 import useLabels from '../presentation/label/use-labels';
 import useMilestones from '../presentation/milestone/use-milestones';
+import labelBoldIcon from '../assets/label-bold.svg';
+import milestoneBoldIcon from '../assets/milestone-bold.svg';
 
 function Issues() {
   // TODO: 훅 제거
@@ -18,11 +20,11 @@ function Issues() {
         <div className="flex gap-4">
           <TabButton>
             <Button size="M" variant="ghosts">
-              <img src="/public/label-bold.svg" alt="라벨" />
+              <img src={labelBoldIcon} alt="라벨" />
               <span>라벨 ({labels.length})</span>
             </Button>
             <Button size="M" variant="ghosts">
-              <img src="/public/milestone-bold.svg" alt="마일스톤" />
+              <img src={milestoneBoldIcon} alt="마일스톤" />
               <span>마일스톤({milestones?.data.length})</span>
             </Button>
           </TabButton>

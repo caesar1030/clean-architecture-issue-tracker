@@ -5,6 +5,7 @@ import RadioButton from '../../../../../common-ui/radio-button';
 import Table from '../../../../../common-ui/table';
 import useUsers from '../../../../auth/use-users';
 import useSearchParamsHandlers from '../../../use-search-params-handlers';
+import chevronDownIcon from '../../../../../assets/chevron-down.svg';
 
 function AuthorFilterMenu() {
   const { users } = useUsers();
@@ -16,7 +17,7 @@ function AuthorFilterMenu() {
       <Menus.OpenButton id="authorFilter" windowPosition="right">
         <Button variant="ghosts" size="M" flexible>
           <span>작성자</span>
-          <img src="/public/chevron-down.svg" alt="이슈" />
+          <img src={chevronDownIcon} alt="이슈" />
         </Button>
       </Menus.OpenButton>
 

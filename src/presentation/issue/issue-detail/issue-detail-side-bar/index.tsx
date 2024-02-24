@@ -10,6 +10,7 @@ import Avatar from '../../../../common-ui/avatar';
 import RadioButton from '../../../../common-ui/radio-button';
 import LabelTag from '../../../../common-ui/label-tag';
 import useEditIssue from '../../use-edit-issue';
+import chevronDownIcon from '../../../../assets/chevron-down.svg';
 
 interface IssueDetailSideBarProps {
   issue: IssueResponse['data'] | undefined;
@@ -35,7 +36,7 @@ function IssueDetailSideBar({ issue }: IssueDetailSideBarProps) {
                 type="button"
               >
                 <span className="grow text-left">담당자</span>
-                <img src="/public/chevron-down.svg" alt="담당자" />
+                <img src={chevronDownIcon} alt="담당자" />
               </Button>
             </Menus.OpenButton>
             {issue?.assignee?.id && (
@@ -58,7 +59,7 @@ function IssueDetailSideBar({ issue }: IssueDetailSideBarProps) {
                 type="button"
               >
                 <span className="grow text-left">레이블</span>
-                <img src="/public/chevron-down.svg" alt="레이블" />
+                <img src={chevronDownIcon} alt="레이블" />
               </Button>
             </Menus.OpenButton>
             {issue?.label && (
@@ -82,7 +83,7 @@ function IssueDetailSideBar({ issue }: IssueDetailSideBarProps) {
                 type="button"
               >
                 <span className="grow text-left">마일스톤</span>
-                <img src="/public/chevron-down.svg" alt="마일스톤" />
+                <img src={chevronDownIcon} alt="마일스톤" />
               </Button>
             </Menus.OpenButton>
             {issue?.milestone && (

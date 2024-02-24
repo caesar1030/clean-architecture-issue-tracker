@@ -4,6 +4,7 @@ import Table from '../../../../../common-ui/table';
 import useMilestones from '../../../../milestone/use-milestones';
 import RadioButton from '../../../../../common-ui/radio-button';
 import useSearchParamsHandlers from '../../../use-search-params-handlers';
+import chevronDownIcon from '../../../../../assets/chevron-down.svg';
 
 function MilestoneFilterMenu() {
   const { milestones } = useMilestones();
@@ -19,7 +20,7 @@ function MilestoneFilterMenu() {
       <Menus.OpenButton id="마일스톤필터" windowPosition="center">
         <Button variant="ghosts" size="M" flexible>
           <span>마일스톤</span>
-          <img src="/public/chevron-down.svg" alt="마일스톤필터" />
+          <img src={chevronDownIcon} alt="마일스톤필터" />
         </Button>
       </Menus.OpenButton>
 

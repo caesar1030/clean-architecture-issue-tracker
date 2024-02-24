@@ -5,6 +5,7 @@ import RadioButton from '../../../../../common-ui/radio-button';
 import Table from '../../../../../common-ui/table';
 import useLabels from '../../../../label/use-labels';
 import useSearchParamsHandlers from '../../../use-search-params-handlers';
+import chevronDownIcon from '../../../../../assets/chevron-down.svg';
 
 function LabelFilterMenu() {
   const { labels } = useLabels();
@@ -21,7 +22,7 @@ function LabelFilterMenu() {
       <Menus.OpenButton id="레이블필터" windowPosition="center">
         <Button variant="ghosts" size="M" flexible>
           <span>레이블</span>
-          <img src="/public/chevron-down.svg" alt="레이블필터" />
+          <img src={chevronDownIcon} alt="레이블필터" />
         </Button>
       </Menus.OpenButton>
 
@@ -38,7 +39,7 @@ function LabelFilterMenu() {
             </Menus.Button>
           </Table.Row>
 
-          {labels?.data?.map(({ id, title, backgroundColor }) => (
+          {labels?.map(({ id, title, backgroundColor }) => (
             <Table.Row key={id}>
               <Menus.Button onClick={() => toggleLabelSearchParam(title)}>
                 <div className="flex gap-2 items-center">

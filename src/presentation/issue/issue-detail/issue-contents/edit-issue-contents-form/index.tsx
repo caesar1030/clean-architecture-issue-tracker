@@ -5,6 +5,7 @@ import InformationTag from '../../../../../common-ui/information-tag';
 import Table from '../../../../../common-ui/table';
 import { IssueResponse } from '../../../../../domain/model/issue/response';
 import { timeDiffFromNow } from '../../../../../utils/helpers';
+import gripIcon from '../../../../../assets/grip.svg';
 
 export interface EditIssueContentsFormProps
   extends ComponentPropsWithRef<'textarea'> {
@@ -53,7 +54,7 @@ const EditIssueContentsForm = forwardRef(
                   (rest.value as string)?.length
                 }자`}</span>
 
-                <img src="/public/grip.svg" alt="그립" className="w-5 h-5" />
+                <img src={gripIcon} alt="그립" className="w-5 h-5" />
               </div>
             </Table.Row>
           </Table>

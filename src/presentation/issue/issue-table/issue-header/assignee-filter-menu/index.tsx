@@ -5,6 +5,7 @@ import RadioButton from '../../../../../common-ui/radio-button';
 import Table from '../../../../../common-ui/table';
 import useUsers from '../../../../auth/use-users';
 import useSearchParamsHandlers from '../../../use-search-params-handlers';
+import chevronDownIcon from '../../../../../assets/chevron-down.svg';
 
 function AssigneeFilterMenu() {
   const { users } = useUsers();
@@ -20,7 +21,7 @@ function AssigneeFilterMenu() {
       <Menus.OpenButton id="assigneeFilter" windowPosition="center">
         <Button variant="ghosts" size="M" flexible>
           <span>담당자</span>
-          <img src="/public/chevron-down.svg" alt="이슈" />
+          <img src={chevronDownIcon} alt="이슈" />
         </Button>
       </Menus.OpenButton>
 

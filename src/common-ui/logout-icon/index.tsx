@@ -1,8 +1,9 @@
 import { ComponentPropsWithoutRef } from 'react';
+import logoutIcon from '../../assets/logout.svg';
 
 interface LogoutIconProps extends ComponentPropsWithoutRef<'img'> {}
 
 function LogoutIcon(_: LogoutIconProps) {
-  return <img src="/public/logout.svg" className="w-8 h-8" alt="logout" />;
+  return <img src={logoutIcon} className="w-8 h-8" alt="logout" />;
 }
 export default LogoutIcon;

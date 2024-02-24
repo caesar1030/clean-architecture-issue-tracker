@@ -1,10 +1,12 @@
+import userIcon from '../../assets/user.svg';
+
 interface AvatarProps {
   src?: string;
 }
 
 function Avatar({ src }: AvatarProps) {
   const style = {
-    backgroundImage: `url(${src || '/public/user.svg'})`,
+    backgroundImage: `url(${src || userIcon})`,
   };
 
   return (

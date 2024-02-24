@@ -18,6 +18,8 @@ import useUsers from '../../auth/use-users';
 import { User } from '../../../domain/model/user/user';
 import Avatar from '../../../common-ui/avatar';
 import { Link } from 'react-router-dom';
+import chevronDownIcon from '../../../assets/chevron-down.svg';
+import closeIcon from '../../../assets/close-icon.svg';
 
 interface FormType {
   title: string;
@@ -146,7 +148,7 @@ function CreateIssueForm() {
                     type="button"
                   >
                     <span className="grow text-left">담당자</span>
-                    <img src="/public/chevron-down.svg" alt="라벨추가" />
+                    <img src={chevronDownIcon} alt="라벨추가" />
                   </Button>
                 </Menus.OpenButton>
                 {selectedAssignee && (
@@ -168,7 +170,7 @@ function CreateIssueForm() {
                     type="button"
                   >
                     <span className="grow text-left">라벨</span>
-                    <img src="/public/chevron-down.svg" alt="라벨추가" />
+                    <img src={chevronDownIcon} alt="라벨추가" />
                   </Button>
                 </Menus.OpenButton>
                 {selectedLabel && (
@@ -192,7 +194,7 @@ function CreateIssueForm() {
                     type="button"
                   >
                     <span className="grow text-left">마일스톤</span>
-                    <img src="/public/chevron-down.svg" alt="마일스톤추가" />
+                    <img src={chevronDownIcon} alt="마일스톤추가" />
                   </Button>
                 </Menus.OpenButton>
                 {selectedMilestone && (
@@ -260,7 +262,7 @@ function CreateIssueForm() {
         <div className="flex justify-end items-center gap-8">
           <Link to={'/issues?isOpen=open'}>
             <Button size="M" variant="ghosts" flexible type="button">
-              <img src="/public/close-icon.svg" alt="작성 취소" />
+              <img src={closeIcon} alt="작성 취소" />
               <span>작성 취소</span>
             </Button>
           </Link>

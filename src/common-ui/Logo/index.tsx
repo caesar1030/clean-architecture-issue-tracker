@@ -1,12 +1,17 @@
+import logoMediumIcon from '../../assets/logo-medium.svg';
+import logoLargeIcon from '../../assets/logo-large.svg';
+
 interface LogoProps {
   size: 'medium' | 'large';
 }
 
 const sizes = {
   medium: {
-    src: '/public/logo-medium.svg',
+    src: logoMediumIcon,
   },
-  large: { src: '/public/logo-large.svg' },
+  large: {
+    src: logoLargeIcon,
+  },
 };
 
 function Logo({ size }: LogoProps) {

@@ -11,6 +11,7 @@ import Button from '../../../common-ui/button';
 import useDeleteIssue from '../use-delete-issue';
 import IssueContents from './issue-contents';
 import CommentContents from '../../comment/comment-contents';
+import trashIcon from '../../../assets/trash.svg';
 
 function IssueDetail() {
   const { id } = useParams();
@@ -62,7 +63,7 @@ function IssueDetail() {
             className="self-end"
             onClick={() => deleteIssue({ id: issue!.id })}
           >
-            <img src="/public/trash.svg" alt="이슈 삭제" />
+            <img src={trashIcon} alt="이슈 삭제" />
             <span className="text-danger-text">이슈 삭제</span>
           </Button>
         </div>

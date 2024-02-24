@@ -6,6 +6,8 @@ import { timeDiffFromNow } from '../../../../utils/helpers';
 import { useSelectedIssues } from '../selected-issues-context';
 import Avatar from '../../../../common-ui/avatar';
 import { IssuesResponse } from '../../../../domain/model/issue/response';
+import issueIcon from '../../../../assets/issue.svg';
+import milestoneIcon from '../../../../assets/milestone.svg';
 
 interface IssueRowProps {
   issue: IssuesResponse['data'][number];
@@ -24,7 +26,7 @@ function IssueRow({ issue }: IssueRowProps) {
 
       <div className="flex flex-col gap-2">
         <div className="flex gap-1">
-          <img src="/public/issue.svg" alt="이슈" />
+          <img src={issueIcon} alt="이슈" />
           <Link to={`/issues/${id}`}>
             <span className="text-neutral-text-strong font-bold">{title}</span>
           </Link>
@@ -45,7 +47,7 @@ function IssueRow({ issue }: IssueRowProps) {
           <span>{`${timeDiffFromNow(createdAt)} 전에 작성되었습니다`}</span>
           {milestone && (
             <div className="flex gap-2">
-              <img src="/public/milestone.svg" alt="마일스톤" />
+              <img src={milestoneIcon} alt="마일스톤" />
               <span>{milestone.title}</span>
             </div>
           )}

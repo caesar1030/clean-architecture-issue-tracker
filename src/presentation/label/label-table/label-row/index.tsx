@@ -4,6 +4,8 @@ import LabelTag from '../../../../common-ui/label-tag';
 import Table from '../../../../common-ui/table';
 import { LabelsResponse } from '../../../../domain/model/label/response';
 import EditLabelForm from './edit-label-form';
+import editIcon from '../../../../assets/edit.svg';
+import trashIcon from '../../../../assets/trash.svg';
 
 export interface LabelRowProps {
   label: LabelsResponse['data'][number];
@@ -30,11 +32,11 @@ const LabelRow = ({ label }: LabelRowProps) => {
           flexible
           onClick={() => setIsEditing(true)}
         >
-          <img src="/public/edit.svg" alt="라벨 편집" />
+          <img src={editIcon} alt="라벨 편집" />
           <span className="text-neutral-text font-bold text-S">편집</span>
         </Button>
         <Button size="S" variant="ghosts" flexible>
-          <img src="/public/trash.svg" alt="라벨 삭제" />
+          <img src={trashIcon} alt="라벨 삭제" />
           <span className="text-danger-text font-bold text-S">삭제</span>
         </Button>
       </div>

@@ -5,6 +5,7 @@ import Avatar from '../../../../common-ui/avatar';
 import { timeDiffFromNow } from '../../../../utils/helpers';
 import InformationTag from '../../../../common-ui/information-tag';
 import Button from '../../../../common-ui/button';
+import grip from '../../../../assets/grip.svg';
 
 export interface EditIssueContentsFormProps
   extends ComponentPropsWithRef<'textarea'> {
@@ -56,7 +57,7 @@ const EditCommentContentsForm = forwardRef(
                   (rest.value as string)?.length
                 }자`}</span>
 
-                <img src="/public/grip.svg" alt="그립" className="w-5 h-5" />
+                <img src={grip} alt="그립" className="w-5 h-5" />
               </div>
             </Table.Row>
           </Table>

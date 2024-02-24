@@ -1,5 +1,7 @@
 import Button from '../../../../../common-ui/button';
 import useSearchParamsHandlers from '../../../use-search-params-handlers';
+import openedIssueIcon from '../../../../../assets/opened-issue.svg';
+import closedIssueIcon from '../../../../../assets/closed-issue.svg';
 
 interface StatusFilterButtonsProps {
   openIssueCount: number | undefined;
@@ -22,7 +24,7 @@ function StatusFilterButtons({
         onClick={() => setOpenStatusSearchParam(true)}
         active={isOpenStatus}
       >
-        <img src="/public/opened-issue.svg" alt="열린 이슈" />
+        <img src={openedIssueIcon} alt="열린 이슈" />
         <span>열린 이슈({openIssueCount})</span>
       </Button>
       <Button
@@ -32,7 +34,7 @@ function StatusFilterButtons({
         onClick={() => setOpenStatusSearchParam(false)}
         active={isCloseStatus}
       >
-        <img src="/public/closed-issue.svg" alt="닫힌 이슈" />
+        <img src={closedIssueIcon} alt="닫힌 이슈" />
         <span>닫힌 이슈({closeIssueCount})</span>
       </Button>
     </div>
