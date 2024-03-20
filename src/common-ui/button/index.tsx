@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react';
+import { Link } from 'react-router-dom';
 
 interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   variant: keyof typeof variants;
@@ -6,6 +7,7 @@ interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   children: React.ReactNode;
   flexible?: boolean;
   active?: boolean;
+  to?: string;
 }
 
 const base =
@@ -29,8 +31,24 @@ function Button({
   flexible,
   active,
   children,
+  to,
   ...rest
 }: ButtonProps) {
+  if (to)
+    return (
+      <Link
+        to={to}
+        className={
+          [base, variants[variant], sizes[size]].join(' ') +
+          `${flexible ? ' flex w-fit h-fit ' : ''}` +
+          `${active ? ' text-neutral-text-strong ' : ''}` +
+          rest.className
+        }
+      >
+        {children}
+      </Link>
+    );
+
   return (
     <button
       {...rest}
