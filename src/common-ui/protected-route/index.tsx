@@ -16,7 +16,7 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
     }
   }, [isAuthenticated, isLoading, navigate]);
 
-  if (isLoading) return <div>dd</div>;
+  if (isLoading) return null;
 
   return children;
 }
