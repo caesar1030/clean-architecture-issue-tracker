@@ -9,9 +9,9 @@ function Issues() {
     <>
       <div className="flex justify-between">
         <IssueFilterBar />
+
         <div className="flex gap-4">
           <Navbar />
-
           <Button to="/new-issue" size="S" variant="contained">
             이슈 작성
           </Button>
