@@ -268,7 +268,6 @@ export default function useSearchParamsHandlers() {
     setSearchParams(searchParams);
   };
 
-  // url -> 검색어
   const convertParamsToQuery = () => {
     let query = '';
     if (isCloseStatus) query += `${OPEN_STATUS_KEY}:${CLOSE} `;
@@ -299,7 +298,6 @@ export default function useSearchParamsHandlers() {
     return query;
   };
 
-  // url -> model
   const getFilterOptions = () => {
     const filterOptions: IssuesFilterPayload = {};
 
