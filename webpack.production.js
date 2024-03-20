@@ -12,14 +12,13 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
     clean: true,
   },
   module: {
     rules: [
       {
         test: /\.(png|jpg|svg)$/,
-        type: 'asset/resource',
+        type: 'asset',
       },
       {
         test: /\.css$/,
@@ -65,17 +64,6 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: path.posix.join(
-            path.resolve(__dirname, 'public').replace(/\\/g, '/'),
-            '*'
-          ),
-          to: path.resolve(__dirname, 'dist'),
-        },
-      ],
     }),
     new Dotenv({
       path: path.resolve(__dirname, '.env'),
