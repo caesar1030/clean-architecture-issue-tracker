@@ -225,7 +225,7 @@ function CreateIssueForm() {
 
             <Menus.Window id="addLabel">
               <Table columns="1fr" size="S">
-                {labels?.data?.map((label) => (
+                {labels?.map((label) => (
                   <Table.Row key={label.id}>
                     <Menus.Button onClick={() => addLabel(label)}>
                       <div className="flex gap-2 items-center">
