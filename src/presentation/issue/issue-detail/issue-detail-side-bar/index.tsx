@@ -124,7 +124,7 @@ function IssueDetailSideBar({ issue }: IssueDetailSideBarProps) {
 
         <Menus.Window id="label">
           <Table columns="1fr" size="S">
-            {labels?.data?.map((label) => (
+            {labels?.map((label) => (
               <Table.Row key={label.id}>
                 <Menus.Button
                   onClick={() => {

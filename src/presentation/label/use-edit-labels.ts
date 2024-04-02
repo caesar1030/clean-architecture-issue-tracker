@@ -6,7 +6,7 @@ import { EditLabelPayload } from '../../domain/model/label/payload';
 
 export default function useEditLabel() {
   const editLabelUseCase = container.get<EditLabelUseCase>(
-    TYPES.EditlabelUseCase
+    TYPES.EditLabelUseCase
   );
   const queryClient = useQueryClient();
 
