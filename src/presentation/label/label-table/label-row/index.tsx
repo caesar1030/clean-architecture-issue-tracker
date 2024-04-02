@@ -6,6 +6,7 @@ import { LabelsResponse } from '../../../../domain/model/label/response';
 import EditLabelForm from './edit-label-form';
 import editIcon from '../../../../assets/edit.svg';
 import trashIcon from '../../../../assets/trash.svg';
+import useDeleteLabel from '../../use-delete-label';
 
 export interface LabelRowProps {
   label: LabelsResponse['data'][number];
@@ -13,6 +14,7 @@ export interface LabelRowProps {
 
 const LabelRow = ({ label }: LabelRowProps) => {
   const [isEditing, setIsEditing] = useState(false);
+  const { deleteLabel, isDeleting } = useDeleteLabel();
   const closeEditingSession = () => setIsEditing(false);
 
   if (isEditing)
@@ -39,7 +41,13 @@ const LabelRow = ({ label }: LabelRowProps) => {
           <img src={editIcon} alt="라벨 편집" />
           <span className="text-neutral-text font-bold text-S">편집</span>
         </Button>
-        <Button size="S" variant="ghosts" flexible>
+        <Button
+          size="S"
+          variant="ghosts"
+          flexible
+          onClick={() => deleteLabel({ id: label.id })}
+          disabled={isDeleting}
+        >
           <img src={trashIcon} alt="라벨 삭제" />
           <span className="text-danger-text font-bold text-S">삭제</span>
         </Button>

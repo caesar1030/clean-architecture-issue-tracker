@@ -2,7 +2,10 @@ import { injectable } from 'inversify';
 import LabelDataSource from '../label-data-source';
 import { LabelAPIEntity } from '../../entity/label-api-entity';
 import supabase from './supabase-db/supabase';
-import { EditLabelPayload } from '../../../domain/model/label/payload';
+import {
+  DeleteLabelPayload,
+  EditLabelPayload,
+} from '../../../domain/model/label/payload';
 
 @injectable()
 export default class LabelDataSourceImpl implements LabelDataSource {
@@ -32,6 +35,13 @@ export default class LabelDataSourceImpl implements LabelDataSource {
       .from('labels')
       .update(toUpdate)
       .eq('id', id);
+
+    if (error) throw new Error(error.message);
+  }
+
+  async deleteLabel(deleteLabelPayload: DeleteLabelPayload): Promise<void> {
+    const { id } = deleteLabelPayload;
+    const { error } = await supabase.from('labels').delete().eq('id', id);
 
     if (error) throw new Error(error.message);
   }

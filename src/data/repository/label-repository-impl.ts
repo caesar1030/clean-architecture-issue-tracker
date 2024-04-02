@@ -5,7 +5,10 @@ import type LabelDataSource from '../data-source/label-data-source';
 import { TYPES } from '../../di/types';
 import { LabelsResponse } from '../../domain/model/label/response';
 import { Label } from '../../domain/model/label/label';
-import { EditLabelPayload } from '../../domain/model/label/payload';
+import {
+  DeleteLabelPayload,
+  EditLabelPayload,
+} from '../../domain/model/label/payload';
 
 @injectable()
 export class LabelRepositoryImpl implements LabelRepository {
@@ -23,6 +26,9 @@ export class LabelRepositoryImpl implements LabelRepository {
 
   async editLabel(editLabelPayload: EditLabelPayload): Promise<void> {
     return this._datasource.editLabel(editLabelPayload);
+  }
+  async deleteLabel(deleteLabelPayload: DeleteLabelPayload): Promise<void> {
+    return this._datasource.deleteLabel(deleteLabelPayload);
   }
 
   private mapEntityToModel(entity: LabelAPIEntity): LabelsResponse {

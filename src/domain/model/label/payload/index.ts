@@ -7,3 +7,7 @@ export interface EditLabelPayload {
   textColor: string;
   backgroundColor: string;
 }
+
+export interface DeleteLabelPayload {
+  id: Label['id'];
+}

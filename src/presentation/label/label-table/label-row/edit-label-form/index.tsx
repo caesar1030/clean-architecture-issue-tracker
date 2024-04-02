@@ -6,8 +6,8 @@ import { LabelsResponse } from '../../../../../domain/model/label/response';
 import Button from '../../../../../common-ui/button';
 import { Label } from '../../../../../domain/model/label/label';
 import refreshIcon from '../../../../../assets/refresh.svg';
-import closeIcon from '../../../../../assets/close-icon.svg';
-import editIcon from '../../../../../assets/edit.svg';
+import closeIcon from '../../../../../assets/close-blue.svg';
+import editIcon from '../../../../../assets/edit-white.svg';
 import useEditLabel from '../../../use-edit-labels';
 
 export interface EditLabelFormProps {
