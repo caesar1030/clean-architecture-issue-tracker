@@ -74,6 +74,10 @@ import {
   DeleteLabel,
   DeleteLabelUseCase,
 } from '../domain/use-case/labels/delete-label';
+import {
+  CreateLabel,
+  CreateLabelUseCase,
+} from '../domain/use-case/labels/create-label';
 
 const container = new Container();
 
@@ -103,6 +107,7 @@ container.bind<LabelRepository>(TYPES.LabelRepository).to(LabelRepositoryImpl);
 container.bind<GetLabelsUseCase>(TYPES.GetLabelsUseCase).to(GetLabels);
 container.bind<EditLabelUseCase>(TYPES.EditLabelUseCase).to(EditLabel);
 container.bind<DeleteLabelUseCase>(TYPES.DeleteLabelUseCase).to(DeleteLabel);
+container.bind<CreateLabelUseCase>(TYPES.CreateLabelUseCase).to(CreateLabel);
 
 container
   .bind<MilestoneDataSource>(TYPES.MilestoneDataSource)

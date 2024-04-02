@@ -19,6 +19,7 @@ export const TYPES = {
   GetLabelsUseCase: Symbol.for('GetLabelsUseCase'),
   EditLabelUseCase: Symbol.for('EditLabelUseCase'),
   DeleteLabelUseCase: Symbol.for('DeleteLabelUseCase'),
+  CreateLabelUseCase: Symbol.for('CreateLabelUseCase'),
 
   MilestoneDataSource: Symbol.for('MilestoneDataSource'),
   MilestoneRepository: Symbol.for('MilestoneRepository'),

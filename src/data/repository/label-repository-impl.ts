@@ -6,6 +6,7 @@ import { TYPES } from '../../di/types';
 import { LabelsResponse } from '../../domain/model/label/response';
 import { Label } from '../../domain/model/label/label';
 import {
+  CreateLabelPayload,
   DeleteLabelPayload,
   EditLabelPayload,
 } from '../../domain/model/label/payload';
@@ -24,9 +25,14 @@ export class LabelRepositoryImpl implements LabelRepository {
     return this.mapEntityToModel(data);
   }
 
+  async createLabel(createLabelPayload: CreateLabelPayload): Promise<void> {
+    return this._datasource.createLabel(createLabelPayload);
+  }
+
   async editLabel(editLabelPayload: EditLabelPayload): Promise<void> {
     return this._datasource.editLabel(editLabelPayload);
   }
+
   async deleteLabel(deleteLabelPayload: DeleteLabelPayload): Promise<void> {
     return this._datasource.deleteLabel(deleteLabelPayload);
   }
