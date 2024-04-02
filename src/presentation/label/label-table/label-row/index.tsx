@@ -13,8 +13,12 @@ export interface LabelRowProps {
 
 const LabelRow = ({ label }: LabelRowProps) => {
   const [isEditing, setIsEditing] = useState(false);
+  const closeEditingSession = () => setIsEditing(false);
 
-  if (isEditing) return <EditLabelForm label={label} />;
+  if (isEditing)
+    return (
+      <EditLabelForm closeEditingSession={closeEditingSession} label={label} />
+    );
 
   return (
     <Table.Row className="py-8">

@@ -17,6 +17,7 @@ export const TYPES = {
   LabelDataSource: Symbol.for('LabelDataSource'),
   LabelRepository: Symbol.for('LabelRepository'),
   GetLabelsUseCase: Symbol.for('GetLabelsUseCase'),
+  EditlabelUseCase: Symbol.for('EditLabelUseCase'),
 
   MilestoneDataSource: Symbol.for('MilestoneDataSource'),
   MilestoneRepository: Symbol.for('MilestoneRepository'),

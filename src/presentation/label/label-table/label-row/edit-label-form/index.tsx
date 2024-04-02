@@ -6,9 +6,13 @@ import { LabelsResponse } from '../../../../../domain/model/label/response';
 import Button from '../../../../../common-ui/button';
 import { Label } from '../../../../../domain/model/label/label';
 import refreshIcon from '../../../../../assets/refresh.svg';
+import closeIcon from '../../../../../assets/close-icon.svg';
+import editIcon from '../../../../../assets/edit.svg';
+import useEditLabel from '../../../use-edit-labels';
 
 export interface EditLabelFormProps {
   label: LabelsResponse['data'][number];
+  closeEditingSession: () => void;
 }
 
 interface FormType {
@@ -18,7 +22,8 @@ interface FormType {
   textColor: string;
 }
 
-const EditLabelForm = ({ label }: EditLabelFormProps) => {
+const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
+  const { editLabel, isEditing } = useEditLabel();
   const { control, handleSubmit, setValue, watch } = useForm<FormType>({
     defaultValues: {
       title: label.title,
@@ -33,7 +38,20 @@ const EditLabelForm = ({ label }: EditLabelFormProps) => {
     description,
     backgroundColor,
     textColor,
-  }) => {};
+  }) => {
+    editLabel(
+      {
+        id: label.id,
+        backgroundColor,
+        textColor,
+        title,
+        description,
+      },
+      {
+        onSuccess: closeEditingSession,
+      }
+    );
+  };
 
   return (
     <Table.Row>
@@ -46,7 +64,7 @@ const EditLabelForm = ({ label }: EditLabelFormProps) => {
         </span>
 
         <div className="flex gap-6">
-          <div className="flex-grow-[9] flex justify-center items-center rounded-regular border border-neutral-border">
+          <div className="flex-grow-[9] w-48 flex justify-center items-center rounded-regular border border-neutral-border">
             <LabelTag
               backgroundColor={
                 watch().backgroundColor as Label['backgroundColor']
@@ -64,7 +82,7 @@ const EditLabelForm = ({ label }: EditLabelFormProps) => {
               render={({ field }) => (
                 <Input
                   id="label title"
-                  label="레이블 이름"
+                  label="이름"
                   labelPosition="left"
                   className="h10"
                   placeholder="입력하세요"
@@ -79,7 +97,7 @@ const EditLabelForm = ({ label }: EditLabelFormProps) => {
               render={({ field }) => (
                 <Input
                   id="label description"
-                  label="설명 (선택)"
+                  label="설명(선택)"
                   labelPosition="left"
                   className="h-10"
                   placeholder="입력하세요"
@@ -110,6 +128,7 @@ const EditLabelForm = ({ label }: EditLabelFormProps) => {
               <Button
                 size="S"
                 variant="ghosts"
+                type="button"
                 flexible
                 onClick={() => {
                   const color = `#${Array.from(
@@ -124,6 +143,28 @@ const EditLabelForm = ({ label }: EditLabelFormProps) => {
               </Button>
             </div>
           </div>
+        </div>
+
+        <div className="flex gap-2 justify-end">
+          <Button
+            onClick={closeEditingSession}
+            type="button"
+            size="S"
+            variant="outline"
+          >
+            <img src={closeIcon} alt="라벨 편집 취소" />
+            <span>취소</span>
+          </Button>
+
+          <Button
+            disabled={isEditing}
+            type="submit"
+            size="S"
+            variant="contained"
+          >
+            <img src={editIcon} alt="라벨 편집" />
+            <span>편집 완료</span>
+          </Button>
         </div>
       </form>
     </Table.Row>

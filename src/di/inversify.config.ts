@@ -66,6 +66,10 @@ import {
   EditComment,
   EditCommentUseCase,
 } from '../domain/use-case/comments/edit-comment';
+import {
+  EditLabel,
+  EditLabelUseCase,
+} from '../domain/use-case/labels/edit-label';
 
 const container = new Container();
 
@@ -93,6 +97,7 @@ container.bind<EditCommentUseCase>(TYPES.EditCommentUseCase).to(EditComment);
 container.bind<LabelDataSource>(TYPES.LabelDataSource).to(LabelDataSourceImpl);
 container.bind<LabelRepository>(TYPES.LabelRepository).to(LabelRepositoryImpl);
 container.bind<GetLabelsUseCase>(TYPES.GetLabelsUseCase).to(GetLabels);
+container.bind<EditLabelUseCase>(TYPES.EditlabelUseCase).to(EditLabel);
 
 container
   .bind<MilestoneDataSource>(TYPES.MilestoneDataSource)

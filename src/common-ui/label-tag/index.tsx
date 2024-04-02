@@ -14,7 +14,7 @@ function LabelTag({ children, textColor, backgroundColor }: LabelProps) {
         color: textColor,
         backgroundColor: backgroundColor,
       }}
-      className="px-4 rounded-[50px] w-fit"
+      className="px-4 rounded-[50px] w-fit max-w-[200px] overflow-hidden"
     >
       {children}
     </div>
