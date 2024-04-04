@@ -25,6 +25,8 @@ export const TYPES = {
   MilestoneRepository: Symbol.for('MilestoneRepository'),
   GetMilestonesUseCase: Symbol.for('GetMilestonesUseCase'),
   CreateMilestoneUseCase: Symbol.for('CreateMilestoneUseCase'),
+  DeleteMilestoneUseCase: Symbol.for('DeleteMilestoneUseCase'),
+  EditMilestoneUseCase: Symbol.for('EditMilestoneUseCase'),
 
   AuthDataSource: Symbol.for('AuthDataSource'),
   AuthRepository: Symbol.for('AuthRepository'),

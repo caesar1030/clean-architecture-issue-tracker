@@ -82,6 +82,14 @@ import {
   CreateMilestone,
   CreateMilestoneUseCase,
 } from '../domain/use-case/milestones/create-milestone';
+import {
+  DeleteMilestone,
+  DeleteMilestoneUseCase,
+} from '../domain/use-case/milestones/delete-milestone';
+import {
+  EditMilestone,
+  EditMilestoneUseCase,
+} from '../domain/use-case/milestones/edit-milestone';
 
 const container = new Container();
 
@@ -125,6 +133,12 @@ container
 container
   .bind<CreateMilestoneUseCase>(TYPES.CreateMilestoneUseCase)
   .to(CreateMilestone);
+container
+  .bind<DeleteMilestoneUseCase>(TYPES.DeleteMilestoneUseCase)
+  .to(DeleteMilestone);
+container
+  .bind<EditMilestoneUseCase>(TYPES.EditMilestoneUseCase)
+  .to(EditMilestone);
 
 container.bind<AuthDataSource>(TYPES.AuthDataSource).to(AuthDataSourceImpl);
 container.bind<AuthRepository>(TYPES.AuthRepository).to(AuthRepositoryImpl);

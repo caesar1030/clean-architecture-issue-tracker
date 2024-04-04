@@ -14,7 +14,7 @@ export default class LabelDataSourceImpl implements LabelDataSource {
     const { data, error } = await supabase
       .from('labels')
       .select('*')
-      .order('created_at', { ascending: false });
+      .order('created_at', { ascending: true });
 
     if (error) throw new Error('라벨을 불러오지 못했습니다.');
 

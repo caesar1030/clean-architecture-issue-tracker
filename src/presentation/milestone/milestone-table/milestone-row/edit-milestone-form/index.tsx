@@ -1,0 +1,151 @@
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import Table from '../../../../../common-ui/table';
+import Input from '../../../../../common-ui/input';
+import Button from '../../../../../common-ui/button';
+import closeIcon from '../../../../../assets/close-blue.svg';
+import editIcon from '../../../../../assets/edit-white.svg';
+import { MilestonesResopnse } from '../../../../../domain/model/milestone/response';
+import { Milestone } from '../../../../../domain/model/milestone/milestone';
+import useEditMilestone from '../../../use-edit-milestone';
+import { EditMilestonePayload } from '../../../../../domain/model/milestone/payload';
+
+interface FormType {
+  title: string;
+  description: string;
+  date: string;
+}
+
+interface EditMilestoneFormProps {
+  milestone: MilestonesResopnse['data'][number];
+  closeEditSession: () => void;
+}
+
+function EditMilestoneForm({
+  milestone: { id, description, dueDate, title },
+  closeEditSession,
+}: EditMilestoneFormProps) {
+  const { editMilestone, isEditing } = useEditMilestone();
+  const { control, handleSubmit, setValue } = useForm<FormType>({
+    defaultValues: {
+      title,
+      date: dueDate
+        ? `${dueDate.getFullYear()}.${dueDate.getMonth()}.${dueDate.getDate()}`
+        : '',
+      description: description as Milestone['description'],
+    },
+  });
+
+  const onSubmit: SubmitHandler<FormType> = ({ date, description, title }) => {
+    const toUpdate: EditMilestonePayload = {
+      id,
+      title: title as Milestone['title'],
+      description: description as Milestone['description'],
+    };
+
+    const [y, m, d] = date.split('.').map(Number);
+    if (date) toUpdate.date = new Date(y, m - 1, d) as Milestone['dueDate'];
+
+    editMilestone(toUpdate, {
+      onSuccess: () => closeEditSession(),
+    });
+  };
+
+  return (
+    <Table.Row>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+        <span className="text-neutral-text-strong text-L font-bold">
+          마일스톤 편집
+        </span>
+
+        <div className="flex flex-col gap-4">
+          <div className="w-full flex gap-4">
+            <Controller
+              name="title"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  id="title"
+                  placeholder="입력하세요"
+                  label="이름"
+                  labelPosition="left"
+                  className="flex-grow"
+                  {...field}
+                />
+              )}
+            />
+
+            <Controller
+              name="date"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  id="date"
+                  label="완료일(선택)"
+                  labelPosition="left"
+                  className="flex-grow"
+                  {...field}
+                  placeholder="YYYY.MM.DD"
+                  onChange={(e) => {
+                    let { value } = e.target;
+
+                    value = value.replace(/[^\d]/g, '');
+
+                    if (value.length > 4 && value.length <= 6) {
+                      value = value.slice(0, 4) + '.' + value.slice(4);
+                    } else if (value.length > 6) {
+                      value =
+                        value.slice(0, 4) +
+                        '.' +
+                        value.slice(4, 6) +
+                        '.' +
+                        value.slice(6, 8);
+                    }
+
+                    setValue('date', value);
+                  }}
+                />
+              )}
+            />
+          </div>
+
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <Input
+                placeholder="입력하세요"
+                id="description"
+                label="설명(선택)"
+                labelPosition="left"
+                {...field}
+              />
+            )}
+          />
+        </div>
+
+        <div className="flex gap-2 justify-end">
+          <Button
+            onClick={closeEditSession}
+            type="button"
+            size="S"
+            variant="outline"
+          >
+            <img src={closeIcon} alt="라벨 편집 취소" />
+            <span>취소</span>
+          </Button>
+
+          <Button
+            size="S"
+            variant="contained"
+            type="submit"
+            disabled={isEditing}
+          >
+            <img src={editIcon} alt="마일스톤 생성" />
+            <span>완료</span>
+          </Button>
+        </div>
+      </form>
+    </Table.Row>
+  );
+}
+export default EditMilestoneForm;

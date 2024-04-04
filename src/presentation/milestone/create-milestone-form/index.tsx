@@ -1,7 +1,7 @@
 import Button from '../../../common-ui/button';
 import Input from '../../../common-ui/input';
 import Table from '../../../common-ui/table';
-import plusIcon from '../../../assets/plus.svg';
+import plusIcon from '../../../assets/plus-white.svg';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import useCreateMilestone from '../use-create-milestone';
 import { CreateMilestonePayload } from '../../../domain/model/milestone/payload';
@@ -12,7 +12,11 @@ interface FormType {
   date: string;
 }
 
-function CreateMilestoneForm() {
+interface CreateMilestoneFormProps {
+  stopEditSession: () => void;
+}
+
+function CreateMilestoneForm({ stopEditSession }: CreateMilestoneFormProps) {
   const { control, handleSubmit, setValue } = useForm<FormType>({
     defaultValues: {
       title: '',
@@ -31,7 +35,9 @@ function CreateMilestoneForm() {
       const [y, m, d] = date.split('.').map(Number);
       toCreate.date = new Date(y, m - 1, d);
     }
-    createMilestone(toCreate);
+    createMilestone(toCreate, {
+      onSuccess: () => stopEditSession(),
+    });
   };
 
   return (
@@ -71,7 +77,6 @@ function CreateMilestoneForm() {
                     {...field}
                     placeholder="YYYY.MM.DD"
                     onChange={(e) => {
-                      console.log(field.value);
                       let { value } = e.target;
 
                       value = value.replace(/[^\d]/g, '');

@@ -3,7 +3,11 @@ import { MilestoneRepository } from '../../domain/repository/milestone-repositor
 import { MilestoneAPIEntity } from '../entity/milestone-api-entity';
 import type MilestoneDataSource from '../data-source/milestone-data-source';
 import { TYPES } from '../../di/types';
-import { CreateMilestonePayload } from '../../domain/model/milestone/payload';
+import {
+  CreateMilestonePayload,
+  DeleteMilestonePayload,
+  EditMilestonePayload,
+} from '../../domain/model/milestone/payload';
 import { MilestonesResopnse } from '../../domain/model/milestone/response';
 import { Milestone } from '../../domain/model/milestone/milestone';
 
@@ -26,6 +30,18 @@ export class MilestoneRepositoryImpl implements MilestoneRepository {
     createMilestonePayload: CreateMilestonePayload
   ): Promise<void> {
     return this._datasource.createMilestone(createMilestonePayload);
+  }
+
+  async deleteMilestone(
+    deleteMilestonePayload: DeleteMilestonePayload
+  ): Promise<void> {
+    return this._datasource.deleteMilestone(deleteMilestonePayload);
+  }
+
+  async editMilestone(
+    editMilestonesPayload: EditMilestonePayload
+  ): Promise<void> {
+    return this._datasource.editMilestone(editMilestonesPayload);
   }
 
   private mapEntityToModel(data: MilestoneAPIEntity): MilestonesResopnse {

@@ -1,4 +1,8 @@
-import { CreateMilestonePayload } from '../../domain/model/milestone/payload';
+import {
+  CreateMilestonePayload,
+  DeleteMilestonePayload,
+  EditMilestonePayload,
+} from '../../domain/model/milestone/payload';
 import { MilestoneAPIEntity } from '../entity/milestone-api-entity';
 
 export default interface MilestoneDataSource {
@@ -6,4 +10,8 @@ export default interface MilestoneDataSource {
   createMilestone(
     createMilestonePayload: CreateMilestonePayload
   ): Promise<void>;
+  deleteMilestone(
+    deleteMilestonePayload: DeleteMilestonePayload
+  ): Promise<void>;
+  editMilestone(editMilestonesPayload: EditMilestonePayload): Promise<void>;
 }

@@ -1,4 +1,8 @@
-import { CreateMilestonePayload } from '../model/milestone/payload';
+import {
+  CreateMilestonePayload,
+  DeleteMilestonePayload,
+  EditMilestonePayload,
+} from '../model/milestone/payload';
 import { MilestonesResopnse } from '../model/milestone/response';
 
 export interface MilestoneRepository {
@@ -6,4 +10,8 @@ export interface MilestoneRepository {
   createMilestone(
     createMilestonePayload: CreateMilestonePayload
   ): Promise<void>;
+  deleteMilestone(
+    deleteMilestonePayload: DeleteMilestonePayload
+  ): Promise<void>;
+  editMilestone(editMilestonesPayload: EditMilestonePayload): Promise<void>;
 }
