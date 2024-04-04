@@ -2,7 +2,9 @@ import { useState } from 'react';
 import Navbar from '../common-ui/navbar';
 import LabelTable from '../presentation/label/label-table';
 import Button from '../common-ui/button';
-import CreateLabelForm from '../presentation/label/new-label-form.tsx';
+import CreateLabelForm from '../presentation/label/create-label-form.tsx/index.tsx';
+import plusIcon from '../assets/plus-white.svg';
+import xIcon from '../assets/x-blue.svg';
 
 function Labels() {
   const [isAddSession, setIsAddSession] = useState(false);
@@ -17,6 +19,7 @@ function Labels() {
             variant="contained"
             onClick={() => setIsAddSession(true)}
           >
+            <img src={plusIcon} alt="레이블 추가" />
             레이블 추가
           </Button>
         ) : (
@@ -25,6 +28,7 @@ function Labels() {
             variant="outline"
             onClick={() => setIsAddSession(false)}
           >
+            <img src={xIcon} alt="레이블 추가 취소" />
             닫기
           </Button>
         )}
