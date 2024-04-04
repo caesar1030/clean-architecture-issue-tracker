@@ -15,9 +15,9 @@ const Navbar = () => {
         <span>라벨 ({labels.length})</span>
       </Button>
       <div className="bg-neutral-border w-px" />
-      <Button size="M" variant="ghosts">
+      <Button to="/milestones" size="M" variant="ghosts">
         <img src={milestoneBoldIcon} alt="마일스톤" />
-        <span>마일스톤({milestones?.data.length})</span>
+        <span>마일스톤({milestones?.length})</span>
       </Button>
     </nav>
   );
