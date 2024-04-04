@@ -1,3 +1,9 @@
-import { Tables } from '../data-source/api/supabase-db/database.types';
-
-export interface MilestoneAPIEntity extends Tables<'milestones'> {}
+export interface MilestoneAPIEntity {
+  data: {
+    id: number;
+    title: string;
+    description: string | null;
+    due_date: string | null;
+    is_open: boolean;
+  }[];
+}

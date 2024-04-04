@@ -11,7 +11,7 @@ export default function useMilestones() {
 
   const {
     isLoading,
-    data: milestones,
+    data: { data: milestones } = {},
     error,
   } = useQuery({
     queryKey: ['milestones'],

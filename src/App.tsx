@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import AppLayout from './common-ui/app-layout';
 import ProtectedRoute from './common-ui/protected-route';
+import Milestones from './pages/milestones';
 
 const Issues = lazy(
   () => import(/* webpackChunkName: "issues" */ './pages/Issues')
@@ -11,9 +12,11 @@ const Issues = lazy(
 const NewIssue = lazy(
   () => import(/* webpackChunkName: "new-issue" */ './pages/new-issues')
 );
+
 const Issue = lazy(
   () => import(/* webpackChunkName: "issue" */ './pages/issue')
 );
+
 const Login = lazy(
   () => import(/* webpackChunkName: "login" */ './pages/login')
 );
@@ -46,6 +49,7 @@ function App() {
             <Route path="/issues/:id" element={<Issue />} />
             <Route path="/new-issue" element={<NewIssue />} />
             <Route path="/labels" element={<Labels />} />
+            <Route path="/milestones" element={<Milestones />} />
           </Route>
 
           <Route path="/login" element={<Login />} />

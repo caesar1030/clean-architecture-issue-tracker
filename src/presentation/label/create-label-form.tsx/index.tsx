@@ -106,7 +106,7 @@ const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
                       id="label background color"
                       label="배경 색상"
                       labelPosition="left"
-                      className="h-10 w-60"
+                      className="h-10 w-72"
                       {...field}
                       onChange={(e) => {
                         if (!e.target.value.startsWith('#'))

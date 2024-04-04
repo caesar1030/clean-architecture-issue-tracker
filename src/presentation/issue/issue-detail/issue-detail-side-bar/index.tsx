@@ -150,7 +150,7 @@ function IssueDetailSideBar({ issue }: IssueDetailSideBarProps) {
 
         <Menus.Window id="milestone">
           <Table columns="1fr" size="S">
-            {milestones?.data?.map((milestone) => (
+            {milestones?.map((milestone) => (
               <Table.Row key={milestone.id}>
                 <Menus.Button
                   onClick={() => {

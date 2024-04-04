@@ -3,7 +3,6 @@ import Input from '../../../common-ui/input';
 import Menus from '../../../common-ui/menus';
 import Button from '../../../common-ui/button';
 import SideBar from '../../../common-ui/side-bar';
-import { Milestone } from '../../../domain/model/milestone/milestone';
 import useMilestones from '../../milestone/use-milestones';
 import Table from '../../../common-ui/table';
 import RadioButton from '../../../common-ui/radio-button';
@@ -20,11 +19,12 @@ import Avatar from '../../../common-ui/avatar';
 import { Link } from 'react-router-dom';
 import chevronDownIcon from '../../../assets/chevron-down.svg';
 import closeIcon from '../../../assets/close-icon.svg';
+import { MilestonesResopnse } from '../../../domain/model/milestone/response';
 
 interface FormType {
   title: string;
   contents: string;
-  milestone: Milestone | null;
+  milestone: MilestonesResopnse['data'][number] | null;
   label: LabelModel | null;
   assignee: User | null;
 }
@@ -57,7 +57,7 @@ function CreateIssueForm() {
     setValue('label', label);
   };
 
-  const addMilestone = (milestone: Milestone) => {
+  const addMilestone = (milestone: MilestonesResopnse['data'][number]) => {
     if (milestone.id === selectedMilestone?.id) {
       setValue('milestone', null);
       return;
@@ -240,7 +240,7 @@ function CreateIssueForm() {
 
             <Menus.Window id="addMilestone">
               <Table columns="1fr" size="S">
-                {milestones?.data?.map((milestone) => (
+                {milestones?.map((milestone) => (
                   <Table.Row key={milestone.id}>
                     <Menus.Button onClick={() => addMilestone(milestone)}>
                       <div className="flex gap-2 items-center">

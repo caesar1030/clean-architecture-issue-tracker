@@ -37,7 +37,7 @@ function MilestoneFilterMenu() {
             </Menus.Button>
           </Table.Row>
 
-          {milestones?.data?.map(({ id, title }) => (
+          {milestones?.map(({ id, title }) => (
             <Table.Row key={id}>
               <Menus.Button onClick={() => toggleMilestoneSearchParam(title)}>
                 <div className="flex gap-2 items-center">

@@ -24,6 +24,7 @@ export const TYPES = {
   MilestoneDataSource: Symbol.for('MilestoneDataSource'),
   MilestoneRepository: Symbol.for('MilestoneRepository'),
   GetMilestonesUseCase: Symbol.for('GetMilestonesUseCase'),
+  CreateMilestoneUseCase: Symbol.for('CreateMilestoneUseCase'),
 
   AuthDataSource: Symbol.for('AuthDataSource'),
   AuthRepository: Symbol.for('AuthRepository'),

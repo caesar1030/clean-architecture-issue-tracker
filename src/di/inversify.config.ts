@@ -78,6 +78,10 @@ import {
   CreateLabel,
   CreateLabelUseCase,
 } from '../domain/use-case/labels/create-label';
+import {
+  CreateMilestone,
+  CreateMilestoneUseCase,
+} from '../domain/use-case/milestones/create-milestone';
 
 const container = new Container();
 
@@ -118,6 +122,9 @@ container
 container
   .bind<GetMilestonesUseCase>(TYPES.GetMilestonesUseCase)
   .to(GetMilestones);
+container
+  .bind<CreateMilestoneUseCase>(TYPES.CreateMilestoneUseCase)
+  .to(CreateMilestone);
 
 container.bind<AuthDataSource>(TYPES.AuthDataSource).to(AuthDataSourceImpl);
 container.bind<AuthRepository>(TYPES.AuthRepository).to(AuthRepositoryImpl);
