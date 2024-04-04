@@ -9,6 +9,7 @@ import refreshIcon from '../../../../../assets/refresh.svg';
 import closeIcon from '../../../../../assets/close-blue.svg';
 import editIcon from '../../../../../assets/edit-white.svg';
 import useEditLabel from '../../../use-edit-labels';
+import { generateColor } from '../../../../../utils/helpers';
 
 export interface EditLabelFormProps {
   label: LabelsResponse['data'][number];
@@ -131,11 +132,7 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
                 type="button"
                 flexible
                 onClick={() => {
-                  const color = `#${Array.from(
-                    { length: 6 },
-                    () => '0123456789ABCDEF'[Math.floor(Math.random() * 16)]
-                  ).join('')}`;
-
+                  const color = generateColor();
                   setValue('backgroundColor', color);
                 }}
               >

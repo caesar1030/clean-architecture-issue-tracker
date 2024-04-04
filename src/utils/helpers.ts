@@ -22,3 +22,10 @@ export function timeDiffFromNow(date: Date): string {
     return years + '년';
   }
 }
+
+export function generateColor(): string {
+  return `#${Array.from(
+    { length: 6 },
+    () => '0123456789ABCDEF'[Math.floor(Math.random() * 16)]
+  ).join('')}`;
+}

@@ -6,6 +6,7 @@ import { Label } from '../../../domain/model/label/label';
 import Input from '../../../common-ui/input';
 import Button from '../../../common-ui/button';
 import useCreateLabel from '../use-create-lagel';
+import { generateColor } from '../../../utils/helpers';
 
 export interface CreateLabelFormProps {
   closeAddSession: () => void;
@@ -122,11 +123,7 @@ const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
                   type="button"
                   flexible
                   onClick={() => {
-                    const color = `#${Array.from(
-                      { length: 6 },
-                      () => '0123456789ABCDEF'[Math.floor(Math.random() * 16)]
-                    ).join('')}`;
-
+                    const color = generateColor();
                     setValue('backgroundColor', color);
                   }}
                 >

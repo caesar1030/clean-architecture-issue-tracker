@@ -40,6 +40,18 @@ function CreateMilestoneForm({ stopEditSession }: CreateMilestoneFormProps) {
     });
   };
 
+  const formatString = (str: string) => {
+    str = str.replace(/[^\d]/g, '');
+
+    if (str.length > 4 && str.length <= 6) {
+      str = str.slice(0, 4) + '.' + str.slice(4);
+    } else if (str.length > 6) {
+      str = str.slice(0, 4) + '.' + str.slice(4, 6) + '.' + str.slice(6, 8);
+    }
+
+    return str;
+  };
+
   return (
     <Table size="L" columns="1fr">
       <Table.Row>
@@ -78,20 +90,7 @@ function CreateMilestoneForm({ stopEditSession }: CreateMilestoneFormProps) {
                     placeholder="YYYY.MM.DD"
                     onChange={(e) => {
                       let { value } = e.target;
-
-                      value = value.replace(/[^\d]/g, '');
-
-                      if (value.length > 4 && value.length <= 6) {
-                        value = value.slice(0, 4) + '.' + value.slice(4);
-                      } else if (value.length > 6) {
-                        value =
-                          value.slice(0, 4) +
-                          '.' +
-                          value.slice(4, 6) +
-                          '.' +
-                          value.slice(6, 8);
-                      }
-
+                      value = formatString(value);
                       setValue('date', value);
                     }}
                   />
