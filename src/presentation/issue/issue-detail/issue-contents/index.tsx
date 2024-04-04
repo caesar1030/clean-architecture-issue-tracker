@@ -9,6 +9,7 @@ import EditIssueContentsForm from './edit-issue-contents-form';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import useEditIssue from '../../use-edit-issue';
 import useUser from '../../../auth/use-user';
+import editIcon from '../../../../assets/edit.svg';
 
 interface IssueContentsProps {
   issue: IssueResponse['data'] | undefined;
@@ -90,6 +91,7 @@ function IssueContents({ issue }: IssueContentsProps) {
                   flexible
                   onClick={() => setIsEditing(!isEditing)}
                 >
+                  <img src={editIcon} alt="편집" />
                   편집
                 </Button>
               )}

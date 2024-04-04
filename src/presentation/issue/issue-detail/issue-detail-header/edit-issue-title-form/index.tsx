@@ -3,6 +3,8 @@ import Input from '../../../../../common-ui/input';
 import Button from '../../../../../common-ui/button';
 import { IssueResponse } from '../../../../../domain/model/issue/response';
 import useEditIssue from '../../../use-edit-issue';
+import editWhiteIcon from '../../../../../assets/edit-white.svg';
+import xBlueIcon from '../../../../../assets/x-blue.svg';
 
 interface FormType {
   title: string;
@@ -24,7 +26,6 @@ function EditIssueTitleForm({
   });
   const { editIssue } = useEditIssue();
 
-  // TODO: 타입 assertion 제거
   const onSubmit: SubmitHandler<FormType> = ({ title }) => {
     editIssue({ id: issue!.id, title });
     toggleIsEditingTitle();
@@ -55,9 +56,11 @@ function EditIssueTitleForm({
           type="button"
           onClick={toggleIsEditingTitle}
         >
+          <img src={xBlueIcon} alt="편집 취소" />
           편집 취소
         </Button>
         <Button size="S" variant="contained" type="submit">
+          <img src={editWhiteIcon} alt="편집 완료" />
           편집 완료
         </Button>
       </div>

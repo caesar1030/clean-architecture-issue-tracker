@@ -4,6 +4,7 @@ import { Issue } from '../../../../domain/model/issue/issue';
 import TextArea from '../../../../common-ui/text-area';
 import Button from '../../../../common-ui/button';
 import useUser from '../../../auth/use-user';
+import plusWhiteIcon from '../../../../assets/plus-white.svg';
 
 interface CommentType {
   contents: string;
@@ -46,6 +47,7 @@ function CreateCommentForm({ issueId }: CreateCommentFormProps) {
       />
 
       <Button size="S" variant="contained" className="self-end ">
+        <img src={plusWhiteIcon} alt="코멘트 작성" />
         코멘트 작성
       </Button>
     </form>
