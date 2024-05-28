@@ -2,7 +2,6 @@ import useLogin from '../use-login';
 import Button from '../../../common-ui/button';
 import Input from '../../../common-ui/input';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
 import plusIcon from '../../../assets/plus.svg';
 
 type FormType = {
@@ -60,12 +59,10 @@ function LoginForm() {
         로그인
       </Button>
 
-      <Link to={'/new-user'}>
-        <Button type="button" size="S" variant="ghosts">
-          <img src={plusIcon} alt="회원가입" />
-          <span>회원가입</span>
-        </Button>
-      </Link>
+      <Button to={'/new-user'} type="button" size="S" variant="ghosts">
+        <img src={plusIcon} alt="회원가입" />
+        <span>회원가입</span>
+      </Button>
     </form>
   );
 }

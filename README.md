@@ -1,5 +1,7 @@
 # clean-architecture-issue-tracker
 
+![2024-05-2813-14-05-ezgif com-video-to-gif-converter](https://github.com/caesar1030/clean-architecture-issue-tracker/assets/76683390/a3e3d6a9-99b4-47b8-b9ba-b7098722075c)
+
 ### Overiview
 
 - '관심사 분리를 하라는데 도대체 어떤 관심사들이 있지?', '외부 API와 종속성을 끊고, 백엔드와 병렬 개발이 가능한 구조를 만드려면 어떻게 할까?' 와 같은 고민을 해결하기 위한 학습용 토이 프로젝트입니다.
