@@ -1,8 +1,8 @@
 import Heading from '../../../../../common-ui/heading';
-import { IssueDetail } from '../../../../../domain/repository/issue-repository';
+import { IssueResponse } from '../../../../../domain/model/issue/response';
 
 interface IssueTitleProps {
-  issue: IssueDetail['data'] | undefined;
+  issue: IssueResponse['data'] | undefined;
 }
 
 function IssueTitle({ issue }: IssueTitleProps) {
