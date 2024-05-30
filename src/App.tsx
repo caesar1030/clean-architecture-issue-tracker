@@ -6,26 +6,12 @@ import AppLayout from './common-ui/app-layout';
 import ProtectedRoute from './common-ui/protected-route';
 import Milestones from './pages/milestones';
 
-const Issues = lazy(
-  () => import(/* webpackChunkName: "issues" */ './pages/Issues')
-);
-const NewIssue = lazy(
-  () => import(/* webpackChunkName: "new-issue" */ './pages/new-issues')
-);
-
-const Issue = lazy(
-  () => import(/* webpackChunkName: "issue" */ './pages/issue')
-);
-
-const Login = lazy(
-  () => import(/* webpackChunkName: "login" */ './pages/login')
-);
-const Signup = lazy(
-  () => import(/* webpackChunkName: "signup" */ './pages/signup')
-);
-const Labels = lazy(
-  () => import(/* webpackChunkName: "labels" */ './pages/labels')
-);
+const Issues = lazy(() => import('./pages/Issues'));
+const NewIssue = lazy(() => import('./pages/new-issues'));
+const Issue = lazy(() => import('./pages/issue'));
+const Login = lazy(() => import('./pages/login'));
+const Signup = lazy(() => import('./pages/signup'));
+const Labels = lazy(() => import('./pages/labels'));
 
 const queryClient = new QueryClient();
 
