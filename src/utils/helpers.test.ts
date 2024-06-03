@@ -1,3 +1,11 @@
+import {
+  ONE_DAY,
+  ONE_HOUR,
+  ONE_MINUTE,
+  ONE_MONTH,
+  ONE_SECOND,
+  ONE_YEAR,
+} from './constants';
 import { getTimeDiff } from './helpers';
 
 describe('getTimeDiff()', () => {
@@ -11,7 +19,7 @@ describe('getTimeDiff()', () => {
 
   it('60초 미만 차이일 경우 "방금"을 반환한다.', () => {
     const now = new Date(Date.now());
-    const date = new Date(now.getTime() - 30 * 1000);
+    const date = new Date(now.getTime() - 30 * ONE_SECOND);
     vi.setSystemTime(now);
 
     expect(getTimeDiff(date)).toBe('방금');
@@ -19,7 +27,7 @@ describe('getTimeDiff()', () => {
 
   it('1분 이상 1시간 미만 차이일 경우 "n분"을 반환한다.', () => {
     const now = new Date(Date.now());
-    const date = new Date(now.getTime() - 10 * 60000);
+    const date = new Date(now.getTime() - 10 * ONE_MINUTE);
     vi.setSystemTime(now);
 
     const result = getTimeDiff(date);
@@ -29,7 +37,7 @@ describe('getTimeDiff()', () => {
 
   it('1시간 이상 1일 미만 차이일 경우 "n시간"을 반환한다.', () => {
     const now = new Date(Date.now());
-    const date = new Date(now.getTime() - 3 * 3600000);
+    const date = new Date(now.getTime() - 3 * ONE_HOUR);
     vi.setSystemTime(now);
 
     expect(getTimeDiff(date)).toBe('3시간');
@@ -37,7 +45,7 @@ describe('getTimeDiff()', () => {
 
   it('1일 이상 1개월 미만 차이일 경우 "n일"을 반환한다.', () => {
     const now = new Date(Date.now());
-    const date = new Date(now.getTime() - 5 * 86400000);
+    const date = new Date(now.getTime() - 5 * ONE_DAY);
     vi.setSystemTime(now);
 
     expect(getTimeDiff(date)).toBe('5일');
@@ -45,7 +53,7 @@ describe('getTimeDiff()', () => {
 
   it('1개월 이상 1년 미만 차이일 경우 "n개월"을 반환한다.', () => {
     const now = new Date(Date.now());
-    const date = new Date(now.getTime() - 8 * 2592000000);
+    const date = new Date(now.getTime() - 8 * ONE_MONTH);
     vi.setSystemTime(now);
 
     expect(getTimeDiff(date)).toBe('8개월');
@@ -53,7 +61,7 @@ describe('getTimeDiff()', () => {
 
   it('1년 이상 차이일 경우 "n년"을 반환한다.', () => {
     const now = new Date(Date.now());
-    const date = new Date(now.getTime() - 2 * 31536000000);
+    const date = new Date(now.getTime() - 2 * ONE_YEAR);
     vi.setSystemTime(now);
 
     expect(getTimeDiff(date)).toBe('2년');

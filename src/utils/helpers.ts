@@ -1,27 +1,35 @@
-export function getTimeDiff(date: Date): string {
+import {
+  ONE_DAY,
+  ONE_HOUR,
+  ONE_MINUTE,
+  ONE_MONTH,
+  ONE_YEAR,
+} from './constants';
+
+export const getTimeDiff = (date: Date): string => {
   const now = new Date();
   const diff = now.getTime() - date.getTime();
 
-  const minutes = Math.floor(diff / 60000);
-  const hours = Math.floor(diff / 3600000);
-  const days = Math.floor(diff / 86400000);
+  const minutes = Math.floor(diff / ONE_MINUTE);
+  const hours = Math.floor(diff / ONE_HOUR);
+  const days = Math.floor(diff / ONE_DAY);
   const months = Math.floor(days / 30);
   const years = Math.floor(days / 365);
 
-  if (diff < 60000) {
+  if (diff < ONE_MINUTE) {
     return '방금';
-  } else if (diff < 3600000) {
-    return minutes + '분';
-  } else if (diff < 86400000) {
-    return hours + '시간';
-  } else if (diff < 2592000000) {
-    return days + '일';
-  } else if (diff < 31536000000) {
-    return months + '개월';
+  } else if (diff < ONE_HOUR) {
+    return `${minutes}분`;
+  } else if (diff < ONE_DAY) {
+    return `${hours}시간`;
+  } else if (diff < ONE_MONTH) {
+    return `${days}일`;
+  } else if (diff < ONE_YEAR) {
+    return `${months}개월`;
   } else {
-    return years + '년';
+    return `${years}년`;
   }
-}
+};
 
 export function generateColor(): string {
   return `#${Array.from(
