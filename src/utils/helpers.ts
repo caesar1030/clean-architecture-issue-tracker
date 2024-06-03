@@ -31,9 +31,9 @@ export const getTimeDiff = (date: Date): string => {
   }
 };
 
-export function generateRandomColor(): string {
+export const generateRandomColor = (): string => {
   return `#${Array.from(
     { length: 6 },
     () => '0123456789ABCDEF'[Math.floor(Math.random() * 16)]
   ).join('')}`;
-}
+};
