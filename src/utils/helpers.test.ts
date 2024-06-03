@@ -22,7 +22,9 @@ describe('getTimeDiff()', () => {
     const date = new Date(now.getTime() - 30 * ONE_SECOND);
     vi.setSystemTime(now);
 
-    expect(getTimeDiff(date)).toBe('방금');
+    const result = getTimeDiff(date);
+
+    expect(result).toBe('방금');
   });
 
   it('1분 이상 1시간 미만 차이일 경우 "n분"을 반환한다.', () => {
@@ -40,7 +42,9 @@ describe('getTimeDiff()', () => {
     const date = new Date(now.getTime() - 3 * ONE_HOUR);
     vi.setSystemTime(now);
 
-    expect(getTimeDiff(date)).toBe('3시간');
+    const result = getTimeDiff(date);
+
+    expect(result).toBe('3시간');
   });
 
   it('1일 이상 1개월 미만 차이일 경우 "n일"을 반환한다.', () => {
@@ -48,7 +52,9 @@ describe('getTimeDiff()', () => {
     const date = new Date(now.getTime() - 5 * ONE_DAY);
     vi.setSystemTime(now);
 
-    expect(getTimeDiff(date)).toBe('5일');
+    const result = getTimeDiff(date);
+
+    expect(result).toBe('5일');
   });
 
   it('1개월 이상 1년 미만 차이일 경우 "n개월"을 반환한다.', () => {
@@ -56,7 +62,9 @@ describe('getTimeDiff()', () => {
     const date = new Date(now.getTime() - 8 * ONE_MONTH);
     vi.setSystemTime(now);
 
-    expect(getTimeDiff(date)).toBe('8개월');
+    const result = getTimeDiff(date);
+
+    expect(result).toBe('8개월');
   });
 
   it('1년 이상 차이일 경우 "n년"을 반환한다.', () => {
@@ -64,6 +72,8 @@ describe('getTimeDiff()', () => {
     const date = new Date(now.getTime() - 2 * ONE_YEAR);
     vi.setSystemTime(now);
 
-    expect(getTimeDiff(date)).toBe('2년');
+    const result = getTimeDiff(date);
+
+    expect(result).toBe('2년');
   });
 });
