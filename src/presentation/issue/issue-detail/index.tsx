@@ -3,7 +3,7 @@ import useIssue from '../use-issue';
 import { Issue } from '../../../domain/model/issue/issue';
 import CreateCommentForm from './create-comment-form';
 import InformationTag from '../../../common-ui/information-tag';
-import { timeDiffFromNow } from '../../../utils/helpers';
+import { getTimeDiff } from '../../../utils/helpers';
 import IssueDetailHeader from './issue-detail-header';
 import Divider from '../../../common-ui/divider';
 import IssueDetailSideBar from './issue-detail-side-bar';
@@ -30,7 +30,7 @@ function IssueDetail() {
           <InformationTag variant="closed">닫힌 이슈</InformationTag>
         )}
         {issue && (
-          <span>{`이 이슈가 ${timeDiffFromNow(
+          <span>{`이 이슈가 ${getTimeDiff(
             issue.createdAt
           )}전에 작성되었습니다 ∙ 코멘트 ${
             issue.comments?.length || 0

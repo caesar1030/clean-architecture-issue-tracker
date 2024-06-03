@@ -3,7 +3,7 @@ import Avatar from '../../../../common-ui/avatar';
 import InformationTag from '../../../../common-ui/information-tag';
 import Table from '../../../../common-ui/table';
 import { IssueResponse } from '../../../../domain/model/issue/response';
-import { timeDiffFromNow } from '../../../../utils/helpers';
+import { getTimeDiff } from '../../../../utils/helpers';
 import Button from '../../../../common-ui/button';
 import EditIssueContentsForm from './edit-issue-contents-form';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -78,7 +78,7 @@ function IssueContents({ issue }: IssueContentsProps) {
                 {issue?.author.nickname}
               </span>
               <span className="text-M text-neutral-text-weak">
-                {issue && timeDiffFromNow(issue.createdAt)} 전
+                {issue && getTimeDiff(issue.createdAt)} 전
               </span>
             </div>
 

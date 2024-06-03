@@ -2,7 +2,7 @@ import { ComponentPropsWithRef, ForwardedRef, forwardRef } from 'react';
 import { IssueResponse } from '../../../../domain/model/issue/response';
 import Table from '../../../../common-ui/table';
 import Avatar from '../../../../common-ui/avatar';
-import { timeDiffFromNow } from '../../../../utils/helpers';
+import { getTimeDiff } from '../../../../utils/helpers';
 import InformationTag from '../../../../common-ui/information-tag';
 import Button from '../../../../common-ui/button';
 import grip from '../../../../assets/grip.svg';
@@ -30,7 +30,7 @@ const EditCommentContentsForm = forwardRef(
                     {comment.author.nickname}
                   </span>
                   <span className="text-M text-neutral-text-weak">
-                    {timeDiffFromNow(comment.createdAt)} 전
+                    {getTimeDiff(comment.createdAt)} 전
                   </span>
                 </div>
 

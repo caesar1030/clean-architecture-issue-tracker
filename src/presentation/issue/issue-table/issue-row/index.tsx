@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Checkbox from '../../../../common-ui/checkbox';
 import LabelTag from '../../../../common-ui/label-tag';
 import Table from '../../../../common-ui/table';
-import { timeDiffFromNow } from '../../../../utils/helpers';
+import { getTimeDiff } from '../../../../utils/helpers';
 import { useSelectedIssues } from '../selected-issues-context';
 import Avatar from '../../../../common-ui/avatar';
 import { IssuesResponse } from '../../../../domain/model/issue/response';
@@ -44,7 +44,7 @@ function IssueRow({ issue }: IssueRowProps) {
 
         <div className="flex gap-4 text-neutral-text-weak">
           <span># {id}</span>
-          <span>{`${timeDiffFromNow(createdAt)} 전에 작성되었습니다`}</span>
+          <span>{`${getTimeDiff(createdAt)} 전에 작성되었습니다`}</span>
           {milestone && (
             <div className="flex gap-2">
               <img src={milestoneIcon} alt="마일스톤" />

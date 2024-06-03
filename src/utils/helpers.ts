@@ -1,4 +1,4 @@
-export function timeDiffFromNow(date: Date): string {
+export function getTimeDiff(date: Date): string {
   const now = new Date();
   const diff = now.getTime() - date.getTime();
 
