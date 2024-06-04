@@ -14,7 +14,7 @@ const Milestones = lazy(() => import('@/pages/milestones'));
 
 const queryClient = new QueryClient();
 
-function App() {
+const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -43,5 +43,5 @@ function App() {
       </BrowserRouter>
     </QueryClientProvider>
   );
-}
+};
 export default App;
