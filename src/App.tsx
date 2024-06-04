@@ -1,14 +1,14 @@
 import { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import AppLayout from '@/common-ui/app-layout';
-import ProtectedRoute from '@/common-ui/protected-route';
+import AppLayout from '@/pages/app-layout';
+import ProtectedRoute from '@/pages/protected-route';
 
-const Issues = lazy(() => import('@/pages/Issues'));
-const NewIssue = lazy(() => import('@/pages/new-issues'));
+const Issues = lazy(() => import('@/pages/issues'));
+const NewIssue = lazy(() => import('@/pages/new-issue'));
 const Issue = lazy(() => import('@/pages/issue'));
 const Login = lazy(() => import('@/pages/login'));
-const Signup = lazy(() => import('@/pages/signup'));
+const Signup = lazy(() => import('@/pages/sign-up'));
 const Labels = lazy(() => import('@/pages/labels'));
 const Milestones = lazy(() => import('@/pages/milestones'));
 

@@ -1,11 +1,11 @@
-import ProtectedRoute from './';
+import ProtectedRoute from '.';
 import { vi } from 'vitest';
-import { render } from '../../tests/utils/render-with-context';
+import { render } from '@/tests/utils/render-with-context';
 import { useNavigate } from 'react-router-dom';
-import useUser from '../../presentation/auth/use-user';
+import useUser from '@/presentation/auth/use-user';
 import { screen } from '@testing-library/react';
 
-vi.mock('../../presentation/auth/use-user', () => ({
+vi.mock('@/presentation/auth/use-user', () => ({
   default: vi.fn(),
 }));
 

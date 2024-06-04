@@ -1,14 +1,14 @@
-import Logo from '../common-ui/logo';
-import SignupForm from '../presentation/auth/signup-form';
+import Logo from '@/common-ui/logo';
+import LoginForm from '@/presentation/auth/login-form';
 
-function Signup() {
+const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen ">
       <div className="mb-16">
         <Logo size="large" />
       </div>
-      <SignupForm />
+      <LoginForm />
     </div>
   );
-}
-export default Signup;
+};
+export default Login;

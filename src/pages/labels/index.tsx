@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import Navbar from '../common-ui/navbar';
-import LabelTable from '../presentation/label/label-table';
-import Button from '../common-ui/button';
-import CreateLabelForm from '../presentation/label/create-label-form.tsx/index.tsx';
-import plusIcon from '../assets/plus-white.svg';
-import xIcon from '../assets/x-blue.svg';
+import Navbar from '@/common-ui/navbar';
+import LabelTable from '@/presentation/label/label-table';
+import Button from '@/common-ui/button';
+import CreateLabelForm from '@/presentation/label/create-label-form.tsx/index.tsx';
+import plusIcon from '@/assets/plus-white.svg';
+import xIcon from '@/assets/x-blue.svg';
 
-function Labels() {
+const Labels = () => {
   const [isAddSession, setIsAddSession] = useState(false);
 
   return (
@@ -40,5 +40,5 @@ function Labels() {
       <LabelTable />
     </>
   );
-}
+};
 export default Labels;

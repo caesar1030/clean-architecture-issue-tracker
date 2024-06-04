@@ -6,7 +6,7 @@ interface ProtectedRouteProps {
   children: ReactNode;
 }
 
-function ProtectedRoute({ children }: ProtectedRouteProps) {
+const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const navigate = useNavigate();
   const { isAuthenticated, isLoading } = useUser();
 
@@ -19,5 +19,6 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
   if (isLoading) return null;
 
   return children;
-}
+};
+
 export default ProtectedRoute;

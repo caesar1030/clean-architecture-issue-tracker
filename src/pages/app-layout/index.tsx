@@ -7,7 +7,7 @@ import Avatar from '@/common-ui/avatar';
 import Button from '@/common-ui/button';
 import LogoutIcon from '@/common-ui/logout-icon';
 
-function AppLayout() {
+const AppLayout = () => {
   const { logout } = useLogout();
   const { user } = useUser();
 
@@ -33,6 +33,6 @@ function AppLayout() {
       </main>
     </div>
   );
-}
+};
 
 export default AppLayout;

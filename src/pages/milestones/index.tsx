@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import CreateMilestoneForm from '../presentation/milestone/create-milestone-form';
-import Navbar from '../common-ui/navbar';
-import Button from '../common-ui/button';
-import MilestoneTable from '../presentation/milestone/milestone-table';
-import plusIcon from '../assets/plus-white.svg';
-import xIcon from '../assets/x-blue.svg';
+import CreateMilestoneForm from '@/presentation/milestone/create-milestone-form';
+import Navbar from '@/common-ui/navbar';
+import Button from '@/common-ui/button';
+import MilestoneTable from '@/presentation/milestone/milestone-table';
+import plusIcon from '@/assets/plus-white.svg';
+import xIcon from '@/assets/x-blue.svg';
 
-function Milestones() {
+const Milestones = () => {
   const [isAddSession, setIsAddSession] = useState(false);
 
   return (
@@ -41,5 +41,5 @@ function Milestones() {
       <MilestoneTable />
     </>
   );
-}
+};
 export default Milestones;
