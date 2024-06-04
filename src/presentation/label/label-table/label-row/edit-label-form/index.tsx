@@ -1,15 +1,15 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import Input from '../../../../../common-ui/input';
-import LabelTag from '../../../../../common-ui/label-tag';
-import Table from '../../../../../common-ui/table';
-import { LabelsResponse } from '../../../../../domain/model/label/response';
-import Button from '../../../../../common-ui/button';
-import { Label } from '../../../../../domain/model/label/label';
-import refreshIcon from '../../../../../assets/refresh.svg';
-import closeIcon from '../../../../../assets/close-blue.svg';
-import editIcon from '../../../../../assets/edit-white.svg';
-import useEditLabel from '../../../use-edit-labels';
-import { generateColor } from '../../../../../utils/helpers';
+import refreshIcon from '@/assets/refresh.svg';
+import closeIcon from '@/assets/close-blue.svg';
+import editIcon from '@/assets/edit-white.svg';
+import { generateRandomColor } from '@/utils/helpers';
+import useEditLabel from '@/presentation/label/use-edit-labels';
+import { LabelsResponse } from '@/domain/model/label/response';
+import Table from '@/common-ui/table';
+import Input from '@/common-ui/input';
+import Button from '@/common-ui/button';
+import LabelTag from '@/common-ui/label-tag';
+import { Label } from '@/domain/model/label/label';
 
 export interface EditLabelFormProps {
   label: LabelsResponse['data'][number];
@@ -132,7 +132,7 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
                 type="button"
                 flexible
                 onClick={() => {
-                  const color = generateColor();
+                  const color = generateRandomColor();
                   setValue('backgroundColor', color);
                 }}
               >
@@ -167,4 +167,5 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
     </Table.Row>
   );
 };
+
 export default EditLabelForm;

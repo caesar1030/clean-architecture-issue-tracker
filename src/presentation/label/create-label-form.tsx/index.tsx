@@ -1,12 +1,12 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import refreshIcon from '../../../assets/refresh.svg';
-import Table from '../../../common-ui/table';
-import LabelTag from '../../../common-ui/label-tag';
-import { Label } from '../../../domain/model/label/label';
-import Input from '../../../common-ui/input';
-import Button from '../../../common-ui/button';
-import useCreateLabel from '../use-create-lagel';
-import { generateColor } from '../../../utils/helpers';
+import refreshIcon from '@/assets/refresh.svg';
+import useCreateLabel from '@/presentation/label/use-create-lagel';
+import Table from '@/common-ui/table';
+import LabelTag from '@/common-ui/label-tag';
+import { Label } from '@/domain/model/label/label';
+import Input from '@/common-ui/input';
+import Button from '@/common-ui/button';
+import { generateRandomColor } from '@/utils/helpers';
 
 export interface CreateLabelFormProps {
   closeAddSession: () => void;
@@ -123,7 +123,7 @@ const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
                   type="button"
                   flexible
                   onClick={() => {
-                    const color = generateColor();
+                    const color = generateRandomColor();
                     setValue('backgroundColor', color);
                   }}
                 >

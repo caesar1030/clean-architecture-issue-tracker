@@ -22,7 +22,11 @@
 
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "types": ["reflect-metadata", "vitest/globals"]
+    "types": ["reflect-metadata", "vitest/globals"],
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
