@@ -6,7 +6,6 @@ interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   size: keyof typeof sizes;
   children: React.ReactNode;
   flexible?: boolean;
-  active?: boolean;
   to?: string;
 }
 
@@ -25,15 +24,14 @@ const sizes = {
   L: 'w-60 h-14 text-L font-bold rounded-large ',
 };
 
-function Button({
+const Button = ({
   variant,
   size,
   flexible,
-  active,
   children,
   to,
   ...rest
-}: ButtonProps) {
+}: ButtonProps) => {
   if (to)
     return (
       <Link
@@ -41,7 +39,6 @@ function Button({
         className={
           [base, variants[variant], sizes[size]].join(' ') +
           `${flexible ? ' flex w-fit h-fit ' : ''}` +
-          `${active ? ' text-neutral-text-strong ' : ''}` +
           rest.className
         }
       >
@@ -55,12 +52,11 @@ function Button({
       className={
         [base, variants[variant], sizes[size]].join(' ') +
         `${flexible ? ' flex w-fit h-fit ' : ''}` +
-        `${active ? ' text-neutral-text-strong ' : ''}` +
         rest.className
       }
     >
       {children}
     </button>
   );
-}
+};
 export default Button;

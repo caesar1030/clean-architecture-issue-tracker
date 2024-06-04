@@ -1,12 +1,12 @@
 import { useRef } from 'react';
-import Button from '../../../common-ui/button';
-import FilterBar from '../../../common-ui/filter-bar';
-import Menus from '../../../common-ui/menus';
-import Table from '../../../common-ui/table';
+import chevronDownIcon from '@/assets/chevron-down.svg';
+import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
+import FilterBar from '@/common-ui/filter-bar';
+import Menus from '@/common-ui/menus';
+import Button from '@/common-ui/button';
+import Table from '@/common-ui/table';
+import RadioButton from '@/common-ui/radio-button';
 import usePlaceholder from './use-placeholder';
-import RadioButton from '../../../common-ui/radio-button';
-import useSearchParamsHandlers from '../use-search-params-handlers';
-import chevronDownIcon from '../../../assets/chevron-down.svg';
 
 function IssueFilterBar() {
   const {
@@ -66,8 +66,6 @@ function IssueFilterBar() {
           </Menus.Window>
         </Menus>
       </FilterBar.SearchFilter>
-
-      <FilterBar.Divider />
 
       <FilterBar.Input
         placeholder={placeholder}

@@ -4,7 +4,7 @@ interface SideBarProps {
   children: ReactNode;
 }
 
-function SideBar({ children }: SideBarProps) {
+const SideBar = ({ children }: SideBarProps) => {
   return (
     <div className="border border-neutral-background-bold divide-y divide-inherit rounded-large overflow-hidden h-fit">
       {Children.map(children, (child) => (
@@ -14,5 +14,5 @@ function SideBar({ children }: SideBarProps) {
       ))}
     </div>
   );
-}
+};
 export default SideBar;

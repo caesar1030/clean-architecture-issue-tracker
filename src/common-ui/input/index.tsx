@@ -28,12 +28,12 @@ const Input = forwardRef(
     const isLabelAtLeft = labelPosition === 'left';
     const isInputValue = value;
 
-    function handleFocus(e: FocusEvent<HTMLInputElement>) {
+    const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
       rest.onFocus?.(e);
       setIsFocused(true);
     }
 
-    function handleBlur(e: FocusEvent<HTMLInputElement>) {
+    const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
       rest.onBlur?.(e);
       setIsFocused(false);
     }

@@ -7,7 +7,7 @@ import {
   ChangeEvent,
   forwardRef,
 } from 'react';
-import searchIcon from '../../assets/search.svg';
+import searchIcon from '@/assets/search.svg';
 
 interface FilterContextType {
   isFocused: boolean;
@@ -27,16 +27,16 @@ interface SearchFilterProps {
 
 interface InputProps extends ComponentProps<'input'> {}
 
-function FilterBar({ children }: FilterBarProps) {
+const FilterBar = ({ children }: FilterBarProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  function focus() {
+  const focus = () => {
     setIsFocused(true);
-  }
+  };
 
-  function blur() {
+  const blur = () => {
     setIsFocused(false);
-  }
+  };
 
   return (
     <FilterBarContext.Provider value={{ isFocused, focus, blur }}>
@@ -45,45 +45,41 @@ function FilterBar({ children }: FilterBarProps) {
       </div>
     </FilterBarContext.Provider>
   );
-}
+};
 
-function SearchFilter({ children }: SearchFilterProps) {
+const SearchFilter = ({ children }: SearchFilterProps) => {
   const { isFocused } = useContext(FilterBarContext);
 
   return (
     <div
-      className={`flex items-center h-full ${
+      className={`flex justify-center items-center h-full w-32 ${
         isFocused ? 'bg-neutral-background-strong' : 'bg-neutral-background'
       } text-neutral-text-weak`}
     >
       {children}
     </div>
   );
-}
-
-function Divider() {
-  return <div className="bg-neutral-border w-px h-full" />;
-}
+};
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { isFocused, focus, blur } = useContext(FilterBarContext);
   const [inputValue, setInputValue] = useState('');
 
-  function handleFocus() {
+  const handleFocus = () => {
     if (!inputValue && props.placeholder) {
       setInputValue(props.placeholder);
     }
     focus();
-  }
+  };
 
-  function handleBlur() {
+  const handleBlur = () => {
     blur();
     setInputValue('');
-  }
+  };
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-  }
+  };
 
   return (
     <div
@@ -111,8 +107,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     </div>
   );
 });
+
 FilterBar.SearchFilter = SearchFilter;
-FilterBar.Divider = Divider;
 FilterBar.Input = Input;
 
 export default FilterBar;

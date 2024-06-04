@@ -1,5 +1,6 @@
 import {
   Dispatch,
+  MouseEvent,
   ReactNode,
   SetStateAction,
   createContext,
@@ -7,7 +8,7 @@ import {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { useOutsideClick } from '../../hooks/useOutsideClick';
+import { useOutsideClick } from '@/hooks/use-outside-click';
 
 const WINDOW_WIDTH = 240;
 
@@ -46,7 +47,7 @@ interface ButtonProps {
 
 const MenuContext = createContext<MenuContextType>(null!);
 
-function Menus({ children }: MenuProps) {
+const Menus = ({ children }: MenuProps) => {
   const [openedId, setOpenedId] = useState('');
   const [position, setPosition] = useState<Position>(null!);
 
@@ -60,12 +61,12 @@ function Menus({ children }: MenuProps) {
       {children}
     </MenuContext.Provider>
   );
-}
+};
 
-function OpenButton({ id, children, windowPosition }: OpenButtonProps) {
+const OpenButton = ({ id, children, windowPosition }: OpenButtonProps) => {
   const { openedId, open, close, setPosition } = useContext(MenuContext);
 
-  function handleClick(e: React.MouseEvent<HTMLDivElement>) {
+  const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     const rect = (e.target as HTMLDivElement)
       .closest(`#${id}`)
       ?.getBoundingClientRect();
@@ -78,16 +79,16 @@ function OpenButton({ id, children, windowPosition }: OpenButtonProps) {
     setPosition({ x, y });
 
     !openedId || openedId !== id ? open(id) : close();
-  }
+  };
 
   return (
     <div id={id} onClick={handleClick}>
       {children}
     </div>
   );
-}
+};
 
-function Window({ id, children }: WindowProps) {
+const Window = ({ id, children }: WindowProps) => {
   const { openedId, position, close } = useContext(MenuContext);
   const windowRef = useOutsideClick<HTMLDivElement>(close);
 
@@ -107,22 +108,22 @@ function Window({ id, children }: WindowProps) {
     </div>,
     document.body
   );
-}
+};
 
-function Button({ onClick, children }: ButtonProps) {
+const Button = ({ onClick, children }: ButtonProps) => {
   const { close } = useContext(MenuContext);
 
-  function handleClick() {
+  const handleClick = () => {
     onClick?.();
     close();
-  }
+  };
 
   return (
     <button onClick={handleClick} className="text-start">
       {children}
     </button>
   );
-}
+};
 
 Menus.OpenButton = OpenButton;
 Menus.Window = Window;

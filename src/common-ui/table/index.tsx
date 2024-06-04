@@ -36,7 +36,7 @@ const sizes = {
 
 const TableContext = createContext<TableContextType>(null!);
 
-function Table({ columns, children, size }: TableProps) {
+const Table = ({ columns, children, size }: TableProps) => {
   return (
     <TableContext.Provider value={{ columns, size }}>
       <div className="border border-solid border-neutral-border rounded-large overflow-hidden">
@@ -44,9 +44,9 @@ function Table({ columns, children, size }: TableProps) {
       </div>
     </TableContext.Provider>
   );
-}
+};
 
-function Header({ children }: HeaderProps) {
+const Header = ({ children }: HeaderProps) => {
   const { columns, size } = useContext(TableContext);
 
   return (
@@ -57,16 +57,17 @@ function Header({ children }: HeaderProps) {
       {children}
     </div>
   );
-}
+};
 
-function Body<T>({ data, render }: BodyProps<T>) {
-  if (!data || data.length === 0)
+const Body = <T,>({ data, render }: BodyProps<T>) => {
+  if (!data || data.length === 0) {
     return <p className="text-center m-6">표시할 항목이 없습니다</p>;
+  }
 
   return <div className="bg-neutral-background-strong">{data.map(render)}</div>;
-}
+};
 
-function Row({ children, ...rest }: RowProps) {
+const Row = ({ children, ...rest }: RowProps) => {
   const { columns, size } = useContext(TableContext);
 
   return (
@@ -77,7 +78,7 @@ function Row({ children, ...rest }: RowProps) {
       {children}
     </div>
   );
-}
+};
 
 Table.Header = Header;
 Table.Body = Body;

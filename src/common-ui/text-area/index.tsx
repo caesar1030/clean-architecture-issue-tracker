@@ -5,7 +5,7 @@ import {
   forwardRef,
   useState,
 } from 'react';
-import gripIcon from '../../assets/grip.svg';
+import gripIcon from '@/assets/grip.svg';
 
 interface InputProps extends ComponentProps<'textarea'> {
   label: string;
@@ -20,15 +20,15 @@ const TextArea = forwardRef(
 
     const isInputValue = rest.value;
 
-    function handleFocus(e: FocusEvent<HTMLTextAreaElement>) {
+    const handleFocus = (e: FocusEvent<HTMLTextAreaElement>) => {
       rest.onFocus?.(e);
       setIsFocused(true);
-    }
+    };
 
-    function handleBlur(e: FocusEvent<HTMLTextAreaElement>) {
+    const handleBlur = (e: FocusEvent<HTMLTextAreaElement>) => {
       rest.onBlur?.(e);
       setIsFocused(false);
-    }
+    };
 
     return (
       <div
