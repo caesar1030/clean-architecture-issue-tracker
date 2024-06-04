@@ -4,5 +4,5 @@ export interface Label {
   textColor: string;
   backgroundColor: string;
   createdAt: string;
-  description: string;
+  description: string | null;
 }
