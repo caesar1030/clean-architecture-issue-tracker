@@ -86,9 +86,7 @@ describe('generateRandomColor()', () => {
   it('유효한 color를 반환해야 한다.', () => {
     const spy = vi.spyOn(Math, 'random');
     const randomValues = [0, 0.2, 0.3, 0.4, 0.8, 0.999];
-    randomValues.forEach((_, i) =>
-      spy.mockImplementationOnce(() => randomValues[i])
-    );
+    randomValues.forEach((value) => spy.mockImplementationOnce(() => value));
 
     const result = generateRandomColor();
 
