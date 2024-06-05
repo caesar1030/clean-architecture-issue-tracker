@@ -5,6 +5,9 @@ import { CreateMilestonePayload } from '@/model/milestone/payload';
 import Table from '@/common-ui/table';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { MilestoneSchema } from '@/schemas/milestone/milestone-schema';
+import ErrorMessage from '@/common-ui/error-message';
 
 interface FormType {
   title: string;
@@ -17,12 +20,20 @@ interface CreateMilestoneFormProps {
 }
 
 const CreateMilestoneForm = ({ stopEditSession }: CreateMilestoneFormProps) => {
-  const { control, handleSubmit, setValue } = useForm<FormType>({
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    setError,
+    formState: { errors, isValid },
+  } = useForm<FormType>({
     defaultValues: {
-      title: '',
+      title: '마일스톤',
       date: '',
       description: '',
     },
+    resolver: zodResolver(MilestoneSchema),
+    mode: 'onChange',
   });
   const { createMilestone, isCreating } = useCreateMilestone();
 
@@ -37,6 +48,8 @@ const CreateMilestoneForm = ({ stopEditSession }: CreateMilestoneFormProps) => {
     }
     createMilestone(toCreate, {
       onSuccess: () => stopEditSession(),
+      onError: () =>
+        setError('title', { message: '동일한 이름의 마일스톤이 있습니다.' }),
     });
   };
 
@@ -62,40 +75,44 @@ const CreateMilestoneForm = ({ stopEditSession }: CreateMilestoneFormProps) => {
 
           <div className="flex flex-col gap-4">
             <div className="w-full flex gap-4">
-              <Controller
-                name="title"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    id="title"
-                    placeholder="입력하세요"
-                    label="이름"
-                    labelPosition="left"
-                    className="flex-grow"
-                    {...field}
-                  />
-                )}
-              />
+              <div className="flex-grow flex flex-col gap-1">
+                <Controller
+                  name="title"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      id="title"
+                      placeholder="입력하세요"
+                      label="이름"
+                      labelPosition="left"
+                      {...field}
+                    />
+                  )}
+                />
+                <ErrorMessage>{errors.title?.message}</ErrorMessage>
+              </div>
 
-              <Controller
-                name="date"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    id="date"
-                    label="완료일(선택)"
-                    labelPosition="left"
-                    className="flex-grow"
-                    {...field}
-                    placeholder="YYYY.MM.DD"
-                    onChange={(e) => {
-                      let { value } = e.target;
-                      value = formatString(value);
-                      setValue('date', value);
-                    }}
-                  />
-                )}
-              />
+              <div className="flex-grow flex flex-col gap-1">
+                <Controller
+                  name="date"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      id="date"
+                      label="완료일(선택)"
+                      labelPosition="left"
+                      {...field}
+                      placeholder="YYYY.MM.DD"
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        const formatted = formatString(value);
+                        setValue('date', formatted, { shouldValidate: true });
+                      }}
+                    />
+                  )}
+                />
+                <ErrorMessage>{errors.date?.message}</ErrorMessage>
+              </div>
             </div>
 
             <Controller
@@ -107,6 +124,7 @@ const CreateMilestoneForm = ({ stopEditSession }: CreateMilestoneFormProps) => {
                   id="description"
                   label="설명(선택)"
                   labelPosition="left"
+                  error={errors.description?.message}
                   {...field}
                 />
               )}
@@ -118,7 +136,7 @@ const CreateMilestoneForm = ({ stopEditSession }: CreateMilestoneFormProps) => {
               size="S"
               variant="contained"
               type="submit"
-              disabled={isCreating}
+              disabled={isCreating || !isValid}
             >
               <img width={16} height={16} src={plusIcon} alt="마일스톤 생성" />
               <span>완료</span>

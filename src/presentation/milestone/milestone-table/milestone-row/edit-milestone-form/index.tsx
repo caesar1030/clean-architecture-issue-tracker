@@ -7,6 +7,9 @@ import { EditMilestonePayload } from '@/model/milestone/payload';
 import Table from '@/common-ui/table';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';
+import ErrorMessage from '@/common-ui/error-message';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { MilestoneSchema } from '@/schemas/milestone/milestone-schema';
 
 interface FormType {
   title: string;
@@ -24,14 +27,22 @@ const EditMilestoneForm = ({
   closeEditSession,
 }: EditMilestoneFormProps) => {
   const { editMilestone, isEditing } = useEditMilestone();
-  const { control, handleSubmit, setValue } = useForm<FormType>({
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    setError,
+    formState: { errors, isValid },
+  } = useForm<FormType>({
     defaultValues: {
       title,
       date: dueDate
         ? `${dueDate.getFullYear()}.${dueDate.getMonth()}.${dueDate.getDate()}`
         : '',
-      description: description || undefined,
+      description: description || '',
     },
+    resolver: zodResolver(MilestoneSchema),
+    mode: 'onChange',
   });
 
   const onSubmit: SubmitHandler<FormType> = ({ date, description, title }) => {
@@ -46,6 +57,8 @@ const EditMilestoneForm = ({
 
     editMilestone(toUpdate, {
       onSuccess: () => closeEditSession(),
+      onError: () =>
+        setError('title', { message: '동일한 이름의 마일스톤이 있습니다.' }),
     });
   };
 
@@ -70,40 +83,44 @@ const EditMilestoneForm = ({
 
         <div className="flex flex-col gap-4">
           <div className="w-full flex gap-4">
-            <Controller
-              name="title"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  id="title"
-                  placeholder="입력하세요"
-                  label="이름"
-                  labelPosition="left"
-                  className="flex-grow"
-                  {...field}
-                />
-              )}
-            />
+            <div className="flex-grow flex flex-col gap-1">
+              <Controller
+                name="title"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    id="title"
+                    placeholder="입력하세요"
+                    label="이름"
+                    labelPosition="left"
+                    {...field}
+                  />
+                )}
+              />
+              <ErrorMessage>{errors.title?.message}</ErrorMessage>
+            </div>
 
-            <Controller
-              name="date"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  id="date"
-                  label="완료일(선택)"
-                  labelPosition="left"
-                  className="flex-grow"
-                  {...field}
-                  placeholder="YYYY.MM.DD"
-                  onChange={(e) => {
-                    let { value } = e.target;
-                    value = formatString(value);
-                    setValue('date', value);
-                  }}
-                />
-              )}
-            />
+            <div className="flex-grow flex flex-col gap-1">
+              <Controller
+                name="date"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    id="date"
+                    label="완료일(선택)"
+                    labelPosition="left"
+                    {...field}
+                    placeholder="YYYY.MM.DD"
+                    onChange={(e) => {
+                      const { value } = e.target;
+                      const formatted = formatString(value);
+                      setValue('date', formatted, { shouldValidate: true });
+                    }}
+                  />
+                )}
+              />
+              <ErrorMessage>{errors.date?.message}</ErrorMessage>
+            </div>
           </div>
 
           <Controller
@@ -115,6 +132,7 @@ const EditMilestoneForm = ({
                 id="description"
                 label="설명(선택)"
                 labelPosition="left"
+                error={errors.description?.message}
                 {...field}
               />
             )}
@@ -128,7 +146,7 @@ const EditMilestoneForm = ({
             size="S"
             variant="outline"
           >
-            <img width={16} height={16} src={closeIcon} alt="라벨 편집 취소" />
+            <img width={12} height={12} src={closeIcon} alt="라벨 편집 취소" />
             <span>취소</span>
           </Button>
 
@@ -136,7 +154,7 @@ const EditMilestoneForm = ({
             size="S"
             variant="contained"
             type="submit"
-            disabled={isEditing}
+            disabled={isEditing || !isValid}
           >
             <img width={16} height={16} src={editIcon} alt="마일스톤 생성" />
             <span>완료</span>
