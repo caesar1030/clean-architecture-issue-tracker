@@ -5,6 +5,9 @@ import { IssueResponse } from '@/model/issue/response';
 import useEditIssue from '@/presentation/issue/use-edit-issue';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { IssueSchema } from '@/schemas/issue/issue-schema';
+import ErrorMessage from '@/common-ui/error-message';
 
 interface FormType {
   title: string;
@@ -19,10 +22,16 @@ const EditIssueTitleForm = ({
   issue,
   toggleIsEditingTitle,
 }: EditIssueTitleFormProps) => {
-  const { handleSubmit, control } = useForm<FormType>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors, isValid },
+  } = useForm<FormType>({
     defaultValues: {
       title: issue?.title,
     },
+    resolver: zodResolver(IssueSchema.pick({ title: true })),
+    mode: 'onChange',
   });
   const { editIssue } = useEditIssue();
 
@@ -32,39 +41,50 @@ const EditIssueTitleForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex items-center gap-6">
-      <Controller
-        name="title"
-        control={control}
-        render={({ field }) => {
-          return (
-            <Input
-              id="title"
-              label="제목"
-              labelPosition="left"
-              className="grow h-10"
-              {...field}
-            />
-          );
-        }}
-      />
+    <div className="flex flex-col gap-2">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex items-center gap-6"
+      >
+        <Controller
+          name="title"
+          control={control}
+          render={({ field }) => {
+            return (
+              <Input
+                id="title"
+                label="제목"
+                labelPosition="left"
+                className="grow h-10"
+                {...field}
+              />
+            );
+          }}
+        />
 
-      <div className="flex gap-2">
-        <Button
-          size="S"
-          variant="outline"
-          type="button"
-          onClick={toggleIsEditingTitle}
-        >
-          <img width={16} height={16} src={xBlueIcon} alt="편집 취소" />
-          편집 취소
-        </Button>
-        <Button size="S" variant="contained" type="submit">
-          <img width={16} height={16} src={editWhiteIcon} alt="편집 완료" />
-          편집 완료
-        </Button>
-      </div>
-    </form>
+        <div className="flex gap-2">
+          <Button
+            size="S"
+            variant="outline"
+            type="button"
+            onClick={toggleIsEditingTitle}
+          >
+            <img width={16} height={16} src={xBlueIcon} alt="편집 취소" />
+            편집 취소
+          </Button>
+          <Button
+            size="S"
+            variant="contained"
+            type="submit"
+            disabled={!isValid}
+          >
+            <img width={16} height={16} src={editWhiteIcon} alt="편집 완료" />
+            편집 완료
+          </Button>
+        </div>
+      </form>
+      <ErrorMessage>{errors.title?.message}</ErrorMessage>
+    </div>
   );
 };
 export default EditIssueTitleForm;
