@@ -146,7 +146,7 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
             size="S"
             variant="outline"
           >
-            <img width={16} height={16} src={closeIcon} alt="라벨 편집 취소" />
+            <img width={12} height={12} src={closeIcon} alt="라벨 편집 취소" />
             <span>취소</span>
           </Button>
 
