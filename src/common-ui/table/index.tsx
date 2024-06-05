@@ -52,7 +52,7 @@ const Header = ({ children }: HeaderProps) => {
   return (
     <div
       style={{ gridTemplateColumns: columns }}
-      className={`grid ${sizes[size]} bg-neutral-background border-b border-solid border-neutral-border`}
+      className={`grid items-center ${sizes[size]} bg-neutral-background border-b border-solid border-neutral-border`}
     >
       {children}
     </div>
