@@ -98,7 +98,7 @@ const IssueContents = ({ issue }: IssueContentsProps) => {
             </div>
           </div>
         </Table.Header>
-        <Table.Row>{issue?.contents || '없음'}</Table.Row>
+        <Table.Row>{issue?.contents || '표시할 내용이 없습니다.'}</Table.Row>
       </Table>
     </>
   );

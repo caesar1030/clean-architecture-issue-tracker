@@ -41,7 +41,7 @@ const Input = forwardRef(
     };
 
     return (
-      <>
+      <div>
         <div
           className={
             ' flex items-center px-6 rounded-medium h-14' +
@@ -86,7 +86,7 @@ const Input = forwardRef(
         </div>
 
         {error && <ErrorMessage>{error}</ErrorMessage>}
-      </>
+      </div>
     );
   }
 );

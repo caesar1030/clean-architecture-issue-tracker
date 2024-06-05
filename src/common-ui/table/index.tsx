@@ -61,7 +61,7 @@ const Header = ({ children }: HeaderProps) => {
 
 const Body = <T,>({ data, render }: BodyProps<T>) => {
   if (!data || data.length === 0) {
-    return <p className="text-center m-6 ">표시할 항목이 없습니다</p>;
+    return <p className="text-center m-6 ">표시할 항목이 없습니다.</p>;
   }
 
   return <div className="bg-neutral-background-strong">{data.map(render)}</div>;
