@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { DeleteIssuePayload } from '@/domain/model/issue/payload';
+import { DeleteIssuePayload } from '@/model/issue/payload';
 import useIssueClient from '@/hooks/use-issue-client';
 
 const useDeleteIssue = () => {

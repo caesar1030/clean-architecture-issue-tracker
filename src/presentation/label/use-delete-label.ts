@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useLabelClient from '@/hooks/use-label-client';
-import { DeleteLabelPayload } from '@/domain/model/label/payload';
+import { DeleteLabelPayload } from '@/model/label/payload';
 
 const useDeleteLabel = () => {
   const client = useLabelClient();

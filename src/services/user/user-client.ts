@@ -1,7 +1,7 @@
-import { LoginPayload, SignupPayload } from '@/domain/model/user/payload';
-import supabase from '@/data/data-source/api/supabase-db/supabase';
+import { LoginPayload, SignupPayload } from '@/model/user/payload';
+import supabase from '@/data/supabase-db/supabase';
 import { UserEntity, UsersEntity } from '@/data/entity/user-api-entity';
-import { UserResponse, UsersResponse } from '@/domain/model/user/response';
+import { UserResponse, UsersResponse } from '@/model/user/response';
 import UserClientService from '@/services/user/user-client-service';
 
 export default class UserClient implements UserClientService {

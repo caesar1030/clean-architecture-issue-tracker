@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import editBlueIcon from '@/assets/edit-blue.svg';
 import closedBlueIcon from '@/assets/closed-blue.svg';
-import { IssueResponse } from '@/domain/model/issue/response';
+import { IssueResponse } from '@/model/issue/response';
 import useCloseIssues from '@/presentation/issue/use-close-issues';
 import useOpenIssues from '@/presentation/issue/use-open-issues';
 import EditIssueTitleForm from '@/presentation/issue/issue-detail/issue-detail-header/edit-issue-title-form';
@@ -54,5 +54,5 @@ const IssueDetailHeader = ({ issue }: IssueDetailHeaderProps) => {
       </div>
     </div>
   );
-}
+};
 export default IssueDetailHeader;

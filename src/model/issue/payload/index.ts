@@ -1,7 +1,7 @@
-import { Issue } from '@/domain/model/issue/issue';
-import { Label } from '@/domain/model/label/label';
-import { Milestone } from '@/domain/model/milestone/milestone';
-import { User } from '@/domain/model/user/user';
+import { Issue } from '@/model/issue/issue';
+import { Label } from '@/model/label/label';
+import { Milestone } from '@/model/milestone/milestone';
+import { User } from '@/model/user/user';
 
 export interface GetIssuePayload {
   issueId: Issue['id'];

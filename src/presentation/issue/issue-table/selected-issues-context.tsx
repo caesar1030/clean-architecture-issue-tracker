@@ -1,4 +1,4 @@
-import { Issue } from '@/domain/model/issue/issue';
+import { Issue } from '@/model/issue/issue';
 import { ReactNode, createContext, useContext, useState } from 'react';
 
 interface SelectedIssuesContextType {

@@ -1,9 +1,9 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import closeIcon from '@/assets/close-blue.svg';
 import editIcon from '@/assets/edit-white.svg';
-import { MilestonesResopnse } from '@/domain/model/milestone/response';
+import { MilestonesResopnse } from '@/model/milestone/response';
 import useEditMilestone from '@/presentation/milestone/use-edit-milestone';
-import { EditMilestonePayload } from '@/domain/model/milestone/payload';
+import { EditMilestonePayload } from '@/model/milestone/payload';
 import Table from '@/common-ui/table';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';

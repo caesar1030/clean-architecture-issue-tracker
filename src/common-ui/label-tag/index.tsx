@@ -1,5 +1,5 @@
+import { Label } from '@/model/label/label';
 import { ComponentPropsWithoutRef } from 'react';
-import { Label } from '@/domain/model/label/label';
 
 interface LabelProps extends ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;

@@ -1,8 +1,8 @@
 import {
   CreateCommentPayload,
   EditCommentPayload,
-} from '@/domain/model/comment/payload';
-import supabase from '@/data/data-source/api/supabase-db/supabase';
+} from '@/model/comment/payload';
+import supabase from '@/data/supabase-db/supabase';
 import CommentClientService from '@/services/comment/comment-client-service';
 
 export default class CommentClient implements CommentClientService {

@@ -6,8 +6,8 @@ import {
   GetIssuePayload,
   IssuesFilterPayload,
   OpenIssuesPayload,
-} from '@/domain/model/issue/payload';
-import { IssueResponse, IssuesResponse } from '@/domain/model/issue/response';
+} from '@/model/issue/payload';
+import { IssueResponse, IssuesResponse } from '@/model/issue/response';
 
 export default interface IssueClientService {
   getIssue(getIssuePayload: GetIssuePayload): Promise<IssueResponse>;

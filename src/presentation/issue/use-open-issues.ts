@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { OpenIssuesPayload } from '@/domain/model/issue/payload';
+import { OpenIssuesPayload } from '@/model/issue/payload';
 import useIssueClient from '@/hooks/use-issue-client';
 
 const useOpenIssues = () => {

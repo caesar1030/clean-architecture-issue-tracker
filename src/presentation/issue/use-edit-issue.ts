@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useIssueClient from '@/hooks/use-issue-client';
-import { EditIssuePayload } from '@/domain/model/issue/payload';
+import { EditIssuePayload } from '@/model/issue/payload';
 
 const useEditIssue = () => {
   const service = useIssueClient();

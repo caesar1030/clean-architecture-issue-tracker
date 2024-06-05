@@ -1,5 +1,5 @@
 import Checkbox from '@/common-ui/checkbox';
-import { IssuesResponse } from '@/domain/model/issue/response';
+import { IssuesResponse } from '@/model/issue/response';
 import AssigneeFilterMenu from '@/presentation/issue/issue-table/issue-header/assignee-filter-menu';
 import AuthorFilterMenu from '@/presentation/issue/issue-table/issue-header/author-filter-menu';
 import LabelFilterMenu from '@/presentation/issue/issue-table/issue-header/label-filter-menu';

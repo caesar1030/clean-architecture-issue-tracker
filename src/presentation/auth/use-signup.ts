@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import useUserClient from '@/hooks/use-user-client';
-import { SignupPayload } from '@/domain/model/user/payload';
+import { SignupPayload } from '@/model/user/payload';
 
 const useSignup = () => {
   const client = useUserClient();

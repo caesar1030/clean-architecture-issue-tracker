@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useCommentClient from '@/hooks/use-comment-client';
-import { EditCommentPayload } from '@/domain/model/comment/payload';
+import { EditCommentPayload } from '@/model/comment/payload';
 
 const useEditComment = () => {
   const client = useCommentClient();

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import issueIcon from '@/assets/issue.svg';
 import milestoneIcon from '@/assets/milestone.svg';
-import { IssuesResponse } from '@/domain/model/issue/response';
+import { IssuesResponse } from '@/model/issue/response';
 import { useSelectedIssues } from '@/presentation/issue/issue-table/selected-issues-context';
 import Table from '@/common-ui/table';
 import Checkbox from '@/common-ui/checkbox';

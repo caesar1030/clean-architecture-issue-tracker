@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import editIcon from '@/assets/edit.svg';
-import { IssueResponse } from '@/domain/model/issue/response';
+import { IssueResponse } from '@/model/issue/response';
 import useEditIssue from '@/presentation/issue/use-edit-issue';
 import useUser from '@/presentation/auth/use-user';
 import EditIssueContentsForm from '@/presentation/issue/issue-detail/issue-contents/edit-issue-contents-form';

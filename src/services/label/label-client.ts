@@ -1,10 +1,10 @@
-import { LabelsResponse } from '@/domain/model/label/response';
-import supabase from '@/data/data-source/api/supabase-db/supabase';
+import { LabelsResponse } from '@/model/label/response';
+import supabase from '@/data/supabase-db/supabase';
 import {
   CreateLabelPayload,
   DeleteLabelPayload,
   EditLabelPayload,
-} from '@/domain/model/label/payload';
+} from '@/model/label/payload';
 import { LabelAPIEntity } from '@/data/entity/label-api-entity';
 import LabelClientService from '@/services/label/label-client-service';
 

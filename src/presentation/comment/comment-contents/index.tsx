@@ -1,4 +1,3 @@
-import { IssueResponse } from '@/domain/model/issue/response';
 import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import useUser from '@/presentation/auth/use-user';
@@ -9,6 +8,7 @@ import { getTimeDiff } from '@/utils/helpers';
 import InformationTag from '@/common-ui/information-tag';
 import useEditComment from '@/presentation/comment/use-edit-comment';
 import EditCommentContentsForm from '@/presentation/comment/comment-contents/edit-comment-contents-form';
+import { IssueResponse } from '@/model/issue/response';
 
 interface CommentContentsProps {
   comment: NonNullable<IssueResponse['data']['comments']>[number];

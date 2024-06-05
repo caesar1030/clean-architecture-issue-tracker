@@ -1,10 +1,10 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Label as LabelModel } from '@/domain/model/label/label';
+import { Label as LabelModel } from '@/model/label/label';
 import { Link } from 'react-router-dom';
 import chevronDownIcon from '@/assets/chevron-down.svg';
 import closeIcon from '@/assets/close-icon.svg';
-import { MilestonesResopnse } from '@/domain/model/milestone/response';
-import { User } from '@/domain/model/user/user';
+import { MilestonesResopnse } from '@/model/milestone/response';
+import { User } from '@/model/user/user';
 import useMilestones from '@/presentation/milestone/use-milestones';
 import useLabels from '@/presentation/label/use-labels';
 import useUsers from '@/presentation/auth/use-users';

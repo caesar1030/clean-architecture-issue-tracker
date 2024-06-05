@@ -7,12 +7,12 @@ import {
   GetIssuePayload,
   IssuesFilterPayload,
   OpenIssuesPayload,
-} from '@/domain/model/issue/payload';
-import supabase from '@/data/data-source/api/supabase-db/supabase';
-import { IssueResponse, IssuesResponse } from '@/domain/model/issue/response';
-import { User } from '@/domain/model/user/user';
-import { Milestone } from '@/domain/model/milestone/milestone';
-import { Label } from '@/domain/model/label/label';
+} from '@/model/issue/payload';
+import supabase from '@/data/supabase-db/supabase';
+import { IssueResponse, IssuesResponse } from '@/model/issue/response';
+import { User } from '@/model/user/user';
+import { Milestone } from '@/model/milestone/milestone';
+import { Label } from '@/model/label/label';
 import IssueClientService from '@/services/issue/issue-client-service';
 
 export default class IssueClient implements IssueClientService {

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useMilestoneClient from '@/hooks/use-milestone-client';
-import { EditMilestonePayload } from '@/domain/model/milestone/payload';
+import { EditMilestonePayload } from '@/model/milestone/payload';
 
 const useEditMilestone = () => {
   const client = useMilestoneClient();

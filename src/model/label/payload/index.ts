@@ -1,4 +1,4 @@
-import { Label } from '@/domain/model/label/label';
+import { Label } from '@/model/label/label';
 
 export interface CreateLabelPayload {
   title: string;

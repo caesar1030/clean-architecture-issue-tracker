@@ -1,7 +1,7 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import plusIcon from '@/assets/plus-white.svg';
 import useCreateMilestone from '@/presentation/milestone/use-create-milestone';
-import { CreateMilestonePayload } from '@/domain/model/milestone/payload';
+import { CreateMilestonePayload } from '@/model/milestone/payload';
 import Table from '@/common-ui/table';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';

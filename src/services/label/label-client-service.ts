@@ -2,8 +2,8 @@ import {
   CreateLabelPayload,
   DeleteLabelPayload,
   EditLabelPayload,
-} from '@/domain/model/label/payload';
-import { LabelsResponse } from '@/domain/model/label/response';
+} from '@/model/label/payload';
+import { LabelsResponse } from '@/model/label/response';
 
 export default interface LabelClientService {
   getLabels(): Promise<LabelsResponse>;

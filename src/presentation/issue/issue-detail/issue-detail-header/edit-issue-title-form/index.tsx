@@ -1,7 +1,7 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import editWhiteIcon from '@/assets/edit-white.svg';
 import xBlueIcon from '@/assets/x-blue.svg';
-import { IssueResponse } from '@/domain/model/issue/response';
+import { IssueResponse } from '@/model/issue/response';
 import useEditIssue from '@/presentation/issue/use-edit-issue';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';

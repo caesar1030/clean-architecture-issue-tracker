@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { GetIssuePayload } from '@/domain/model/issue/payload';
+import { GetIssuePayload } from '@/model/issue/payload';
 import useIssueClient from '@/hooks/use-issue-client';
 
 const useIssue = (getIssuePayload: GetIssuePayload) => {

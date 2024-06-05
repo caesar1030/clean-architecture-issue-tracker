@@ -1,5 +1,5 @@
-import { Comment } from '@/domain/model/comment/comment';
-import { Issue } from '@/domain/model/issue/issue';
+import { Comment } from '@/model/comment/comment';
+import { Issue } from '@/model/issue/issue';
 import { User } from '@supabase/supabase-js';
 
 export interface CreateCommentPayload {

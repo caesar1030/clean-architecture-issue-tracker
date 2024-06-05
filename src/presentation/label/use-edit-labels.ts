@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useLabelClient from '@/hooks/use-label-client';
-import { EditLabelPayload } from '@/domain/model/label/payload';
+import { EditLabelPayload } from '@/model/label/payload';
 
 const useEditLabel = () => {
   const client = useLabelClient();

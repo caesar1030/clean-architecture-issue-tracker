@@ -1,7 +1,7 @@
-import { IssuesFilterPayload } from '@/domain/model/issue/payload';
-import { Label } from '@/domain/model/label/label';
-import { Milestone } from '@/domain/model/milestone/milestone';
-import { User } from '@/domain/model/user/user';
+import { IssuesFilterPayload } from '@/model/issue/payload';
+import { Label } from '@/model/label/label';
+import { Milestone } from '@/model/milestone/milestone';
+import { User } from '@/model/user/user';
 import { useSearchParams } from 'react-router-dom';
 
 export const OPEN_STATUS_KEY = 'isOpen';

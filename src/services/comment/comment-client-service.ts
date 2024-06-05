@@ -1,7 +1,7 @@
 import {
   CreateCommentPayload,
   EditCommentPayload,
-} from '@/domain/model/comment/payload';
+} from '@/model/comment/payload';
 
 export default interface CommentClientService {
   createComment(createCommentPayload: CreateCommentPayload): Promise<void>;

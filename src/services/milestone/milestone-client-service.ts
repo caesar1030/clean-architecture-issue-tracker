@@ -2,8 +2,8 @@ import {
   CreateMilestonePayload,
   DeleteMilestonePayload,
   EditMilestonePayload,
-} from '@/domain/model/milestone/payload';
-import { MilestonesResopnse } from '@/domain/model/milestone/response';
+} from '@/model/milestone/payload';
+import { MilestonesResopnse } from '@/model/milestone/response';
 
 export default interface MilestoneClientService {
   getMilestones(): Promise<MilestonesResopnse>;

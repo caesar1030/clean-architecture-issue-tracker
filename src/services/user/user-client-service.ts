@@ -1,5 +1,5 @@
-import { LoginPayload, SignupPayload } from '@/domain/model/user/payload';
-import { UserResponse, UsersResponse } from '@/domain/model/user/response';
+import { LoginPayload, SignupPayload } from '@/model/user/payload';
+import { UserResponse, UsersResponse } from '@/model/user/response';
 
 export default interface UserClientService {
   signup(signupPayload: SignupPayload): Promise<UserResponse>;
