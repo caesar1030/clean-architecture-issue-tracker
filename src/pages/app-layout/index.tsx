@@ -2,7 +2,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import useLogout from '@/presentation/auth/use-logout';
 import useUser from '@/presentation/auth/use-user';
-import Logo from '@/common-ui/other';
+import Logo from '@/common-ui/logo';
 import Avatar from '@/common-ui/avatar';
 import Button from '@/common-ui/button';
 import LogoutIcon from '@/common-ui/logout-icon';

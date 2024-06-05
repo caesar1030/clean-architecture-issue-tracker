@@ -1,4 +1,4 @@
-import Logo from '@/common-ui/other';
+import Logo from '@/common-ui/logo';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Logo> = {

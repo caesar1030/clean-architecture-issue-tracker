@@ -1,4 +1,4 @@
-import Logo from '@/common-ui/other';
+import Logo from '@/common-ui/logo';
 import SignupForm from '@/presentation/auth/signup-form';
 
 const Signup = () => {
