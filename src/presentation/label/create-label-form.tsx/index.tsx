@@ -28,6 +28,7 @@ const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
     handleSubmit,
     setValue,
     watch,
+    setError,
     formState: { errors, isValid },
   } = useForm<FormType>({
     defaultValues: {
@@ -50,6 +51,8 @@ const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
       { title, backgroundColor, description, textColor },
       {
         onSuccess: () => closeAddSession(),
+        onError: () =>
+          setError('title', { message: '동일한 이름의 라벨이 있습니다.' }),
       }
     );
   };

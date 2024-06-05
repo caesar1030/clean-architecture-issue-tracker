@@ -32,6 +32,7 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
     handleSubmit,
     setValue,
     watch,
+    setError,
     formState: { errors, isValid },
   } = useForm<FormType>({
     defaultValues: {
@@ -60,6 +61,8 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
       },
       {
         onSuccess: closeEditingSession,
+        onError: () =>
+          setError('title', { message: '동일한 이름의 라벨이 있습니다.' }),
       }
     );
   };
