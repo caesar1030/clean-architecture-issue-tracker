@@ -1,3 +1,4 @@
+import ErrorMessage from '@/common-ui/error-message';
 import {
   ComponentProps,
   FocusEvent,
@@ -10,6 +11,7 @@ interface InputProps extends ComponentProps<'input'> {
   id: string;
   label: string;
   labelPosition: keyof typeof labelPositions;
+  error?: string;
 }
 
 const labelPositions = {
@@ -19,7 +21,7 @@ const labelPositions = {
 
 const Input = forwardRef(
   (
-    { label, labelPosition, id, ...rest }: InputProps,
+    { label, labelPosition, id, error, ...rest }: InputProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const { value, onChange } = rest;
@@ -31,55 +33,59 @@ const Input = forwardRef(
     const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
       rest.onFocus?.(e);
       setIsFocused(true);
-    }
+    };
 
     const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
       rest.onBlur?.(e);
       setIsFocused(false);
-    }
+    };
 
     return (
-      <div
-        className={
-          ' flex items-center px-6 rounded-medium h-14' +
-          ` ${labelPosition === 'top' ? 'flex-col' : ''}` +
-          ` ${labelPosition === 'left' ? 'gap-2' : ''}` +
-          `${
-            isFouced
-              ? ' bg-neutral-background-strong border border-neutral-border-active'
-              : ' bg-neutral-background-bold border border-neutral-background-bold'
-          }` +
-          ` ${rest.className}`
-        }
-      >
-        <label
-          htmlFor={id}
+      <div>
+        <div
           className={
-            'flex items-center cursor-text text-neutral-text focus:text-neutral-text-weak whitespace-nowrap ' +
-            ` ${isLabelAtLeft ? 'min-w-[110px]' : ''}` +
-            ` ${isLabelAtTop ? 'w-full' : ''}` +
-            ` ${isLabelAtTop && !value && !isFouced ? 'grow' : ''}` +
-            ` ${isLabelAtTop && (isInputValue || isFouced) ? 'h-5 text-S' : ''}`
+            ' flex items-center px-6 rounded-medium h-14' +
+            ` ${labelPosition === 'top' ? 'flex-col' : ''}` +
+            ` ${labelPosition === 'left' ? 'gap-2' : ''}` +
+            `${
+              isFouced
+                ? ' bg-neutral-background-strong border border-neutral-border-active'
+                : ' bg-neutral-background-bold border border-neutral-background-bold'
+            }` +
+            ` ${rest.className}`
           }
         >
-          {label}
-        </label>
+          <label
+            htmlFor={id}
+            className={
+              'flex items-center cursor-text text-neutral-text focus:text-neutral-text-weak whitespace-nowrap ' +
+              ` ${isLabelAtLeft ? 'min-w-[110px]' : ''}` +
+              ` ${isLabelAtTop ? 'w-full' : ''}` +
+              ` ${isLabelAtTop && !value && !isFouced ? 'grow' : ''}` +
+              ` ${isLabelAtTop && (isInputValue || isFouced) ? 'h-5 text-S' : ''}`
+            }
+          >
+            {label}
+          </label>
 
-        <input
-          {...rest}
-          id={id}
-          ref={ref}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          value={value}
-          onChange={onChange}
-          className={
-            'w-full bg-inherit focus:outline-none text-neutral-text-strong text-M' +
-            ` ${isLabelAtLeft ? 'grow' : ''}` +
-            ` ${isLabelAtTop && !isInputValue && !isFouced ? 'h-0' : ''}` +
-            ` ${isLabelAtTop && (isInputValue || isFouced) ? 'h-7' : ''}`
-          }
-        />
+          <input
+            {...rest}
+            id={id}
+            ref={ref}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            value={value}
+            onChange={onChange}
+            className={
+              'w-full bg-inherit focus:outline-none text-neutral-text-strong text-M' +
+              ` ${isLabelAtLeft ? 'grow' : ''}` +
+              ` ${isLabelAtTop && !isInputValue && !isFouced ? 'h-0' : ''}` +
+              ` ${isLabelAtTop && (isInputValue || isFouced) ? 'h-7' : ''}`
+            }
+          />
+        </div>
+
+        {error && <ErrorMessage>{error}</ErrorMessage>}
       </div>
     );
   }

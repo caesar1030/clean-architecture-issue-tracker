@@ -3,6 +3,8 @@ import plusIcon from '@/assets/plus.svg';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';
 import useLogin from '@/presentation/auth/use-login';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema } from '@/schemas/user/login-schema';
 
 type FormType = {
   email: string;
@@ -10,16 +12,31 @@ type FormType = {
 };
 
 const LoginForm = () => {
-  const { handleSubmit, control } = useForm<FormType>({
+  const {
+    handleSubmit,
+    control,
+    setError,
+    formState: { errors, isValid },
+  } = useForm<FormType>({
     defaultValues: {
       email: 'wanseob.dev@gmail.com',
       password: 'dhkstjq123',
     },
+    resolver: zodResolver(loginSchema),
+    mode: 'onChange',
   });
   const { login } = useLogin();
 
   const onSubmit: SubmitHandler<FormType> = ({ email, password }) => {
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onError: () =>
+          setError('password', {
+            message: '잘못된 이메일 또는 비밀번호 입니다.',
+          }),
+      }
+    );
   };
 
   return (
@@ -35,6 +52,7 @@ const LoginForm = () => {
             id="email"
             label="이메일"
             labelPosition="top"
+            error={errors.email?.message}
             {...field}
             className="w-80"
           />
@@ -48,6 +66,7 @@ const LoginForm = () => {
             id="password"
             label="비밀번호"
             labelPosition="top"
+            error={errors.password?.message}
             type="password"
             className="w-80"
             {...field}
@@ -55,7 +74,13 @@ const LoginForm = () => {
         )}
       />
 
-      <Button type="submit" size="L" variant="contained" className="w-80">
+      <Button
+        type="submit"
+        size="L"
+        variant="contained"
+        className="w-80"
+        disabled={!isValid}
+      >
         로그인
       </Button>
 

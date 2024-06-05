@@ -52,6 +52,7 @@ const Button = ({
       className={
         [base, variants[variant], sizes[size]].join(' ') +
         `${flexible ? ' flex w-fit h-fit ' : ''}` +
+        `${rest.disabled ? ' bg-opacity-30 ' : ''}` +
         rest.className
       }
     >
