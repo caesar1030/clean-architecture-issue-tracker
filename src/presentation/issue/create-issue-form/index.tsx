@@ -20,6 +20,8 @@ import LabelTag from '@/common-ui/label-tag';
 import Table from '@/common-ui/table';
 import RadioButton from '@/common-ui/radio-button';
 import Divider from '@/common-ui/divider';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { IssueSchema } from '@/schemas/issue/issue-schema';
 
 interface FormType {
   title: string;
@@ -33,7 +35,13 @@ const CreateIssueForm = () => {
   const { milestones } = useMilestones();
   const { labels } = useLabels();
   const { users } = useUsers();
-  const { control, handleSubmit, setValue, watch } = useForm<FormType>({
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors, isValid },
+  } = useForm<FormType>({
     defaultValues: {
       title: '',
       contents: '',
@@ -41,6 +49,8 @@ const CreateIssueForm = () => {
       label: null,
       assignee: null,
     },
+    resolver: zodResolver(IssueSchema),
+    mode: 'onChange',
   });
   const { createIssue } = useCreateIssue();
   const { user } = useUser();
@@ -110,6 +120,7 @@ const CreateIssueForm = () => {
                     id="issueTitle"
                     label="제목"
                     labelPosition="top"
+                    error={errors.title?.message}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') e.preventDefault();
                     }}
@@ -122,13 +133,13 @@ const CreateIssueForm = () => {
             <Controller
               name="contents"
               control={control}
-              rules={{ required: true }}
               render={({ field }) => {
                 return (
                   <TextArea
                     id="issueContents"
                     label="코멘트를 입력하세요"
                     className="h-[436px]"
+                    error={errors.contents?.message}
                     {...field}
                   />
                 );
@@ -293,7 +304,12 @@ const CreateIssueForm = () => {
             </Button>
           </Link>
 
-          <Button size="L" variant="contained" type="submit">
+          <Button
+            size="L"
+            variant="contained"
+            type="submit"
+            disabled={!isValid}
+          >
             완료
           </Button>
         </div>
