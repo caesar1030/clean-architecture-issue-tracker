@@ -222,51 +222,62 @@ const CreateIssueForm = () => {
 
             <Menus.Window id="addAssignee">
               <Table columns="1fr" size="S">
-                {users?.data?.map((user) => (
-                  <Table.Row key={user.id}>
-                    <Menus.Button onClick={() => addAssignee(user)}>
-                      <div className="flex gap-2 items-center">
-                        <Avatar src={user.avatar} />
-                        <span className="grow">{user.nickname}</span>
-                        <RadioButton
-                          checked={user.id === selectedAssignee?.id}
-                        />
-                      </div>
-                    </Menus.Button>
-                  </Table.Row>
-                ))}
+                <Table.Body
+                  data={users?.data}
+                  render={(user) => (
+                    <Table.Row key={user.id}>
+                      <Menus.Button onClick={() => addAssignee(user)}>
+                        <div className="flex gap-2 items-center">
+                          <Avatar src={user.avatar} />
+                          <span className="grow">{user.nickname}</span>
+                          <RadioButton
+                            checked={user.id === selectedAssignee?.id}
+                          />
+                        </div>
+                      </Menus.Button>
+                    </Table.Row>
+                  )}
+                />
               </Table>
             </Menus.Window>
 
             <Menus.Window id="addLabel">
               <Table columns="1fr" size="S">
-                {labels?.map((label) => (
-                  <Table.Row key={label.id}>
-                    <Menus.Button onClick={() => addLabel(label)}>
-                      <div className="flex gap-2 items-center">
-                        <span className="grow">{label.title}</span>
-                        <RadioButton checked={label.id === selectedLabel?.id} />
-                      </div>
-                    </Menus.Button>
-                  </Table.Row>
-                ))}
+                <Table.Body
+                  data={labels}
+                  render={(label) => (
+                    <Table.Row key={label.id}>
+                      <Menus.Button onClick={() => addLabel(label)}>
+                        <div className="flex gap-2 items-center">
+                          <span className="grow">{label.title}</span>
+                          <RadioButton
+                            checked={label.id === selectedLabel?.id}
+                          />
+                        </div>
+                      </Menus.Button>
+                    </Table.Row>
+                  )}
+                />
               </Table>
             </Menus.Window>
 
             <Menus.Window id="addMilestone">
               <Table columns="1fr" size="S">
-                {milestones?.map((milestone) => (
-                  <Table.Row key={milestone.id}>
-                    <Menus.Button onClick={() => addMilestone(milestone)}>
-                      <div className="flex gap-2 items-center">
-                        <span className="grow">{milestone.title}</span>
-                        <RadioButton
-                          checked={milestone.id === selectedMilestone?.id}
-                        />
-                      </div>
-                    </Menus.Button>
-                  </Table.Row>
-                ))}
+                <Table.Body
+                  data={milestones}
+                  render={(milestone) => (
+                    <Table.Row key={milestone.id}>
+                      <Menus.Button onClick={() => addMilestone(milestone)}>
+                        <div className="flex gap-2 items-center">
+                          <span className="grow">{milestone.title}</span>
+                          <RadioButton
+                            checked={milestone.id === selectedMilestone?.id}
+                          />
+                        </div>
+                      </Menus.Button>
+                    </Table.Row>
+                  )}
+                />
               </Table>
             </Menus.Window>
           </Menus>
