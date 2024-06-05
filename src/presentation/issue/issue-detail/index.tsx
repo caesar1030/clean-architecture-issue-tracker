@@ -11,12 +11,14 @@ import CommentContents from '@/presentation/comment/comment-contents';
 import CreateCommentForm from '@/presentation/issue/issue-detail/create-comment-form';
 import IssueDetailSideBar from '@/presentation/issue/issue-detail/issue-detail-side-bar';
 import Button from '@/common-ui/button';
+import useUser from '@/presentation/auth/use-user';
 
 const IssueDetail = () => {
   const { id } = useParams();
   const issueId = Number(id);
   const { issue } = useIssue({ issueId });
   const { deleteIssue } = useDeleteIssue();
+  const { user } = useUser();
 
   return (
     <>
@@ -56,15 +58,17 @@ const IssueDetail = () => {
 
         <div className="flex flex-col gap-4">
           <IssueDetailSideBar issue={issue} />
-          <Button
-            size="S"
-            variant="ghosts"
-            className="self-end"
-            onClick={() => deleteIssue({ id: issue!.id })}
-          >
-            <img width={16} height={16} src={trashIcon} alt="이슈 삭제" />
-            <span className="text-danger-text">이슈 삭제</span>
-          </Button>
+          {issue?.author.id === user?.id && (
+            <Button
+              size="S"
+              variant="ghosts"
+              className="self-end"
+              onClick={() => deleteIssue({ id: issue!.id })}
+            >
+              <img width={16} height={16} src={trashIcon} alt="이슈 삭제" />
+              <span className="text-danger-text">이슈 삭제</span>
+            </Button>
+          )}
         </div>
       </div>
     </>
