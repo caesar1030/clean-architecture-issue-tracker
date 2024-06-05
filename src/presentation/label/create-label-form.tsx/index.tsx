@@ -6,6 +6,9 @@ import LabelTag from '@/common-ui/label-tag';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';
 import { generateRandomColor } from '@/utils/helpers';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { LabelSchema } from '@/schemas/label/label-schema';
+import ErrorMessage from '@/common-ui/error-message';
 
 export interface CreateLabelFormProps {
   closeAddSession: () => void;
@@ -20,13 +23,21 @@ interface FormType {
 
 const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
   const { createLabel, isCreating } = useCreateLabel();
-  const { control, handleSubmit, setValue, watch } = useForm<FormType>({
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors, isValid },
+  } = useForm<FormType>({
     defaultValues: {
       title: '레이블',
       description: '',
       backgroundColor: '#000000',
       textColor: '#FFF',
     },
+    resolver: zodResolver(LabelSchema),
+    mode: 'onChange',
   });
 
   const onSubmit: SubmitHandler<FormType> = ({
@@ -74,6 +85,7 @@ const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
                     label="이름"
                     labelPosition="left"
                     className="h10"
+                    error={errors.title?.message}
                     placeholder="입력하세요"
                     {...field}
                   />
@@ -88,6 +100,7 @@ const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
                     id="label description"
                     label="설명(선택)"
                     labelPosition="left"
+                    error={errors.description?.message}
                     className="h-10"
                     placeholder="입력하세요"
                     {...field}
@@ -107,9 +120,12 @@ const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
                       className="h-10 w-72"
                       {...field}
                       onChange={(e) => {
-                        if (!e.target.value.startsWith('#'))
-                          setValue('backgroundColor', '#' + e.target.value);
-                        else setValue('backgroundColor', e.target.value);
+                        const newColor = e.target.value.startsWith('#')
+                          ? e.target.value
+                          : '#' + e.target.value;
+                        setValue('backgroundColor', newColor, {
+                          shouldValidate: true,
+                        });
                       }}
                     />
                   )}
@@ -121,18 +137,21 @@ const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
                   flexible
                   onClick={() => {
                     const color = generateRandomColor();
-                    setValue('backgroundColor', color);
+                    setValue('backgroundColor', color, {
+                      shouldValidate: true,
+                    });
                   }}
                 >
                   <img width={16} height={16} src={refreshIcon} alt="refresh" />
                 </Button>
               </div>
+              <ErrorMessage>{errors?.backgroundColor?.message}</ErrorMessage>
             </div>
           </div>
 
           <div className="flex gap-2 justify-end">
             <Button
-              disabled={isCreating}
+              disabled={isCreating || !isValid}
               type="submit"
               size="S"
               variant="contained"

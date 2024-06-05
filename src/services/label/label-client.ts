@@ -21,13 +21,12 @@ export default class LabelClient implements LabelClientService {
   }
 
   async createLabel(createLabelPayload: CreateLabelPayload): Promise<void> {
-    const { backgroundColor, description, textColor, title } =
-      createLabelPayload;
+    const { backgroundColor, description, title } = createLabelPayload;
 
     const toCreate = {
       title,
       description,
-      text_color: textColor,
+      text_color: '#FFFFFF',
       background_color: backgroundColor,
     };
 

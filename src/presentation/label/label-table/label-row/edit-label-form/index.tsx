@@ -9,6 +9,9 @@ import Table from '@/common-ui/table';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';
 import LabelTag from '@/common-ui/label-tag';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { LabelSchema } from '@/schemas/label/label-schema';
+import ErrorMessage from '@/common-ui/error-message';
 
 export interface EditLabelFormProps {
   label: LabelsResponse['data'][number];
@@ -24,13 +27,21 @@ interface FormType {
 
 const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
   const { editLabel, isEditing } = useEditLabel();
-  const { control, handleSubmit, setValue, watch } = useForm<FormType>({
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors, isValid },
+  } = useForm<FormType>({
     defaultValues: {
       title: label.title,
-      description: label.description || undefined,
+      description: label.description || '',
       backgroundColor: label.backgroundColor,
       textColor: label.textColor,
     },
+    resolver: zodResolver(LabelSchema),
+    mode: 'onChange',
   });
 
   const onSubmit: SubmitHandler<FormType> = ({
@@ -83,6 +94,7 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
                   label="이름"
                   labelPosition="left"
                   className="h10"
+                  error={errors.title?.message}
                   placeholder="입력하세요"
                   {...field}
                 />
@@ -97,6 +109,7 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
                   id="label description"
                   label="설명(선택)"
                   labelPosition="left"
+                  error={errors.description?.message}
                   className="h-10"
                   placeholder="입력하세요"
                   {...field}
@@ -116,13 +129,17 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
                     className="h-10 w-60"
                     {...field}
                     onChange={(e) => {
-                      if (!e.target.value.startsWith('#'))
-                        setValue('backgroundColor', '#' + e.target.value);
-                      else setValue('backgroundColor', e.target.value);
+                      const newColor = e.target.value.startsWith('#')
+                        ? e.target.value
+                        : '#' + e.target.value;
+                      setValue('backgroundColor', newColor, {
+                        shouldValidate: true,
+                      });
                     }}
                   />
                 )}
               />
+
               <Button
                 size="S"
                 variant="ghosts"
@@ -130,12 +147,15 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
                 flexible
                 onClick={() => {
                   const color = generateRandomColor();
-                  setValue('backgroundColor', color);
+                  setValue('backgroundColor', color, {
+                    shouldValidate: true,
+                  });
                 }}
               >
                 <img width={16} height={16} src={refreshIcon} alt="refresh" />
               </Button>
             </div>
+            <ErrorMessage>{errors?.backgroundColor?.message}</ErrorMessage>
           </div>
         </div>
 
@@ -151,7 +171,7 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
           </Button>
 
           <Button
-            disabled={isEditing}
+            disabled={isEditing || !isValid}
             type="submit"
             size="S"
             variant="contained"
