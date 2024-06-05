@@ -66,7 +66,7 @@ export default class MilestoneClient implements MilestoneClientService {
     if (title) toUpdate.title = title;
     if (description) toUpdate.description = description;
     if (date) toUpdate.due_date = date.toISOString();
-    if (isOpen === undefined) toUpdate.is_open = isOpen;
+    if (isOpen !== undefined) toUpdate.is_open = isOpen;
 
     const { error } = await supabase
       .from('milestones')
