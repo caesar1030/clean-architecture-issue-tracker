@@ -1,21 +1,21 @@
+import { IssueResponse } from '@/domain/model/issue/response';
 import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import useUser from '../../auth/use-user';
-import Button from '../../../common-ui/button';
-import Table from '../../../common-ui/table';
-import Avatar from '../../../common-ui/avatar';
-import { IssueResponse } from '../../../domain/model/issue/response';
-import { getTimeDiff } from '../../../utils/helpers';
-import InformationTag from '../../../common-ui/information-tag';
-import EditCommentContentsForm from './edit-comment-contents-form';
-import useEditComment from '../use-edit-comment';
+import useUser from '@/presentation/auth/use-user';
+import Button from '@/common-ui/button';
+import Table from '@/common-ui/table';
+import Avatar from '@/common-ui/avatar';
+import { getTimeDiff } from '@/utils/helpers';
+import InformationTag from '@/common-ui/information-tag';
+import useEditComment from '@/presentation/comment/use-edit-comment';
+import EditCommentContentsForm from '@/presentation/comment/comment-contents/edit-comment-contents-form';
 
 interface CommentContentsProps {
   comment: NonNullable<IssueResponse['data']['comments']>[number];
   issueAuthor: IssueResponse['data']['author'];
 }
 
-function CommentContents({ issueAuthor, comment }: CommentContentsProps) {
+const CommentContents = ({ issueAuthor, comment }: CommentContentsProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const { control, handleSubmit, reset } = useForm<FormType>();
   const { editComment } = useEditComment();
@@ -105,5 +105,5 @@ function CommentContents({ issueAuthor, comment }: CommentContentsProps) {
       </Table>
     </>
   );
-}
+};
 export default CommentContents;

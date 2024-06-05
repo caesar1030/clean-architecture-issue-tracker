@@ -3,7 +3,6 @@ import refreshIcon from '@/assets/refresh.svg';
 import useCreateLabel from '@/presentation/label/use-create-lagel';
 import Table from '@/common-ui/table';
 import LabelTag from '@/common-ui/label-tag';
-import { Label } from '@/domain/model/label/label';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';
 import { generateRandomColor } from '@/utils/helpers';
@@ -58,10 +57,8 @@ const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
           <div className="flex gap-6">
             <div className="flex-grow-[9] w-48 flex justify-center items-center rounded-regular border border-neutral-border">
               <LabelTag
-                backgroundColor={
-                  watch().backgroundColor as Label['backgroundColor']
-                }
-                textColor={watch().textColor as Label['textColor']}
+                backgroundColor={watch().backgroundColor}
+                textColor={watch().textColor}
               >
                 {watch().title}
               </LabelTag>
@@ -148,4 +145,5 @@ const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
     </Table>
   );
 };
+
 export default CreateLabelForm;

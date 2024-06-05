@@ -1,13 +1,13 @@
-import Avatar from '../../../../../common-ui/avatar';
-import Button from '../../../../../common-ui/button';
-import Menus from '../../../../../common-ui/menus';
-import RadioButton from '../../../../../common-ui/radio-button';
-import Table from '../../../../../common-ui/table';
-import useUsers from '../../../../auth/use-users';
-import useSearchParamsHandlers from '../../../use-search-params-handlers';
-import chevronDownIcon from '../../../../../assets/chevron-down.svg';
+import chevronDownIcon from '@/assets/chevron-down.svg';
+import Avatar from '@/common-ui/avatar';
+import Button from '@/common-ui/button';
+import Menus from '@/common-ui/menus';
+import RadioButton from '@/common-ui/radio-button';
+import Table from '@/common-ui/table';
+import useUsers from '@/presentation/auth/use-users';
+import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
 
-function AssigneeFilterMenu() {
+const AssigneeFilterMenu = () => {
   const { users } = useUsers();
   const {
     toggleAssigneeSearchParam,
@@ -55,5 +55,6 @@ function AssigneeFilterMenu() {
       </Menus.Window>
     </>
   );
-}
+};
+
 export default AssigneeFilterMenu;

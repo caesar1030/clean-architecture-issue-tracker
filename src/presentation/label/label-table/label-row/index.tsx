@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import Button from '../../../../common-ui/button';
-import LabelTag from '../../../../common-ui/label-tag';
-import Table from '../../../../common-ui/table';
-import { LabelsResponse } from '../../../../domain/model/label/response';
-import EditLabelForm from './edit-label-form';
-import editIcon from '../../../../assets/edit.svg';
-import trashIcon from '../../../../assets/trash.svg';
-import useDeleteLabel from '../../use-delete-label';
+import editIcon from '@/assets/edit.svg';
+import trashIcon from '@/assets/trash.svg';
+import { LabelsResponse } from '@/domain/model/label/response';
+import useDeleteLabel from '@/presentation/label/use-delete-label';
+import EditLabelForm from '@/presentation/label/label-table/label-row/edit-label-form';
+import Table from '@/common-ui/table';
+import LabelTag from '@/common-ui/label-tag';
+import Button from '@/common-ui/button';
 
 export interface LabelRowProps {
   label: LabelsResponse['data'][number];
@@ -55,4 +55,5 @@ const LabelRow = ({ label }: LabelRowProps) => {
     </Table.Row>
   );
 };
+
 export default LabelRow;

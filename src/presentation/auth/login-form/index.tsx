@@ -1,15 +1,15 @@
-import useLogin from '../use-login';
-import Button from '../../../common-ui/button';
-import Input from '../../../common-ui/input';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import plusIcon from '../../../assets/plus.svg';
+import plusIcon from '@/assets/plus.svg';
+import Input from '@/common-ui/input';
+import Button from '@/common-ui/button';
+import useLogin from '@/presentation/auth/use-login';
 
 type FormType = {
   email: string;
   password: string;
 };
 
-function LoginForm() {
+const LoginForm = () => {
   const { handleSubmit, control } = useForm<FormType>({
     defaultValues: {
       email: 'wanseob.dev@gmail.com',
@@ -65,5 +65,6 @@ function LoginForm() {
       </Button>
     </form>
   );
-}
+};
+
 export default LoginForm;

@@ -1,6 +1,6 @@
-import Button from '../../../../../common-ui/button';
+import Button from '@/common-ui/button';
 
-function IssueOperations() {
+const IssueOperations = () => {
   return (
     <>
       <Button size="S" variant="outline">
@@ -11,5 +11,6 @@ function IssueOperations() {
       </Button>{' '}
     </>
   );
-}
+};
+
 export default IssueOperations;

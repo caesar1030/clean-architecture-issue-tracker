@@ -1,5 +1,4 @@
 import { IssueEntity, IssuesEntity } from '@/data/entity/issue-api-entity';
-import IssueClientService from './issue-client-service';
 import {
   CloseIssuesPayload,
   CreateIssuePayload,
@@ -14,6 +13,7 @@ import { IssueResponse, IssuesResponse } from '@/domain/model/issue/response';
 import { User } from '@/domain/model/user/user';
 import { Milestone } from '@/domain/model/milestone/milestone';
 import { Label } from '@/domain/model/label/label';
+import IssueClientService from '@/services/issue/issue-client-service';
 
 export default class IssueClient implements IssueClientService {
   async getIssue({ issueId }: GetIssuePayload): Promise<IssueResponse> {

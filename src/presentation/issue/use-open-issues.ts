@@ -1,22 +1,20 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { OpenIssuesUseCase } from '../../domain/use-case/issues/open-issues';
-import { container } from '../../di/inversify.config';
-import { TYPES } from '../../di/types';
-import { OpenIssuesPayload } from '../../domain/model/issue/payload';
+import { OpenIssuesPayload } from '@/domain/model/issue/payload';
+import useIssueClient from '@/hooks/use-issue-client';
 
-export default function useOpenIssues() {
-  const openIssuesUseCase = container.get<OpenIssuesUseCase>(
-    TYPES.OpenIssuesUseCase
-  );
+const useOpenIssues = () => {
+  const service = useIssueClient();
   const queryClient = useQueryClient();
 
   const { mutate: openIssues, isPending: isOpening } = useMutation({
     mutationFn: (openIssuesPayload: OpenIssuesPayload) =>
-      openIssuesUseCase.invoke(openIssuesPayload),
+      service.openIssues(openIssuesPayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['issues'] });
     },
   });
 
   return { openIssues, isOpening };
-}
+};
+
+export default useOpenIssues;

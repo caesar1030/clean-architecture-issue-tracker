@@ -1,12 +1,12 @@
-import Checkbox from '../../../../common-ui/checkbox';
-import { IssuesResponse } from '../../../../domain/model/issue/response';
-import { useSelectedIssues } from '../selected-issues-context';
-import AssigneeFilterMenu from './assignee-filter-menu';
-import AuthorFilterMenu from './author-filter-menu';
-import LabelFilterMenu from './label-filter-menu';
-import MilestoneFilterMenu from './milestone-filter-menu';
-import StatusFilterButtons from './status-filter-buttons';
-import StatusUpdateMenu from './status-update-menu';
+import Checkbox from '@/common-ui/checkbox';
+import { IssuesResponse } from '@/domain/model/issue/response';
+import AssigneeFilterMenu from '@/presentation/issue/issue-table/issue-header/assignee-filter-menu';
+import AuthorFilterMenu from '@/presentation/issue/issue-table/issue-header/author-filter-menu';
+import LabelFilterMenu from '@/presentation/issue/issue-table/issue-header/label-filter-menu';
+import MilestoneFilterMenu from '@/presentation/issue/issue-table/issue-header/milestone-filter-menu';
+import StatusFilterButtons from '@/presentation/issue/issue-table/issue-header/status-filter-buttons';
+import StatusUpdateMenu from '@/presentation/issue/issue-table/issue-header/status-update-menu';
+import { useSelectedIssues } from '@/presentation/issue/issue-table/selected-issues-context';
 
 interface IssueHeaderProps {
   issues: IssuesResponse['data'] | undefined;
@@ -14,11 +14,11 @@ interface IssueHeaderProps {
   closeIssueCount: number | undefined;
 }
 
-function IssueHeader({
+const IssueHeader = ({
   issues,
   openIssueCount,
   closeIssueCount,
-}: IssueHeaderProps) {
+}: IssueHeaderProps) => {
   const { selectedIssueIds, selectAllIssues, deselectAllIssues } =
     useSelectedIssues();
 
@@ -61,5 +61,5 @@ function IssueHeader({
       </div>
     </>
   );
-}
+};
 export default IssueHeader;

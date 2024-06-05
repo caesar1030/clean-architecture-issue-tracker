@@ -1,12 +1,12 @@
-import useIssues from '../use-issues';
-import Table from '../../../common-ui/table';
-import IssueRow from './issue-row';
-import IssueHeader from './issue-header';
-import Menus from '../../../common-ui/menus';
-import { SelectedIssuesProvider } from './selected-issues-context';
-import { IssuesResponse } from '../../../domain/model/issue/response';
+import Menus from '@/common-ui/menus';
+import Table from '@/common-ui/table';
+import { IssuesResponse } from '@/domain/model/issue/response';
+import IssueHeader from '@/presentation/issue/issue-table/issue-header';
+import IssueRow from '@/presentation/issue/issue-table/issue-row';
+import { SelectedIssuesProvider } from '@/presentation/issue/issue-table/selected-issues-context';
+import useIssues from '@/presentation/issue/use-issues';
 
-function IssueTable() {
+const IssueTable = () => {
   const { issues, openIssueCount, closeIssueCount } = useIssues();
 
   return (
@@ -28,5 +28,6 @@ function IssueTable() {
       </Menus>
     </SelectedIssuesProvider>
   );
-}
+};
+
 export default IssueTable;

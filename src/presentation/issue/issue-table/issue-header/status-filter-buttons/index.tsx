@@ -1,19 +1,18 @@
-import Button from '../../../../../common-ui/button';
-import useSearchParamsHandlers from '../../../use-search-params-handlers';
-import openedIssueIcon from '../../../../../assets/opened-issue.svg';
-import closedIssueIcon from '../../../../../assets/closed-issue.svg';
+import openedIssueIcon from '@/assets/opened-issue.svg';
+import closedIssueIcon from '@/assets/closed-issue.svg';
+import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
+import Button from '@/common-ui/button';
 
 interface StatusFilterButtonsProps {
   openIssueCount: number | undefined;
   closeIssueCount: number | undefined;
 }
 
-function StatusFilterButtons({
+const StatusFilterButtons = ({
   openIssueCount = 0,
   closeIssueCount = 0,
-}: StatusFilterButtonsProps) {
-  const { setOpenStatusSearchParam, isOpenStatus, isCloseStatus } =
-    useSearchParamsHandlers();
+}: StatusFilterButtonsProps) => {
+  const { setOpenStatusSearchParam } = useSearchParamsHandlers();
 
   return (
     <div className="flex gap-6">
@@ -22,7 +21,6 @@ function StatusFilterButtons({
         size="M"
         flexible
         onClick={() => setOpenStatusSearchParam(true)}
-        active={isOpenStatus}
       >
         <img src={openedIssueIcon} alt="열린 이슈" />
         <span>열린 이슈({openIssueCount})</span>
@@ -32,12 +30,12 @@ function StatusFilterButtons({
         size="M"
         flexible
         onClick={() => setOpenStatusSearchParam(false)}
-        active={isCloseStatus}
       >
         <img src={closedIssueIcon} alt="닫힌 이슈" />
         <span>닫힌 이슈({closeIssueCount})</span>
       </Button>
     </div>
   );
-}
+};
+
 export default StatusFilterButtons;

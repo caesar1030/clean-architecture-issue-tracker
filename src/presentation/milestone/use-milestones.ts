@@ -1,13 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
+import useMilestoneClient from '@/hooks/use-milestone-client';
 
-import { container } from '../../di/inversify.config';
-import { TYPES } from '../../di/types';
-import { GetMilestones } from '../../domain/use-case/milestones/get-milestones';
-
-export default function useMilestones() {
-  const getMilestonesUseCase = container.get<GetMilestones>(
-    TYPES.GetMilestonesUseCase
-  );
+const useMilestones = () => {
+  const client = useMilestoneClient();
 
   const {
     isLoading,
@@ -15,7 +10,7 @@ export default function useMilestones() {
     error,
   } = useQuery({
     queryKey: ['milestones'],
-    queryFn: () => getMilestonesUseCase.invoke(),
+    queryFn: () => client.getMilestones(),
   });
 
   return {
@@ -23,4 +18,6 @@ export default function useMilestones() {
     milestones,
     error,
   };
-}
+};
+
+export default useMilestones;

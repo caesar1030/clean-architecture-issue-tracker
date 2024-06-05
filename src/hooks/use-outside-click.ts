@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export const useOutsideClick = <T extends HTMLElement>(
+const useOutsideClick = <T extends HTMLElement>(
   handler: () => void,
   isCapture = true
 ) => {
@@ -21,3 +21,5 @@ export const useOutsideClick = <T extends HTMLElement>(
 
   return ref;
 };
+
+export default useOutsideClick;

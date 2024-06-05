@@ -2,8 +2,8 @@ import {
   CreateCommentPayload,
   EditCommentPayload,
 } from '@/domain/model/comment/payload';
-import CommentClientService from './comment-client-service';
 import supabase from '@/data/data-source/api/supabase-db/supabase';
+import CommentClientService from '@/services/comment/comment-client-service';
 
 export default class CommentClient implements CommentClientService {
   async createComment({

@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import IssueTitle from './issue-title';
-import Button from '../../../../common-ui/button';
-import EditIssueTitleForm from './edit-issue-title-form';
-import { IssueResponse } from '../../../../domain/model/issue/response';
-import useCloseIssues from '../../use-close-issues';
-import useOpenIssues from '../../use-open-issues';
-import editBlueIcon from '../../../../assets/edit-blue.svg';
-import closedBlueIcon from '../../../../assets/closed-blue.svg';
+import editBlueIcon from '@/assets/edit-blue.svg';
+import closedBlueIcon from '@/assets/closed-blue.svg';
+import { IssueResponse } from '@/domain/model/issue/response';
+import useCloseIssues from '@/presentation/issue/use-close-issues';
+import useOpenIssues from '@/presentation/issue/use-open-issues';
+import EditIssueTitleForm from '@/presentation/issue/issue-detail/issue-detail-header/edit-issue-title-form';
+import IssueTitle from '@/presentation/issue/issue-detail/issue-detail-header/issue-title';
+import Button from '@/common-ui/button';
 
 interface IssueDetailHeaderProps {
   issue: IssueResponse['data'] | undefined;
 }
 
-function IssueDetailHeader({ issue }: IssueDetailHeaderProps) {
+const IssueDetailHeader = ({ issue }: IssueDetailHeaderProps) => {
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const { closeIssues } = useCloseIssues();
   const { openIssues } = useOpenIssues();

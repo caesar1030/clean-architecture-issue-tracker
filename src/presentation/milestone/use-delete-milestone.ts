@@ -1,22 +1,20 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { container } from '../../di/inversify.config';
-import { TYPES } from '../../di/types';
-import { DeleteMilestonePayload } from '../../domain/model/milestone/payload';
-import { DeleteMilestoneUseCase } from '../../domain/use-case/milestones/delete-milestone';
+import useMilestoneClient from '@/hooks/use-milestone-client';
+import { DeleteMilestonePayload } from '@/domain/model/milestone/payload';
 
-export default function useDeleteMilestone() {
-  const deleteMilestoneUseCase = container.get<DeleteMilestoneUseCase>(
-    TYPES.DeleteMilestoneUseCase
-  );
+const useDeleteMilestone = () => {
+  const client = useMilestoneClient();
   const queryClient = useQueryClient();
 
   const { mutate: deleteMilestone, isPending: isDeleting } = useMutation({
     mutationFn: (deleteMilestonePayload: DeleteMilestonePayload) =>
-      deleteMilestoneUseCase.invoke(deleteMilestonePayload),
+      client.deleteMilestone(deleteMilestonePayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['milestones'] });
     },
   });
 
   return { deleteMilestone, isDeleting };
-}
+};
+
+export default useDeleteMilestone;

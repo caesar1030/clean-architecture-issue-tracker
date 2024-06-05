@@ -1,6 +1,5 @@
+import LabelIcon from '@/common-ui/label-icon';
 import type { Meta, StoryObj } from '@storybook/react';
-
-import LabelIcon from '.';
 
 const meta: Meta<typeof LabelIcon> = {
   title: 'component/LabelIcon',

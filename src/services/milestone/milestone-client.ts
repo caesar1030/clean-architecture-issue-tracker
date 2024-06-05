@@ -1,5 +1,4 @@
 import supabase from '@/data/data-source/api/supabase-db/supabase';
-import MilestoneClientService from './milestone-client-service';
 import {
   CreateMilestonePayload,
   DeleteMilestonePayload,
@@ -7,6 +6,7 @@ import {
 } from '@/domain/model/milestone/payload';
 import { MilestoneAPIEntity } from '@/data/entity/milestone-api-entity';
 import { MilestonesResopnse } from '@/domain/model/milestone/response';
+import MilestoneClientService from '@/services/milestone/milestone-client-service';
 
 export default class MilestoneClient implements MilestoneClientService {
   async getMilestones() {

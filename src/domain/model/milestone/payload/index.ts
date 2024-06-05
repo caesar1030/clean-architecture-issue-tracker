@@ -1,4 +1,4 @@
-import { Milestone } from '../milestone';
+import { Milestone } from '@/domain/model/milestone/milestone';
 
 export interface CreateMilestonePayload {
   title: string;

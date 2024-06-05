@@ -1,7 +1,7 @@
+import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
 import { useState, useEffect } from 'react';
-import useSearchParamsHandlers from '../use-search-params-handlers';
 
-function usePlaceholder() {
+const usePlaceholder = () => {
   const [placeholder, setPlaceholder] = useState('');
   const { convertParamsToQuery } = useSearchParamsHandlers();
 
@@ -11,6 +11,6 @@ function usePlaceholder() {
   }, [convertParamsToQuery]);
 
   return placeholder;
-}
+};
 
 export default usePlaceholder;

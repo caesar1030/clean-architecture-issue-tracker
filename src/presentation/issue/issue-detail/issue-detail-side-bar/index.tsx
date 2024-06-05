@@ -1,22 +1,22 @@
-import Button from '../../../../common-ui/button';
-import Menus from '../../../../common-ui/menus';
-import SideBar from '../../../../common-ui/side-bar';
-import useMilestones from '../../../milestone/use-milestones';
-import useLabels from '../../../label/use-labels';
-import useUsers from '../../../auth/use-users';
-import { IssueResponse } from '../../../../domain/model/issue/response';
-import Table from '../../../../common-ui/table';
-import Avatar from '../../../../common-ui/avatar';
-import RadioButton from '../../../../common-ui/radio-button';
-import LabelTag from '../../../../common-ui/label-tag';
-import useEditIssue from '../../use-edit-issue';
-import chevronDownIcon from '../../../../assets/chevron-down.svg';
+import chevronDownIcon from '@/assets/chevron-down.svg';
+import Avatar from '@/common-ui/avatar';
+import Button from '@/common-ui/button';
+import LabelTag from '@/common-ui/label-tag';
+import Menus from '@/common-ui/menus';
+import RadioButton from '@/common-ui/radio-button';
+import SideBar from '@/common-ui/side-bar';
+import Table from '@/common-ui/table';
+import { IssueResponse } from '@/domain/model/issue/response';
+import useUsers from '@/presentation/auth/use-users';
+import useEditIssue from '@/presentation/issue/use-edit-issue';
+import useLabels from '@/presentation/label/use-labels';
+import useMilestones from '@/presentation/milestone/use-milestones';
 
 interface IssueDetailSideBarProps {
   issue: IssueResponse['data'] | undefined;
 }
 
-function IssueDetailSideBar({ issue }: IssueDetailSideBarProps) {
+const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
   const { users } = useUsers();
   const { milestones } = useMilestones();
   const { labels } = useLabels();
@@ -177,5 +177,6 @@ function IssueDetailSideBar({ issue }: IssueDetailSideBarProps) {
       </Menus>
     </>
   );
-}
+};
+
 export default IssueDetailSideBar;

@@ -1,12 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { GetLabelsUseCase } from '../../domain/use-case/labels/get-labels';
-import { container } from '../../di/inversify.config';
-import { TYPES } from '../../di/types';
+import useLabelClient from '@/hooks/use-label-client';
 
-export default function useLabels() {
-  const getLabelsUseCase = container.get<GetLabelsUseCase>(
-    TYPES.GetLabelsUseCase
-  );
+const useLabels = () => {
+  const client = useLabelClient();
 
   const {
     isLoading,
@@ -14,7 +10,7 @@ export default function useLabels() {
     error,
   } = useQuery({
     queryKey: ['labels'],
-    queryFn: () => getLabelsUseCase.invoke(),
+    queryFn: () => client.getLabels(),
   });
 
   return {
@@ -22,4 +18,6 @@ export default function useLabels() {
     labels,
     error,
   };
-}
+};
+
+export default useLabels;

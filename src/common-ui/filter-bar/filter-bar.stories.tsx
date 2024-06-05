@@ -1,6 +1,5 @@
+import FilterBar from '@/common-ui/filter-bar';
 import type { Meta, StoryObj } from '@storybook/react';
-
-import FilterBar from '.';
 
 const meta: Meta<typeof FilterBar> = {
   title: 'component/FilterBar',

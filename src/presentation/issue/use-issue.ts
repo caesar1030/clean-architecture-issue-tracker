@@ -1,11 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { container } from '../../di/inversify.config';
-import { TYPES } from '../../di/types';
-import { GetIssueUseCase } from '../../domain/use-case/issues/get-issue';
-import { GetIssuePayload } from '../../domain/model/issue/payload';
+import { GetIssuePayload } from '@/domain/model/issue/payload';
+import useIssueClient from '@/hooks/use-issue-client';
 
-export default function useIssue(getIssuePayload: GetIssuePayload) {
-  const getIssueUseCase = container.get<GetIssueUseCase>(TYPES.GetIssueUseCase);
+const useIssue = (getIssuePayload: GetIssuePayload) => {
+  const service = useIssueClient();
 
   const {
     isLoading,
@@ -13,7 +11,7 @@ export default function useIssue(getIssuePayload: GetIssuePayload) {
     error,
   } = useQuery({
     queryKey: ['issues', getIssuePayload.issueId],
-    queryFn: () => getIssueUseCase.invoke(getIssuePayload),
+    queryFn: () => service.getIssue(getIssuePayload),
   });
 
   return {
@@ -21,4 +19,6 @@ export default function useIssue(getIssuePayload: GetIssuePayload) {
     issue,
     error,
   };
-}
+};
+
+export default useIssue;

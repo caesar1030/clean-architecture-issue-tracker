@@ -1,8 +1,8 @@
-import { Comment } from '../../comment/comment';
-import { Label } from '../../label/label';
-import { Milestone } from '../../milestone/milestone';
-import { User } from '../../user/user';
-import { Issue } from '../issue';
+import { Comment } from '@/domain/model/comment/comment';
+import { Issue } from '@/domain/model/issue/issue';
+import { Label } from '@/domain/model/label/label';
+import { Milestone } from '@/domain/model/milestone/milestone';
+import { User } from '@/domain/model/user/user';
 
 export interface IssueResponse {
   data: Pick<Issue, 'id' | 'contents' | 'createdAt' | 'isOpen' | 'title'> & {

@@ -1,10 +1,10 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import useCreateComment from '../../../comment/use-create-comment';
-import { Issue } from '../../../../domain/model/issue/issue';
-import TextArea from '../../../../common-ui/text-area';
-import Button from '../../../../common-ui/button';
-import useUser from '../../../auth/use-user';
-import plusWhiteIcon from '../../../../assets/plus-white.svg';
+import plusWhiteIcon from '@/assets/plus-white.svg';
+import { Issue } from '@/domain/model/issue/issue';
+import useCreateComment from '@/presentation/comment/use-create-comment';
+import useUser from '@/presentation/auth/use-user';
+import TextArea from '@/common-ui/text-area';
+import Button from '@/common-ui/button';
 
 interface CommentType {
   contents: string;
@@ -14,7 +14,7 @@ interface CreateCommentFormProps {
   issueId: Issue['id'];
 }
 
-function CreateCommentForm({ issueId }: CreateCommentFormProps) {
+const CreateCommentForm = ({ issueId }: CreateCommentFormProps) => {
   const { control, handleSubmit, reset } = useForm<CommentType>({
     defaultValues: {
       contents: '',
@@ -52,5 +52,5 @@ function CreateCommentForm({ issueId }: CreateCommentFormProps) {
       </Button>
     </form>
   );
-}
+};
 export default CreateCommentForm;

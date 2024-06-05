@@ -1,13 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { container } from '../../di/inversify.config';
-import { TYPES } from '../../di/types';
-import { EditMilestoneUseCase } from '../../domain/use-case/milestones/edit-milestone';
-import { EditMilestonePayload } from '../../domain/model/milestone/payload';
+import useMilestoneClient from '@/hooks/use-milestone-client';
+import { EditMilestonePayload } from '@/domain/model/milestone/payload';
 
-export default function useEditMilestone() {
-  const editMilestoneUseCase = container.get<EditMilestoneUseCase>(
-    TYPES.EditMilestoneUseCase
-  );
+const useEditMilestone = () => {
+  const client = useMilestoneClient();
   const queryClient = useQueryClient();
 
   const {
@@ -16,11 +12,13 @@ export default function useEditMilestone() {
     error,
   } = useMutation({
     mutationFn: (editMilestonePayload: EditMilestonePayload) =>
-      editMilestoneUseCase.invoke(editMilestonePayload),
+      client.editMilestone(editMilestonePayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['milestones'] });
     },
   });
 
   return { editMilestone, isEditing, error };
-}
+};
+
+export default useEditMilestone;

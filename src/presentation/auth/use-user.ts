@@ -1,10 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { container } from '../../di/inversify.config';
-import { TYPES } from '../../di/types';
-import { GetUserUseCase } from '../../domain/use-case/auth/get-user';
+import useUserClient from '@/hooks/use-user-client';
 
-export default function useUser() {
-  const getUserUseCase = container.get<GetUserUseCase>(TYPES.GetUserUseCase);
+const useUser = () => {
+  const client = useUserClient();
 
   const {
     isLoading,
@@ -12,7 +10,7 @@ export default function useUser() {
     error,
   } = useQuery({
     queryKey: ['user'],
-    queryFn: () => getUserUseCase.invoke(),
+    queryFn: () => client.getUser(),
   });
 
   return {
@@ -21,4 +19,6 @@ export default function useUser() {
     error,
     isAuthenticated: user?.role === 'authenticated',
   };
-}
+};
+
+export default useUser;

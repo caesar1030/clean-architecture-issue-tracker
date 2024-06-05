@@ -1,6 +1,5 @@
+import InformationTag from '@/common-ui/information-tag';
 import type { Meta, StoryObj } from '@storybook/react';
-
-import InformationTag from '.';
 
 const meta: Meta<typeof InformationTag> = {
   title: 'component/InformationTag',

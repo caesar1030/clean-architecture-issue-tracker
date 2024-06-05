@@ -1,22 +1,21 @@
-import trashIcon from '../../../../assets/trash.svg';
-import calendarIcon from '../../../../assets/calendar.svg';
-import openedMilestoneBlueIcon from '../../../../assets/opened-milestone-blue.svg';
-import editIcon from '../../../../assets/edit.svg';
-import closedMilestoneIcon from '../../../../assets/closed-issue.svg';
-import Table from '../../../../common-ui/table';
-import { MilestonesResopnse } from '../../../../domain/model/milestone/response';
-import useDeleteMilestone from '../../use-delete-milestone';
-import useEditMilestone from '../../use-edit-milestone';
-import { Milestone } from '../../../../domain/model/milestone/milestone';
-import Button from '../../../../common-ui/button';
+import trashIcon from '@/assets/trash.svg';
+import calendarIcon from '@/assets/calendar.svg';
+import openedMilestoneBlueIcon from '@/assets/opened-milestone-blue.svg';
+import editIcon from '@/assets/edit.svg';
+import closedMilestoneIcon from '@/assets/closed-issue.svg';
 import { useState } from 'react';
-import EditMilestoneForm from './edit-milestone-form';
+import { MilestonesResopnse } from '@/domain/model/milestone/response';
+import useDeleteMilestone from '@/presentation/milestone/use-delete-milestone';
+import useEditMilestone from '@/presentation/milestone/use-edit-milestone';
+import EditMilestoneForm from '@/presentation/milestone/milestone-table/milestone-row/edit-milestone-form';
+import Table from '@/common-ui/table';
+import Button from '@/common-ui/button';
 
 interface MilestoneRowProps {
   milestone: MilestonesResopnse['data'][number];
 }
 
-function MilestoneRow({ milestone }: MilestoneRowProps) {
+const MilestoneRow = ({ milestone }: MilestoneRowProps) => {
   const [isEditSession, setIsEditSession] = useState(false);
 
   const { deleteMilestone, isDeleting } = useDeleteMilestone();
@@ -62,7 +61,7 @@ function MilestoneRow({ milestone }: MilestoneRowProps) {
             onClick={() =>
               editMilestone({
                 id,
-                isOpen: !isOpen as Milestone['isOpen'],
+                isOpen: !isOpen,
               })
             }
             disabled={isEditing}
@@ -94,5 +93,6 @@ function MilestoneRow({ milestone }: MilestoneRowProps) {
       </div>
     </Table.Row>
   );
-}
+};
+
 export default MilestoneRow;

@@ -1,16 +1,10 @@
-import { GetIssuesUseCase } from '../../domain/use-case/issues/get-issues';
 import { useQuery } from '@tanstack/react-query';
-import useSearchParamsHandlers from './use-search-params-handlers';
-import { container } from '../../di/inversify.config';
-import { TYPES } from '../../di/types';
+import useIssueClient from '@/hooks/use-issue-client';
+import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
 
-export default function useIssues() {
-  const getIssuesUseCase = container.get<GetIssuesUseCase>(
-    TYPES.GetIssuesUseCase
-  );
-
+const useIssues = () => {
+  const service = useIssueClient();
   const { getFilterOptions } = useSearchParamsHandlers();
-
   const filterOptions = getFilterOptions();
 
   const {
@@ -19,7 +13,7 @@ export default function useIssues() {
     error,
   } = useQuery({
     queryKey: ['issues', filterOptions],
-    queryFn: () => getIssuesUseCase.invoke(filterOptions),
+    queryFn: () => service.getIssues(filterOptions),
   });
 
   return {
@@ -29,4 +23,6 @@ export default function useIssues() {
     closeIssueCount,
     error,
   };
-}
+};
+
+export default useIssues;

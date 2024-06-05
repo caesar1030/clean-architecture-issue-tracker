@@ -9,7 +9,6 @@ import Table from '@/common-ui/table';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';
 import LabelTag from '@/common-ui/label-tag';
-import { Label } from '@/domain/model/label/label';
 
 export interface EditLabelFormProps {
   label: LabelsResponse['data'][number];
@@ -28,7 +27,7 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
   const { control, handleSubmit, setValue, watch } = useForm<FormType>({
     defaultValues: {
       title: label.title,
-      description: label.description,
+      description: label.description || undefined,
       backgroundColor: label.backgroundColor,
       textColor: label.textColor,
     },
@@ -67,10 +66,8 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
         <div className="flex gap-6">
           <div className="flex-grow-[9] w-48 flex justify-center items-center rounded-regular border border-neutral-border">
             <LabelTag
-              backgroundColor={
-                watch().backgroundColor as Label['backgroundColor']
-              }
-              textColor={watch().textColor as Label['textColor']}
+              backgroundColor={watch().backgroundColor}
+              textColor={watch().textColor}
             >
               {watch().title}
             </LabelTag>

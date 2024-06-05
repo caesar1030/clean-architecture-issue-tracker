@@ -1,5 +1,5 @@
+import { Issue } from '@/domain/model/issue/issue';
 import { ReactNode, createContext, useContext, useState } from 'react';
-import { Issue } from '../../../domain/model/issue/issue';
 
 interface SelectedIssuesContextType {
   selectedIssueIds: Issue['id'][];
@@ -14,12 +14,12 @@ interface SelectedIssusProviderProps {
 
 const SelectedIssuesContext = createContext<SelectedIssuesContextType>(null!);
 
-export function SelectedIssuesProvider({
+export const SelectedIssuesProvider = ({
   children,
-}: SelectedIssusProviderProps) {
+}: SelectedIssusProviderProps) => {
   const [selectedIssueIds, setSelectedIssueIds] = useState<Issue['id'][]>([]);
 
-  function toggleIssueSelection(id: Issue['id']) {
+  const toggleIssueSelection = (id: Issue['id']) => {
     if (selectedIssueIds.includes(id)) {
       const filteredIssues = selectedIssueIds.filter(
         (issueId) => issueId !== id
@@ -28,15 +28,15 @@ export function SelectedIssuesProvider({
     } else {
       setSelectedIssueIds([...selectedIssueIds, id]);
     }
-  }
+  };
 
-  function selectAllIssues(ids: Issue['id'][]) {
+  const selectAllIssues = (ids: Issue['id'][]) => {
     setSelectedIssueIds(ids);
-  }
+  };
 
-  function deselectAllIssues() {
+  const deselectAllIssues = () => {
     setSelectedIssueIds([]);
-  }
+  };
 
   return (
     <SelectedIssuesContext.Provider
@@ -50,9 +50,9 @@ export function SelectedIssuesProvider({
       {children}
     </SelectedIssuesContext.Provider>
   );
-}
+};
 
-export function useSelectedIssues() {
+export const useSelectedIssues = () => {
   const context = useContext(SelectedIssuesContext);
   if (context === undefined)
     throw new Error(
@@ -60,4 +60,4 @@ export function useSelectedIssues() {
     );
 
   return context;
-}
+};

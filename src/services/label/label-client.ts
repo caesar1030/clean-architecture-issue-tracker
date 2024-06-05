@@ -1,5 +1,4 @@
 import { LabelsResponse } from '@/domain/model/label/response';
-import LabelClientService from './label-client-service';
 import supabase from '@/data/data-source/api/supabase-db/supabase';
 import {
   CreateLabelPayload,
@@ -7,6 +6,7 @@ import {
   EditLabelPayload,
 } from '@/domain/model/label/payload';
 import { LabelAPIEntity } from '@/data/entity/label-api-entity';
+import LabelClientService from '@/services/label/label-client-service';
 
 export default class LabelClient implements LabelClientService {
   async getLabels(): Promise<LabelsResponse> {

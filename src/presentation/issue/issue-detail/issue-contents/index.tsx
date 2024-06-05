@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import Avatar from '../../../../common-ui/avatar';
-import InformationTag from '../../../../common-ui/information-tag';
-import Table from '../../../../common-ui/table';
-import { IssueResponse } from '../../../../domain/model/issue/response';
-import { getTimeDiff } from '../../../../utils/helpers';
-import Button from '../../../../common-ui/button';
-import EditIssueContentsForm from './edit-issue-contents-form';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import useEditIssue from '../../use-edit-issue';
-import useUser from '../../../auth/use-user';
-import editIcon from '../../../../assets/edit.svg';
+import editIcon from '@/assets/edit.svg';
+import { IssueResponse } from '@/domain/model/issue/response';
+import useEditIssue from '@/presentation/issue/use-edit-issue';
+import useUser from '@/presentation/auth/use-user';
+import EditIssueContentsForm from '@/presentation/issue/issue-detail/issue-contents/edit-issue-contents-form';
+import Button from '@/common-ui/button';
+import Table from '@/common-ui/table';
+import Avatar from '@/common-ui/avatar';
+import InformationTag from '@/common-ui/information-tag';
+import { getTimeDiff } from '@/utils/helpers';
 
 interface IssueContentsProps {
   issue: IssueResponse['data'] | undefined;
@@ -19,7 +19,7 @@ interface FormType {
   contents: string;
 }
 
-function IssueContents({ issue }: IssueContentsProps) {
+const IssueContents = ({ issue }: IssueContentsProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const { control, handleSubmit, reset } = useForm<FormType>();
   const { editIssue } = useEditIssue();
@@ -102,5 +102,5 @@ function IssueContents({ issue }: IssueContentsProps) {
       </Table>
     </>
   );
-}
+};
 export default IssueContents;

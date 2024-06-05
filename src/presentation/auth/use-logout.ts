@@ -1,16 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { container } from '../../di/inversify.config';
-import { TYPES } from '../../di/types';
 import { useNavigate } from 'react-router-dom';
-import { LogoutUseCase } from '../../domain/use-case/auth/logout';
+import useUserClient from '@/hooks/use-user-client';
 
-export default function useLogout() {
-  const logoutUseCase = container.get<LogoutUseCase>(TYPES.LogOutUseCase);
+const useLogout = () => {
+  const client = useUserClient();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { mutate: logout, isPending: isCreating } = useMutation({
-    mutationFn: () => logoutUseCase.invoke(),
+    mutationFn: () => client.logout(),
     onSuccess: () => {
       queryClient.removeQueries();
       navigate('/login', { replace: true });
@@ -18,4 +16,6 @@ export default function useLogout() {
   });
 
   return { logout, isCreating };
-}
+};
+
+export default useLogout;

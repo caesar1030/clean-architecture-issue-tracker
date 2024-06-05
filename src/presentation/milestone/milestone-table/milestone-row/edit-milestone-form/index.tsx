@@ -1,13 +1,12 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import Table from '../../../../../common-ui/table';
-import Input from '../../../../../common-ui/input';
-import Button from '../../../../../common-ui/button';
-import closeIcon from '../../../../../assets/close-blue.svg';
-import editIcon from '../../../../../assets/edit-white.svg';
-import { MilestonesResopnse } from '../../../../../domain/model/milestone/response';
-import { Milestone } from '../../../../../domain/model/milestone/milestone';
-import useEditMilestone from '../../../use-edit-milestone';
-import { EditMilestonePayload } from '../../../../../domain/model/milestone/payload';
+import closeIcon from '@/assets/close-blue.svg';
+import editIcon from '@/assets/edit-white.svg';
+import { MilestonesResopnse } from '@/domain/model/milestone/response';
+import useEditMilestone from '@/presentation/milestone/use-edit-milestone';
+import { EditMilestonePayload } from '@/domain/model/milestone/payload';
+import Table from '@/common-ui/table';
+import Input from '@/common-ui/input';
+import Button from '@/common-ui/button';
 
 interface FormType {
   title: string;
@@ -20,10 +19,10 @@ interface EditMilestoneFormProps {
   closeEditSession: () => void;
 }
 
-function EditMilestoneForm({
+const EditMilestoneForm = ({
   milestone: { id, description, dueDate, title },
   closeEditSession,
-}: EditMilestoneFormProps) {
+}: EditMilestoneFormProps) => {
   const { editMilestone, isEditing } = useEditMilestone();
   const { control, handleSubmit, setValue } = useForm<FormType>({
     defaultValues: {
@@ -31,19 +30,19 @@ function EditMilestoneForm({
       date: dueDate
         ? `${dueDate.getFullYear()}.${dueDate.getMonth()}.${dueDate.getDate()}`
         : '',
-      description: description as Milestone['description'],
+      description: description || undefined,
     },
   });
 
   const onSubmit: SubmitHandler<FormType> = ({ date, description, title }) => {
     const toUpdate: EditMilestonePayload = {
       id,
-      title: title as Milestone['title'],
-      description: description as Milestone['description'],
+      title,
+      description,
     };
 
     const [y, m, d] = date.split('.').map(Number);
-    if (date) toUpdate.date = new Date(y, m - 1, d) as Milestone['dueDate'];
+    if (date) toUpdate.date = new Date(y, m - 1, d);
 
     editMilestone(toUpdate, {
       onSuccess: () => closeEditSession(),
@@ -146,5 +145,6 @@ function EditMilestoneForm({
       </form>
     </Table.Row>
   );
-}
+};
+
 export default EditMilestoneForm;

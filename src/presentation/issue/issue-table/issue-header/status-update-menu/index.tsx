@@ -1,12 +1,12 @@
-import Button from '../../../../../common-ui/button';
-import Menus from '../../../../../common-ui/menus';
-import Table from '../../../../../common-ui/table';
-import { useSelectedIssues } from '../../selected-issues-context';
-import useCloseIssues from '../../../use-close-issues';
-import useOpenIssues from '../../../use-open-issues';
-import chevronDown from '../../../../../assets/chevron-down.svg';
+import chevronDown from '@/assets/chevron-down.svg';
+import Button from '@/common-ui/button';
+import Menus from '@/common-ui/menus';
+import Table from '@/common-ui/table';
+import { useSelectedIssues } from '@/presentation/issue/issue-table/selected-issues-context';
+import useCloseIssues from '@/presentation/issue/use-close-issues';
+import useOpenIssues from '@/presentation/issue/use-open-issues';
 
-function StatusUpdateMenu() {
+const StatusUpdateMenu = () => {
   const { openIssues } = useOpenIssues();
   const { closeIssues } = useCloseIssues();
   const { selectedIssueIds, deselectAllIssues } = useSelectedIssues();
@@ -47,5 +47,6 @@ function StatusUpdateMenu() {
       </Menus.Window>
     </>
   );
-}
+};
+
 export default StatusUpdateMenu;

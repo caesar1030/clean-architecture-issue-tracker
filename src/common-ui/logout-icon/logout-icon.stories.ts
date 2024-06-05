@@ -1,6 +1,5 @@
+import LogoutIcon from '@/common-ui/logout-icon';
 import type { Meta, StoryObj } from '@storybook/react';
-
-import LogoutIcon from '.';
 
 const meta: Meta<typeof LogoutIcon> = {
   title: 'component/LogoutIcon',

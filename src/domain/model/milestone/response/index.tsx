@@ -1,4 +1,4 @@
-import { Milestone } from '../milestone';
+import { Milestone } from '@/domain/model/milestone/milestone';
 
 export interface MilestonesResopnse {
   data: (Pick<Milestone, 'id' | 'isOpen' | 'title'> & {

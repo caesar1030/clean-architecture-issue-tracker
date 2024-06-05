@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { KeyboardEvent, useRef } from 'react';
 import chevronDownIcon from '@/assets/chevron-down.svg';
 import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
 import FilterBar from '@/common-ui/filter-bar';
@@ -6,9 +6,9 @@ import Menus from '@/common-ui/menus';
 import Button from '@/common-ui/button';
 import Table from '@/common-ui/table';
 import RadioButton from '@/common-ui/radio-button';
-import usePlaceholder from './use-placeholder';
+import usePlaceholder from '@/presentation/issue/issue-filter-bar/use-placeholder';
 
-function IssueFilterBar() {
+const IssueFilterBar = () => {
   const {
     setOpenStatusSearchParam,
     convertQueryToParams,
@@ -18,12 +18,12 @@ function IssueFilterBar() {
   const placeholder = usePlaceholder();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  function handleKeyDown(e: React.KeyboardEvent) {
+  const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key !== 'Enter') return;
 
     convertQueryToParams((e.target as HTMLInputElement).value);
     inputRef.current?.blur();
-  }
+  };
 
   return (
     <FilterBar>
@@ -74,5 +74,6 @@ function IssueFilterBar() {
       />
     </FilterBar>
   );
-}
+};
+
 export default IssueFilterBar;

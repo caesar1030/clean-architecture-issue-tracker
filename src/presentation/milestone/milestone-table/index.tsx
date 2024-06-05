@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import Button from '../../../common-ui/button';
-import Table from '../../../common-ui/table';
-import useMilestones from '../use-milestones';
-import openedMilestoneIcon from '../../../assets/opened-milestone.svg';
-import closedMilestoneIcon from '../../../assets/closed-issue.svg';
-import MilestoneRow from './milestone-row';
+import openedMilestoneIcon from '@/assets/opened-milestone.svg';
+import closedMilestoneIcon from '@/assets/closed-issue.svg';
+import useMilestones from '@/presentation/milestone/use-milestones';
+import Table from '@/common-ui/table';
+import Button from '@/common-ui/button';
+import MilestoneRow from '@/presentation/milestone/milestone-table/milestone-row';
 
 const MilestoneTable = () => {
   const { milestones } = useMilestones();

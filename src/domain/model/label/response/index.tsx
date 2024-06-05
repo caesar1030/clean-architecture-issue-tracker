@@ -1,4 +1,4 @@
-import { Label } from '../label';
+import { Label } from '@/domain/model/label/label';
 
 export interface LabelsResponse {
   data: Pick<

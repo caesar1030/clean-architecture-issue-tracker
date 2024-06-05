@@ -1,12 +1,12 @@
-import Button from '../../../../../common-ui/button';
-import Menus from '../../../../../common-ui/menus';
-import Table from '../../../../../common-ui/table';
-import useMilestones from '../../../../milestone/use-milestones';
-import RadioButton from '../../../../../common-ui/radio-button';
-import useSearchParamsHandlers from '../../../use-search-params-handlers';
-import chevronDownIcon from '../../../../../assets/chevron-down.svg';
+import chevronDownIcon from '@/assets/chevron-down.svg';
+import Button from '@/common-ui/button';
+import Menus from '@/common-ui/menus';
+import RadioButton from '@/common-ui/radio-button';
+import Table from '@/common-ui/table';
+import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
+import useMilestones from '@/presentation/milestone/use-milestones';
 
-function MilestoneFilterMenu() {
+const MilestoneFilterMenu = () => {
   const { milestones } = useMilestones();
   const {
     toggleMilestoneSearchParam,
@@ -51,5 +51,6 @@ function MilestoneFilterMenu() {
       </Menus.Window>
     </>
   );
-}
+};
+
 export default MilestoneFilterMenu;

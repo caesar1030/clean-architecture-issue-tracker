@@ -1,21 +1,20 @@
 import { useParams } from 'react-router-dom';
-import useIssue from '../use-issue';
-import { Issue } from '../../../domain/model/issue/issue';
-import CreateCommentForm from './create-comment-form';
-import InformationTag from '../../../common-ui/information-tag';
-import { getTimeDiff } from '../../../utils/helpers';
-import IssueDetailHeader from './issue-detail-header';
-import Divider from '../../../common-ui/divider';
-import IssueDetailSideBar from './issue-detail-side-bar';
-import Button from '../../../common-ui/button';
-import useDeleteIssue from '../use-delete-issue';
-import IssueContents from './issue-contents';
-import CommentContents from '../../comment/comment-contents';
-import trashIcon from '../../../assets/trash.svg';
+import trashIcon from '@/assets/trash.svg';
+import useIssue from '@/presentation/issue/use-issue';
+import useDeleteIssue from '@/presentation/issue/use-delete-issue';
+import IssueDetailHeader from '@/presentation/issue/issue-detail/issue-detail-header';
+import InformationTag from '@/common-ui/information-tag';
+import { getTimeDiff } from '@/utils/helpers';
+import Divider from '@/common-ui/divider';
+import IssueContents from '@/presentation/issue/issue-detail/issue-contents';
+import CommentContents from '@/presentation/comment/comment-contents';
+import CreateCommentForm from '@/presentation/issue/issue-detail/create-comment-form';
+import IssueDetailSideBar from '@/presentation/issue/issue-detail/issue-detail-side-bar';
+import Button from '@/common-ui/button';
 
-function IssueDetail() {
+const IssueDetail = () => {
   const { id } = useParams();
-  const issueId = Number(id) as Issue['id'];
+  const issueId = Number(id);
   const { issue } = useIssue({ issueId });
   const { deleteIssue } = useDeleteIssue();
 
@@ -70,5 +69,6 @@ function IssueDetail() {
       </div>
     </>
   );
-}
+};
+
 export default IssueDetail;

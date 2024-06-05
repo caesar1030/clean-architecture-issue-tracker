@@ -4,7 +4,7 @@ import {
   ONE_MINUTE,
   ONE_MONTH,
   ONE_YEAR,
-} from './constants';
+} from '@/utils/constants';
 
 export const getTimeDiff = (date: Date): string => {
   const now = new Date();

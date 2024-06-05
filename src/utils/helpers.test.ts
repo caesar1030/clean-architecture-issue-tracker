@@ -5,8 +5,8 @@ import {
   ONE_MONTH,
   ONE_SECOND,
   ONE_YEAR,
-} from './constants';
-import { generateRandomColor, getTimeDiff } from './helpers';
+} from '@/utils/constants';
+import { generateRandomColor, getTimeDiff } from '@/utils/helpers';
 
 describe('getTimeDiff()', () => {
   beforeEach(() => {

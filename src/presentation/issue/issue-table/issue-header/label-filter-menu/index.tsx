@@ -1,13 +1,14 @@
-import Button from '../../../../../common-ui/button';
-import LabelIcon from '../../../../../common-ui/label-icon';
-import Menus from '../../../../../common-ui/menus';
-import RadioButton from '../../../../../common-ui/radio-button';
-import Table from '../../../../../common-ui/table';
-import useLabels from '../../../../label/use-labels';
-import useSearchParamsHandlers from '../../../use-search-params-handlers';
-import chevronDownIcon from '../../../../../assets/chevron-down.svg';
 
-function LabelFilterMenu() {
+import chevronDownIcon from '@/assets/chevron-down.svg';
+import Button from '@/common-ui/button';
+import LabelIcon from '@/common-ui/label-icon';
+import Menus from '@/common-ui/menus';
+import RadioButton from '@/common-ui/radio-button';
+import Table from '@/common-ui/table';
+import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
+import useLabels from '@/presentation/label/use-labels';
+
+const LabelFilterMenu = () => {
   const { labels } = useLabels();
 
   const {
@@ -54,5 +55,6 @@ function LabelFilterMenu() {
       </Menus.Window>
     </>
   );
-}
+};
+
 export default LabelFilterMenu;

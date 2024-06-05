@@ -1,7 +1,7 @@
-import Table from '../../../common-ui/table';
-import { LabelsResponse } from '../../../domain/model/label/response';
-import useLabels from '../use-labels';
-import LabelRow from './label-row';
+import Table from '@/common-ui/table';
+import { LabelsResponse } from '@/domain/model/label/response';
+import LabelRow from '@/presentation/label/label-table/label-row';
+import useLabels from '@/presentation/label/use-labels';
 
 const LabelTable = () => {
   const { labels } = useLabels();
@@ -21,4 +21,5 @@ const LabelTable = () => {
     </Table>
   );
 };
+
 export default LabelTable;

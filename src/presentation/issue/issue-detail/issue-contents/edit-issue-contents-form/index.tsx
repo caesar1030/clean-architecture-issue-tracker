@@ -1,11 +1,11 @@
 import { ComponentPropsWithRef, ForwardedRef, forwardRef } from 'react';
-import Avatar from '../../../../../common-ui/avatar';
-import Button from '../../../../../common-ui/button';
-import InformationTag from '../../../../../common-ui/information-tag';
-import Table from '../../../../../common-ui/table';
-import { IssueResponse } from '../../../../../domain/model/issue/response';
-import { getTimeDiff } from '../../../../../utils/helpers';
-import gripIcon from '../../../../../assets/grip.svg';
+import gripIcon from '@/assets/grip.svg';
+import { IssueResponse } from '@/domain/model/issue/response';
+import Table from '@/common-ui/table';
+import { getTimeDiff } from '@/utils/helpers';
+import InformationTag from '@/common-ui/information-tag';
+import Button from '@/common-ui/button';
+import Avatar from '@/common-ui/avatar';
 
 export interface EditIssueContentsFormProps
   extends ComponentPropsWithRef<'textarea'> {

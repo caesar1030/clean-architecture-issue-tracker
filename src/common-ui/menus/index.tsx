@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { useOutsideClick } from '@/hooks/use-outside-click';
+import useOutsideClick from '@/hooks/use-outside-click';
 
 const WINDOW_WIDTH = 240;
 

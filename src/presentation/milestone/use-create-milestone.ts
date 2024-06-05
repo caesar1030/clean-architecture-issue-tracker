@@ -1,22 +1,20 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { container } from '../../di/inversify.config';
-import { TYPES } from '../../di/types';
-import { CreateMilestoneUseCase } from '../../domain/use-case/milestones/create-milestone';
-import { CreateMilestonePayload } from '../../domain/model/milestone/payload';
+import useMilestoneClient from '@/hooks/use-milestone-client';
+import { CreateMilestonePayload } from '@/domain/model/milestone/payload';
 
-export default function useCreateMilestone() {
-  const createMilestoneUseCase = container.get<CreateMilestoneUseCase>(
-    TYPES.CreateMilestoneUseCase
-  );
+const useCreateMilestone = () => {
+  const client = useMilestoneClient();
   const queryClient = useQueryClient();
 
   const { mutate: createMilestone, isPending: isCreating } = useMutation({
-    mutationFn: (createLabelPayload: CreateMilestonePayload) =>
-      createMilestoneUseCase.invoke(createLabelPayload),
+    mutationFn: (createMilestonePayload: CreateMilestonePayload) =>
+      client.createMilestone(createMilestonePayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['milestones'] });
     },
   });
 
   return { createMilestone, isCreating };
-}
+};
+
+export default useCreateMilestone;

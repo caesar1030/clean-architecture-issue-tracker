@@ -1,20 +1,16 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { container } from '../../di/inversify.config';
-import { TYPES } from '../../di/types';
 import { useNavigate } from 'react-router-dom';
-import { DeleteIssueUseCase } from '../../domain/use-case/issues/delete-issue';
-import { DeleteIssuePayload } from '../../domain/model/issue/payload';
+import { DeleteIssuePayload } from '@/domain/model/issue/payload';
+import useIssueClient from '@/hooks/use-issue-client';
 
-export default function useDeleteIssue() {
-  const deleteIssueUseCase = container.get<DeleteIssueUseCase>(
-    TYPES.DeleteIssueUseCase
-  );
+const useDeleteIssue = () => {
+  const service = useIssueClient();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { mutate: deleteIssue, isPending: isDeleting } = useMutation({
     mutationFn: (deleteIssuePayload: DeleteIssuePayload) =>
-      deleteIssueUseCase.invoke(deleteIssuePayload),
+      service.deleteIssue(deleteIssuePayload),
     onSuccess: () => {
       navigate('/issues?isOpen=open');
       queryClient.invalidateQueries({ queryKey: ['issues'] });
@@ -22,4 +18,6 @@ export default function useDeleteIssue() {
   });
 
   return { deleteIssue, isDeleting };
-}
+};
+
+export default useDeleteIssue;

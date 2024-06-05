@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
-import Checkbox from '../../../../common-ui/checkbox';
-import LabelTag from '../../../../common-ui/label-tag';
-import Table from '../../../../common-ui/table';
-import { getTimeDiff } from '../../../../utils/helpers';
-import { useSelectedIssues } from '../selected-issues-context';
-import Avatar from '../../../../common-ui/avatar';
-import { IssuesResponse } from '../../../../domain/model/issue/response';
-import issueIcon from '../../../../assets/issue.svg';
-import milestoneIcon from '../../../../assets/milestone.svg';
+import issueIcon from '@/assets/issue.svg';
+import milestoneIcon from '@/assets/milestone.svg';
+import { IssuesResponse } from '@/domain/model/issue/response';
+import { useSelectedIssues } from '@/presentation/issue/issue-table/selected-issues-context';
+import Table from '@/common-ui/table';
+import Checkbox from '@/common-ui/checkbox';
+import LabelTag from '@/common-ui/label-tag';
+import { getTimeDiff } from '@/utils/helpers';
+import Avatar from '@/common-ui/avatar';
 
 interface IssueRowProps {
   issue: IssuesResponse['data'][number];
 }
 
-function IssueRow({ issue }: IssueRowProps) {
+const IssueRow = ({ issue }: IssueRowProps) => {
   const { id, title, createdAt, label, milestone, author } = issue;
   const { selectedIssueIds, toggleIssueSelection } = useSelectedIssues();
 
@@ -59,5 +59,5 @@ function IssueRow({ issue }: IssueRowProps) {
       </div>
     </Table.Row>
   );
-}
+};
 export default IssueRow;

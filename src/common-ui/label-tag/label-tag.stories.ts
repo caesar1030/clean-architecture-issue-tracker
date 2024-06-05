@@ -1,6 +1,5 @@
+import LabelTag from '@/common-ui/label-tag';
 import type { Meta, StoryObj } from '@storybook/react';
-
-import LabelTag from '.';
 
 const meta: Meta<typeof LabelTag> = {
   title: 'component/LabelTag',

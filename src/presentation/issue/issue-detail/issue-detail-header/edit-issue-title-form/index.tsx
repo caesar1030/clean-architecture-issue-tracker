@@ -1,10 +1,10 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import Input from '../../../../../common-ui/input';
-import Button from '../../../../../common-ui/button';
-import { IssueResponse } from '../../../../../domain/model/issue/response';
-import useEditIssue from '../../../use-edit-issue';
-import editWhiteIcon from '../../../../../assets/edit-white.svg';
-import xBlueIcon from '../../../../../assets/x-blue.svg';
+import editWhiteIcon from '@/assets/edit-white.svg';
+import xBlueIcon from '@/assets/x-blue.svg';
+import { IssueResponse } from '@/domain/model/issue/response';
+import useEditIssue from '@/presentation/issue/use-edit-issue';
+import Input from '@/common-ui/input';
+import Button from '@/common-ui/button';
 
 interface FormType {
   title: string;
@@ -15,10 +15,10 @@ interface EditIssueTitleFormProps {
   toggleIsEditingTitle: () => void;
 }
 
-function EditIssueTitleForm({
+const EditIssueTitleForm = ({
   issue,
   toggleIsEditingTitle,
-}: EditIssueTitleFormProps) {
+}: EditIssueTitleFormProps) => {
   const { handleSubmit, control } = useForm<FormType>({
     defaultValues: {
       title: issue?.title,
@@ -66,5 +66,5 @@ function EditIssueTitleForm({
       </div>
     </form>
   );
-}
+};
 export default EditIssueTitleForm;

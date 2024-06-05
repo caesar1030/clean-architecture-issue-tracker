@@ -1,6 +1,5 @@
+import Logo from '@/common-ui/logo';
 import type { Meta, StoryObj } from '@storybook/react';
-
-import Logo from '.';
 
 const meta: Meta<typeof Logo> = {
   title: 'component/Logo',

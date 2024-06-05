@@ -1,7 +1,7 @@
-import Button from '../../../common-ui/button';
-import Input from '../../../common-ui/input';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import useSignup from '../use-signup';
+import Button from '@/common-ui/button';
+import Input from '@/common-ui/input';
+import useSignup from '@/presentation/auth/use-signup';
 
 type FormType = {
   email: string;
@@ -10,7 +10,7 @@ type FormType = {
   passwordCheck: string;
 };
 
-function SignupForm() {
+const SignupForm = () => {
   const { handleSubmit, control } = useForm<FormType>();
   const { signup } = useSignup();
 
@@ -82,5 +82,5 @@ function SignupForm() {
       </Button>
     </form>
   );
-}
+};
 export default SignupForm;

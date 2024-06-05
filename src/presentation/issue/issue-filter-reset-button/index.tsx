@@ -1,8 +1,8 @@
-import Button from '../../../common-ui/button';
-import useSearchParamsHandlers from '../use-search-params-handlers';
-import closeIcon from '../../../assets/close-icon.svg';
+import closeIcon from '@/assets/close-icon.svg';
+import Button from '@/common-ui/button';
+import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
 
-function IssueFilterResetButton() {
+const IssueFilterResetButton = () => {
   const {
     isOpenStatus,
     hasLabelSearchParam,
@@ -24,9 +24,9 @@ function IssueFilterResetButton() {
     !hasLikeSearchParam &&
     !hasNoSearchParam;
 
-  function handleClick() {
+  const handleClick = () => {
     initSearchParams();
-  }
+  };
 
   if (initialCondition) return null;
 
@@ -41,5 +41,6 @@ function IssueFilterResetButton() {
       <span>현재의 검색 필터 및 정렬 지우기</span>
     </Button>
   );
-}
+};
+
 export default IssueFilterResetButton;

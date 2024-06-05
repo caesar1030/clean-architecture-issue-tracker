@@ -1,25 +1,25 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import Input from '../../../common-ui/input';
-import Menus from '../../../common-ui/menus';
-import Button from '../../../common-ui/button';
-import SideBar from '../../../common-ui/side-bar';
-import useMilestones from '../../milestone/use-milestones';
-import Table from '../../../common-ui/table';
-import RadioButton from '../../../common-ui/radio-button';
-import useLabels from '../../label/use-labels';
-import { Label as LabelModel } from '../../../domain/model/label/label';
-import LabelTag from '../../../common-ui/label-tag';
-import TextArea from '../../../common-ui/text-area';
-import Divider from '../../../common-ui/divider';
-import useCreateIssue from '../use-create-issue';
-import useUser from '../../auth/use-user';
-import useUsers from '../../auth/use-users';
-import { User } from '../../../domain/model/user/user';
-import Avatar from '../../../common-ui/avatar';
+import { Label as LabelModel } from '@/domain/model/label/label';
 import { Link } from 'react-router-dom';
-import chevronDownIcon from '../../../assets/chevron-down.svg';
-import closeIcon from '../../../assets/close-icon.svg';
-import { MilestonesResopnse } from '../../../domain/model/milestone/response';
+import chevronDownIcon from '@/assets/chevron-down.svg';
+import closeIcon from '@/assets/close-icon.svg';
+import { MilestonesResopnse } from '@/domain/model/milestone/response';
+import { User } from '@/domain/model/user/user';
+import useMilestones from '@/presentation/milestone/use-milestones';
+import useLabels from '@/presentation/label/use-labels';
+import useUsers from '@/presentation/auth/use-users';
+import useCreateIssue from '@/presentation/issue/use-create-issue';
+import useUser from '@/presentation/auth/use-user';
+import Input from '@/common-ui/input';
+import TextArea from '@/common-ui/text-area';
+import Menus from '@/common-ui/menus';
+import SideBar from '@/common-ui/side-bar';
+import Button from '@/common-ui/button';
+import Avatar from '@/common-ui/avatar';
+import LabelTag from '@/common-ui/label-tag';
+import Table from '@/common-ui/table';
+import RadioButton from '@/common-ui/radio-button';
+import Divider from '@/common-ui/divider';
 
 interface FormType {
   title: string;
@@ -29,7 +29,7 @@ interface FormType {
   assignee: User | null;
 }
 
-function CreateIssueForm() {
+const CreateIssueForm = () => {
   const { milestones } = useMilestones();
   const { labels } = useLabels();
   const { users } = useUsers();
@@ -274,5 +274,6 @@ function CreateIssueForm() {
       </form>
     </>
   );
-}
+};
+
 export default CreateIssueForm;

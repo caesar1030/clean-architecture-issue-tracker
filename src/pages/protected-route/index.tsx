@@ -1,5 +1,5 @@
+import useUser from '@/presentation/auth/use-user';
 import { ReactNode, useEffect } from 'react';
-import useUser from '../../presentation/auth/use-user';
 import { useNavigate } from 'react-router-dom';
 
 interface ProtectedRouteProps {

@@ -1,8 +1,8 @@
 import { LoginPayload, SignupPayload } from '@/domain/model/user/payload';
-import UserClientService from './user-client-service';
 import supabase from '@/data/data-source/api/supabase-db/supabase';
 import { UserEntity, UsersEntity } from '@/data/entity/user-api-entity';
 import { UserResponse, UsersResponse } from '@/domain/model/user/response';
+import UserClientService from '@/services/user/user-client-service';
 
 export default class UserClient implements UserClientService {
   async signup({

@@ -1,6 +1,5 @@
+import Menus from '@/common-ui/menus';
 import type { Meta, StoryObj } from '@storybook/react';
-
-import Menus from '.';
 
 const meta: Meta<typeof Menus> = {
   title: 'component/Menus',

@@ -1,8 +1,8 @@
+import { IssuesFilterPayload } from '@/domain/model/issue/payload';
+import { Label } from '@/domain/model/label/label';
+import { Milestone } from '@/domain/model/milestone/milestone';
+import { User } from '@/domain/model/user/user';
 import { useSearchParams } from 'react-router-dom';
-import { Label } from '../../domain/model/label/label';
-import { Milestone } from '../../domain/model/milestone/milestone';
-import { User } from '../../domain/model/user/user';
-import { IssuesFilterPayload } from '../../domain/model/issue/payload';
 
 export const OPEN_STATUS_KEY = 'isOpen';
 export const LABEL_KEY = 'label';
@@ -18,7 +18,7 @@ export const UNLABELD = 'label';
 export const NOT_WITH_MILESTONE = 'milestone';
 export const ASSIGNED_TO_NOBODY = 'assignee';
 
-export default function useSearchParamsHandlers() {
+const useSearchParamsHandlers = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const getOpenStatusSearchParam = () => searchParams.get(OPEN_STATUS_KEY);
@@ -389,4 +389,6 @@ export default function useSearchParamsHandlers() {
     convertParamsToQuery,
     getFilterOptions,
   };
-}
+};
+
+export default useSearchParamsHandlers;

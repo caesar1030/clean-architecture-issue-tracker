@@ -1,4 +1,4 @@
-import { User } from '../user';
+import { User } from '@/domain/model/user/user';
 
 export interface UserResponse {
   data: {
