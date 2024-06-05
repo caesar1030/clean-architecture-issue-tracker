@@ -120,7 +120,7 @@ const CreateMilestoneForm = ({ stopEditSession }: CreateMilestoneFormProps) => {
               type="submit"
               disabled={isCreating}
             >
-              <img src={plusIcon} alt="마일스톤 생성" />
+              <img width={16} height={16} src={plusIcon} alt="마일스톤 생성" />
               <span>완료</span>
             </Button>
           </div>

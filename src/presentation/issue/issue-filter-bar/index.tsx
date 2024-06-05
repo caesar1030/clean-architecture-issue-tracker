@@ -37,7 +37,12 @@ const IssueFilterBar = () => {
               className="px-6 text-neutral-text-weak"
             >
               <span>필터</span>
-              <img src={chevronDownIcon} alt="마일스톤필터" />
+              <img
+                width={16}
+                height={16}
+                src={chevronDownIcon}
+                alt="마일스톤필터"
+              />
             </Button>
           </Menus.OpenButton>
 

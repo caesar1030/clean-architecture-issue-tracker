@@ -38,7 +38,7 @@ const LabelRow = ({ label }: LabelRowProps) => {
           flexible
           onClick={() => setIsEditing(true)}
         >
-          <img src={editIcon} alt="라벨 편집" />
+          <img width={16} height={16} src={editIcon} alt="라벨 편집" />
           <span className="text-neutral-text font-bold text-S">편집</span>
         </Button>
         <Button
@@ -48,7 +48,7 @@ const LabelRow = ({ label }: LabelRowProps) => {
           onClick={() => deleteLabel({ id: label.id })}
           disabled={isDeleting}
         >
-          <img src={trashIcon} alt="라벨 삭제" />
+          <img width={16} height={16} src={trashIcon} alt="라벨 삭제" />
           <span className="text-danger-text font-bold text-S">삭제</span>
         </Button>
       </div>

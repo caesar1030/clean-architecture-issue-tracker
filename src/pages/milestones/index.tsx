@@ -19,7 +19,7 @@ const Milestones = () => {
             variant="contained"
             onClick={() => setIsAddSession(true)}
           >
-            <img src={plusIcon} alt="마일스톤 추가" />
+            <img width={16} height={16} src={plusIcon} alt="마일스톤 추가" />
             마일스톤 추가
           </Button>
         ) : (
@@ -28,7 +28,7 @@ const Milestones = () => {
             variant="outline"
             onClick={() => setIsAddSession(false)}
           >
-            <img src={xIcon} alt="닫기" />
+            <img width={16} height={16} src={xIcon} alt="닫기" />
             닫기
           </Button>
         )}

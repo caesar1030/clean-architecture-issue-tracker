@@ -1,5 +1,4 @@
 import { Link, Outlet } from 'react-router-dom';
-import { Suspense } from 'react';
 import useLogout from '@/presentation/auth/use-logout';
 import useUser from '@/presentation/auth/use-user';
 import Logo from '@/common-ui/logo';
@@ -27,9 +26,7 @@ const AppLayout = () => {
       </header>
 
       <main className="flex flex-col gap-6 py-8">
-        <Suspense fallback={<span>loading..</span>}>
-          <Outlet />
-        </Suspense>
+        <Outlet />
       </main>
     </div>
   );

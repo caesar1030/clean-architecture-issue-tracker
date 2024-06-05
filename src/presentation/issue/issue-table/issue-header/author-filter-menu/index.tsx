@@ -17,7 +17,7 @@ const AuthorFilterMenu = () => {
       <Menus.OpenButton id="authorFilter" windowPosition="right">
         <Button variant="ghosts" size="M" flexible>
           <span>작성자</span>
-          <img src={chevronDownIcon} alt="이슈" />
+          <img width={16} height={16} src={chevronDownIcon} alt="이슈" />
         </Button>
       </Menus.OpenButton>
 

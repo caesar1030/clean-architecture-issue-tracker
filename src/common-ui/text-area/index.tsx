@@ -67,7 +67,13 @@ const TextArea = forwardRef(
             (rest.value as string)?.length
           }자`}</span>
 
-          <img src={gripIcon} alt="그립" className="w-5 h-5" />
+          <img
+            width={20}
+            height={20}
+            src={gripIcon}
+            alt="그립"
+            className="w-5 h-5"
+          />
         </div>
       </div>
     );

@@ -26,7 +26,12 @@ const MilestoneTable = () => {
             flexible
             onClick={() => setIsOpen(true)}
           >
-            <img src={openedMilestoneIcon} alt="열린 마일스톤" />
+            <img
+              width={16}
+              height={16}
+              src={openedMilestoneIcon}
+              alt="열린 마일스톤"
+            />
             열린 마일스톤 ({openMilestones?.length})
           </Button>
           <Button
@@ -35,7 +40,12 @@ const MilestoneTable = () => {
             flexible
             onClick={() => setIsOpen(false)}
           >
-            <img src={closedMilestoneIcon} alt="닫힌 마일스톤" />
+            <img
+              width={16}
+              height={16}
+              src={closedMilestoneIcon}
+              alt="닫힌 마일스톤"
+            />
             닫힌 마일스톤 ({closedMilestones?.length})
           </Button>
         </div>

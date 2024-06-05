@@ -36,7 +36,7 @@ const IssueDetailHeader = ({ issue }: IssueDetailHeaderProps) => {
       </div>
       <div className="flex gap-2">
         <Button size="S" variant="outline" onClick={toggleIsEditingTitle}>
-          <img src={editBlueIcon} alt="제목편집" />
+          <img width={16} height={16} src={editBlueIcon} alt="제목편집" />
           제목 편집
         </Button>
         <Button
@@ -48,7 +48,7 @@ const IssueDetailHeader = ({ issue }: IssueDetailHeaderProps) => {
               : openIssues({ issueIds: [issue!.id] })
           }
         >
-          <img src={closedBlueIcon} alt="이슈" />
+          <img width={16} height={16} src={closedBlueIcon} alt="이슈" />
           {issue?.isOpen ? '이슈 닫기' : '이슈 열기'}
         </Button>
       </div>

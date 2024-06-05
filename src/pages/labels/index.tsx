@@ -19,7 +19,7 @@ const Labels = () => {
             variant="contained"
             onClick={() => setIsAddSession(true)}
           >
-            <img src={plusIcon} alt="레이블 추가" />
+            <img width={16} height={16} src={plusIcon} alt="레이블 추가" />
             레이블 추가
           </Button>
         ) : (
@@ -28,7 +28,7 @@ const Labels = () => {
             variant="outline"
             onClick={() => setIsAddSession(false)}
           >
-            <img src={xIcon} alt="레이블 추가 취소" />
+            <img width={16} height={16} src={xIcon} alt="레이블 추가 취소" />
             닫기
           </Button>
         )}

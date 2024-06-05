@@ -62,7 +62,7 @@ const IssueDetail = () => {
             className="self-end"
             onClick={() => deleteIssue({ id: issue!.id })}
           >
-            <img src={trashIcon} alt="이슈 삭제" />
+            <img width={16} height={16} src={trashIcon} alt="이슈 삭제" />
             <span className="text-danger-text">이슈 삭제</span>
           </Button>
         </div>

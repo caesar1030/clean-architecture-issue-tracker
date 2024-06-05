@@ -89,7 +89,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           : 'bg-neutral-background-bold'
       }`}
     >
-      <img src={searchIcon} alt="검색" className="w-4 h-4" />
+      <img
+        width={16}
+        height={16}
+        src={searchIcon}
+        alt="검색"
+        className="w-4 h-4"
+      />
       <input
         type="text"
         onFocus={handleFocus}

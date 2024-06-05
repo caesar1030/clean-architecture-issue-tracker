@@ -128,7 +128,7 @@ const EditMilestoneForm = ({
             size="S"
             variant="outline"
           >
-            <img src={closeIcon} alt="라벨 편집 취소" />
+            <img width={16} height={16} src={closeIcon} alt="라벨 편집 취소" />
             <span>취소</span>
           </Button>
 
@@ -138,7 +138,7 @@ const EditMilestoneForm = ({
             type="submit"
             disabled={isEditing}
           >
-            <img src={editIcon} alt="마일스톤 생성" />
+            <img width={16} height={16} src={editIcon} alt="마일스톤 생성" />
             <span>완료</span>
           </Button>
         </div>

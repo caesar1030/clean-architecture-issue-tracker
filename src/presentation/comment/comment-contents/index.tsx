@@ -9,6 +9,7 @@ import InformationTag from '@/common-ui/information-tag';
 import useEditComment from '@/presentation/comment/use-edit-comment';
 import EditCommentContentsForm from '@/presentation/comment/comment-contents/edit-comment-contents-form';
 import { IssueResponse } from '@/model/issue/response';
+import editIcon from '@/assets/edit.svg';
 
 interface CommentContentsProps {
   comment: NonNullable<IssueResponse['data']['comments']>[number];
@@ -95,6 +96,7 @@ const CommentContents = ({ issueAuthor, comment }: CommentContentsProps) => {
                   flexible
                   onClick={() => setIsEditing(!isEditing)}
                 >
+                  <img width={16} height={16} src={editIcon} alt="편집" />
                   편집
                 </Button>
               )}

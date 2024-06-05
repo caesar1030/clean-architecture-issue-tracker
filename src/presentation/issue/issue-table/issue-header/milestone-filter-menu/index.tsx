@@ -20,7 +20,12 @@ const MilestoneFilterMenu = () => {
       <Menus.OpenButton id="마일스톤필터" windowPosition="center">
         <Button variant="ghosts" size="M" flexible>
           <span>마일스톤</span>
-          <img src={chevronDownIcon} alt="마일스톤필터" />
+          <img
+            width={16}
+            height={16}
+            src={chevronDownIcon}
+            alt="마일스톤필터"
+          />
         </Button>
       </Menus.OpenButton>
 

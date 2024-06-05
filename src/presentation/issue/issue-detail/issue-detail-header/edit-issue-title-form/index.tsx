@@ -56,11 +56,11 @@ const EditIssueTitleForm = ({
           type="button"
           onClick={toggleIsEditingTitle}
         >
-          <img src={xBlueIcon} alt="편집 취소" />
+          <img width={16} height={16} src={xBlueIcon} alt="편집 취소" />
           편집 취소
         </Button>
         <Button size="S" variant="contained" type="submit">
-          <img src={editWhiteIcon} alt="편집 완료" />
+          <img width={16} height={16} src={editWhiteIcon} alt="편집 완료" />
           편집 완료
         </Button>
       </div>

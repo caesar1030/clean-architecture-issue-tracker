@@ -11,6 +11,7 @@ const useUser = () => {
   } = useQuery({
     queryKey: ['user'],
     queryFn: () => client.getUser(),
+    retry: false,
   });
 
   return {

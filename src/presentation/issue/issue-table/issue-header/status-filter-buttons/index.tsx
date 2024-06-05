@@ -22,7 +22,7 @@ const StatusFilterButtons = ({
         flexible
         onClick={() => setOpenStatusSearchParam(true)}
       >
-        <img src={openedIssueIcon} alt="열린 이슈" />
+        <img width={16} height={16} src={openedIssueIcon} alt="열린 이슈" />
         <span>열린 이슈({openIssueCount})</span>
       </Button>
       <Button
@@ -31,7 +31,7 @@ const StatusFilterButtons = ({
         flexible
         onClick={() => setOpenStatusSearchParam(false)}
       >
-        <img src={closedIssueIcon} alt="닫힌 이슈" />
+        <img width={16} height={16} src={closedIssueIcon} alt="닫힌 이슈" />
         <span>닫힌 이슈({closeIssueCount})</span>
       </Button>
     </div>

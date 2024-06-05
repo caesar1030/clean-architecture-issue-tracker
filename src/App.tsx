@@ -1,4 +1,3 @@
-import { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AppLayout from '@/pages/app-layout';
@@ -14,13 +13,13 @@ import MilestoneClient from '@/services/milestone/milestone-client';
 import { LabelClientProvider } from '@/contexts/label-client-provider';
 import LabelClient from '@/services/label/label-client';
 
-const Issues = lazy(() => import('@/pages/issues'));
-const NewIssue = lazy(() => import('@/pages/new-issue'));
-const Issue = lazy(() => import('@/pages/issue'));
-const Login = lazy(() => import('@/pages/login'));
-const Signup = lazy(() => import('@/pages/sign-up'));
-const Labels = lazy(() => import('@/pages/labels'));
-const Milestones = lazy(() => import('@/pages/milestones'));
+import Issues from '@/pages/issues';
+import NewIssue from '@/pages/new-issue';
+import Issue from '@/pages/issue';
+import Login from '@/pages/login';
+import Signup from '@/pages/sign-up';
+import Labels from '@/pages/labels';
+import Milestones from '@/pages/milestones';
 
 const queryClient = new QueryClient();
 

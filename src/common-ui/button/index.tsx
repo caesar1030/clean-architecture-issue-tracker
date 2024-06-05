@@ -10,7 +10,7 @@ interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
 }
 
 const base =
-  'flex gap-1 justify-center items-center flex-shrink-0 hover:opacity-80 active:opacity-[64] disabled:opacity-[32]';
+  'flex gap-1 justify-center items-center flex-shrink-0 disabled:opacity-[32]';
 
 const variants = {
   contained: 'text-accent-text bg-accent-background',

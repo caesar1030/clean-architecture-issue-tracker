@@ -37,7 +37,7 @@ const IssueFilterResetButton = () => {
       className="w-fit h-fit"
       onClick={handleClick}
     >
-      <img src={closeIcon} alt="닫기" />
+      <img width={16} height={16} src={closeIcon} alt="닫기" />
       <span>현재의 검색 필터 및 정렬 지우기</span>
     </Button>
   );

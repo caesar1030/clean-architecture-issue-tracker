@@ -47,7 +47,7 @@ const CreateCommentForm = ({ issueId }: CreateCommentFormProps) => {
       />
 
       <Button size="S" variant="contained" className="self-end ">
-        <img src={plusWhiteIcon} alt="코멘트 작성" />
+        <img width={16} height={16} src={plusWhiteIcon} alt="코멘트 작성" />
         코멘트 작성
       </Button>
     </form>

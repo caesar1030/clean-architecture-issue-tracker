@@ -124,7 +124,7 @@ const CreateLabelForm = ({ closeAddSession }: CreateLabelFormProps) => {
                     setValue('backgroundColor', color);
                   }}
                 >
-                  <img src={refreshIcon} alt="refresh" />
+                  <img width={16} height={16} src={refreshIcon} alt="refresh" />
                 </Button>
               </div>
             </div>

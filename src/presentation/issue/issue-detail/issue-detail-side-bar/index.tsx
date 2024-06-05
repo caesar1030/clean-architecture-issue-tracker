@@ -36,7 +36,12 @@ const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
                 type="button"
               >
                 <span className="grow text-left">담당자</span>
-                <img src={chevronDownIcon} alt="담당자" />
+                <img
+                  width={16}
+                  height={16}
+                  src={chevronDownIcon}
+                  alt="담당자"
+                />
               </Button>
             </Menus.OpenButton>
             {issue?.assignee?.id && (
@@ -59,7 +64,12 @@ const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
                 type="button"
               >
                 <span className="grow text-left">레이블</span>
-                <img src={chevronDownIcon} alt="레이블" />
+                <img
+                  width={16}
+                  height={16}
+                  src={chevronDownIcon}
+                  alt="레이블"
+                />
               </Button>
             </Menus.OpenButton>
             {issue?.label && (
@@ -83,7 +93,12 @@ const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
                 type="button"
               >
                 <span className="grow text-left">마일스톤</span>
-                <img src={chevronDownIcon} alt="마일스톤" />
+                <img
+                  width={16}
+                  height={16}
+                  src={chevronDownIcon}
+                  alt="마일스톤"
+                />
               </Button>
             </Menus.OpenButton>
             {issue?.milestone && (

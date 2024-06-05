@@ -7,9 +7,9 @@ interface RadioButtonProps {
 
 const RadioButton = ({ checked }: RadioButtonProps) => {
   return checked ? (
-    <img src={checkOnCircleIcon} alt="선택된 옵션" />
+    <img width={16} height={16} src={checkOnCircleIcon} alt="선택된 옵션" />
   ) : (
-    <img src={checkOffCircleIcon} alt="미선택된 옵션" />
+    <img width={16} height={16} src={checkOffCircleIcon} alt="미선택된 옵션" />
   );
 };
 

@@ -60,7 +60,7 @@ const LoginForm = () => {
       </Button>
 
       <Button to={'/new-user'} type="button" size="S" variant="ghosts">
-        <img src={plusIcon} alt="회원가입" />
+        <img width={16} height={16} src={plusIcon} alt="회원가입" />
         <span>회원가입</span>
       </Button>
     </form>

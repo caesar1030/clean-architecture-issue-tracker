@@ -11,12 +11,12 @@ const Navbar = () => {
   return (
     <nav className="inline-flex justify-center align-middle border border-neutral-border bg-neutral-background rounded-regular">
       <Button to="/labels" size="M" variant="ghosts">
-        <img src={labelBoldIcon} alt="라벨" />
+        <img width={16} height={16} src={labelBoldIcon} alt="라벨" />
         <span>라벨 ({labels.length})</span>
       </Button>
       <div className="bg-neutral-border w-px" />
       <Button to="/milestones" size="M" variant="ghosts">
-        <img src={milestoneBoldIcon} alt="마일스톤" />
+        <img width={16} height={16} src={milestoneBoldIcon} alt="마일스톤" />
         <span>마일스톤({milestones?.length})</span>
       </Button>
     </nav>

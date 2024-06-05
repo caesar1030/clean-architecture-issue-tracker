@@ -91,7 +91,7 @@ const IssueContents = ({ issue }: IssueContentsProps) => {
                   flexible
                   onClick={() => setIsEditing(!isEditing)}
                 >
-                  <img src={editIcon} alt="편집" />
+                  <img width={16} height={16} src={editIcon} alt="편집" />
                   편집
                 </Button>
               )}

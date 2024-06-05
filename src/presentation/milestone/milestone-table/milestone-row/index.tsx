@@ -36,14 +36,25 @@ const MilestoneRow = ({ milestone }: MilestoneRowProps) => {
         <div className="flex flex-col gap-2">
           <div className="flex gap-4 items-center">
             <div className="flex gap-1">
-              <img src={openedMilestoneBlueIcon} alt="마일스톤" />
+              <img
+                width={16}
+                height={16}
+                src={openedMilestoneBlueIcon}
+                alt="마일스톤"
+              />
               <span className="text-neutral-text-strong font-bold text-M">
                 {title}
               </span>
             </div>
             {dueDate && (
               <div className="flex gap-[2px] items-center">
-                <img className="mt-[-2px]" src={calendarIcon} alt="완료 일정" />
+                <img
+                  width={16}
+                  height={16}
+                  className="mt-[-2px]"
+                  src={calendarIcon}
+                  alt="완료 일정"
+                />
                 <span className="text-neutral-text-weak font-medium text-S">{`${dueDate.getFullYear()}. ${dueDate.getMonth()}. ${dueDate.getDate()}`}</span>
               </div>
             )}
@@ -66,7 +77,12 @@ const MilestoneRow = ({ milestone }: MilestoneRowProps) => {
             }
             disabled={isEditing}
           >
-            <img src={closedMilestoneIcon} alt="마일스톤 닫기" />
+            <img
+              width={16}
+              height={16}
+              src={closedMilestoneIcon}
+              alt="마일스톤 닫기"
+            />
             <span className="text-S font-bold">{isOpen ? '닫기' : '열기'}</span>
           </Button>
           <Button
@@ -76,7 +92,7 @@ const MilestoneRow = ({ milestone }: MilestoneRowProps) => {
             onClick={() => setIsEditSession(true)}
             disabled={isEditing}
           >
-            <img src={editIcon} alt="마일스톤 편집" />
+            <img width={16} height={16} src={editIcon} alt="마일스톤 편집" />
             <span className="text-S font-bold">편집</span>
           </Button>
           <Button
@@ -86,7 +102,7 @@ const MilestoneRow = ({ milestone }: MilestoneRowProps) => {
             onClick={() => deleteMilestone({ id })}
             disabled={isDeleting}
           >
-            <img src={trashIcon} alt="마일스톤 삭제" />
+            <img width={16} height={16} src={trashIcon} alt="마일스톤 삭제" />
             <span className="text-danger-text text-S font-bold">삭제</span>
           </Button>
         </div>

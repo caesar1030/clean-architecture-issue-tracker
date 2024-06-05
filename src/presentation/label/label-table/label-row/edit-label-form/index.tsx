@@ -133,7 +133,7 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
                   setValue('backgroundColor', color);
                 }}
               >
-                <img src={refreshIcon} alt="refresh" />
+                <img width={16} height={16} src={refreshIcon} alt="refresh" />
               </Button>
             </div>
           </div>
@@ -146,7 +146,7 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
             size="S"
             variant="outline"
           >
-            <img src={closeIcon} alt="라벨 편집 취소" />
+            <img width={16} height={16} src={closeIcon} alt="라벨 편집 취소" />
             <span>취소</span>
           </Button>
 
@@ -156,7 +156,7 @@ const EditLabelForm = ({ label, closeEditingSession }: EditLabelFormProps) => {
             size="S"
             variant="contained"
           >
-            <img src={editIcon} alt="라벨 편집" />
+            <img width={16} height={16} src={editIcon} alt="라벨 편집" />
             <span>편집 완료</span>
           </Button>
         </div>

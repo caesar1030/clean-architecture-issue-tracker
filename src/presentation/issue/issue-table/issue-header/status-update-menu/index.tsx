@@ -26,7 +26,7 @@ const StatusUpdateMenu = () => {
       <Menus.OpenButton id="상태수정" windowPosition="right">
         <Button variant="ghosts" size="M" flexible>
           <span>상태 수정</span>
-          <img src={chevronDown} alt="상태 수정" />
+          <img width={16} height={16}src={chevronDown} alt="상태 수정" />
         </Button>
       </Menus.OpenButton>
 

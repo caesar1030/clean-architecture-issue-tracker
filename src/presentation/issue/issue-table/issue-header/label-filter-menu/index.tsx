@@ -1,4 +1,3 @@
-
 import chevronDownIcon from '@/assets/chevron-down.svg';
 import Button from '@/common-ui/button';
 import LabelIcon from '@/common-ui/label-icon';
@@ -23,7 +22,7 @@ const LabelFilterMenu = () => {
       <Menus.OpenButton id="레이블필터" windowPosition="center">
         <Button variant="ghosts" size="M" flexible>
           <span>레이블</span>
-          <img src={chevronDownIcon} alt="레이블필터" />
+          <img width={16} height={16} src={chevronDownIcon} alt="레이블필터" />
         </Button>
       </Menus.OpenButton>
 
