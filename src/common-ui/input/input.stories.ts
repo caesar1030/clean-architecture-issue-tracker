@@ -13,6 +13,7 @@ export const LabelLeft: Story = {
     label: '라벨',
     labelPosition: 'left',
     id: 'id',
+    value: '사용자 입력값',
   },
 };
 
@@ -21,5 +22,6 @@ export const LabelTop: Story = {
     label: '라벨',
     labelPosition: 'top',
     id: 'id',
+    value: '사용자 입력값',
   },
 };
