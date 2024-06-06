@@ -17,7 +17,7 @@ export const MilestoneSchema = z.object({
           /^[0-9]{4}\.[0-9]{2}\.[0-9]{2}$/,
           '날짜는 YYYY.MM.DD 형식이어야 합니다.'
         ),
-      z.literal(''), // 빈 문자열을 허용
+      z.literal(''),
     ])
     .optional(),
 });

@@ -1,69 +1,76 @@
-import { ComponentPropsWithRef, ForwardedRef, forwardRef } from 'react';
-import gripIcon from '@/assets/grip.svg';
+import Button from '@/common-ui/button';
+import ErrorMessage from '@/common-ui/error-message';
 import { IssueResponse } from '@/model/issue/response';
-import Table from '@/common-ui/table';
-import { getTimeDiff } from '@/utils/helpers';
-import InformationTag from '@/common-ui/information-tag';
-import Avatar from '@/common-ui/avatar';
+import EditIssueContentsTextArea from '@/presentation/issue/issue-detail/issue-contents/edit-issue-contents-form/edit-issue-contents-textarea';
+import useEditIssue from '@/presentation/issue/use-edit-issue';
+import { IssueSchema } from '@/schemas/issue/issue-schema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-export interface EditIssueContentsFormProps
-  extends ComponentPropsWithRef<'textarea'> {
+interface EditIssueContentsFormProps {
   issue: IssueResponse['data'] | undefined;
+  stopEditing: () => void;
 }
 
-const EditIssueContentsForm = forwardRef(
-  (
-    { issue, ...rest }: EditIssueContentsFormProps,
-    ref: ForwardedRef<HTMLTextAreaElement>
-  ) => {
-    return (
-      <>
-        <div className="border rounded-large border-neutral-border-active">
-          <Table columns="1fr" size="L">
-            <Table.Header>
-              <div className="flex justify-between">
-                <div className="flex gap-2 items-center">
-                  <Avatar src={issue?.author.avatar} />
-                  <span className="text-M text-neutral-text-strong">
-                    {issue?.author.nickname}
-                  </span>
-                  <span className="text-M text-neutral-text-weak">
-                    {issue && getTimeDiff(issue.createdAt)} 전
-                  </span>
-                </div>
+interface FormType {
+  contents: string;
+}
 
-                <div className="flex gap-4 items-center">
-                  <InformationTag variant="writer">작성자</InformationTag>
-                </div>
-              </div>
-            </Table.Header>
-            <Table.Row>
-              <textarea
-                {...rest}
-                ref={ref}
-                value={rest.value}
-                className="w-full bg-inherit focus:outline-none text-neutral-text-strong text-M grow resize-none"
-              />
-
-              <div className="flex gap-2 justify-end">
-                <span className="text-neutral-text-weak text-S">{`띄어쓰기 포함 ${
-                  (rest.value as string)?.length
-                }자`}</span>
-
-                <img
-                  width={20}
-                  height={20}
-                  src={gripIcon}
-                  alt="그립"
-                  className="w-5 h-5"
-                />
-              </div>
-            </Table.Row>
-          </Table>
-        </div>
-      </>
+const EditIssueContentsForm = ({
+  issue,
+  stopEditing,
+}: EditIssueContentsFormProps) => {
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid },
+  } = useForm<FormType>({
+    defaultValues: {
+      contents: issue?.contents || '',
+    },
+    resolver: zodResolver(IssueSchema.pick({ contents: true })),
+    mode: 'onChange',
+  });
+  const { editIssue } = useEditIssue();
+  const onSubmit: SubmitHandler<FormType> = ({ contents }) => {
+    editIssue(
+      { id: issue!.id, contents },
+      {
+        onSettled: () => stopEditing(),
+      }
     );
-  }
-);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+      <Controller
+        name="contents"
+        control={control}
+        render={({ field }) => (
+          <EditIssueContentsTextArea issue={issue} {...field} />
+        )}
+      />
+      <ErrorMessage>{errors.contents?.message}</ErrorMessage>
+
+      <div className="flex gap-2 justify-end">
+        <Button
+          size="S"
+          variant="outline"
+          onClick={() => {
+            stopEditing();
+            reset();
+          }}
+          type="button"
+        >
+          <span>편집 취소</span>
+        </Button>
+        <Button size="S" variant="contained" type="submit" disabled={!isValid}>
+          <span>편집 완료</span>
+        </Button>
+      </div>
+    </form>
+  );
+};
 
 export default EditIssueContentsForm;

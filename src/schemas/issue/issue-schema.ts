@@ -5,7 +5,10 @@ export const IssueSchema = z.object({
     .string()
     .min(1, '제목을 입력해주세요.')
     .max(30, '제목은 최대 30글자입니다.'),
-  contents: z.string().max(500, '내용은 최대 500글자입니다.').optional(),
+  contents: z.union([
+    z.string().max(500, '내용은 최대 500글자입니다.').optional(),
+    z.literal(''),
+  ]),
   label: z.any().optional(),
   milestone: z.any().optional(),
   assignee: z.any().optional(),

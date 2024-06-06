@@ -137,7 +137,7 @@ export default class IssueClient implements IssueClientService {
       label_id?: Label['id'] | null;
     } = {};
     if (title) toUpdate.title = title;
-    if (contents) toUpdate.contents = contents;
+    if (contents !== undefined) toUpdate.contents = contents;
     if (milestoneId !== undefined) toUpdate.milestone_id = milestoneId;
     if (assigneeId !== undefined) toUpdate.assignee_id = assigneeId;
     if (labelId !== undefined) toUpdate.label_id = labelId;
