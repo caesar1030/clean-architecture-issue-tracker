@@ -4,7 +4,6 @@ import { IssueResponse } from '@/model/issue/response';
 import Table from '@/common-ui/table';
 import { getTimeDiff } from '@/utils/helpers';
 import InformationTag from '@/common-ui/information-tag';
-import Button from '@/common-ui/button';
 import Avatar from '@/common-ui/avatar';
 
 export interface EditIssueContentsFormProps
@@ -35,9 +34,6 @@ const EditIssueContentsForm = forwardRef(
 
                 <div className="flex gap-4 items-center">
                   <InformationTag variant="writer">작성자</InformationTag>
-                  <Button size="S" variant="ghosts" flexible>
-                    편집
-                  </Button>
                 </div>
               </div>
             </Table.Header>

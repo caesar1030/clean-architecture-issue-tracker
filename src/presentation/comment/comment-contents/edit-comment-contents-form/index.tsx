@@ -4,7 +4,6 @@ import Table from '@/common-ui/table';
 import Avatar from '@/common-ui/avatar';
 import { getTimeDiff } from '@/utils/helpers';
 import InformationTag from '@/common-ui/information-tag';
-import Button from '@/common-ui/button';
 import { IssueResponse } from '@/model/issue/response';
 
 export interface EditIssueContentsFormProps
@@ -38,9 +37,6 @@ const EditCommentContentsForm = forwardRef(
                   {comment.author.id === issueAuthor.id && (
                     <InformationTag variant="writer">작성자</InformationTag>
                   )}
-                  <Button size="S" variant="ghosts" flexible>
-                    편집
-                  </Button>
                 </div>
               </div>
             </Table.Header>
