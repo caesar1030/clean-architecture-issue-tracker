@@ -70,6 +70,7 @@ export const Primary: Story = {
       };
       const queryclient = new QueryClient();
       return (
+        // TODO: memory router, queryclient provider 공통으로 분리하기
         <MemoryRouter>
           <QueryClientProvider client={queryclient}>
             <MilestoneClientProvider client={milestoneClient}>
