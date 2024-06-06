@@ -1,12 +1,12 @@
 import IssueClientService from '@/services/issue/issue-client-service';
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext } from 'react';
 
 interface IssueClientContextType {
   client: IssueClientService;
 }
 
 interface IssueClientProviderProps {
-  client: new () => IssueClientService;
+  client: IssueClientService;
   children: ReactNode;
 }
 
@@ -18,12 +18,8 @@ export const IssueClientProvider = ({
   client,
   children,
 }: IssueClientProviderProps) => {
-  const [clientInstance] = useState(() => {
-    return new client();
-  });
-
   return (
-    <IssueClientContex.Provider value={{ client: clientInstance }}>
+    <IssueClientContex.Provider value={{ client }}>
       {children}
     </IssueClientContex.Provider>
   );

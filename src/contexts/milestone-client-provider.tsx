@@ -1,12 +1,12 @@
 import MilestoneClientService from '@/services/milestone/milestone-client-service';
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext } from 'react';
 
 interface MilestoneClientContextType {
   client: MilestoneClientService;
 }
 
 interface MilestoneClientProviderProps {
-  client: new () => MilestoneClientService;
+  client: MilestoneClientService;
   children: ReactNode;
 }
 
@@ -17,12 +17,10 @@ export const MilestoneClientProvider = ({
   client,
   children,
 }: MilestoneClientProviderProps) => {
-  const [clientInstance] = useState(() => {
-    return new client();
-  });
+ 
 
   return (
-    <MilestoneClientContex.Provider value={{ client: clientInstance }}>
+    <MilestoneClientContex.Provider value={{ client }}>
       {children}
     </MilestoneClientContex.Provider>
   );

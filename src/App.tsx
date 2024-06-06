@@ -27,11 +27,11 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <UserClientProvider client={UserClient}>
-          <IssueClientProvider client={IssueClient}>
-            <CommentClientProvider client={CommentClient}>
-              <MilestoneClientProvider client={MilestoneClient}>
-                <LabelClientProvider client={LabelClient}>
+        <UserClientProvider client={new UserClient()}>
+          <IssueClientProvider client={new IssueClient()}>
+            <CommentClientProvider client={new CommentClient()}>
+              <MilestoneClientProvider client={new MilestoneClient()}>
+                <LabelClientProvider client={new LabelClient()}>
                   <Routes>
                     <Route
                       element={

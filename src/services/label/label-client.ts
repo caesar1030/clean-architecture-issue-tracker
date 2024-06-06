@@ -80,7 +80,7 @@ export default class LabelClient implements LabelClientService {
             description,
             textColor: text_color,
             backgroundColor: background_color,
-            createdAt: created_at,
+            createdAt: new Date(created_at),
           };
         }
       ),

@@ -3,6 +3,6 @@ export interface Label {
   title: string;
   textColor: string;
   backgroundColor: string;
-  createdAt: string;
+  createdAt: Date;
   description: string | null;
 }

@@ -1,12 +1,12 @@
 import LabelClientService from '@/services/label/label-client-service';
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext } from 'react';
 
 interface LabelClientContextType {
   client: LabelClientService;
 }
 
 interface LabelClientProviderProps {
-  client: new () => LabelClientService;
+  client: LabelClientService;
   children: ReactNode;
 }
 
@@ -18,12 +18,8 @@ export const LabelClientProvider = ({
   client,
   children,
 }: LabelClientProviderProps) => {
-  const [clientInstance] = useState(() => {
-    return new client();
-  });
-
   return (
-    <LabelClientContex.Provider value={{ client: clientInstance }}>
+    <LabelClientContex.Provider value={{ client }}>
       {children}
     </LabelClientContex.Provider>
   );

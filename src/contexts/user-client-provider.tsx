@@ -1,12 +1,12 @@
 import UserClientService from '@/services/user/user-client-service';
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext } from 'react';
 
 interface UserClientContextType {
   client: UserClientService;
 }
 
 interface UserClientProviderProps {
-  client: new () => UserClientService;
+  client: UserClientService;
   children: ReactNode;
 }
 
@@ -18,12 +18,8 @@ export const UserClientProvider = ({
   client,
   children,
 }: UserClientProviderProps) => {
-  const [clientInstance] = useState(() => {
-    return new client();
-  });
-
   return (
-    <UserClientContex.Provider value={{ client: clientInstance }}>
+    <UserClientContex.Provider value={{ client }}>
       {children}
     </UserClientContex.Provider>
   );
