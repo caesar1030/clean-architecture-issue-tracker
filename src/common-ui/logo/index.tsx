@@ -2,19 +2,19 @@ import logoMediumIcon from '@/assets/logo-medium.svg';
 import logoLargeIcon from '@/assets/logo-large.svg';
 
 interface LogoProps {
-  size: 'medium' | 'large';
+  size?: 'M' | 'L';
 }
 
 const sizes = {
-  medium: {
+  M: {
     src: logoMediumIcon,
   },
-  large: {
+  L: {
     src: logoLargeIcon,
   },
 };
 
-const Logo = ({ size }: LogoProps) => {
+const Logo = ({ size = 'M' }: LogoProps) => {
   return (
     <div className="text-center">
       <img src={sizes[size].src} alt="Logo" />

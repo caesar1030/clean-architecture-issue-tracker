@@ -2,10 +2,10 @@ import checkOnCircleIcon from '@/assets/check-on-circle.svg';
 import checkOffCircleIcon from '@/assets/check-off-circle.svg';
 
 interface RadioButtonProps {
-  checked: boolean;
+  checked?: boolean;
 }
 
-const RadioButton = ({ checked }: RadioButtonProps) => {
+const RadioButton = ({ checked = false }: RadioButtonProps) => {
   return checked ? (
     <img width={16} height={16} src={checkOnCircleIcon} alt="선택된 옵션" />
   ) : (

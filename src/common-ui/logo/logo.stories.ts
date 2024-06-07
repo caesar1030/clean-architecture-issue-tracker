@@ -6,7 +6,7 @@ const meta: Meta<typeof Logo> = {
   component: Logo,
   argTypes: {
     size: {
-      description: '"medium" 또는 "large"가 가능합니다.',
+      description: '"M" 또는 "L"이 가능합니다.',
     },
   },
 };
@@ -15,12 +15,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Medium: Story = {
   args: {
-    size: 'medium',
+    size: 'M',
   },
 };
 
 export const Large: Story = {
   args: {
-    size: 'large',
+    size: 'L',
   },
 };

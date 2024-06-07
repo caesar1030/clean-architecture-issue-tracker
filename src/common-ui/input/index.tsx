@@ -10,7 +10,7 @@ import {
 interface InputProps extends ComponentProps<'input'> {
   id: string;
   label: string;
-  labelPosition: keyof typeof labelPositions;
+  labelPosition?: keyof typeof labelPositions;
   error?: string;
 }
 
@@ -21,7 +21,7 @@ const labelPositions = {
 
 const Input = forwardRef(
   (
-    { label, labelPosition, id, error, ...rest }: InputProps,
+    { label, labelPosition = 'left', id, error, ...rest }: InputProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const { value, onChange } = rest;

@@ -13,7 +13,7 @@ interface TableContextType {
 interface TableProps {
   columns: string;
   children: ReactNode;
-  size: keyof typeof sizes;
+  size?: keyof typeof sizes;
 }
 
 interface HeaderProps {
@@ -36,7 +36,7 @@ const sizes = {
 
 const TableContext = createContext<TableContextType>(null!);
 
-const Table = ({ columns, children, size }: TableProps) => {
+const Table = ({ columns, children, size = 'L' }: TableProps) => {
   return (
     <TableContext.Provider value={{ columns, size }}>
       <div className="border border-solid border-neutral-border rounded-large overflow-hidden bg-neutral-background-strong">

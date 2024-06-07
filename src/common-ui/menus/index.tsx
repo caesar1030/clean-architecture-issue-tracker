@@ -29,10 +29,10 @@ interface MenuProps {
   children: ReactNode;
 }
 
-interface OpenButtonProps {
+interface TriggerProps {
   id: string;
   children: ReactNode;
-  windowPosition: 'left' | 'center' | 'right';
+  windowPosition?: 'left' | 'center' | 'right';
 }
 
 interface WindowProps {
@@ -63,7 +63,7 @@ const Menus = ({ children }: MenuProps) => {
   );
 };
 
-const Trigger = ({ id, children, windowPosition }: OpenButtonProps) => {
+const Trigger = ({ id, children, windowPosition = 'center' }: TriggerProps) => {
   const { openedId, open, close, setPosition } = useContext(MenuContext);
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {

@@ -2,8 +2,8 @@ import { ComponentPropsWithoutRef } from 'react';
 import { Link } from 'react-router-dom';
 
 interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
-  variant: keyof typeof variants;
-  size: keyof typeof sizes;
+  variant?: keyof typeof variants;
+  size?: keyof typeof sizes;
   children: React.ReactNode;
   flexible?: boolean;
   to?: string;
@@ -25,9 +25,9 @@ const sizes = {
 };
 
 const Button = ({
-  variant,
-  size,
-  flexible,
+  variant = 'contained',
+  size = 'M',
+  flexible = false,
   children,
   to,
   ...rest
