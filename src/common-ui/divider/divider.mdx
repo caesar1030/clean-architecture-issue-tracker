@@ -13,10 +13,17 @@ import * as DividerStories from './divider.stories';
 <Canvas of={DividerStories.Primary} />
 <Source
   code={`
-<div style={{ width: 200 }}>
-    <span>Above divider</span>
-    <Divider />
-    <span>Below divider</span>
-</div>
+  <div
+    style={{
+      width: 500,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 32,
+    }}
+  >
+    <Logo size="L" />
+    <Story />
+    <Avatar />
+  </div>
 `}
 />
