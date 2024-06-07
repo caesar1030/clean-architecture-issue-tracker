@@ -76,7 +76,7 @@ const Menus = ({ children }: MenuProps) => {
   );
 };
 
-const Trigger = ({ id, children, windowPosition = 'center' }: TriggerProps) => {
+const Trigger = ({ id, children, windowPosition }: TriggerProps) => {
   const { openedId, open, close, setPosition } = useContext(MenuContext);
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {

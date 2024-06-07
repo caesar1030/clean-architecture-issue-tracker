@@ -1,3 +1,4 @@
+import Button from '@/common-ui/button';
 import Menus from '@/common-ui/menus';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -13,11 +14,26 @@ export const Center: Story = {
     children: (
       <>
         <Menus.Trigger id="id1" windowPosition="center">
-          <button style={{ border: '1px solid black' }}>click me</button>
+          <Button variant="ghosts" flexible>
+            Click me
+          </Button>
         </Menus.Trigger>
 
         <Menus.Window id="id1">
-          <div style={{ border: '1px solid black' }}>window</div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'white',
+              border: '1px solid black',
+              borderRadius: 12,
+              width: 250,
+              height: 100,
+            }}
+          >
+            window
+          </div>
         </Menus.Window>
       </>
     ),
@@ -36,11 +52,26 @@ export const Left: Story = {
     children: (
       <>
         <Menus.Trigger id="id1" windowPosition="left">
-          <button style={{ border: '1px solid black' }}>click me</button>
+          <Button variant="ghosts" flexible>
+            Click me
+          </Button>
         </Menus.Trigger>
 
         <Menus.Window id="id1">
-          <div style={{ border: '1px solid black' }}>window</div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'white',
+              border: '1px solid black',
+              borderRadius: 12,
+              width: 250,
+              height: 100,
+            }}
+          >
+            window
+          </div>
         </Menus.Window>
       </>
     ),
@@ -59,11 +90,26 @@ export const Right: Story = {
     children: (
       <>
         <Menus.Trigger id="id1" windowPosition="right">
-          <button style={{ border: '1px solid black' }}>click me</button>
+          <Button variant="ghosts" flexible>
+            Click me
+          </Button>
         </Menus.Trigger>
 
         <Menus.Window id="id1">
-          <div style={{ border: '1px solid black' }}>window</div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'white',
+              border: '1px solid black',
+              borderRadius: 12,
+              width: 250,
+              height: 100,
+            }}
+          >
+            window
+          </div>
         </Menus.Window>
       </>
     ),
