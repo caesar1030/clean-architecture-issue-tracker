@@ -1,0 +1,91 @@
+import { Canvas, Meta, Controls, Source } from '@storybook/blocks';
+import * as MenusStories from './menus.stories';
+
+<Meta of={MenusStories} title="component/Menus/Docs" />
+
+# Menus
+
+Trigger를 클릭하면 Window를 표시하는 컴포넌트입니다.<br/>
+Menus.Trigger에 id (string) prop과 windowPosition prop ("center" | "right" | "left")을 입력해주세요.
+
+주의: id는 연관된 Menus.Trigger와 Menus.Window끼리는 동일해야 하며, 다른 묶음과는 동일하지 않아야(unique) 합니다.
+
+<Source code = {`
+<Menus>
+
+    <Menus.Trigger id="id" windowPosition="center">
+        <button>click me</button>
+    </Menus.Trigger>
+
+    <Menus.Window id="id">
+        <div>window</div>
+    </Menus.Window>
+
+    {/* 의도한 대로 동작하지 않을 수 있습니다. 에러가 발생하지 않으므로 주의하세요. */}
+    <Menus.Trigger id="id" windowPosition="center">
+        <button>click me</button>
+    </Menus.Trigger>
+
+    <Menus.Window id="id">
+        <div>window</div>
+    </Menus.Window>
+
+</Menus>
+`}/>
+
+## Center
+
+Menus.Trigger의 windowPosition이 "center"일 경우, 다음과 같습니다.
+
+<Canvas of={MenusStories.Center} />
+<Source code = {`
+<Menus>
+
+    <Menus.Trigger id="id1" windowPosition="center">
+        <button style={{ border: '1px solid black' }}>click me</button>
+    </Menus.Trigger>
+
+    <Menus.Window id="id1">
+        <div style={{ border: '1px solid black' }}>window</div>
+    </Menus.Window>
+
+</Menus>
+`}/>
+
+## Left
+
+Menus.Trigger의 windowPosition이 "left"일 경우, 다음과 같습니다.
+
+<Canvas of={MenusStories.Left} />
+<Source code = {`
+<Menus>
+
+    <Menus.Trigger id="id1" windowPosition="left">
+        <button style={{ border: '1px solid black' }}>click me</button>
+    </Menus.Trigger>
+
+    <Menus.Window id="id1">
+        <div style={{ border: '1px solid black' }}>window</div>
+    </Menus.Window>
+
+</Menus>
+`}/>
+
+## Right
+
+Menus.Trigger의 windowPosition이 "right"일 경우, 다음과 같습니다.
+
+<Canvas of={MenusStories.Right} />
+<Source code = {`
+<Menus>
+
+    <Menus.Trigger id="id1" windowPosition="right">
+        <button style={{ border: '1px solid black' }}>click me</button>
+    </Menus.Trigger>
+
+    <Menus.Window id="id1">
+        <div style={{ border: '1px solid black' }}>window</div>
+    </Menus.Window>
+
+</Menus>
+`}/>

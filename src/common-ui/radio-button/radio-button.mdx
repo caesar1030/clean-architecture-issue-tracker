@@ -1,0 +1,24 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as RadioButtonStories from './radio-button.stories';
+
+<Meta of={RadioButtonStories} title="component/RadioButton/Docs" />
+
+# RadioButton
+
+라디오 버튼을 표현하는 컴포넌트 입니다.
+
+RadioButton 컴포넌트는 다음 props를 가지고 있습니다.
+
+<Controls />
+
+## Checked
+
+checked가 true일 경우, 다음과 같습니다.
+
+<Canvas of={RadioButtonStories.Checked} />
+
+## Large
+
+chcked가 false일 경우, 다음과 같습니다.
+
+<Canvas of={RadioButtonStories.Unchecked} />

@@ -4,6 +4,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Avatar> = {
   title: 'component/Avatar',
   component: Avatar,
+  argTypes: {
+    src: {
+      description: '실제 유저 프로필 url을 입력해주세요.',
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof meta>;

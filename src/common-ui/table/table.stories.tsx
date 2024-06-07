@@ -4,6 +4,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Table> = {
   title: 'component/Table',
   component: Table,
+  argTypes: {
+    columns: {
+      description:
+        'CSS grid-template-rows 속성에 직접 적용되는 속성 입니다. <br/> 유효하지 않은 값이 전달되면 의도한대로 작동하지 않을 수 있습니다.',
+    },
+    size: {
+      description: '"S", "L"이 가능합니다.',
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof meta>;

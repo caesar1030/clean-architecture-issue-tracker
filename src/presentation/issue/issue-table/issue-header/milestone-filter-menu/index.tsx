@@ -17,7 +17,7 @@ const MilestoneFilterMenu = () => {
 
   return (
     <>
-      <Menus.OpenButton id="마일스톤필터" windowPosition="center">
+      <Menus.Trigger id="마일스톤필터" windowPosition="center">
         <Button variant="ghosts" size="M" flexible>
           <span>마일스톤</span>
           <img
@@ -27,7 +27,7 @@ const MilestoneFilterMenu = () => {
             alt="마일스톤필터"
           />
         </Button>
-      </Menus.OpenButton>
+      </Menus.Trigger>
 
       <Menus.Window id="마일스톤필터">
         <Table columns="1fr" size="S">

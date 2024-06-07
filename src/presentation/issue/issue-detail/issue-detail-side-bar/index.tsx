@@ -27,7 +27,7 @@ const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
       <Menus>
         <SideBar>
           <>
-            <Menus.OpenButton id="assignee" windowPosition="center">
+            <Menus.Trigger id="assignee" windowPosition="center">
               <Button
                 variant="ghosts"
                 size="M"
@@ -43,7 +43,7 @@ const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
                   alt="담당자"
                 />
               </Button>
-            </Menus.OpenButton>
+            </Menus.Trigger>
             {issue?.assignee?.id && (
               <div className="flex gap-2 items-center">
                 <Avatar src={issue.assignee.avatar} />
@@ -55,7 +55,7 @@ const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
           </>
 
           <>
-            <Menus.OpenButton id="label" windowPosition="center">
+            <Menus.Trigger id="label" windowPosition="center">
               <Button
                 variant="ghosts"
                 size="M"
@@ -71,7 +71,7 @@ const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
                   alt="레이블"
                 />
               </Button>
-            </Menus.OpenButton>
+            </Menus.Trigger>
             {issue?.label && (
               <LabelTag
                 backgroundColor={issue.label.backgroundColor!}
@@ -84,7 +84,7 @@ const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
           </>
 
           <>
-            <Menus.OpenButton id="milestone" windowPosition="center">
+            <Menus.Trigger id="milestone" windowPosition="center">
               <Button
                 variant="ghosts"
                 size="M"
@@ -100,7 +100,7 @@ const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
                   alt="마일스톤"
                 />
               </Button>
-            </Menus.OpenButton>
+            </Menus.Trigger>
             {issue?.milestone && (
               <span className="text-S text-neutral-text-strong">
                 {issue.milestone.title}

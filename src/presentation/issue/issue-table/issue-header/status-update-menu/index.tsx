@@ -23,12 +23,12 @@ const StatusUpdateMenu = () => {
 
   return (
     <>
-      <Menus.OpenButton id="상태수정" windowPosition="right">
+      <Menus.Trigger id="상태수정" windowPosition="right">
         <Button variant="ghosts" size="M" flexible>
           <span>상태 수정</span>
-          <img width={16} height={16}src={chevronDown} alt="상태 수정" />
+          <img width={16} height={16} src={chevronDown} alt="상태 수정" />
         </Button>
-      </Menus.OpenButton>
+      </Menus.Trigger>
 
       <Menus.Window id="상태수정">
         <Table columns="1fr" size="S">

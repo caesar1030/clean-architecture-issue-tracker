@@ -1,0 +1,22 @@
+import { Canvas, Meta, Controls, Source } from '@storybook/blocks';
+import * as DividerStories from './divider.stories';
+
+<Meta of={DividerStories} title="component/Avatar/Docs" />
+
+# Divider
+
+가로로 특정 부분을 구분해주는 컴포넌트 입니다. <br/>
+1px의 높이를 차지합니다.
+
+## Primary
+
+<Canvas of={DividerStories.Primary} />
+<Source
+  code={`
+<div style={{ width: 200 }}>
+    <span>Above divider</span>
+    <Divider />
+    <span>Below divider</span>
+</div>
+`}
+/>

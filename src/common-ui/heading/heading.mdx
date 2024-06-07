@@ -1,0 +1,15 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as HeadingStories from './heading.stories';
+
+<Meta of={HeadingStories} title="component/Heading/Docs" />
+
+# Heading
+
+Heading 컴포넌트입니다.<br />
+HTML의 \<h1\> 태그를 사용하였습니다.
+
+<Controls />
+
+## Primary
+
+<Canvas of={HeadingStories.Primary} />

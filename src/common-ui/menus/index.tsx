@@ -63,7 +63,7 @@ const Menus = ({ children }: MenuProps) => {
   );
 };
 
-const OpenButton = ({ id, children, windowPosition }: OpenButtonProps) => {
+const Trigger = ({ id, children, windowPosition }: OpenButtonProps) => {
   const { openedId, open, close, setPosition } = useContext(MenuContext);
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -125,7 +125,7 @@ const Button = ({ onClick, children }: ButtonProps) => {
   );
 };
 
-Menus.OpenButton = OpenButton;
+Menus.Trigger = Trigger;
 Menus.Window = Window;
 Menus.Button = Button;
 

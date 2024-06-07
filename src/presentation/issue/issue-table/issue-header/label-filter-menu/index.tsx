@@ -19,12 +19,12 @@ const LabelFilterMenu = () => {
 
   return (
     <>
-      <Menus.OpenButton id="레이블필터" windowPosition="center">
+      <Menus.Trigger id="레이블필터" windowPosition="center">
         <Button variant="ghosts" size="M" flexible>
           <span>레이블</span>
           <img width={16} height={16} src={chevronDownIcon} alt="레이블필터" />
         </Button>
-      </Menus.OpenButton>
+      </Menus.Trigger>
 
       <Menus.Window id="레이블필터">
         <Table columns="1fr" size="S">

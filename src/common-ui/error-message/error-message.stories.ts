@@ -10,6 +10,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    children: '에러 메세지',
+    children: '에러가 발생했어요 😥',
   },
 };

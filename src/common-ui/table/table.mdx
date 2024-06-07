@@ -1,0 +1,102 @@
+import { Canvas, Meta, Controls, Source } from '@storybook/blocks';
+import * as TableStories from './table.stories';
+
+<Meta of={TableStories} title="component/Table/Docs" />
+
+# Table
+
+테이블을 표현하는 컴포넌트 입니다.
+
+Table 컴포넌트의 props는 다음과 같습니다.
+
+<Controls />
+
+## Large
+
+size가 "L"일 경우 다음과 같습니다.
+
+<Canvas of={TableStories.Large} />
+<Source
+  code={`
+<Table columns="200px 1fr" size="L">
+
+    <Table.Header>
+        <div>id</div>
+        <div>name</div>
+    </Table.Header>
+
+    <Table.Body
+     data={[
+        { id: 1, name: 'Item 1' },
+        { id: 2, name: 'Item 2' },
+     ]}
+     render={({ id, name }) => (
+        <Table.Row key={id}>
+            <div>{id}</div>
+            <div>{name}</div>
+        </Table.Row>
+     )}
+    />
+
+</Table>
+`}
+/>
+
+## Small
+
+size가 "S"일 경우 다음과 같습니다.
+
+<Canvas of={TableStories.Large} />
+<Source
+  code={`
+<Table columns="1fr 1fr 1fr"} size="S">
+
+    <Table.Header>
+        <div>id</div>
+        <div>name</div>
+    </Table.Header>
+
+    <Table.Body
+     data={[
+        { id: 1, name: 'Item 1' },
+        { id: 2, name: 'Item 2' },
+     ]}
+     render={({ id, name }) => (
+        <Table.Row key={id}>
+            <div>{id}</div>
+            <div>{name}</div>
+        </Table.Row>
+     )}
+    />
+
+</Table>
+`}
+/>
+
+## Empty
+
+만약 Table.Body data에 빈 배열 또는 빈 값이 들어올 경우, 다음과 같습니다.
+
+<Canvas of={TableStories.Empty} />
+<Source
+  code={`
+<Table columns="200px 1fr" size="L">
+
+    <Table.Header>
+        <div>id</div>
+        <div>name</div>
+    </Table.Header>
+
+    <Table.Body
+     data={[]}
+     render={({ id, name }) => (
+        <Table.Row key={id}>
+            <div>{id}</div>
+            <div>{name}</div>
+        </Table.Row>
+     )}
+    />
+
+</Table>
+`}
+/>

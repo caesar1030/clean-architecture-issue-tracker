@@ -11,10 +11,10 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   decorators: [
     (Story) => (
-      <div style={{ width: 200, border: '1px solid black' }}>
-        <div>Above divider</div>
+      <div style={{ width: 200 }}>
+        <span>Above divider</span>
         <Story />
-        <div>Below divider</div>
+        <span>Below divider</span>
       </div>
     ),
   ],

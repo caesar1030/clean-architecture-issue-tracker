@@ -4,7 +4,7 @@ import useUser from '@/presentation/auth/use-user';
 import Logo from '@/common-ui/logo';
 import Avatar from '@/common-ui/avatar';
 import Button from '@/common-ui/button';
-import LogoutIcon from '@/common-ui/logout-icon';
+import logoutIcon from '@/assets/logout.svg';
 
 const AppLayout = () => {
   const { logout } = useLogout();
@@ -20,7 +20,13 @@ const AppLayout = () => {
         <div className="flex items-center">
           <Avatar src={user?.avatar} />
           <Button variant="ghosts" size="S" flexible onClick={() => logout()}>
-            <LogoutIcon />
+            <img
+              width={20}
+              height={20}
+              src={logoutIcon}
+              className="w-8 h-8"
+              alt="logout"
+            />
           </Button>
         </div>
       </header>

@@ -14,12 +14,12 @@ const AuthorFilterMenu = () => {
 
   return (
     <>
-      <Menus.OpenButton id="authorFilter" windowPosition="right">
+      <Menus.Trigger id="authorFilter" windowPosition="right">
         <Button variant="ghosts" size="M" flexible>
           <span>작성자</span>
           <img width={16} height={16} src={chevronDownIcon} alt="이슈" />
         </Button>
-      </Menus.OpenButton>
+      </Menus.Trigger>
 
       <Menus.Window id="authorFilter">
         <Table columns="1fr" size="S">

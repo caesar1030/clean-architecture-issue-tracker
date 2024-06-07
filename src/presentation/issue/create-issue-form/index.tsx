@@ -150,7 +150,7 @@ const CreateIssueForm = () => {
           <Menus>
             <SideBar>
               <>
-                <Menus.OpenButton id="addAssignee" windowPosition="center">
+                <Menus.Trigger id="addAssignee" windowPosition="center">
                   <Button
                     variant="ghosts"
                     size="M"
@@ -166,7 +166,7 @@ const CreateIssueForm = () => {
                       alt="라벨추가"
                     />
                   </Button>
-                </Menus.OpenButton>
+                </Menus.Trigger>
                 {selectedAssignee && (
                   <div className="flex gap-2 items-center">
                     <Avatar src={selectedAssignee.avatar} />
@@ -177,7 +177,7 @@ const CreateIssueForm = () => {
                 )}
               </>
               <>
-                <Menus.OpenButton id="addLabel" windowPosition="center">
+                <Menus.Trigger id="addLabel" windowPosition="center">
                   <Button
                     variant="ghosts"
                     size="M"
@@ -193,7 +193,7 @@ const CreateIssueForm = () => {
                       alt="라벨추가"
                     />
                   </Button>
-                </Menus.OpenButton>
+                </Menus.Trigger>
                 {selectedLabel && (
                   <LabelTag
                     backgroundColor={selectedLabel.backgroundColor!}
@@ -206,7 +206,7 @@ const CreateIssueForm = () => {
               </>
 
               <>
-                <Menus.OpenButton id="addMilestone" windowPosition="center">
+                <Menus.Trigger id="addMilestone" windowPosition="center">
                   <Button
                     variant="ghosts"
                     size="M"
@@ -222,7 +222,7 @@ const CreateIssueForm = () => {
                       alt="마일스톤추가"
                     />
                   </Button>
-                </Menus.OpenButton>
+                </Menus.Trigger>
                 {selectedMilestone && (
                   <span className="text-S text-neutral-text-strong">
                     {selectedMilestone.title}

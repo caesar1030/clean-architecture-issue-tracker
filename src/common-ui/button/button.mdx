@@ -1,0 +1,40 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as ButtonStories from './button.stories';
+
+<Meta of={ButtonStories} title="component/Button/Docs" />
+
+# Button
+
+variant로 디자인을, size로 크기를 조절할 수 있습니다. <br/>
+to에 경로를 줄 경우, \<Link/\>로써 동작합니다. 디자인은 버튼과 동일합니다.
+
+Button 컴포넌트는 다음 props를 가지고 있습니다.
+
+<Controls />
+
+## Contained
+
+variant가 "contained"일 경우, 다음과 같습니다.
+
+<Canvas of={ButtonStories.Contained} />
+
+## Outline
+
+variant가 "outline"일 경우, 다음과 같습니다.
+
+<Canvas of={ButtonStories.Outline} />
+
+## Ghosts
+
+variant가 "ghosts"일 경우, 다음과 같습니다. <br/>
+"ghosts"의 경우 container는 없지만, 영역을 차지합니다. <br/>
+
+<Canvas of={ButtonStories.Ghosts} />
+
+## Flexible
+
+Flexible이 "true"일 경우, 다음과 같습니다. <br/>
+Flexible은 container 영역이 존재하지 않습니다. <br/>
+variant가 "ghosts"인 경우와 함께 사용되는 경우가 많습니다.
+
+<Canvas of={ButtonStories.Flexible} />

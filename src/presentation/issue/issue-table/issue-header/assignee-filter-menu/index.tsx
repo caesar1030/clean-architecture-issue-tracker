@@ -18,12 +18,12 @@ const AssigneeFilterMenu = () => {
 
   return (
     <>
-      <Menus.OpenButton id="assigneeFilter" windowPosition="center">
+      <Menus.Trigger id="assigneeFilter" windowPosition="center">
         <Button variant="ghosts" size="M" flexible>
           <span>담당자</span>
           <img width={16} height={16} src={chevronDownIcon} alt="이슈" />
         </Button>
-      </Menus.OpenButton>
+      </Menus.Trigger>
 
       <Menus.Window id="assigneeFilter">
         <Table columns="1fr" size="S">

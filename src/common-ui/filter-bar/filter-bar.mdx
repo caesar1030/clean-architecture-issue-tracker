@@ -1,0 +1,78 @@
+import { Canvas, Meta, Controls, Source } from '@storybook/blocks';
+import * as FilterBarStories from './filter-bar.stories';
+
+<Meta of={FilterBarStories} title="component/FilterBar/Docs" />
+
+# FilterBar
+
+검색창을 보여주는 컴포넌트입니다. <br />
+가장 기본적인 사용법의 경우, Primary를 참조해주세요. <br />
+커스텀한 검색창의 경우, Example을 참조해주세요.
+
+## Primary
+
+<Canvas of={FilterBarStories.Primary} />
+<Source
+  code={`
+<FilterBar>
+    <FilterBar.SearchFilter>검색</FilterBar.SearchFilter>
+    <FilterBar.Input />
+</FilterBar>
+    `}
+/>
+
+## Example
+
+Menus, Table 등의 공용 컴포넌트와 함께 구현한 예제입니다.
+
+<Canvas of={FilterBarStories.Example} />
+<Source code={
+    `
+<FilterBar>
+
+    <FilterBar.SearchFilter>
+      <Menus>
+        <Menus.OpenButton id="필터" windowPosition="center">
+          <Button
+            size="M"
+            variant="ghosts"
+            flexible
+            className="px-6 text-neutral-text-weak"
+          >
+            <span>필터</span>
+            <img width={16} height={16} src={chevronDownIcon} alt="필터" />
+          </Button>
+        </Menus.OpenButton>
+
+        <Menus.Window id="필터">
+          <Table columns="1fr" size="S">
+            <Table.Header>이슈 필터</Table.Header>
+
+            <Table.Row>
+              <Menus.Button>
+                <div className="flex gap-2 items-center">
+                  <span className="grow">열린 이슈</span>
+                  <RadioButton checked={true} />
+                </div>
+              </Menus.Button>
+            </Table.Row>
+
+            <Table.Row>
+              <Menus.Button>
+                <div className="flex gap-2 items-center">
+                  <span className="grow">닫힌 이슈</span>
+                  <RadioButton checked={false} />
+                </div>
+              </Menus.Button>
+            </Table.Row>
+          </Table>
+        </Menus.Window>
+      </Menus>
+    </FilterBar.SearchFilter>
+
+    <FilterBar.Input placeholder={'isOpen:open'} />
+
+</FilterBar>
+    `
+
+} />

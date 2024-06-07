@@ -12,9 +12,9 @@ export const Center: Story = {
   args: {
     children: (
       <>
-        <Menus.OpenButton id="id1" windowPosition="center">
+        <Menus.Trigger id="id1" windowPosition="center">
           <button style={{ border: '1px solid black' }}>click me</button>
-        </Menus.OpenButton>
+        </Menus.Trigger>
 
         <Menus.Window id="id1">
           <div style={{ border: '1px solid black' }}>window</div>
@@ -35,9 +35,9 @@ export const Left: Story = {
   args: {
     children: (
       <>
-        <Menus.OpenButton id="id1" windowPosition="left">
+        <Menus.Trigger id="id1" windowPosition="left">
           <button style={{ border: '1px solid black' }}>click me</button>
-        </Menus.OpenButton>
+        </Menus.Trigger>
 
         <Menus.Window id="id1">
           <div style={{ border: '1px solid black' }}>window</div>
@@ -58,9 +58,9 @@ export const Right: Story = {
   args: {
     children: (
       <>
-        <Menus.OpenButton id="id1" windowPosition="right">
+        <Menus.Trigger id="id1" windowPosition="right">
           <button style={{ border: '1px solid black' }}>click me</button>
-        </Menus.OpenButton>
+        </Menus.Trigger>
 
         <Menus.Window id="id1">
           <div style={{ border: '1px solid black' }}>window</div>

@@ -1,0 +1,24 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as AvatarStories from './avatar.stories';
+
+<Meta of={AvatarStories} title="component/Avatar/Docs" />
+
+# Avatar
+
+사용자의 아바타를 보여주는 컴포넌트 입니다.
+
+Avatar 컴포넌트는 다음 props를 가지고 있습니다.
+
+<Controls />
+
+## WithSrc
+
+만약 src가 주어진다면, 이미지를 보여줍니다.
+
+<Canvas of={AvatarStories.WithSrc} />
+
+## WithoutSrc
+
+만약 src에 빈 값이 들어왔다면, 기본 이미지를 보여줍니다.
+
+<Canvas of={AvatarStories.WithoutSrc} />

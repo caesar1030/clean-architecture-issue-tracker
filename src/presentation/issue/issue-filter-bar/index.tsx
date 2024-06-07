@@ -29,7 +29,7 @@ const IssueFilterBar = () => {
     <FilterBar>
       <FilterBar.SearchFilter>
         <Menus>
-          <Menus.OpenButton id="필터" windowPosition="left">
+          <Menus.Trigger id="필터" windowPosition="left">
             <Button
               size="M"
               variant="ghosts"
@@ -37,14 +37,9 @@ const IssueFilterBar = () => {
               className="px-6 text-neutral-text-weak"
             >
               <span>필터</span>
-              <img
-                width={16}
-                height={16}
-                src={chevronDownIcon}
-                alt="마일스톤필터"
-              />
+              <img width={16} height={16} src={chevronDownIcon} alt="필터" />
             </Button>
-          </Menus.OpenButton>
+          </Menus.Trigger>
 
           <Menus.Window id="필터">
             <Table columns="1fr" size="S">

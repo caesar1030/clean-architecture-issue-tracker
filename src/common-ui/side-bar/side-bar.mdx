@@ -1,0 +1,23 @@
+import { Canvas, Meta, Controls, Source } from '@storybook/blocks';
+import * as SideBarStories from './side-bar.stories';
+
+<Meta of={SideBarStories} title="component/RadioButton/Docs" />
+
+# SideBar
+
+사이드바에 사용되는 컴포넌트 입니다.
+
+<Controls />
+
+## Primary
+
+<Canvas of={SideBarStories.Primary} />
+<Source
+  code={`
+<SideBar>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</SideBar>
+`}
+/>

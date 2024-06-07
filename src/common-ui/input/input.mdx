@@ -1,0 +1,30 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as InputStories from './input.stories';
+
+<Meta of={InputStories} title="component/Input/Docs" />
+
+# Input
+
+HTML의 \<input\>태그를 래핑한 컴포넌트입니다.
+
+Input 컴포넌트는 다음 props를 가지고 있습니다.
+
+<Controls />
+
+## Label Left
+
+labelPosition이 "left"일 경우, 다음과 같습니다.
+
+<Canvas of={InputStories.LabelLeft} />
+
+## Label Top
+
+labelPosition이 "top"일 경우, 다음과 같습니다.
+
+<Canvas of={InputStories.LabelTop} />
+
+## Error
+
+error가 빈 값이 아닐 경우, 하단에 에러메세지를 함께 표시합니다.
+
+<Canvas of={InputStories.Error} />
