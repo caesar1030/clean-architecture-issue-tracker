@@ -14,7 +14,7 @@ const AppLayout = () => {
     <div className="px-20">
       <header className="flex justify-between items-center py-7">
         <Link to="/issues?isOpen=open">
-          <Logo size="medium" />
+          <Logo size="M" />
         </Link>
 
         <div className="flex items-center">

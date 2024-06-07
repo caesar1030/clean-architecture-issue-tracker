@@ -5,6 +5,7 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
@@ -53,6 +54,18 @@ const Menus = ({ children }: MenuProps) => {
 
   const open = (id: string) => setOpenedId(id);
   const close = () => setOpenedId('');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      close();
+    };
+
+    document.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    };
+  }, [close]);
 
   return (
     <MenuContext.Provider

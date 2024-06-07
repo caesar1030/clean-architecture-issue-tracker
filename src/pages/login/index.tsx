@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen ">
       <div className="mb-16">
-        <Logo size="large" />
+        <Logo size="L" />
       </div>
       <LoginForm />
     </div>
