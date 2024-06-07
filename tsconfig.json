@@ -28,6 +28,6 @@
       "@/*": ["*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", ".storybook/intro.mdx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
