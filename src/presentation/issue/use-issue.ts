@@ -1,6 +1,6 @@
 import { GetIssuePayload } from '@/services/issue/payload';
 import { useServices } from '@/services/service-provider';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 const useIssue = (getIssuePayload: GetIssuePayload) => {
   const { issueService } = useServices();
@@ -9,7 +9,7 @@ const useIssue = (getIssuePayload: GetIssuePayload) => {
     isLoading,
     data: { data: issue } = {},
     error,
-  } = useQuery({
+  } = useSuspenseQuery({
     queryKey: ['issues', getIssuePayload.issueId],
     queryFn: () => issueService.getIssue(getIssuePayload),
   });
