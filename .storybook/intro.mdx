@@ -1,19 +1,99 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
 
 <Meta title="Introduction" />
 
 # INTRO
 
-이슈 트래커에 사용된 공용 컴포넌트들에 대한 스토리북 문서입니다.
+이슈 트래커에 사용된 공용 컴포넌트들에 대한 스토리북 문서입니다. <br />
+스토리북 사용이 익숙하지 않은 경우 아래의 설명을 참조해주세요.
+
+# COLORS
+
+이슈 트래커에 사용된 색상은 다음과 같습니다.
+
+<ColorPalette>
+  <ColorItem
+    title="Neutral Text"
+    colors={{
+      'neutral-text': '#374151',
+      'neutral-text-weak': "#4b5563",
+    'neutral-text-strong':  "#111827",
+    }}
+
+/>
+
+  <ColorItem
+    title="Accent Text"
+
+    colors={{
+         'accent-text': "#f9fafb",
+      'accent-text-weak': "#3b82f6"
+
+}}
+/>
+
+<ColorItem title="Danger Text" colors={{ 'danger-text': '#ef4444' }} />
+
+ <ColorItem
+    title="Neutral Background"
+
+    colors={{
+         'neutral-background': "#f3f4f6",
+      'neutral-background-bold': "#e5e7eb",
+
+'neutral-background-strong': "#f9fafb",
+
+}}
+/>
+
+<ColorItem
+    title="Accent Background"
+
+    colors={{
+
+'accent-background':"#3b82f6",
+'accent-background-weak': "#f9fafb",
+'accent-background-strong': "#111827",
+
+}}
+/>
+
+<ColorItem
+    title="Neutral Border"
+
+    colors={{
+
+'neutral-border': "#d1d5db",
+'neutral-border-active': "#111827",
+}}
+/>
+
+<ColorItem
+    title="Accent Border"
+
+    colors={{
+
+      'accent-border-weak': "#3b82f6",
+
+}}
+/>
+
+</ColorPalette>
 
 # DOCS
 
-- 컴포넌트의 간략한 용도를 설명해두었습니다.
-- props별 간단한 설명, type, default value 등을 작성하였습니다.
-- 여러 Story들을 한눈에 파악할 수 있습니다.
-- Story 외에도 추가적인 사용 예시를 코드와 함께 작성하였습니다.
+- 컴포넌트의 간략한 용도를 설명해두었습니다.<br/>
+  ![image](https://github.com/caesar1030/clean-architecture-issue-tracker/assets/76683390/9cb3f4bd-37f5-404b-8afe-02b36b5b5093) <br/>
+- props별 간단한 설명, type, default value 등을 작성하였습니다. <br/>
+  ![image](https://github.com/caesar1030/clean-architecture-issue-tracker/assets/76683390/156dff1c-267f-46c7-9e0f-23d5dba01b4b) <br/>
+- 여러 Story들을 한눈에 파악할 수 있습니다. <br/>
+  ![image](https://github.com/caesar1030/clean-architecture-issue-tracker/assets/76683390/761edd35-d7d5-4ead-88cd-27265d042c0f) <br/>
+- Story 외에도 추가적인 사용 예시를 코드와 함께 작성하였습니다. <br/>
+  ![image](https://github.com/caesar1030/clean-architecture-issue-tracker/assets/76683390/be55cfba-71f6-46c6-9a0a-4d5daaf7766f) <br/>
 
 # STORIES
 
-- 컴포넌트의 대표적인 사용 사례 별로 스토리를 분류하였습니다.
-- 각 사용 사례 별로 직접 props를 수정하며 확인할 수 있습니다.
+- 컴포넌트의 대표적인 사용 사례 별로 스토리를 분류하였습니다. <br/>
+  ![image](https://github.com/caesar1030/clean-architecture-issue-tracker/assets/76683390/b502def1-1893-4630-96db-700f5ad7cf8d) <br/>
+- 각 사용 사례 별로 직접 props를 수정하며 확인할 수 있습니다.<br/>
+  ![image](https://github.com/caesar1030/clean-architecture-issue-tracker/assets/76683390/98323d1b-5d8b-4934-8a71-4bf49531f512)<br/>
