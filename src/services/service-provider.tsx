@@ -12,7 +12,7 @@ interface ServiceProviderProps {
 
 const ServiceContext = createContext<ServiceContextType | null>(null);
 
-export const ServiceProvider = ({
+export const ServicesProvider = ({
   serviceRegistry,
   children,
 }: ServiceProviderProps) => {
@@ -27,7 +27,7 @@ export const ServiceProvider = ({
 
 export const useServices = () => {
   const context = useContext(ServiceContext);
-  if (!context) throw new Error('useService가 ServiceProvider 외부에서 사용');
+  if (!context) throw new Error('useServices가 ServicesProvider 외부에서 사용');
 
   return context.services;
 };

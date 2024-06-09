@@ -1,24 +1,23 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-import { ServiceProvider } from '@/services/service-provider';
-import IssueService from '@/services/issue/issue-service-impl';
+import { ServicesProvider } from '@/services/service-provider';
+import IssueService from '@/services/issue/issue-service';
 import LabelService from '@/services/label/label-service';
 import MilestoneService from '@/services/milestone/milestone-service';
-import UserService from '@/services/user/user-service-impl';
-import CommentService from '@/services/comment/comment-service-impl';
+import UserService from '@/services/user/user-service';
+import CommentService from '@/services/comment/comment-service';
 import PageView from '@/router/page-view';
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  const issueService = IssueService;
-  const commentService = CommentService;
-  const labelService = LabelService;
-  const milestoneService = MilestoneService;
-  const userService = UserService;
+  const issueService = new IssueService();
+  const commentService = new CommentService();
+  const labelService = new LabelService();
+  const milestoneService = new MilestoneService();
+  const userService = new UserService();
 
   return (
-    <ServiceProvider
+    <ServicesProvider
       serviceRegistry={{
         issueService,
         commentService,
@@ -30,7 +29,7 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <PageView />
       </QueryClientProvider>
-    </ServiceProvider>
+    </ServicesProvider>
   );
 };
 

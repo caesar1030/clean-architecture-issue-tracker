@@ -23,7 +23,7 @@ export default class UserService {
     return this.mapUser({ data: data.user });
   }
 
-  async login({ email, password }: LoginPayload) {
+  async login({ email, password }: LoginPayload): Promise<UserResponse> {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
