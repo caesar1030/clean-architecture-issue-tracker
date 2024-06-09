@@ -1,6 +1,6 @@
 import Menus from '@/common-ui/menus';
 import Table from '@/common-ui/table';
-import { IssuesResponse } from '@/model/issue/response';
+import { IssuesResponse } from '@/services/issue/response';
 import IssueHeader from '@/presentation/issue/issue-table/issue-header';
 import IssueRow from '@/presentation/issue/issue-table/issue-row';
 import { SelectedIssuesProvider } from '@/presentation/issue/issue-table/selected-issues-context';

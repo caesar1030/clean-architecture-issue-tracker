@@ -1,14 +1,14 @@
+import { OpenIssuesPayload } from '@/services/issue/payload';
+import { useServices } from '@/services/service-provider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { OpenIssuesPayload } from '@/model/issue/payload';
-import useIssueClient from '@/hooks/use-issue-client';
 
 const useOpenIssues = () => {
-  const service = useIssueClient();
+  const { issueService } = useServices();
   const queryClient = useQueryClient();
 
   const { mutate: openIssues, isPending: isOpening } = useMutation({
     mutationFn: (openIssuesPayload: OpenIssuesPayload) =>
-      service.openIssues(openIssuesPayload),
+      issueService.openIssues(openIssuesPayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['issues'] });
     },

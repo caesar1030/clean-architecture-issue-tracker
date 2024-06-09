@@ -7,15 +7,14 @@ import {
   GetIssuePayload,
   IssuesFilterPayload,
   OpenIssuesPayload,
-} from '@/model/issue/payload';
+} from '@/services/issue/payload';
 import supabase from '@/data/supabase-db/supabase';
-import { IssueResponse, IssuesResponse } from '@/model/issue/response';
-import { User } from '@/model/user/user';
-import { Milestone } from '@/model/milestone/milestone';
-import { Label } from '@/model/label/label';
-import IssueClientService from '@/services/issue/issue-client-service';
+import { IssueResponse, IssuesResponse } from '@/services/issue/response';
+import { User } from '@/services/user/user';
+import { Milestone } from '@/services/milestone/milestone';
+import { Label } from '@/services/label/label';
 
-export default class IssueClient implements IssueClientService {
+export default class IssueService {
   async getIssue({ issueId }: GetIssuePayload): Promise<IssueResponse> {
     const query = supabase
       .from('issues')

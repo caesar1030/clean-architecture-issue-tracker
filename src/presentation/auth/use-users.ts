@@ -1,8 +1,8 @@
+import { useServices } from '@/services/service-provider';
 import { useQuery } from '@tanstack/react-query';
-import useUserClient from '@/hooks/use-user-client';
 
 const useUsers = () => {
-  const client = useUserClient();
+  const { userService } = useServices();
 
   const {
     isLoading,
@@ -10,7 +10,7 @@ const useUsers = () => {
     error,
   } = useQuery({
     queryKey: ['users'],
-    queryFn: () => client.getUsers(),
+    queryFn: () => userService.getUsers(),
   });
 
   return {

@@ -1,4 +1,4 @@
-import { IssueResponse } from '@/model/issue/response';
+import { IssueResponse } from '@/services/issue/response';
 import useEditComment from '@/presentation/comment/use-edit-comment';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import Button from '@/common-ui/button';

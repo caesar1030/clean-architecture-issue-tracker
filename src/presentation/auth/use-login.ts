@@ -1,10 +1,10 @@
+import { useServices } from '@/services/service-provider';
+import { LoginPayload } from '@/services/user/payload';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import useUserClient from '@/hooks/use-user-client';
-import { LoginPayload } from '@/model/user/payload';
 
 const useLogin = () => {
-  const client = useUserClient();
+  const { userService } = useServices();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -13,7 +13,7 @@ const useLogin = () => {
     isPending: isCreating,
     error,
   } = useMutation({
-    mutationFn: (loginPayload: LoginPayload) => client.login(loginPayload),
+    mutationFn: (loginPayload: LoginPayload) => userService.login(loginPayload),
     onSuccess: (user) => {
       queryClient.setQueryData(['user'], user);
       navigate('/issues?isOpen=open', { replace: true });

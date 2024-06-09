@@ -1,5 +1,5 @@
 import Heading from '@/common-ui/heading';
-import { IssueResponse } from '@/model/issue/response';
+import { IssueResponse } from '@/services/issue/response';
 
 interface IssueTitleProps {
   issue: IssueResponse['data'] | undefined;

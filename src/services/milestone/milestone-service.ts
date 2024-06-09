@@ -3,12 +3,11 @@ import {
   CreateMilestonePayload,
   DeleteMilestonePayload,
   EditMilestonePayload,
-} from '@/model/milestone/payload';
+} from '@/services/milestone/payload';
 import { MilestoneAPIEntity } from '@/data/entity/milestone-api-entity';
-import { MilestonesResopnse } from '@/model/milestone/response';
-import MilestoneClientService from '@/services/milestone/milestone-client-service';
+import { MilestonesResopnse } from '@/services/milestone/response';
 
-export default class MilestoneClient implements MilestoneClientService {
+export default class MilestoneService {
   async getMilestones() {
     const { data, error } = await supabase
       .from('milestones')

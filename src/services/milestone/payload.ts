@@ -1,4 +1,4 @@
-import { Milestone } from '@/model/milestone/milestone';
+import { Milestone } from '@/services/milestone/milestone';
 
 export interface CreateMilestonePayload {
   title: string;

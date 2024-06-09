@@ -1,15 +1,15 @@
+import { useServices } from '@/services/service-provider';
+import { SignupPayload } from '@/services/user/payload';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import useUserClient from '@/hooks/use-user-client';
-import { SignupPayload } from '@/model/user/payload';
 
 const useSignup = () => {
-  const client = useUserClient();
+  const { userService } = useServices();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { mutate: signup, isPending: isCreating } = useMutation({
-    mutationFn: (signupData: SignupPayload) => client.signup(signupData),
+    mutationFn: (signupData: SignupPayload) => userService.signup(signupData),
     onSuccess: (user) => {
       queryClient.setQueryData(['user'], user);
       navigate('/issues?isOpen=open', { replace: true });

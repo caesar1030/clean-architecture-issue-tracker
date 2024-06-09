@@ -1,5 +1,5 @@
 import Table from '@/common-ui/table';
-import { LabelsResponse } from '@/model/label/response';
+import { LabelsResponse } from '@/services/label';
 import LabelRow from '@/presentation/label/label-table/label-row';
 import useLabels from '@/presentation/label/use-labels';
 

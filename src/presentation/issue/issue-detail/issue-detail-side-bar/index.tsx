@@ -6,7 +6,7 @@ import Menus from '@/common-ui/menus';
 import RadioButton from '@/common-ui/radio-button';
 import SideBar from '@/common-ui/side-bar';
 import Table from '@/common-ui/table';
-import { IssueResponse } from '@/model/issue/response';
+import { IssueResponse } from '@/services/issue/response';
 import useUsers from '@/presentation/auth/use-users';
 import useEditIssue from '@/presentation/issue/use-edit-issue';
 import useLabels from '@/presentation/label/use-labels';

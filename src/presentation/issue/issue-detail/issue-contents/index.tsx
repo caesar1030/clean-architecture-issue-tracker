@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import editIcon from '@/assets/edit.svg';
-import { IssueResponse } from '@/model/issue/response';
+import { IssueResponse } from '@/services/issue/response';
 import useUser from '@/presentation/auth/use-user';
 import EditIssueContentsForm from '@/presentation/issue/issue-detail/issue-contents/edit-issue-contents-form';
 import Button from '@/common-ui/button';

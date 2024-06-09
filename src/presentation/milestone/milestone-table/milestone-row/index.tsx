@@ -4,7 +4,7 @@ import openedMilestoneBlueIcon from '@/assets/opened-milestone-blue.svg';
 import editIcon from '@/assets/edit.svg';
 import closedMilestoneIcon from '@/assets/closed-issue.svg';
 import { useState } from 'react';
-import { MilestonesResopnse } from '@/model/milestone/response';
+import { MilestonesResopnse } from '@/services/milestone';
 import useDeleteMilestone from '@/presentation/milestone/use-delete-milestone';
 import useEditMilestone from '@/presentation/milestone/use-edit-milestone';
 import EditMilestoneForm from '@/presentation/milestone/milestone-table/milestone-row/edit-milestone-form';

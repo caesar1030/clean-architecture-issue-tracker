@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import CreateMilestoneForm from '@/presentation/milestone/create-milestone-form';
-import Navbar from '@/common-ui/navbar';
+import Navbar from '@/router/navbar';
 import Button from '@/common-ui/button';
 import MilestoneTable from '@/presentation/milestone/milestone-table';
 import plusIcon from '@/assets/plus-white.svg';

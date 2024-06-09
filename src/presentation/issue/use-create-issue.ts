@@ -1,16 +1,16 @@
+import { CreateIssuePayload } from '@/services/issue/payload';
+import { useServices } from '@/services/service-provider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { CreateIssuePayload } from '@/model/issue/payload';
-import useIssueClient from '@/hooks/use-issue-client';
 
 const useCreateIssue = () => {
-  const service = useIssueClient();
+  const { issueService } = useServices();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { mutate: createIssue, isPending: isCreating } = useMutation({
     mutationFn: (createIssuePayload: CreateIssuePayload) =>
-      service.createIssue(createIssuePayload),
+      issueService.createIssue(createIssuePayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['issues'] });
       navigate('/issues?isOpen=open');

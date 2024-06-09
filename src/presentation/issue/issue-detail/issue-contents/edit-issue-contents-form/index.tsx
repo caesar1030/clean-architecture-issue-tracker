@@ -1,6 +1,6 @@
 import Button from '@/common-ui/button';
 import ErrorMessage from '@/common-ui/error-message';
-import { IssueResponse } from '@/model/issue/response';
+import { IssueResponse } from '@/services/issue/response';
 import EditIssueContentsTextArea from '@/presentation/issue/issue-detail/issue-contents/edit-issue-contents-form/edit-issue-contents-textarea';
 import useEditIssue from '@/presentation/issue/use-edit-issue';
 import { IssueSchema } from '@/schemas/issue/issue-schema';

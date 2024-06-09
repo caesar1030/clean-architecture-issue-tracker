@@ -1,9 +1,9 @@
+import { EditMilestonePayload } from '@/services/milestone/payload';
+import { useServices } from '@/services/service-provider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useMilestoneClient from '@/hooks/use-milestone-client';
-import { EditMilestonePayload } from '@/model/milestone/payload';
 
 const useEditMilestone = () => {
-  const client = useMilestoneClient();
+  const { milestoneService } = useServices();
   const queryClient = useQueryClient();
 
   const {
@@ -12,7 +12,7 @@ const useEditMilestone = () => {
     error,
   } = useMutation({
     mutationFn: (editMilestonePayload: EditMilestonePayload) =>
-      client.editMilestone(editMilestonePayload),
+      milestoneService.editMilestone(editMilestonePayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['milestones'] });
     },

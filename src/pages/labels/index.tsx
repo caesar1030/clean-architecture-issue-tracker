@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Navbar from '@/common-ui/navbar';
+import Navbar from '@/router/navbar';
 import LabelTable from '@/presentation/label/label-table';
 import Button from '@/common-ui/button';
 import CreateLabelForm from '@/presentation/label/create-label-form.tsx/index.tsx';

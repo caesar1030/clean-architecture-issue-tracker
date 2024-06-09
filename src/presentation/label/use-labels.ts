@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import useLabelClient from '@/hooks/use-label-client';
+import { useServices } from '@/services/service-provider';
 
 const useLabels = () => {
-  const client = useLabelClient();
+  const { labelService } = useServices();
 
   const {
     isLoading,
@@ -10,7 +10,7 @@ const useLabels = () => {
     error,
   } = useQuery({
     queryKey: ['labels'],
-    queryFn: () => client.getLabels(),
+    queryFn: () => labelService.getLabels(),
   });
 
   return {

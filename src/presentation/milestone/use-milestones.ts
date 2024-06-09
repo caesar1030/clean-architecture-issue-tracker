@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import useMilestoneClient from '@/hooks/use-milestone-client';
+import { useServices } from '@/services/service-provider';
 
 const useMilestones = () => {
-  const client = useMilestoneClient();
+  const { milestoneService } = useServices();
 
   const {
     isLoading,
@@ -10,7 +10,7 @@ const useMilestones = () => {
     error,
   } = useQuery({
     queryKey: ['milestones'],
-    queryFn: () => client.getMilestones(),
+    queryFn: () => milestoneService.getMilestones(),
   });
 
   return {

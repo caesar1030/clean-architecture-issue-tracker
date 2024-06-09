@@ -1,9 +1,9 @@
+import { GetIssuePayload } from '@/services/issue/payload';
+import { useServices } from '@/services/service-provider';
 import { useQuery } from '@tanstack/react-query';
-import { GetIssuePayload } from '@/model/issue/payload';
-import useIssueClient from '@/hooks/use-issue-client';
 
 const useIssue = (getIssuePayload: GetIssuePayload) => {
-  const service = useIssueClient();
+  const { issueService } = useServices();
 
   const {
     isLoading,
@@ -11,7 +11,7 @@ const useIssue = (getIssuePayload: GetIssuePayload) => {
     error,
   } = useQuery({
     queryKey: ['issues', getIssuePayload.issueId],
-    queryFn: () => service.getIssue(getIssuePayload),
+    queryFn: () => issueService.getIssue(getIssuePayload),
   });
 
   return {

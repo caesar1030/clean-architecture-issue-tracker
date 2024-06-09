@@ -1,14 +1,14 @@
+import { DeleteMilestonePayload } from '@/services/milestone/payload';
+import { useServices } from '@/services/service-provider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useMilestoneClient from '@/hooks/use-milestone-client';
-import { DeleteMilestonePayload } from '@/model/milestone/payload';
 
 const useDeleteMilestone = () => {
-  const client = useMilestoneClient();
+  const { milestoneService } = useServices();
   const queryClient = useQueryClient();
 
   const { mutate: deleteMilestone, isPending: isDeleting } = useMutation({
     mutationFn: (deleteMilestonePayload: DeleteMilestonePayload) =>
-      client.deleteMilestone(deleteMilestonePayload),
+      milestoneService.deleteMilestone(deleteMilestonePayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['milestones'] });
     },

@@ -1,14 +1,13 @@
-import { LabelsResponse } from '@/model/label/response';
+import { LabelAPIEntity } from '@/data/entity/label-api-entity';
 import supabase from '@/data/supabase-db/supabase';
 import {
   CreateLabelPayload,
   DeleteLabelPayload,
   EditLabelPayload,
-} from '@/model/label/payload';
-import { LabelAPIEntity } from '@/data/entity/label-api-entity';
-import LabelClientService from '@/services/label/label-client-service';
+} from '@/services/label/payload';
+import { LabelsResponse } from '@/services/label/response';
 
-export default class LabelClient implements LabelClientService {
+export default class LabelService {
   async getLabels(): Promise<LabelsResponse> {
     const { data, error } = await supabase
       .from('labels')

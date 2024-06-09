@@ -1,6 +1,6 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import plusWhiteIcon from '@/assets/plus-white.svg';
-import { Issue } from '@/model/issue/issue';
+import { Issue } from '@/services/issue/issue';
 import useCreateComment from '@/presentation/comment/use-create-comment';
 import useUser from '@/presentation/auth/use-user';
 import TextArea from '@/common-ui/text-area';

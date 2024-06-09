@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef, ForwardedRef, forwardRef } from 'react';
 import gripIcon from '@/assets/grip.svg';
-import { IssueResponse } from '@/model/issue/response';
+import { IssueResponse } from '@/services/issue/response';
 import Table from '@/common-ui/table';
 import { getTimeDiff } from '@/utils/helpers';
 import InformationTag from '@/common-ui/information-tag';

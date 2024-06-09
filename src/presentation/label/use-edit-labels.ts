@@ -1,14 +1,14 @@
+import { EditLabelPayload } from '@/services/label/payload';
+import { useServices } from '@/services/service-provider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useLabelClient from '@/hooks/use-label-client';
-import { EditLabelPayload } from '@/model/label/payload';
 
 const useEditLabel = () => {
-  const client = useLabelClient();
+  const { labelService } = useServices();
   const queryClient = useQueryClient();
 
   const { mutate: editLabel, isPending: isEditing } = useMutation({
     mutationFn: (editLabelPayload: EditLabelPayload) =>
-      client.editLabel(editLabelPayload),
+      labelService.editLabel(editLabelPayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['labels'] });
     },

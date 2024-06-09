@@ -1,14 +1,14 @@
+import { EditIssuePayload } from '@/services/issue/payload';
+import { useServices } from '@/services/service-provider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useIssueClient from '@/hooks/use-issue-client';
-import { EditIssuePayload } from '@/model/issue/payload';
 
 const useEditIssue = () => {
-  const service = useIssueClient();
+  const { issueService } = useServices();
   const queryClient = useQueryClient();
 
   const { mutate: editIssue, isPending: isEditing } = useMutation({
     mutationFn: (editIssuePayload: EditIssuePayload) =>
-      service.editIssue(editIssuePayload),
+      issueService.editIssue(editIssuePayload),
     onSuccess: (_, { id }) => {
       queryClient.invalidateQueries({ queryKey: ['issues', id] });
     },

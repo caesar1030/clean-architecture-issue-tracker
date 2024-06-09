@@ -3,7 +3,7 @@ import IssueFilterBar from '@/presentation/issue/issue-filter-bar';
 import IssueFilterResetButton from '@/presentation/issue/issue-filter-reset-button';
 import IssueTable from '@/presentation/issue/issue-table';
 import plusWhiteIcon from '@/assets/plus-white.svg';
-import Navbar from '@/common-ui/navbar';
+import Navbar from '@/router/navbar';
 
 const Issues = () => {
   return (

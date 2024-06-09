@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import useIssueClient from '@/hooks/use-issue-client';
 import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
+import { useServices } from '@/services/service-provider';
 
 const useIssues = () => {
-  const service = useIssueClient();
+  const { issueService } = useServices();
   const { getFilterOptions } = useSearchParamsHandlers();
   const filterOptions = getFilterOptions();
 
@@ -13,7 +13,7 @@ const useIssues = () => {
     error,
   } = useQuery({
     queryKey: ['issues', filterOptions],
-    queryFn: () => service.getIssues(filterOptions),
+    queryFn: () => issueService.getIssues(filterOptions),
   });
 
   return {

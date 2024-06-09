@@ -6,7 +6,7 @@ import Avatar from '@/common-ui/avatar';
 import { getTimeDiff } from '@/utils/helpers';
 import InformationTag from '@/common-ui/information-tag';
 import EditCommentContentsForm from '@/presentation/comment/comment-contents/edit-comment-contents-form';
-import { IssueResponse } from '@/model/issue/response';
+import { IssueResponse } from '@/services/issue/response';
 import editIcon from '@/assets/edit.svg';
 
 interface CommentContentsProps {
