@@ -1,8 +1,8 @@
-import { Label } from '@/model/label/label';
-import { ComponentPropsWithoutRef } from 'react';
+import { Label } from '@/services/label/label';
+import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 interface LabelProps extends ComponentPropsWithoutRef<'div'> {
-  children: React.ReactNode;
+  children: ReactNode;
   textColor: string;
   backgroundColor: Label['backgroundColor'];
 }

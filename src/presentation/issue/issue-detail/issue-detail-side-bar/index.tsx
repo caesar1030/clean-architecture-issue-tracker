@@ -3,7 +3,7 @@ import Avatar from '@/common-ui/avatar';
 import Button from '@/common-ui/button';
 import LabelTag from '@/common-ui/label-tag';
 import Menus from '@/common-ui/menus';
-import RadioButton from '@/common-ui/radio-button';
+import CheckIndicator from '@/common-ui/check-indicator';
 import SideBar from '@/common-ui/side-bar';
 import Table from '@/common-ui/table';
 import { IssueResponse } from '@/services/issue/response';
@@ -129,7 +129,7 @@ const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
                     <div className="flex gap-2 items-center">
                       <Avatar src={assignee.avatar} />
                       <span className="grow">{assignee.nickname}</span>
-                      <RadioButton
+                      <CheckIndicator
                         checked={assignee.id === issue?.assignee?.id}
                       />
                     </div>
@@ -160,7 +160,7 @@ const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
                   >
                     <div className="flex gap-2 items-center">
                       <span className="grow">{label.title}</span>
-                      <RadioButton checked={label.id === issue?.label?.id} />
+                      <CheckIndicator checked={label.id === issue?.label?.id} />
                     </div>
                   </Menus.Button>
                 </Table.Row>
@@ -188,7 +188,7 @@ const IssueDetailSideBar = ({ issue }: IssueDetailSideBarProps) => {
                   >
                     <div className="flex gap-2 items-center">
                       <span className="grow">{milestone.title}</span>
-                      <RadioButton
+                      <CheckIndicator
                         checked={milestone.id === issue?.milestone?.id}
                       />
                     </div>

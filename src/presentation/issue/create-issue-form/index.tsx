@@ -1,9 +1,7 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Label as LabelModel } from '@/model/label/label';
 import { Link } from 'react-router-dom';
 import chevronDownIcon from '@/assets/chevron-down.svg';
 import closeIcon from '@/assets/close-icon.svg';
-import { MilestonesResopnse } from '@/services/milestone';
 import { User } from '@/services/user/user';
 import useMilestones from '@/presentation/milestone/use-milestones';
 import useLabels from '@/presentation/label/use-labels';
@@ -18,16 +16,18 @@ import Button from '@/common-ui/button';
 import Avatar from '@/common-ui/avatar';
 import LabelTag from '@/common-ui/label-tag';
 import Table from '@/common-ui/table';
-import RadioButton from '@/common-ui/radio-button';
+import CheckIndicator from '@/common-ui/check-indicator';
 import Divider from '@/common-ui/divider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { IssueSchema } from '@/schemas/issue/issue-schema';
+import { Label } from '@/services/label/label';
+import { MilestonesResopnse } from '@/services/milestone/response';
 
 interface FormType {
   title: string;
   contents: string;
   milestone: MilestonesResopnse['data'][number] | null;
-  label: LabelModel | null;
+  label: Label | null;
   assignee: User | null;
 }
 
@@ -58,7 +58,7 @@ const CreateIssueForm = () => {
   const selectedMilestone = watch('milestone');
   const selectedAssignee = watch('assignee');
 
-  const addLabel = (label: LabelModel) => {
+  const addLabel = (label: Label) => {
     if (label.id === selectedLabel?.id) {
       setValue('label', null);
       return;
@@ -136,7 +136,7 @@ const CreateIssueForm = () => {
               render={({ field }) => {
                 return (
                   <TextArea
-                    id="issueContents"
+                    id="issue-contents"
                     label="코멘트를 입력하세요"
                     className="h-[436px]"
                     error={errors.contents?.message}
@@ -241,7 +241,7 @@ const CreateIssueForm = () => {
                         <div className="flex gap-2 items-center">
                           <Avatar src={user.avatar} />
                           <span className="grow">{user.nickname}</span>
-                          <RadioButton
+                          <CheckIndicator
                             checked={user.id === selectedAssignee?.id}
                           />
                         </div>
@@ -261,7 +261,7 @@ const CreateIssueForm = () => {
                       <Menus.Button onClick={() => addLabel(label)}>
                         <div className="flex gap-2 items-center">
                           <span className="grow">{label.title}</span>
-                          <RadioButton
+                          <CheckIndicator
                             checked={label.id === selectedLabel?.id}
                           />
                         </div>
@@ -281,7 +281,7 @@ const CreateIssueForm = () => {
                       <Menus.Button onClick={() => addMilestone(milestone)}>
                         <div className="flex gap-2 items-center">
                           <span className="grow">{milestone.title}</span>
-                          <RadioButton
+                          <CheckIndicator
                             checked={milestone.id === selectedMilestone?.id}
                           />
                         </div>

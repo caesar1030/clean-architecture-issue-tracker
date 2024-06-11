@@ -22,6 +22,8 @@ const IssueRow = ({ issue }: IssueRowProps) => {
       <Checkbox
         checked={selectedIssueIds.includes(id)}
         onChange={() => toggleIssueSelection(id)}
+        id={String(id)}
+        label={`toggle-{${id}}`}
       />
 
       <div className="flex flex-col gap-2">

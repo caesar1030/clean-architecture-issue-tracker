@@ -74,7 +74,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   const handleBlur = () => {
     blur();
-    setInputValue('');
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -89,13 +88,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           : 'bg-neutral-background-bold'
       }`}
     >
-      <img
-        width={16}
-        height={16}
-        src={searchIcon}
-        alt="검색"
-        className="w-4 h-4"
-      />
+      <label htmlFor="search-input">
+        <img
+          width={16}
+          height={16}
+          src={searchIcon}
+          alt="검색"
+          className="w-4 h-4"
+        />
+      </label>
       <input
         type="text"
         onFocus={handleFocus}
@@ -108,6 +109,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             : 'bg-neutral-background-bold text-neutral-text-weak'
         }`}
         ref={ref}
+        id="search-input"
         {...props}
       />
     </div>

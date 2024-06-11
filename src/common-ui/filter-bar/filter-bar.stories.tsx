@@ -4,7 +4,7 @@ import Table from '@/common-ui/table';
 import type { Meta, StoryObj } from '@storybook/react';
 import chevronDownIcon from '@/assets/chevron-down.svg';
 import Button from '@/common-ui/button';
-import RadioButton from '@/common-ui/radio-button';
+import CheckIndicator from '@/common-ui/check-indicator';
 
 const meta: Meta<typeof FilterBar> = {
   title: 'component/FilterBar',
@@ -52,7 +52,12 @@ export const Example: Story = {
                 className="px-6 text-neutral-text-weak"
               >
                 <span>필터</span>
-                <img width={16} height={16} src={chevronDownIcon} alt="필터" />
+                <img
+                  width={16}
+                  height={16}
+                  src={chevronDownIcon}
+                  alt="filter"
+                />
               </Button>
             </Menus.Trigger>
 
@@ -64,7 +69,7 @@ export const Example: Story = {
                   <Menus.Button>
                     <div className="flex gap-2 items-center">
                       <span className="grow">열린 이슈</span>
-                      <RadioButton checked={true} />
+                      <CheckIndicator checked={true} />
                     </div>
                   </Menus.Button>
                 </Table.Row>
@@ -73,7 +78,7 @@ export const Example: Story = {
                   <Menus.Button>
                     <div className="flex gap-2 items-center">
                       <span className="grow">닫힌 이슈</span>
-                      <RadioButton checked={false} />
+                      <CheckIndicator checked={false} />
                     </div>
                   </Menus.Button>
                 </Table.Row>

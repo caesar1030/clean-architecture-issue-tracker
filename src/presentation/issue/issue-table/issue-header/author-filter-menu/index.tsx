@@ -2,7 +2,7 @@ import chevronDownIcon from '@/assets/chevron-down.svg';
 import Avatar from '@/common-ui/avatar';
 import Button from '@/common-ui/button';
 import Menus from '@/common-ui/menus';
-import RadioButton from '@/common-ui/radio-button';
+import CheckIndicator from '@/common-ui/check-indicator';
 import Table from '@/common-ui/table';
 import useUsers from '@/presentation/auth/use-users';
 import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
@@ -31,7 +31,9 @@ const AuthorFilterMenu = () => {
                 <div className="flex gap-2 items-center">
                   <Avatar src={avatar} />
                   <span className="grow">{nickname}</span>
-                  <RadioButton checked={getAuthorSearchParam() === nickname} />
+                  <CheckIndicator
+                    checked={getAuthorSearchParam() === nickname}
+                  />
                 </div>
               </Menus.Button>
             </Table.Row>

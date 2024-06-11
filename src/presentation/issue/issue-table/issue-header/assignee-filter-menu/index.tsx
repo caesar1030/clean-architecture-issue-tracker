@@ -2,7 +2,7 @@ import chevronDownIcon from '@/assets/chevron-down.svg';
 import Avatar from '@/common-ui/avatar';
 import Button from '@/common-ui/button';
 import Menus from '@/common-ui/menus';
-import RadioButton from '@/common-ui/radio-button';
+import CheckIndicator from '@/common-ui/check-indicator';
 import Table from '@/common-ui/table';
 import useUsers from '@/presentation/auth/use-users';
 import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
@@ -33,7 +33,7 @@ const AssigneeFilterMenu = () => {
             <Menus.Button onClick={() => toggleAssignedToNobody()}>
               <div className="flex gap-2 items-center">
                 <span className="grow">담당자가 없는 이슈</span>
-                <RadioButton checked={isAssignedToNobody} />
+                <CheckIndicator checked={isAssignedToNobody} />
               </div>
             </Menus.Button>
           </Table.Row>
@@ -44,7 +44,7 @@ const AssigneeFilterMenu = () => {
                 <div className="flex gap-2 items-center">
                   <Avatar src={avatar} />
                   <span className="grow">{nickname}</span>
-                  <RadioButton
+                  <CheckIndicator
                     checked={getAssigneeSearchParam() === nickname}
                   />
                 </div>

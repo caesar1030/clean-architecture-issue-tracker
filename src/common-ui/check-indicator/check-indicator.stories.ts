@@ -1,9 +1,9 @@
-import RadioButton from '@/common-ui/radio-button';
+import CheckIndicator from '@/common-ui/check-indicator';
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof RadioButton> = {
-  title: 'component/RadioButton',
-  component: RadioButton,
+const meta: Meta<typeof CheckIndicator> = {
+  title: 'component/CheckIndicator',
+  component: CheckIndicator,
   argTypes: {
     checked: {
       description: 'true 또는 false가 가능합니다.',

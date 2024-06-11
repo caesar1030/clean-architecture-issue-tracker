@@ -2,7 +2,7 @@ import chevronDownIcon from '@/assets/chevron-down.svg';
 import Button from '@/common-ui/button';
 import LabelIcon from '@/common-ui/label-icon';
 import Menus from '@/common-ui/menus';
-import RadioButton from '@/common-ui/radio-button';
+import CheckIndicator from '@/common-ui/check-indicator';
 import Table from '@/common-ui/table';
 import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
 import useLabels from '@/presentation/label/use-labels';
@@ -34,7 +34,7 @@ const LabelFilterMenu = () => {
             <Menus.Button onClick={() => toggleUnlabeled()}>
               <div className="flex gap-2 items-center">
                 <span className="grow">레이블이 없는 이슈</span>
-                <RadioButton checked={isUnLabeld} />
+                <CheckIndicator checked={isUnLabeld} />
               </div>
             </Menus.Button>
           </Table.Row>
@@ -45,7 +45,7 @@ const LabelFilterMenu = () => {
                 <div className="flex gap-2 items-center">
                   <LabelIcon backgroundColor={backgroundColor} />
                   <span className="grow">{title}</span>
-                  <RadioButton checked={getLabelSearchParam() === title} />
+                  <CheckIndicator checked={getLabelSearchParam() === title} />
                 </div>
               </Menus.Button>
             </Table.Row>

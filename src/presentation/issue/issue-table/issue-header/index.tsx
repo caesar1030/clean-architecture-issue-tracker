@@ -28,6 +28,8 @@ const IssueHeader = ({
         <Checkbox
           checked={Boolean(selectedIssueIds.length)}
           onChange={() => deselectAllIssues()}
+          id="deselect-all"
+          label="deselect-all"
         />
 
         <span className="flex items-center font-bold text-neutral-text-weak">
@@ -43,6 +45,8 @@ const IssueHeader = ({
       <Checkbox
         checked={Boolean(selectedIssueIds.length)}
         onChange={() => selectAllIssues(issues?.map(({ id }) => id) ?? [])}
+        id="select-all-id"
+        label="select-all"
       />
 
       <StatusFilterButtons

@@ -12,6 +12,8 @@ const Avatar = ({ src }: AvatarProps) => {
   return (
     <div
       style={style}
+      role="img"
+      aria-label={'사용자 아바타'}
       className="w-8 h-8 rounded-full bg-lightgray border border-solid bg-cover bg-center bg-no-repeat"
     />
   );

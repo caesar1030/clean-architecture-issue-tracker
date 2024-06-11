@@ -5,7 +5,7 @@ import FilterBar from '@/common-ui/filter-bar';
 import Menus from '@/common-ui/menus';
 import Button from '@/common-ui/button';
 import Table from '@/common-ui/table';
-import RadioButton from '@/common-ui/radio-button';
+import CheckIndicator from '@/common-ui/check-indicator';
 import usePlaceholder from '@/presentation/issue/issue-filter-bar/use-placeholder';
 
 const IssueFilterBar = () => {
@@ -49,7 +49,7 @@ const IssueFilterBar = () => {
                 <Menus.Button onClick={() => setOpenStatusSearchParam(true)}>
                   <div className="flex gap-2 items-center">
                     <span className="grow">열린 이슈</span>
-                    <RadioButton checked={isOpenStatus} />
+                    <CheckIndicator checked={isOpenStatus} />
                   </div>
                 </Menus.Button>
               </Table.Row>
@@ -58,7 +58,7 @@ const IssueFilterBar = () => {
                 <Menus.Button onClick={() => setOpenStatusSearchParam(false)}>
                   <div className="flex gap-2 items-center">
                     <span className="grow">닫힌 이슈</span>
-                    <RadioButton checked={isCloseStatus} />
+                    <CheckIndicator checked={isCloseStatus} />
                   </div>
                 </Menus.Button>
               </Table.Row>

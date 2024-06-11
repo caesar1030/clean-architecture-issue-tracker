@@ -1,7 +1,7 @@
 import chevronDownIcon from '@/assets/chevron-down.svg';
 import Button from '@/common-ui/button';
 import Menus from '@/common-ui/menus';
-import RadioButton from '@/common-ui/radio-button';
+import CheckIndicator from '@/common-ui/check-indicator';
 import Table from '@/common-ui/table';
 import useSearchParamsHandlers from '@/presentation/issue/use-search-params-handlers';
 import useMilestones from '@/presentation/milestone/use-milestones';
@@ -37,7 +37,7 @@ const MilestoneFilterMenu = () => {
             <Menus.Button onClick={() => toggleNotWithMilestone()}>
               <div className="flex gap-2 items-center">
                 <span className="grow">마일스톤이 없는 이슈</span>
-                <RadioButton checked={isNotWithMilestone} />
+                <CheckIndicator checked={isNotWithMilestone} />
               </div>
             </Menus.Button>
           </Table.Row>
@@ -47,7 +47,9 @@ const MilestoneFilterMenu = () => {
               <Menus.Button onClick={() => toggleMilestoneSearchParam(title)}>
                 <div className="flex gap-2 items-center">
                   <span className="grow">{title}</span>
-                  <RadioButton checked={getMilestoneSearchParam() === title} />
+                  <CheckIndicator
+                    checked={getMilestoneSearchParam() === title}
+                  />
                 </div>
               </Menus.Button>
             </Table.Row>

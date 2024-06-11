@@ -6,7 +6,9 @@ interface ErrorMessageProps extends ComponentPropsWithoutRef<'span'> {
 
 const ErrorMessage = ({ children }: ErrorMessageProps) => {
   return (
-    <span className="text-danger-text text-S font-medium">{children}</span>
+    <span role="alert" className="text-danger-text text-S font-medium">
+      {children}
+    </span>
   );
 };
 

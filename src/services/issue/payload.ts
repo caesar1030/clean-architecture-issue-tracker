@@ -1,5 +1,5 @@
 import { Issue } from '@/services/issue/issue';
-import { Label } from '@/model/label/label';
+import { Label } from '@/services/label/label';
 import { Milestone } from '@/services/milestone/milestone';
 import { User } from '@/services/user/user';
 

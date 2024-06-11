@@ -17,7 +17,7 @@ const sizes = {
 const Logo = ({ size = 'M' }: LogoProps) => {
   return (
     <div className="text-center">
-      <img src={sizes[size].src} alt="Logo" />
+      <img src={sizes[size].src} alt="로고" />
     </div>
   );
 };
