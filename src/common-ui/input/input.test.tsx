@@ -12,6 +12,22 @@ describe('Input 컴포넌트', () => {
     expect(getByPlaceholderText(placeHolder)).toBeInTheDocument();
   });
 
+  it('value가 주어질 경우, 해당 value 값이 표시되어야 한다.', () => {
+    const value = 'some-value';
+    const { getByDisplayValue } = render(
+      <Input id="id" label="label" value={value} />
+    );
+
+    expect(getByDisplayValue(value)).toBeInTheDocument();
+  });
+
+  it('value가 주어지지 않은 경우, 빈 값이 표시되어야 한다.', () => {
+    const { getByRole } = render(<Input id="id" label="label" />);
+
+    const input = getByRole('textbox') as HTMLInputElement;
+    expect(input.value).toBe('');
+  });
+
   it('값이 변할 경우, 주어진 onChange가 호출되어야 한다.', async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
