@@ -1,11 +1,10 @@
 import { vi } from 'vitest';
 import { render } from '@/tests/utils/render-with-context';
 import ProtectedRoute from '@/router/protected-route';
-import { ServicesProvider } from '@/services/service-provider';
 import UserService from '@/services/user/user-service';
-import { ServiceRegistry } from '@/services/services';
 import { screen } from '@testing-library/react';
 import { LocationDisplay } from '@/tests/utils/location-display';
+import { MockServicesProvider } from '@/tests/utils/mock-service-provider';
 
 describe('ProtectedRoute 컴포넌트', () => {
   const TestComponent = () => <div>Test Component</div>;
@@ -16,19 +15,17 @@ describe('ProtectedRoute 컴포넌트', () => {
     };
 
     render(
-      <ServicesProvider
-        serviceRegistry={
-          {
-            userService: mockedUserService,
-          } as ServiceRegistry
-        }
+      <MockServicesProvider
+        mockServices={{
+          userService: mockedUserService,
+        }}
       >
         <ProtectedRoute>
           <TestComponent />
         </ProtectedRoute>
 
         <LocationDisplay />
-      </ServicesProvider>
+      </MockServicesProvider>
     );
 
     const locationElement = await screen.findByText('/login');
@@ -48,17 +45,15 @@ describe('ProtectedRoute 컴포넌트', () => {
     };
 
     render(
-      <ServicesProvider
-        serviceRegistry={
-          {
-            userService: mockedUserService,
-          } as ServiceRegistry
-        }
+      <MockServicesProvider
+        mockServices={{
+          userService: mockedUserService as UserService,
+        }}
       >
         <ProtectedRoute>
           <TestComponent />
         </ProtectedRoute>
-      </ServicesProvider>
+      </MockServicesProvider>
     );
 
     const childElement = await screen.findByText('Test Component');

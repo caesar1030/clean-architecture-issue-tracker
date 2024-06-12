@@ -1,8 +1,7 @@
 import Signup from '@/pages/sign-up';
-import { ServicesProvider } from '@/services/service-provider';
-import { ServiceRegistry } from '@/services/services';
 import UserService from '@/services/user/user-service';
 import { LocationDisplay } from '@/tests/utils/location-display';
+import { MockServicesProvider } from '@/tests/utils/mock-service-provider';
 import { render } from '@/tests/utils/render-with-context';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -19,9 +18,9 @@ describe('회원가입 페이지', () => {
     it('이메일 형식이 잘못된 경우, "이메일 형식이 올바르지 않습니다." 문구가 존재해야 한다. ', async () => {
       const user = userEvent.setup();
       render(
-        <ServicesProvider serviceRegistry={{} as ServiceRegistry}>
+        <MockServicesProvider mockServices={{}}>
           <Signup />
-        </ServicesProvider>
+        </MockServicesProvider>
       );
 
       const emailInput = await screen.findByLabelText('이메일');
@@ -36,9 +35,9 @@ describe('회원가입 페이지', () => {
     it('닉네임이 8글자 초과일 경우, "닉네임은 최대 8글자입니다." 문구가 존재해야 한다. ', async () => {
       const user = userEvent.setup();
       render(
-        <ServicesProvider serviceRegistry={{} as ServiceRegistry}>
+        <MockServicesProvider mockServices={{}}>
           <Signup />
-        </ServicesProvider>
+        </MockServicesProvider>
       );
 
       const nicknameInput = await screen.findByLabelText('닉네임');
@@ -53,9 +52,9 @@ describe('회원가입 페이지', () => {
     it('비밀번호가 6글자 미만일 경우, "비밀번호는 최소 6글자 이상이어야 합니다." 문구가 존재해야 한다.', async () => {
       const user = userEvent.setup();
       render(
-        <ServicesProvider serviceRegistry={{} as ServiceRegistry}>
+        <MockServicesProvider mockServices={{}}>
           <Signup />
-        </ServicesProvider>
+        </MockServicesProvider>
       );
 
       const passwordInput = await screen.findByLabelText('비밀번호');
@@ -71,9 +70,9 @@ describe('회원가입 페이지', () => {
     it('비밀번호가 12글자 초과일 경우, "비밀번호는 최대 12글자입니다." 문구가 존재해야 한다.', async () => {
       const user = userEvent.setup();
       render(
-        <ServicesProvider serviceRegistry={{} as ServiceRegistry}>
+        <MockServicesProvider mockServices={{}}>
           <Signup />
-        </ServicesProvider>
+        </MockServicesProvider>
       );
 
       const passwordInput = await screen.findByLabelText('비밀번호');
@@ -88,9 +87,9 @@ describe('회원가입 페이지', () => {
     it('비밀번호와 비밀번호 확인 입력이 동일하지 않을 경우, "비밀번호가 일치하지 않습니다." 문구가 존재해야 한다.', async () => {
       const user = userEvent.setup();
       render(
-        <ServicesProvider serviceRegistry={{} as ServiceRegistry}>
+        <MockServicesProvider mockServices={{}}>
           <Signup />
-        </ServicesProvider>
+        </MockServicesProvider>
       );
 
       const passwordInput = await screen.findByLabelText('비밀번호');
@@ -122,14 +121,14 @@ describe('회원가입 페이지', () => {
       };
 
       render(
-        <ServicesProvider
-          serviceRegistry={
-            { userService: mockedUserService } as ServiceRegistry
-          }
+        <MockServicesProvider
+          mockServices={{
+            userService: mockedUserService,
+          }}
         >
           <Signup />
           <LocationDisplay />
-        </ServicesProvider>
+        </MockServicesProvider>
       );
 
       const emailInput = await screen.findByLabelText('이메일');
@@ -169,13 +168,13 @@ describe('회원가입 페이지', () => {
       };
 
       render(
-        <ServicesProvider
-          serviceRegistry={
-            { userService: mockedUserService } as ServiceRegistry
-          }
+        <MockServicesProvider
+          mockServices={{
+            userService: mockedUserService,
+          }}
         >
           <Signup />
-        </ServicesProvider>
+        </MockServicesProvider>
       );
 
       const emailInput = await screen.findByLabelText('이메일');

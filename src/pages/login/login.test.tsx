@@ -1,8 +1,7 @@
 import Login from '@/pages/login';
-import { ServicesProvider } from '@/services/service-provider';
-import { ServiceRegistry } from '@/services/services';
 import UserService from '@/services/user/user-service';
 import { LocationDisplay } from '@/tests/utils/location-display';
+import { MockServicesProvider } from '@/tests/utils/mock-service-provider';
 import { render } from '@/tests/utils/render-with-context';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -17,9 +16,9 @@ describe('로그인 페이지', () => {
     it('이메일 형식이 잘못된 경우, "이메일 형식이 올바르지 않습니다." 문구가 존재해야 한다.', async () => {
       const user = userEvent.setup();
       render(
-        <ServicesProvider serviceRegistry={{} as ServiceRegistry}>
+        <MockServicesProvider mockServices={{}}>
           <Login />
-        </ServicesProvider>
+        </MockServicesProvider>
       );
 
       const emailInput = await screen.findByLabelText('이메일');
@@ -34,9 +33,9 @@ describe('로그인 페이지', () => {
     it('비밀번호가 6글자 미만일 경우, "비밀번호는 최소 6글자 이상이어야 합니다." 문구가 존재해야 한다.', async () => {
       const user = userEvent.setup();
       render(
-        <ServicesProvider serviceRegistry={{} as ServiceRegistry}>
+        <MockServicesProvider mockServices={{}}>
           <Login />
-        </ServicesProvider>
+        </MockServicesProvider>
       );
 
       const passwordInput = await screen.findByLabelText('비밀번호');
@@ -52,9 +51,9 @@ describe('로그인 페이지', () => {
     it('비밀번호가 12글자 초과일 경우, "비밀번호는 최대 12글자입니다." 문구가 존재해야 한다.', async () => {
       const user = userEvent.setup();
       render(
-        <ServicesProvider serviceRegistry={{} as ServiceRegistry}>
+        <MockServicesProvider mockServices={{}}>
           <Login />
-        </ServicesProvider>
+        </MockServicesProvider>
       );
 
       const passwordInput = await screen.findByLabelText('비밀번호');
@@ -82,16 +81,14 @@ describe('로그인 페이지', () => {
       };
 
       render(
-        <ServicesProvider
-          serviceRegistry={
-            {
-              userService: mockedUserService,
-            } as ServiceRegistry
-          }
+        <MockServicesProvider
+          mockServices={{
+            userService: mockedUserService,
+          }}
         >
           <Login />
           <LocationDisplay />
-        </ServicesProvider>
+        </MockServicesProvider>
       );
 
       const emailInput = await screen.findByLabelText('이메일');
@@ -121,15 +118,13 @@ describe('로그인 페이지', () => {
       };
 
       render(
-        <ServicesProvider
-          serviceRegistry={
-            {
-              userService: mockedUserService,
-            } as ServiceRegistry
-          }
+        <MockServicesProvider
+          mockServices={{
+            userService: mockedUserService,
+          }}
         >
           <Login />
-        </ServicesProvider>
+        </MockServicesProvider>
       );
 
       const emailInput = await screen.findByLabelText('이메일');
