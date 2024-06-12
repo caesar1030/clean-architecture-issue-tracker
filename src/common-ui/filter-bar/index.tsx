@@ -93,9 +93,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           width={16}
           height={16}
           src={searchIcon}
-          alt="검색"
+          alt=""
           className="w-4 h-4"
         />
+        <span className="sr-only">검색</span>
       </label>
       <input
         type="text"
