@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - 'vite'
+      - 'main'
 
 permissions:
   contents: read
