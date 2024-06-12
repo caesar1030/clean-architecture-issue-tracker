@@ -39,7 +39,10 @@ const TableContext = createContext<TableContextType>(null!);
 const Table = ({ columns, children, size = 'L' }: TableProps) => {
   return (
     <TableContext.Provider value={{ columns, size }}>
-      <div className="border border-solid border-neutral-border rounded-large overflow-hidden bg-neutral-background-strong">
+      <div
+        role="table"
+        className="border border-solid border-neutral-border rounded-large overflow-hidden bg-neutral-background-strong"
+      >
         {children}
       </div>
     </TableContext.Provider>
@@ -51,6 +54,7 @@ const Header = ({ children }: HeaderProps) => {
 
   return (
     <div
+      role="rowheader"
       style={{ gridTemplateColumns: columns }}
       className={`grid items-center ${sizes[size]} bg-neutral-background border-b border-solid border-neutral-border`}
     >
@@ -61,10 +65,18 @@ const Header = ({ children }: HeaderProps) => {
 
 const Body = <T,>({ data, render }: BodyProps<T>) => {
   if (!data || data.length === 0) {
-    return <p className="text-center m-6 ">표시할 항목이 없습니다.</p>;
+    return (
+      <p role="row" className="text-center m-6 ">
+        표시할 항목이 없습니다.
+      </p>
+    );
   }
 
-  return <div className="bg-neutral-background-strong">{data.map(render)}</div>;
+  return (
+    <div role="rowgroup" className="bg-neutral-background-strong">
+      {data.map(render)}
+    </div>
+  );
 };
 
 const Row = ({ children, ...rest }: RowProps) => {
@@ -72,6 +84,7 @@ const Row = ({ children, ...rest }: RowProps) => {
 
   return (
     <div
+      role="row"
       style={{ gridTemplateColumns: columns }}
       className={`grid ${sizes[size]} border-b last:border-b-0 border-solid border-neutral-border bg-neutral-background-strong ${rest.className}`}
     >
