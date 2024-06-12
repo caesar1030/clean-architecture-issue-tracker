@@ -1,5 +1,5 @@
 import TextArea from '@/common-ui/text-area';
-import { render } from '@/tests/utils/render-with-context';
+import { render } from '@/tests/test-utils/render-with-context';
 import userEvent from '@testing-library/user-event';
 
 describe('TextArea 컴포넌트', () => {

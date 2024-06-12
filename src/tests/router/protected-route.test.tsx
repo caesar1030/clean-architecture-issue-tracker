@@ -1,10 +1,10 @@
 import { vi } from 'vitest';
-import { render } from '@/tests/utils/render-with-context';
+import { render } from '@/tests/test-utils/render-with-context';
 import ProtectedRoute from '@/router/protected-route';
 import UserService from '@/services/user/user-service';
 import { screen } from '@testing-library/react';
-import { LocationDisplay } from '@/tests/utils/location-display';
-import { MockServicesProvider } from '@/tests/utils/mock-service-provider';
+import { LocationDisplay } from '@/tests/test-utils/location-display';
+import { MockServicesProvider } from '@/tests/test-utils/mock-service-provider';
 
 describe('ProtectedRoute 컴포넌트', () => {
   const TestComponent = () => <div>Test Component</div>;

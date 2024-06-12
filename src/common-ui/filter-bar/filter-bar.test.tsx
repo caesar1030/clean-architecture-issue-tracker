@@ -1,5 +1,5 @@
 import FilterBar from '@/common-ui/filter-bar';
-import { render } from '@/tests/utils/render-with-context';
+import { render } from '@/tests/test-utils/render-with-context';
 import userEvent from '@testing-library/user-event';
 
 describe('FilterBar 컴포넌트', () => {

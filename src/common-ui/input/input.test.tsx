@@ -1,5 +1,5 @@
 import Input from '@/common-ui/input';
-import { render } from '@/tests/utils/render-with-context';
+import { render } from '@/tests/test-utils/render-with-context';
 import userEvent from '@testing-library/user-event';
 
 describe('Input 컴포넌트', () => {

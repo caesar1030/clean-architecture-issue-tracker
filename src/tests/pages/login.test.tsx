@@ -1,8 +1,8 @@
 import Login from '@/pages/login';
 import UserService from '@/services/user/user-service';
-import { LocationDisplay } from '@/tests/utils/location-display';
-import { MockServicesProvider } from '@/tests/utils/mock-service-provider';
-import { render } from '@/tests/utils/render-with-context';
+import { LocationDisplay } from '@/tests/test-utils/location-display';
+import { MockServicesProvider } from '@/tests/test-utils/mock-service-provider';
+import { render } from '@/tests/test-utils/render-with-context';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
