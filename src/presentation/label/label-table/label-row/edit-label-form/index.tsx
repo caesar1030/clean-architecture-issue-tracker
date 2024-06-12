@@ -4,7 +4,6 @@ import closeIcon from '@/assets/close-blue.svg';
 import editIcon from '@/assets/edit-white.svg';
 import { generateRandomColor } from '@/utils/helpers';
 import useEditLabel from '@/presentation/label/use-edit-labels';
-import { LabelsResponse } from '@/services/label';
 import Table from '@/common-ui/table';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';
@@ -12,6 +11,7 @@ import LabelTag from '@/common-ui/label-tag';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LabelSchema } from '@/schemas/label/label-schema';
 import ErrorMessage from '@/common-ui/error-message';
+import { LabelsResponse } from '@/services/label/response';
 
 export interface EditLabelFormProps {
   label: LabelsResponse['data'][number];

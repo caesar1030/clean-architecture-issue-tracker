@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import editIcon from '@/assets/edit.svg';
 import trashIcon from '@/assets/trash.svg';
-import { LabelsResponse } from '@/services/label';
 import useDeleteLabel from '@/presentation/label/use-delete-label';
 import EditLabelForm from '@/presentation/label/label-table/label-row/edit-label-form';
 import Table from '@/common-ui/table';
 import LabelTag from '@/common-ui/label-tag';
 import Button from '@/common-ui/button';
+import { LabelsResponse } from '@/services/label/response';
 
 export interface LabelRowProps {
   label: LabelsResponse['data'][number];

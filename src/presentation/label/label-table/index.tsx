@@ -1,7 +1,7 @@
 import Table from '@/common-ui/table';
-import { LabelsResponse } from '@/services/label';
 import LabelRow from '@/presentation/label/label-table/label-row';
 import useLabels from '@/presentation/label/use-labels';
+import { LabelsResponse } from '@/services/label/response';
 
 const LabelTable = () => {
   const { labels } = useLabels();

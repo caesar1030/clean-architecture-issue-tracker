@@ -83,7 +83,7 @@ describe('로그인 페이지', () => {
       render(
         <MockServicesProvider
           mockServices={{
-            userService: mockedUserService,
+            userService: mockedUserService as UserService,
           }}
         >
           <Login />
@@ -120,7 +120,7 @@ describe('로그인 페이지', () => {
       render(
         <MockServicesProvider
           mockServices={{
-            userService: mockedUserService,
+            userService: mockedUserService as UserService,
           }}
         >
           <Login />

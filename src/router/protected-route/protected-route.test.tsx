@@ -17,7 +17,7 @@ describe('ProtectedRoute 컴포넌트', () => {
     render(
       <MockServicesProvider
         mockServices={{
-          userService: mockedUserService,
+          userService: mockedUserService as UserService,
         }}
       >
         <ProtectedRoute>

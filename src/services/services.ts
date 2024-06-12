@@ -23,23 +23,23 @@ export class Services {
     return this.cachedServices.get(serviceName);
   }
 
-  get issueService() {
+  get issueService(): IssueService {
     return this.getService('issue');
   }
 
-  get labelService() {
+  get labelService(): LabelService {
     return this.getService('label');
   }
 
-  get milestoneService() {
+  get milestoneService(): MilestoneService {
     return this.getService('milestone');
   }
 
-  get commentService() {
+  get commentService(): CommentService {
     return this.getService('comment');
   }
 
-  get userService() {
+  get userService(): UserService {
     return this.getService('user');
   }
 }

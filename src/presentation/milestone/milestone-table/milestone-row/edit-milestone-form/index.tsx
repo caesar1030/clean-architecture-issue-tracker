@@ -1,15 +1,15 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import closeIcon from '@/assets/close-blue.svg';
 import editIcon from '@/assets/edit-white.svg';
-import { MilestonesResopnse } from '@/services/milestone';
 import useEditMilestone from '@/presentation/milestone/use-edit-milestone';
-import { EditMilestonePayload } from '@/services/milestone';
 import Table from '@/common-ui/table';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';
 import ErrorMessage from '@/common-ui/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MilestoneSchema } from '@/schemas/milestone/milestone-schema';
+import { MilestonesResopnse } from '@/services/milestone/response';
+import { EditMilestonePayload } from '@/services/milestone/payload';
 
 interface FormType {
   title: string;

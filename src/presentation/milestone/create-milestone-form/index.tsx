@@ -1,13 +1,13 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import plusIcon from '@/assets/plus-white.svg';
 import useCreateMilestone from '@/presentation/milestone/use-create-milestone';
-import { CreateMilestonePayload } from '@/services/milestone';
 import Table from '@/common-ui/table';
 import Input from '@/common-ui/input';
 import Button from '@/common-ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MilestoneSchema } from '@/schemas/milestone/milestone-schema';
 import ErrorMessage from '@/common-ui/error-message';
+import { CreateMilestonePayload } from '@/services/milestone/payload';
 
 interface FormType {
   title: string;
