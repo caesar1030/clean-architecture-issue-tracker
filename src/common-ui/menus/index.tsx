@@ -95,7 +95,7 @@ const Trigger = ({ id, children, windowPosition }: TriggerProps) => {
   };
 
   return (
-    <div id={id} onClick={handleClick}>
+    <div aria-haspopup={'menu'} id={id} onClick={handleClick}>
       {children}
     </div>
   );
@@ -108,7 +108,7 @@ const Window = ({ id, children }: WindowProps) => {
   if (openedId !== id) return null;
 
   return createPortal(
-    <div
+    <menu
       style={{
         top: `${position.y}px`,
         left: `${position.x}px`,
@@ -118,7 +118,7 @@ const Window = ({ id, children }: WindowProps) => {
       ref={windowRef}
     >
       {children}
-    </div>,
+    </menu>,
     document.body
   );
 };
