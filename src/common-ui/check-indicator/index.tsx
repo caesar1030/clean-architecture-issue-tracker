@@ -8,19 +8,23 @@ interface CheckIndicatorProps {
 const CheckIndicator = ({ checked = false }: CheckIndicatorProps) => {
   return checked ? (
     <img
+      role="checkbox"
+      aria-disabled={true}
+      aria-checked={true}
       width={16}
       height={16}
       src={checkOnCircleIcon}
       alt="선택된 옵션"
-      aria-checked={true}
     />
   ) : (
     <img
+      role="checkbox"
+      aria-disabled={true}
+      aria-checked={false}
       width={16}
       height={16}
       src={checkOffCircleIcon}
       alt="미선택된 옵션"
-      aria-checked={false}
     />
   );
 };
